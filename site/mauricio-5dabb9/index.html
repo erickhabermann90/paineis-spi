@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f4f2ec">
 <title>Painel Mauricio Tamburo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fraunces:opsz,wght@9..144,400&display=swap" rel="stylesheet">
 <style>
-  :root { --font-anthropic-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; --font-anthropic-serif: Fraunces, Georgia, serif; --cds-ease-out: cubic-bezier(.16,1,.3,1); color-scheme: dark; }
-  html, body { margin: 0; background: #050505; }
+  :root { --font-anthropic-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; --font-anthropic-serif: Fraunces, Georgia, serif; --cds-ease-out: cubic-bezier(.16,1,.3,1); color-scheme: light; }
+  html, body { margin: 0; background: #f4f2ec; }
   button { font-family: inherit; }
 </style>
 <style>
@@ -249,6 +250,44 @@
     .px-fam-row .nm { grid-area: nm; } .px-fam-row .var { grid-area: var; } .px-fam-row .bars { grid-area: bars; }
     .px-fam { gap: 16px; }
   }
+
+/* MODELO A · CLARO EXECUTIVO */
+html, body { background: #f4f2ec !important; color-scheme: light; }
+.px { --bg:#f4f2ec; --card:#ffffff; --card2:#ffffff; --line:#e7e3d8; --fg:#16181d; --mut:#6c6f78; --gold:#e0a800; --gold2:#ffcf33; --ok:#0f9d6b; --warn:#c98a00; --bad:#d64545;
+  background: var(--bg) !important; color: var(--fg); }
+.px-name { font-family: var(--font-anthropic-sans) !important; font-weight: 700; letter-spacing: -.02em; }
+.px-hero { background: #fff !important; box-shadow: 0 10px 30px -12px rgba(30,30,40,.18) !important; border: 1px solid var(--line) !important; }
+.px-big { background: none !important; -webkit-text-fill-color: currentColor; filter: none !important; font-family: var(--font-anthropic-sans) !important; font-weight: 700; letter-spacing: -.04em; }
+.px-big.t-ok { color: var(--ok); } .px-big.t-warn { color: var(--warn); } .px-big.t-bad { color: var(--bad); }
+.px-ring svg circle:not(.px-arc):not(.px-arc2) { stroke: #eeebe2; }
+.px-ring svg circle { filter: none; }
+.px-track-bar { background: #eeebe2 !important; } .px-tick { background: #16181d !important; }
+.px-card { background: #fff !important; box-shadow: 0 8px 22px -12px rgba(30,30,40,.22) !important; border: 1px solid var(--line) !important; }
+.px-card::after { display: none; }
+.px-card h3, .px-card .kv, .px-mini .v, .px-g .p, .px-page-head h2 { font-family: var(--font-anthropic-sans) !important; font-weight: 700; letter-spacing: -.02em; }
+.px-card .kv { color: var(--fg); }
+.px-card .n, .px-card .go { color: #b88600; }
+.px-card.hl { background: #ffc000 !important; border: none !important; box-shadow: 0 16px 34px -14px rgba(224,168,0,.7) !important; }
+.px-card.hl h3, .px-card.hl .kv, .px-card.hl .kl, .px-card.hl .n, .px-card.hl .go, .px-card.hl .hl-txt, .px-card.hl .hl-txt b { color: #16181d !important; }
+.px-card.hl .tag { background: #16181d; color: #ffc000; }
+.px-card.hl .hl-bar { background: rgba(0,0,0,.15); } .px-card.hl .hl-bar b { background: #16181d !important; box-shadow: none !important; } .px-card.hl .hl-bar i { background: #fff; }
+.px-panel, .px-mini, .px-g, .px-rank-row, .px-q4m .bar.fut { background: #fff !important; border-color: var(--line) !important; box-shadow: 0 6px 18px -12px rgba(30,30,40,.2) !important; }
+.px th { background: #faf8f3 !important; } .px td { border-color: #efece4 !important; }
+.px-search { background: #faf8f3 !important; color: var(--fg) !important; }
+.px-back { color: #16181d !important; border-color: #16181d !important; }
+.px-fam-row .b25 { background: #d9d5ca !important; }
+.px-mini .v.gold { color: #b88600 !important; }
+.px-rec .v { font-family: var(--font-anthropic-sans) !important; font-weight: 700; }
+
+
+.px-g .bar, .px-pct i, .px-mix-bar, .px-card .hl-bar { background: #eeebe2 !important; }
+.px-card.hl .hl-bar { background: rgba(0,0,0,.15) !important; }
+.px-sel button { background: #faf8f3 !important; color: var(--mut); } .px-sel button[aria-pressed="true"] { background: #ffc000 !important; color: #16181d !important; box-shadow: none !important; }
+.px-chip[aria-pressed="true"] { color: #16181d !important; }
+.px tbody tr:hover td { background: #fbf6e6 !important; }
+.px-rede-status.no { background: #fdecec !important; } .px-rede-status.ok { background: #e3f4ec !important; }
+.px-q4m .bar.fut { background: repeating-linear-gradient(45deg, #ece9e0 0 6px, #f6f4ee 6px 12px) !important; box-shadow: none !important; }
+.px-q4m .meta { border-top-color: rgba(22,24,29,.45) !important; }
 </style>
 </head><body>
 <div id="dash-root">
