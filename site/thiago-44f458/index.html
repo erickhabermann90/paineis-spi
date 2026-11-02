@@ -303,6 +303,24 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
 .px-note { font-size: 13px; }
 
 .px { overflow-x: clip; }
+
+/* ---- acabamento ---- */
+.px-wrap .px-wrap { max-width: none !important; margin: 0 !important; }
+.px-tick-lbls { position: static !important; height: auto !important; display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 10px; }
+.px-tick-lbls .lbl2 { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--mut); white-space: nowrap; }
+.px-tick-lbls .lbl2 i { display: inline-block; width: 2px; height: 12px; background: #16181d; border-radius: 1px; }
+.px-tick-lbls .lbl2 b { color: var(--fg); font-weight: 600; }
+.px-q4m { padding-top: 26px !important; }
+.px-q4m .col { min-width: 0; } .px-q4m .ml { white-space: nowrap; font-size: 11px; }
+@media (max-width: 640px) { .px-tw { max-height: none !important; overflow: visible !important; } .px th { position: static !important; } }
+.px-panel > :first-child { margin-top: 0; }
+
+.px-tick-lbls span.lbl2 { position: static !important; transform: none !important; top: auto !important; }
+.px-rank-row .nm { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; overflow-wrap: anywhere; }
+.px-sel button { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; text-align: left; }
+.px-kpi .px-kpi-s { white-space: normal; }
+
+.px-tw { max-height: none !important; overflow: visible !important; } .px th { position: static !important; }
 </style>
 </head><body>
 <div id="dash-root">
@@ -439,7 +457,7 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
       <div class="px-panel">
         <h4>Suas famílias</h4>
         <p class="px-note" style="margin-bottom: 6px">Média por mês. <b>Mix</b> = peso da família no seu total.</p>
-        <div class="px-legend" style="margin: 6px 0 16px"><span><i style="background: #3a3a42"></i>2025</span><span><i style="background: var(--gold)"></i>2026</span></div>
+        <div class="px-legend" style="margin: 6px 0 16px"><span><i style="background: #d9d5ca"></i>2025</span><span><i style="background: var(--gold)"></i>2026</span></div>
         <div class="px-fam" data-draw="fam_rows" data-source="familias_calc mix"></div>
       </div>
       <div class="px-duo">
@@ -474,7 +492,7 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
       </div>
       <div class="px-panel">
         <h4>Mês a mês</h4>
-        <p class="px-note" style="margin-bottom: 14px">Linha tracejada = objetivo do mês.</p>
+        <p class="px-note" style="margin-bottom: 14px">Linha tracejada = objetivo do mês: <b><span data-draw="q_meta_mes" data-source="q4" data-field="objetivo">—</span> kg</b>.</p>
         <div class="px-q4m" data-draw="q4_meses" data-source="q4_mensal"></div>
       </div>
       <div class="px-panel">
@@ -610,7 +628,7 @@ window.dash = (() => {
   dash.calc('q4_mensal', {
     title: 'Vendido por mês no 4º tri', description: 'Kg faturados em cada mês do trimestre; objetivo do mês = objetivo do trimestre ÷ 3.',
     inputs: ['meta4t'],
-    fn: (meta4t) => { const m = meta4t[0]; return [['Out', m.out, m.fechados >= 1], ['Nov', m.nov, m.fechados >= 2 || m.nov > 0], ['Dez', m.dez, m.fechados >= 3 || m.dez > 0]].map(([mes, kg, tem]) => ({mes, kg, tem, meta_mes: m.objetivo / 3})); }
+    fn: (meta4t) => { const m = meta4t[0]; const cur = 3 - m.meses_rest; return [['Out', m.out, m.fechados >= 1], ['Nov', m.nov, m.fechados >= 2 || m.nov > 0], ['Dez', m.dez, m.fechados >= 3 || m.dez > 0]].map(([mes, kg, tem], i) => ({mes, kg, tem, atual: i === cur, meta_mes: m.objetivo / 3})); }
   });
   dash.calc('q4_clientes', {
     title: 'Objetivo 4º tri por cliente', description: 'Objetivo de cada cliente (reunião) x kg comprados de outubro a dezembro; recuperar 2025 = quanto falta para o cliente voltar ao volume de 2025.',
@@ -683,10 +701,10 @@ window.dash = (() => {
   });
   dash.draw('track_lbls', (el) => {
     el.replaceChildren(); const p = pxOne('plano'); if (!p) return;
-    const pos = (kg) => Math.min(kg / p.objetivo / SCALE, 1) * 100;
-    [['Mín', p.minimo, 'b'], ['Obj', p.objetivo, 'a'], ['Acel', p.acelerador, 'b']].forEach(([n, k, row]) => {
-      const sp = document.createElement('span'); sp.className = 'lbl ' + row; sp.style.left = pos(k) + '%';
-      sp.textContent = n + ' ' + pxKg(k); el.appendChild(sp);
+    [['Mínimo', p.minimo], ['Objetivo', p.objetivo], ['Acelerador', p.acelerador]].forEach(([n, k]) => {
+      const sp = document.createElement('span'); sp.className = 'lbl2';
+      const t = document.createElement('i'); const v = document.createElement('b'); v.textContent = pxKg(k);
+      sp.append(t, document.createTextNode(n + ' '), v); el.appendChild(sp);
     });
   });
 
@@ -811,20 +829,22 @@ window.dash = (() => {
   dash.draw('c5_esp', (el) => { const r = pxOne('q4'); el.style.left = r ? Math.min(r.esperado_kg / r.objetivo, 1) * 100 + '%' : '0'; });
   val('c5_falta', 'q4', 'falta', pxKg); val('c5_mes', 'q4', 'por_mes', pxKg);
   val('q_rec', 'q4_rec', 'recuperar', pxKg); val('q_rec_n', 'q4_rec', 'clientes', String);
+  val('q_meta_mes', 'q4', 'objetivo', (v) => pxKg(v / 3));
   val('q_obj', 'q4', 'objetivo', pxKg); val('q_real', 'q4', 'realizado', pxKg); val('q_falta', 'q4', 'falta', pxKg); val('q_mes', 'q4', 'por_mes', pxKg);
   dash.draw('q4_meses', (el) => {
     el.replaceChildren(); const d = dash.data('q4_mensal'); if (d.status !== 'ok') return;
     const meta = d.data[0].meta_mes, max = Math.max(meta, ...d.data.map((r) => r.kg)) * 1.12, H = 150;
     d.data.forEach((r) => {
       const col = document.createElement('div'); col.className = 'col';
-      const vl = document.createElement('div'); vl.className = 'vl ' + (r.tem ? pxTone(r.kg / meta) : 'c-mut'); vl.textContent = r.tem ? pxKg(r.kg) + ' kg' : '\u00a0';
+      const vl = document.createElement('div'); vl.className = 'vl ' + (r.atual ? 'c-mut' : r.tem ? pxTone(r.kg / meta) : 'c-mut'); vl.textContent = r.tem ? pxKg(r.kg) + ' kg' : '\u00a0';
       const bar = document.createElement('div'); bar.className = 'bar' + (r.tem ? '' : ' fut');
-      bar.style.height = (r.tem ? Math.max(r.kg / max * H, 4) : meta / max * H) + 'px'; if (r.tem) bar.style.background = pxHex(r.kg / meta);
-      const ml = document.createElement('div'); ml.className = 'ml'; ml.textContent = r.tem ? r.mes : r.mes + ' · a vender';
+      bar.style.height = (r.tem ? Math.max(r.kg / max * H, 4) : meta / max * H) + 'px'; if (r.tem) bar.style.background = r.atual ? '#c9c4b6' : pxHex(r.kg / meta);
+      const ml = document.createElement('div'); ml.className = 'ml'; ml.textContent = r.atual ? r.mes + ' · em curso' : r.tem ? r.mes : r.mes + ' · a vender';
       col.append(vl, bar, ml); el.appendChild(col);
     });
-    const line = document.createElement('div'); line.className = 'meta'; line.style.bottom = (meta / max * H + 24) + 'px';
-    const lt = document.createElement('span'); lt.textContent = 'objetivo/mês ' + pxKg(meta) + ' kg'; line.appendChild(lt); el.appendChild(line);
+    const line = document.createElement('div'); line.className = 'meta';
+    el.appendChild(line);
+    const bar0 = el.querySelector('.bar'); if (bar0) { const base = bar0.getBoundingClientRect().bottom - el.getBoundingClientRect().top; line.style.bottom = 'auto'; line.style.top = (base - meta / max * H - 1) + 'px'; }
   });
   window.pxQ4 = {busca: '', chip: 'todos'};
   dash.draw('tab_q4', (tb) => {
@@ -860,6 +880,7 @@ window.dash = (() => {
   const ids = {home: 'inicio', mes: 'mes-atual', prime: 'prime', ano: 'ano-2026', q4: 'objetivo-4tri'};
   const show = (page) => {
     document.querySelectorAll('[data-page]').forEach((s) => { s.hidden = s.dataset.page !== page; });
+    if (page === 'q4') { try { dash.draw('q4_meses'); } catch (e) {} }
     try { dash.setLink(page === 'home' ? null : ids[page]); } catch (e) {}
     document.querySelector('.px')?.scrollIntoView?.({block: 'start'});
   };
