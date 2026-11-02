@@ -160,8 +160,8 @@
   .px-big.t-bad { background: linear-gradient(180deg, #fff 5%, #fecaca 55%, #f87171); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 20px rgba(248,113,113,.3)); }
   .px-big { font-size: clamp(30px, 6.5vw, 68px); white-space: nowrap; }
   .px-gap { font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; margin-top: 4px; }
-  .px-gap.falta { color: var(--bad); } .px-gap.falta::before { content: "Gap p/ 100%: "; color: var(--mut); font-weight: 400; } .px-gap.falta::after { content: " kg"; }
-  .px-gap.sobra { color: var(--ok); } .px-gap.sobra::before { content: "Acima de 100%: +"; color: var(--mut); font-weight: 400; } .px-gap.sobra::after { content: " kg"; }
+  .px-gap.falta { color: var(--bad); } .px-gap.falta::before { content: "Faltam "; color: var(--mut); font-weight: 400; } .px-gap.falta::after { content: " kg"; }
+  .px-gap.sobra { color: var(--ok); } .px-gap.sobra::before { content: "Acima: +"; color: var(--mut); font-weight: 400; } .px-gap.sobra::after { content: " kg"; }
   .px-tick-lbls { position: relative; height: 34px; }
   .px-tick-lbls .lbl { position: absolute; transform: translateX(-50%); white-space: nowrap; font-size: 10px; color: var(--mut); }
   .px-tick-lbls .lbl.a { top: 4px; color: var(--fg); }
@@ -277,6 +277,21 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
 .px-rede-status.no { background: #fdecec !important; } .px-rede-status.ok { background: #e3f4ec !important; }
 .px-q4m .bar.fut { background: repeating-linear-gradient(45deg, #ece9e0 0 6px, #f6f4ee 6px 12px) !important; box-shadow: none !important; }
 .px-q4m .meta { border-top-color: rgba(22,24,29,.45) !important; }
+
+@media (max-width: 640px) {
+  .px table { font-size: 11.5px !important; }
+  .px th, .px td { padding: 8px 6px !important; }
+  .px td:first-child { min-width: 0 !important; max-width: 38vw; overflow-wrap: anywhere; }
+  .px-pct i { display: none !important; }
+  .px-dot { margin-right: 3px !important; }
+  .px-mini .v { font-size: 22px !important; } .px-mini { padding: 12px !important; }
+  .px-g .p { font-size: 28px !important; }
+  .px-kpi-s, .px-gap { font-size: 11px !important; }
+  .px-tools { gap: 6px !important; } .px-chip { padding: 6px 10px !important; font-size: 12px !important; }
+}
+.px-note { font-size: 13px; }
+
+.px { overflow-x: clip; }
 </style>
 
 <div class="px">
@@ -292,15 +307,15 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
           <div class="px-ring" data-draw="ring" data-source="performance"></div>
           <div class="px-kpis">
             <div class="px-kpi">
-              <div class="px-kpi-l">Faturado <span class="px-ring-hint">anel interno</span></div>
+              <div class="px-kpi-l">Faturado</div>
               <div class="px-big" data-draw="k_fat" data-source="performance" data-field="ating_faturado" data-row="0">—</div>
               <div class="px-kpi-s"><span data-draw="k_fat_kg" data-source="plano" data-field="faturado" data-row="0">—</span> kg</div>
               <div class="px-gap" data-draw="g_fat" data-source="performance" data-field="gap_faturado" data-row="0">—</div>
             </div>
             <div class="px-kpi">
-              <div class="px-kpi-l">Vendido <span class="px-ring-hint">anel externo</span></div>
+              <div class="px-kpi-l">Vendido</div>
               <div class="px-big" data-draw="k_vend" data-source="performance" data-field="ating_vendido" data-row="0">—</div>
-              <div class="px-kpi-s"><span data-draw="k_vend_kg" data-source="performance" data-field="vendido" data-row="0">—</span> kg · fat. + carteira</div>
+              <div class="px-kpi-s"><span data-draw="k_vend_kg" data-source="performance" data-field="vendido" data-row="0">—</span> kg com carteira</div>
               <div class="px-gap" data-draw="g_vend" data-source="performance" data-field="gap_vendido" data-row="0">—</div>
             </div>
           </div>
@@ -345,7 +360,7 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
 
     <section data-page="mes" id="mes-atual" class="px-wrap" style="gap: inherit" hidden>
       <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Mês atual</h2></div>
-      <p class="px-note">Plano do cliente = objetivo performance dividido entre os clientes ativos (com compra em 2026), na proporção da média mensal de 2026 de cada um.</p>
+      <p class="px-note">Plano = seu objetivo dividido pelos clientes, conforme a média de compra de cada um.</p>
       <div class="px-minis">
         <div class="px-mini"><div class="l">Clientes ativos</div><div class="v" data-draw="m_ativos" data-source="mes_resumo" data-field="clientes_ativos" data-row="0">—</div></div>
         <div class="px-mini"><div class="l">Compraram no mês</div><div class="v gold" data-draw="m_com" data-source="mes_resumo" data-field="com_compra" data-row="0">—</div></div>
@@ -362,12 +377,12 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
         <div class="px-tw">
           <table data-source="mes_atual" data-row-key="cod">
             <thead><tr>
-              <th data-field="razao_social">Razão social</th>
-              <th data-field="plano_cliente">Plano (kg)</th>
-              <th data-field="faturado">Faturado</th>
-              <th data-field="carteira" class="h-sm">Carteira</th>
-              <th data-field="atingimento">Ating.</th>
-              <th data-field="dias_ult_compra">Dias s/ compra</th>
+              <th data-field="razao_social">Cliente</th>
+              <th data-field="plano_cliente">Plano</th>
+              <th data-field="faturado">Fat.</th>
+              <th data-field="carteira" class="h-sm">Cart.</th>
+              <th data-field="atingimento">%</th>
+              <th data-field="dias_ult_compra">Dias</th>
             </tr></thead>
             <tbody data-draw="tab_mes"></tbody>
           </table>
@@ -377,22 +392,22 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
 
     <section data-page="prime" id="prime" class="px-wrap" style="gap: inherit" hidden>
       <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Prime · Rebate</h2></div>
-      <p class="px-note">Escolha a rede. Cada barra mostra quantos kg já foram comprados contra o objetivo (objetivo do BI + 5%). O rebate só é liberado quando o <b>objetivo total</b> da rede é batido.</p>
+      <p class="px-note">O rebate só sai quando o <b>objetivo total</b> da rede é batido. Objetivo = BI + 5%.</p>
       <div class="px-panel">
         <div class="px-sel" role="group" aria-label="Escolher rede" data-draw="rede_sel" data-source="rebate_calc"></div>
         <div class="px-redes" data-draw="groups" data-source="rebate_calc"></div>
       </div>
       <div class="px-panel">
         <h4>Lojas desta rede</h4>
-        <p class="px-note" style="margin-bottom: 12px">Quanto cada loja comprou no mês e há quantos dias não compra.</p>
+        
         <div class="px-tw">
           <table data-source="prime_clientes" data-row-key="cod">
             <thead><tr>
               <th data-field="razao_social">Loja</th>
-              <th data-field="med_kg_26">Média/mês 2026</th>
-              <th data-field="kg_mes">Comprou no mês</th>
-              <th data-field="kg_carteira" class="h-sm">Em carteira</th>
-              <th data-field="dias_ult_compra">Dias sem comprar</th>
+              <th data-field="med_kg_26">Média</th>
+              <th data-field="kg_mes">No mês</th>
+              <th data-field="kg_carteira" class="h-sm">Cart.</th>
+              <th data-field="dias_ult_compra">Dias</th>
             </tr></thead>
             <tbody data-draw="tab_prime"></tbody>
           </table>
@@ -402,7 +417,7 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
 
     <section data-page="ano" id="ano-2026" class="px-wrap" style="gap: inherit" hidden>
       <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Ano 2026</h2></div>
-      <p class="px-note">Seu ano até agora comparado com 2025. Comparamos a <b>média por mês</b> de cada ano, para ser justo com o ano que ainda não acabou.</p>
+      <p class="px-note">Média por mês de 2026 comparada com 2025.</p>
       <div class="px-minis px-minis3">
         <div class="px-mini"><div class="l">Vendido no ano</div><div class="v gold"><span data-draw="y_kg" data-source="familias_total" data-field="kg_2026" data-row="0">—</span> kg</div></div>
         <div class="px-mini"><div class="l">Média por mês</div><div class="v"><span data-draw="y_m26" data-source="familias_total" data-field="media_26" data-row="0">—</span> kg</div></div>
@@ -410,26 +425,26 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
       </div>
       <div class="px-panel">
         <h4>Suas famílias</h4>
-        <p class="px-note" style="margin-bottom: 6px">Média por mês de cada família. Barra cinza = 2025, barra dourada = 2026. O <b>mix</b> é quanto a família pesa no seu total.</p>
+        <p class="px-note" style="margin-bottom: 6px">Média por mês. <b>Mix</b> = peso da família no seu total.</p>
         <div class="px-legend" style="margin: 6px 0 16px"><span><i style="background: #3a3a42"></i>2025</span><span><i style="background: var(--gold)"></i>2026</span></div>
         <div class="px-fam" data-draw="fam_rows" data-source="familias_calc mix"></div>
       </div>
       <div class="px-duo">
         <div class="px-panel">
           <h4><span class="c-ok">▲</span> Clientes que mais cresceram</h4>
-          <p class="px-note" style="margin-bottom: 12px">Média por mês: 2025 → 2026.</p>
+          <p class="px-note" style="margin-bottom: 12px">kg por mês: 2025 → 2026</p>
           <div class="px-rank" data-draw="rank_up" data-source="clientes_ytd"></div>
         </div>
         <div class="px-panel">
           <h4><span class="c-bad">▼</span> Clientes que mais caíram</h4>
-          <p class="px-note" style="margin-bottom: 12px">Média por mês: 2025 → 2026. Vale uma visita!</p>
+          <p class="px-note" style="margin-bottom: 12px">kg por mês: 2025 → 2026 · vale uma visita</p>
           <div class="px-rank" data-draw="rank_down" data-source="clientes_ytd"></div>
         </div>
       </div>
     </section>
     <section data-page="q4" id="objetivo-4tri" class="px-wrap" style="gap: inherit" hidden>
       <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Objetivo 4º trimestre</h2></div>
-      <p class="px-note">Seu objetivo de outubro a dezembro, combinado na reunião. Cada cliente tem a sua parte do objetivo: veja abaixo quem já bateu e quem ainda falta.</p>
+      <p class="px-note">Objetivo de outubro a dezembro, definido na reunião.</p>
       <div class="px-rede-status" data-draw="q_ritmo" data-source="q4" data-field="ritmo" data-row="0">—</div>
       <div class="px-minis">
         <div class="px-mini"><div class="l">Objetivo do trimestre</div><div class="v"><span data-draw="q_obj" data-source="q4" data-field="objetivo" data-row="0">—</span> kg</div></div>
@@ -442,16 +457,16 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
           <div><div class="l">🔁 Recuperar 2025</div><div class="v"><span data-draw="q_rec" data-source="q4_rec" data-field="recuperar" data-row="0">—</span> kg</div></div>
           <div class="px-rec-n"><b data-draw="q_rec_n" data-source="q4_rec" data-field="clientes" data-row="0">—</b> clientes ainda abaixo de 2025</div>
         </div>
-        <p class="px-note">Mesmo batendo o objetivo, estes clientes não voltam ao volume que compravam em 2025. Recuperar = quanto eles ainda precisam comprar até dezembro para voltar ao volume de 2025.</p>
+        <p class="px-note">Kg que ainda faltam para estes clientes voltarem ao volume de 2025.</p>
       </div>
       <div class="px-panel">
         <h4>Mês a mês</h4>
-        <p class="px-note" style="margin-bottom: 14px">Quanto foi vendido em cada mês. A linha tracejada é o objetivo de um mês (objetivo do trimestre ÷ 3).</p>
+        <p class="px-note" style="margin-bottom: 14px">Linha tracejada = objetivo do mês.</p>
         <div class="px-q4m" data-draw="q4_meses" data-source="q4_mensal"></div>
       </div>
       <div class="px-panel">
         <h4>Objetivo por cliente</h4>
-        <p class="px-note" style="margin-bottom: 4px">A coluna <b>Recuperar</b> mostra quanto o cliente precisa comprar até dezembro para voltar ao volume de 2025.</p>
+        <p class="px-note" style="margin-bottom: 4px"><b>Recuperar</b> = falta para voltar a 2025.</p>
         <div class="px-tools">
           <input class="px-search" type="search" placeholder="Buscar cliente…" aria-label="Buscar cliente" data-q4filter="busca">
           <button class="px-chip" type="button" data-q4chip="todos" aria-pressed="true">Todos</button>
@@ -464,10 +479,10 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
             <thead><tr>
               <th data-field="razao_social">Cliente</th>
               <th data-field="meta">Objetivo</th>
-              <th data-field="realizado" class="h-sm">Já comprou</th>
-              <th data-field="atingimento" class="h-sm">Ating.</th>
+              <th data-field="realizado" class="h-sm">Comprou</th>
+              <th data-field="atingimento" class="h-sm">%</th>
               <th data-field="falta">Falta</th>
-              <th data-field="recuperar">Recuperar</th>
+              <th data-field="recuperar">Recup.</th>
             </tr></thead>
             <tbody data-draw="tab_q4"></tbody>
           </table>
@@ -754,7 +769,7 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
 
   dash.draw('c5', (el) => { const r = pxOne('q4'); el.textContent = r ? pxPct(r.atingimento) : '—'; el.className = 'kv ' + (r ? pxTone(r.ritmo) : ''); });
   dash.draw('c5_r', (el) => { const r = pxOne('q4'); el.textContent = r ? (r.ritmo >= 1 ? 'do objetivo · no ritmo ✓' : 'do objetivo · abaixo do ritmo') : '—'; el.className = 'kl'; });
-  dash.draw('q_ritmo', (el) => { const r = pxOne('q4'); if (!r) { el.textContent = '—'; return; } el.textContent = (r.ritmo >= 1 ? '✓ No ritmo: ' : '⚠ Abaixo do ritmo: ') + 'já vendeu ' + pxPct(r.atingimento) + ' do objetivo; o esperado até agora era ' + pxKg(r.esperado_kg) + ' kg.'; el.className = 'px-rede-status ' + (r.ritmo >= 1 ? 'ok' : 'no'); });
+  dash.draw('q_ritmo', (el) => { const r = pxOne('q4'); if (!r) { el.textContent = '—'; return; } el.textContent = (r.ritmo >= 1 ? '✓ No ritmo' : '⚠ Abaixo do ritmo') + ' · esperado até hoje: ' + pxKg(r.esperado_kg) + ' kg'; el.className = 'px-rede-status ' + (r.ritmo >= 1 ? 'ok' : 'no'); });
   // Em novembro e dezembro o card do 4º tri vai para o topo, em destaque
   dash.draw('c5_hl', (el) => { const p = pxOne('plano'); const m = p ? String(p.mes).split(' ')[0].toLowerCase() : ''; el.classList.toggle('hl', m === 'novembro' || m === 'dezembro'); });
   dash.draw('c5_bar', (el) => { const r = pxOne('q4'); el.style.width = r ? Math.min(r.atingimento, 1) * 100 + '%' : '0'; el.style.background = r ? pxHex(r.ritmo) : ''; el.style.boxShadow = r ? '0 0 14px ' + pxHex(r.ritmo) : ''; });
