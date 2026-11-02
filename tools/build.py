@@ -13,6 +13,21 @@ clients = json.load(open(os.path.join(ext, 'clients.json')))
 out = json.load(open(os.path.join(ext, 'out.json')))
 rcs = json.load(open(os.path.join(T, 'rcs.json')))
 
+# Meta 4º tri (reunião): metas fixas por RC/cliente + histórico mensal out/nov/dez gravado a cada rodada
+import datetime
+metas4t = json.load(open(os.path.join(T, 'metas4t.json')))
+hist_path = os.path.join(T, 'q4_mensal.json')
+q4hist = json.load(open(hist_path)) if os.path.exists(hist_path) else {}
+MESES = {'outubro': 'out', 'novembro': 'nov', 'dezembro': 'dez'}
+mes_key = MESES.get(mes.split()[0].lower())
+if mes_key:
+    q4hist[mes_key] = {}
+    for x in clients:
+        q4hist[mes_key].setdefault(x[0], {})[x[1]] = x[6]
+    json.dump(q4hist, open(hist_path, 'w'), ensure_ascii=False)
+hoje = datetime.date.fromisoformat(atualizado)
+meses_rest = max(12 - hoje.month + 1, 0) if hoje.month >= 10 else 3
+
 # código do RC -> nome, a partir das linhas de rebate e do histórico
 nomes = {}
 for r in out['reb']:
@@ -59,15 +74,23 @@ for cod in alvo:
             reb.append({'cod': rc_cod, 'rede': rede, 'grupo': g, 'objetivo': vals[0], 'realizado': vals[1], 'rs_faturado': vals[2], 'rebate': vals[3]})
     fam = [{'familia': re.sub(r'(\d+)\s*-\s*', r'\1 - ', x[1]), 'kg_2026': x[2], 'kg_2025': x[3], 'positivacao_2026': x[4]}
            for x in out['fam'] if x[0] == cod and (x[2] or x[3])]
+    m4 = metas4t.get(cod)
+    kg_m = {k: q4hist.get(k, {}).get(cod, {}) for k in ('out', 'nov', 'dez')}
+    nomes_cli = {x[1]: x[2] for x in clients if x[0] == cod}
+    meta4t = [{'objetivo': m4['objetivo'] if m4 else 0, 'meses_rest': meses_rest, 'fechados': sum(1 for k in ('out', 'nov', 'dez') if kg_m[k]),
+               **{k: sum(kg_m[k].values()) for k in ('out', 'nov', 'dez')}}]
+    clientes4t = [{'cod': c['cod'], 'razao_social': nomes_cli.get(c['cod'], c['cod']), 'meta': c['meta'], 'recuperar': c['recuperar'],
+                   'realizado': sum(kg_m[k].get(c['cod'], 0) for k in ('out', 'nov', 'dez'))} for c in (m4['clientes'] if m4 else [])]
     d = {'plano': [{'representante': nome, 'regional': 'Regional SPI Campinas', 'mes': mes, 'atualizado_em': atualizado,
                     'objetivo': p[1], 'acelerador': p[2], 'minimo': p[3], 'faturado': f[2], 'carteira': f[3]}],
-         'clientes': cl, 'rebate': reb, 'familias': fam}
+         'clientes': cl, 'rebate': reb, 'familias': fam, 'meta4t': meta4t, 'clientes4t': clientes4t}
     html = (HEAD % nome.title()) + styles + '\n</head><body>\n<div id="dash-root">' + markup + '</div>\n<script>window.__DATA = ' + json.dumps(d, ensure_ascii=False) + ';</script>\n' + SHIM + script + '\n<script>dash._runAll(); let __t; addEventListener("resize", () => { clearTimeout(__t); __t = setTimeout(() => dash._runAll(), 200); });</script>\n</body></html>\n'
     os.makedirs(os.path.join(SITE, rcs[cod]['slug']), exist_ok=True)
     open(os.path.join(SITE, rcs[cod]['slug'], 'index.html'), 'w').write(html)
-    resumo.append((nome, f[2], p[1], f[2] / p[1], len(cl), sum(c['kg_mes'] for c in cl)))
+    q = meta4t[0]; rq = q['out'] + q['nov'] + q['dez']
+    resumo.append((nome, f[2], p[1], f[2] / p[1], len(cl), sum(c['kg_mes'] for c in cl), q['objetivo'], rq))
 
 open(os.path.join(SITE, 'index.html'), 'w').write('<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>Acesso restrito</title><body style="background:#050505;color:#999;font-family:system-ui;display:grid;place-items:center;height:100vh;margin:0">Use o link enviado pelo seu gestor.</body>')
 open(os.path.join(SITE, 'robots.txt'), 'w').write('User-agent: *\nDisallow: /\n')
 open(os.path.join(SITE, '_headers'), 'w').write('/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: no-cache\n')
-for r in resumo: print('%-36s fat %7d obj %7d %6.1f%%  clientes %4d  soma_out %7d' % (r[0], r[1], r[2], r[3] * 100, r[4], r[5]))
+for r in resumo: print('%-34s fat %7d obj %7d %6.1f%% | 4T meta %7d real %7d %5.1f%%' % (r[0], r[1], r[2], r[3] * 100, r[6], r[7], (r[7] / r[6] * 100) if r[6] else 0))

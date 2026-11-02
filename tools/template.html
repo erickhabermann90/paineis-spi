@@ -144,8 +144,8 @@
   .px-kpi-s { color: var(--mut); font-size: 12px; font-variant-numeric: tabular-nums; }
   .px-track { margin-top: clamp(14px, 3vw, 24px); }
   .px-tick-lbls { height: 30px; font-size: 10px; }
-  .px-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 2vw, 18px); }
-  @media (max-width: 760px) { .px-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .px-cards { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(10px, 2vw, 18px); }
+  @media (max-width: 900px) { .px-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .px-card.wide { grid-column: 1 / -1; } }
   .px-card { min-height: 0; padding: clamp(14px, 2.5vw, 22px); gap: 4px; border-radius: 20px; }
   .px-card .h { display: flex; justify-content: space-between; align-items: center; }
   .px-card .go { color: var(--gold); font-size: 18px; line-height: 1; }
@@ -189,6 +189,15 @@
   .px-rank-row .dv { font-weight: 700; font-size: 13px; font-variant-numeric: tabular-nums; text-align: right; }
   .px-rank-row .sub { grid-column: 1 / -1; font-size: 11px; color: var(--mut); font-variant-numeric: tabular-nums; }
   .px-note b { color: var(--fg); }
+
+  .px-q4m { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: end; height: 190px; position: relative; padding-top: 10px; }
+  .px-q4m .col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 6px; position: relative; z-index: 1; }
+  .px-q4m .bar { width: min(70%, 90px); border-radius: 10px 10px 4px 4px; min-height: 4px; }
+  .px-q4m .bar.fut { background: repeating-linear-gradient(45deg, #2a2a30 0 6px, #1d1d21 6px 12px); }
+  .px-q4m .vl { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .px-q4m .ml { font-size: 12px; color: var(--mut); }
+  .px-q4m .meta { position: absolute; left: 0; right: 0; border-top: 2px dashed rgba(255,255,255,.45); z-index: 2; pointer-events: none; }
+  .px-q4m .meta span { position: absolute; right: 0; top: -18px; font-size: 10px; color: var(--mut); }
 </style>
 
 <div class="px">
@@ -247,6 +256,12 @@
           <h3>Performance YTD</h3>
           <span class="kv" data-draw="c4" data-source="familias_total" data-field="kg_2026" data-row="0">—</span>
           <span class="kl">kg no ano (jan–out)</span>
+        </button>
+        <button class="px-card px-in wide" type="button" data-go="q4">
+          <span class="h"><span class="n">05</span><span class="go">→</span></span>
+          <h3>Meta 4º tri</h3>
+          <span class="kv" data-draw="c5" data-source="q4" data-field="atingimento" data-row="0">—</span>
+          <span class="kl" data-draw="c5_r" data-source="q4" data-field="ritmo" data-row="0">—</span>
         </button>
       </div>
     </section>
@@ -376,6 +391,44 @@
         </div>
       </div>
     </section>
+    <section data-page="q4" id="meta-4tri" class="px-wrap" style="gap: inherit" hidden>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Meta 4º trimestre</h2></div>
+      <p class="px-note">Sua meta de outubro a dezembro, combinada na reunião. Cada cliente tem a sua parte da meta: veja abaixo quem já bateu e quem ainda falta.</p>
+      <div class="px-rede-status" data-draw="q_ritmo" data-source="q4" data-field="ritmo" data-row="0">—</div>
+      <div class="px-minis">
+        <div class="px-mini"><div class="l">Meta do trimestre</div><div class="v"><span data-draw="q_obj" data-source="q4" data-field="objetivo" data-row="0">—</span> kg</div></div>
+        <div class="px-mini"><div class="l">Já vendido (out–dez)</div><div class="v"><span data-draw="q_real" data-source="q4" data-field="realizado" data-row="0">—</span> kg</div></div>
+        <div class="px-mini"><div class="l">Falta</div><div class="v" style="color: var(--bad)"><span data-draw="q_falta" data-source="q4" data-field="falta" data-row="0">—</span> kg</div></div>
+        <div class="px-mini"><div class="l">Precisa vender por mês</div><div class="v gold"><span data-draw="q_mes" data-source="q4" data-field="por_mes" data-row="0">—</span> kg</div></div>
+      </div>
+      <div class="px-panel">
+        <h4>Mês a mês</h4>
+        <p class="px-note" style="margin-bottom: 14px">Quanto foi vendido em cada mês. A linha tracejada é a meta de um mês (meta do trimestre ÷ 3).</p>
+        <div class="px-q4m" data-draw="q4_meses" data-source="q4_mensal"></div>
+      </div>
+      <div class="px-panel">
+        <h4>Meta por cliente</h4>
+        <p class="px-note" style="margin-bottom: 4px">🔁 = cliente que ainda compra menos que em 2025: vale buscar volume extra com ele.</p>
+        <div class="px-tools">
+          <input class="px-search" type="search" placeholder="Buscar cliente…" aria-label="Buscar cliente" data-q4filter="busca">
+          <button class="px-chip" type="button" data-q4chip="todos" aria-pressed="true">Todos</button>
+          <button class="px-chip" type="button" data-q4chip="falta" aria-pressed="false">Falta vender</button>
+          <button class="px-chip" type="button" data-q4chip="ok" aria-pressed="false">Meta batida</button>
+        </div>
+        <div class="px-tw">
+          <table data-source="q4_clientes" data-row-key="cod">
+            <thead><tr>
+              <th data-field="razao_social">Cliente</th>
+              <th data-field="meta">Meta 4º tri</th>
+              <th data-field="realizado">Já comprou</th>
+              <th data-field="atingimento">Ating.</th>
+              <th data-field="falta">Falta</th>
+            </tr></thead>
+            <tbody data-draw="tab_q4"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
 
@@ -451,6 +504,24 @@
     fn: (clientes) => clientes.filter((c) => c.med_kg_25 > 0 || c.med_kg_26 > 0)
       .map((c) => ({cod: c.cod, razao_social: c.razao_social, med_kg_25: c.med_kg_25, med_kg_26: c.med_kg_26, diff: c.med_kg_26 - c.med_kg_25, variacao: c.med_kg_25 ? c.med_kg_26 / c.med_kg_25 - 1 : null}))
       .sort((a, b) => b.diff - a.diff)
+  });
+  dash.calc('q4', {
+    title: 'Meta 4º trimestre', description: 'Atingimento = vendido out–dez ÷ meta do 4º tri; ritmo = atingimento ÷ parte do trimestre já passada (1/3 por mês fechado); por mês = falta ÷ meses que faltam.',
+    inputs: ['meta4t'],
+    fn: (meta4t) => { const m = meta4t[0]; const realizado = m.out + m.nov + m.dez; const falta = Math.max(m.objetivo - realizado, 0);
+      const esperado = Math.max(3 - m.meses_rest, 1) / 3;
+      return [{objetivo: m.objetivo, realizado, atingimento: realizado / m.objetivo, ritmo: realizado / m.objetivo / esperado, esperado_kg: m.objetivo * esperado, falta, por_mes: m.meses_rest ? falta / m.meses_rest : falta}]; }
+  });
+  dash.calc('q4_mensal', {
+    title: 'Vendido por mês no 4º tri', description: 'Kg faturados em cada mês do trimestre; meta do mês = meta do trimestre ÷ 3.',
+    inputs: ['meta4t'],
+    fn: (meta4t) => { const m = meta4t[0]; return [['Out', m.out, m.fechados >= 1], ['Nov', m.nov, m.fechados >= 2 || m.nov > 0], ['Dez', m.dez, m.fechados >= 3 || m.dez > 0]].map(([mes, kg, tem]) => ({mes, kg, tem, meta_mes: m.objetivo / 3})); }
+  });
+  dash.calc('q4_clientes', {
+    title: 'Meta 4º tri por cliente', description: 'Meta de cada cliente (reunião) x kg comprados de outubro a dezembro.',
+    inputs: ['clientes4t'],
+    fn: (clientes4t) => clientes4t.map((c) => ({cod: c.cod, razao_social: c.razao_social, meta: c.meta, realizado: c.realizado, atingimento: c.meta ? c.realizado / c.meta : 0, falta: Math.max(c.meta - c.realizado, 0), recuperar: c.recuperar > 0}))
+      .sort((a, b) => b.falta - a.falta)
   });
   dash.calc('familias_total', {
     title: 'Média mensal total', description: 'Soma de todas as famílias; 2025 ÷ 12 e 2026 ÷ 10.',
@@ -632,7 +703,38 @@
   rank('rank_up', (rows) => rows.filter((r) => r.diff > 0).slice(0, 5));
   rank('rank_down', (rows) => rows.filter((r) => r.diff < 0).slice(-5).reverse());
 
-  const ids = {home: 'inicio', mes: 'mes-atual', prime: 'prime', familias: 'familias', ytd: 'ytd'};
+  dash.draw('c5', (el) => { const r = pxOne('q4'); el.textContent = r ? pxPct(r.atingimento) : '—'; el.className = 'kv ' + (r ? pxTone(r.ritmo) : ''); });
+  dash.draw('c5_r', (el) => { const r = pxOne('q4'); el.textContent = r ? (r.ritmo >= 1 ? 'da meta · no ritmo ✓' : 'da meta · abaixo do ritmo') : '—'; el.className = 'kl'; });
+  dash.draw('q_ritmo', (el) => { const r = pxOne('q4'); if (!r) { el.textContent = '—'; return; } el.textContent = (r.ritmo >= 1 ? '✓ No ritmo: ' : '⚠ Abaixo do ritmo: ') + 'já vendeu ' + pxPct(r.atingimento) + ' da meta; o esperado até agora era ' + pxKg(r.esperado_kg) + ' kg.'; el.className = 'px-rede-status ' + (r.ritmo >= 1 ? 'ok' : 'no'); });
+  val('q_obj', 'q4', 'objetivo', pxKg); val('q_real', 'q4', 'realizado', pxKg); val('q_falta', 'q4', 'falta', pxKg); val('q_mes', 'q4', 'por_mes', pxKg);
+  dash.draw('q4_meses', (el) => {
+    el.replaceChildren(); const d = dash.data('q4_mensal'); if (d.status !== 'ok') return;
+    const meta = d.data[0].meta_mes, max = Math.max(meta, ...d.data.map((r) => r.kg)) * 1.12, H = 150;
+    d.data.forEach((r) => {
+      const col = document.createElement('div'); col.className = 'col';
+      const vl = document.createElement('div'); vl.className = 'vl ' + (r.tem ? pxTone(r.kg / meta) : 'c-mut'); vl.textContent = r.tem ? pxKg(r.kg) + ' kg' : 'a vender';
+      const bar = document.createElement('div'); bar.className = 'bar' + (r.tem ? '' : ' fut');
+      bar.style.height = (r.tem ? Math.max(r.kg / max * H, 4) : meta / max * H) + 'px'; if (r.tem) bar.style.background = pxHex(r.kg / meta);
+      const ml = document.createElement('div'); ml.className = 'ml'; ml.textContent = r.mes;
+      col.append(vl, bar, ml); el.appendChild(col);
+    });
+    const line = document.createElement('div'); line.className = 'meta'; line.style.bottom = (meta / max * H + 24) + 'px';
+    const lt = document.createElement('span'); lt.textContent = 'meta/mês ' + pxKg(meta) + ' kg'; line.appendChild(lt); el.appendChild(line);
+  });
+  window.pxQ4 = {busca: '', chip: 'todos'};
+  dash.draw('tab_q4', (tb) => {
+    tb.replaceChildren(); const d = dash.data('q4_clientes'); if (d.status !== 'ok') return;
+    const q = pxQ4.busca.trim().toUpperCase();
+    d.data.filter((r) => (!q || r.razao_social.toUpperCase().includes(q)) && (pxQ4.chip === 'todos' || (pxQ4.chip === 'falta' && r.falta > 0) || (pxQ4.chip === 'ok' && r.falta === 0)))
+      .forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = r.cod;
+        td(tr, (r.recuperar ? '🔁 ' : '') + r.razao_social); td(tr, pxKg(r.meta)); td(tr, pxKg(r.realizado)); pctTd(tr, r.atingimento);
+        td(tr, r.falta > 0 ? pxKg(r.falta) : '✓ batida', r.falta > 0 ? '' : 'c-ok'); tb.appendChild(tr); });
+  });
+  document.querySelectorAll('[data-q4filter="busca"]').forEach((i) => i.addEventListener('input', () => { pxQ4.busca = i.value; dash.draw('tab_q4'); }));
+  document.querySelectorAll('[data-q4chip]').forEach((c) => c.addEventListener('click', () => { pxQ4.chip = c.dataset.q4chip;
+    document.querySelectorAll('[data-q4chip]').forEach((x) => x.setAttribute('aria-pressed', String(x === c))); dash.draw('tab_q4'); }));
+
+  const ids = {home: 'inicio', mes: 'mes-atual', prime: 'prime', familias: 'familias', ytd: 'ytd', q4: 'meta-4tri'};
   const show = (page) => {
     document.querySelectorAll('[data-page]').forEach((s) => { s.hidden = s.dataset.page !== page; });
     try { dash.setLink(page === 'home' ? null : ids[page]); } catch (e) {}
