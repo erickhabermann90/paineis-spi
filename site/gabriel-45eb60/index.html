@@ -219,6 +219,24 @@
   .px-rec-n { color: var(--mut); font-size: 13px; } .px-rec-n b { color: var(--fg); font-size: 18px; }
 
   @media (max-width: 640px) { .px table { font-size: 12px; } .px th, .px td { padding: 9px 8px; } .px td:first-child { min-width: 104px; } .px th { font-size: 10px; letter-spacing: .03em; } }
+
+  .px-card .tag, .px-card .hl-extra { display: none; }
+  .px-card.hl { order: -1; grid-column: 1 / -1; border: 1px solid transparent; padding: clamp(18px, 3vw, 28px);
+    background: linear-gradient(165deg, #1d1a10, #111113) padding-box, linear-gradient(135deg, #ffdb5c, #b88a00 45%, #2a2410) border-box;
+    box-shadow: 0 24px 60px -18px rgba(0,0,0,1), 0 0 60px -18px rgba(255,192,0,.55); }
+  .px-card.hl::after { width: 340px; height: 340px; background: radial-gradient(circle, rgba(255,192,0,.28), transparent 70%); }
+  .px-card.hl .tag { display: inline-block; margin-right: auto; margin-left: 10px; font-size: 10px; letter-spacing: .14em; font-weight: 700; color: #111; background: var(--gold); padding: 3px 8px; border-radius: 999px; }
+  .px-card.hl h3 { font-size: clamp(22px, 3vw, 28px); }
+  .px-card.hl .kv { font-size: clamp(40px, 7vw, 60px); }
+  .px-card.hl .hl-extra { display: grid; gap: 8px; margin-top: 10px; }
+  .px-card.hl .hl-bar { position: relative; display: block; height: 10px; border-radius: 999px; background: #26262b; overflow: visible; }
+  .px-card.hl .hl-bar b { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px; }
+  .px-card.hl .hl-bar i { position: absolute; top: -5px; bottom: -5px; width: 2px; background: #fff; opacity: .75; border-radius: 2px; }
+  .px-card.hl .hl-txt { color: var(--mut); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .px-card.hl .hl-txt b { color: var(--fg); font-weight: 600; }
+  .px-card.hl.ritmo-ok .kl::after { content: ""; }
+
+  @media (min-width: 901px) { .px-cards:has(.px-card.hl) { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 </style>
 </head><body>
 <div id="dash-root">
@@ -280,11 +298,15 @@
           <span class="kv" data-draw="c4" data-source="familias_total" data-field="kg_2026" data-row="0">—</span>
           <span class="kl">kg vendidos no ano</span>
         </button>
-        <button class="px-card px-in wide" type="button" data-go="q4">
-          <span class="h"><span class="n">05</span><span class="go">→</span></span>
+        <button class="px-card px-in wide" type="button" data-go="q4" data-draw="c5_hl" data-source="plano">
+          <span class="h"><span class="n">05</span><span class="tag">EM DESTAQUE</span><span class="go">→</span></span>
           <h3>Objetivo 4º tri</h3>
           <span class="kv" data-draw="c5" data-source="q4" data-field="atingimento" data-row="0">—</span>
           <span class="kl" data-draw="c5_r" data-source="q4" data-field="ritmo" data-row="0">—</span>
+          <span class="hl-extra">
+            <span class="hl-bar"><b data-draw="c5_bar" data-source="q4"></b><i data-draw="c5_esp" data-source="q4"></i></span>
+            <span class="hl-txt">Faltam <b data-draw="c5_falta" data-source="q4" data-field="falta" data-row="0">—</b> kg · precisa <b data-draw="c5_mes" data-source="q4" data-field="por_mes" data-row="0">—</b> kg por mês</span>
+          </span>
         </button>
       </div>
     </section>
@@ -765,6 +787,11 @@ window.dash = (() => {
   dash.draw('c5', (el) => { const r = pxOne('q4'); el.textContent = r ? pxPct(r.atingimento) : '—'; el.className = 'kv ' + (r ? pxTone(r.ritmo) : ''); });
   dash.draw('c5_r', (el) => { const r = pxOne('q4'); el.textContent = r ? (r.ritmo >= 1 ? 'do objetivo · no ritmo ✓' : 'do objetivo · abaixo do ritmo') : '—'; el.className = 'kl'; });
   dash.draw('q_ritmo', (el) => { const r = pxOne('q4'); if (!r) { el.textContent = '—'; return; } el.textContent = (r.ritmo >= 1 ? '✓ No ritmo: ' : '⚠ Abaixo do ritmo: ') + 'já vendeu ' + pxPct(r.atingimento) + ' do objetivo; o esperado até agora era ' + pxKg(r.esperado_kg) + ' kg.'; el.className = 'px-rede-status ' + (r.ritmo >= 1 ? 'ok' : 'no'); });
+  // Em novembro e dezembro o card do 4º tri vai para o topo, em destaque
+  dash.draw('c5_hl', (el) => { const p = pxOne('plano'); const m = p ? String(p.mes).split(' ')[0].toLowerCase() : ''; el.classList.toggle('hl', m === 'novembro' || m === 'dezembro'); });
+  dash.draw('c5_bar', (el) => { const r = pxOne('q4'); el.style.width = r ? Math.min(r.atingimento, 1) * 100 + '%' : '0'; el.style.background = r ? pxHex(r.ritmo) : ''; el.style.boxShadow = r ? '0 0 14px ' + pxHex(r.ritmo) : ''; });
+  dash.draw('c5_esp', (el) => { const r = pxOne('q4'); el.style.left = r ? Math.min(r.esperado_kg / r.objetivo, 1) * 100 + '%' : '0'; });
+  val('c5_falta', 'q4', 'falta', pxKg); val('c5_mes', 'q4', 'por_mes', pxKg);
   val('q_rec', 'q4_rec', 'recuperar', pxKg); val('q_rec_n', 'q4_rec', 'clientes', String);
   val('q_obj', 'q4', 'objetivo', pxKg); val('q_real', 'q4', 'realizado', pxKg); val('q_falta', 'q4', 'falta', pxKg); val('q_mes', 'q4', 'por_mes', pxKg);
   dash.draw('q4_meses', (el) => {
