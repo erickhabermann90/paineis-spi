@@ -154,7 +154,7 @@
   .px-kpi-s { color: var(--mut); font-size: 12px; font-variant-numeric: tabular-nums; }
   .px-track { margin-top: clamp(14px, 3vw, 24px); }
   .px-tick-lbls { height: 30px; font-size: 10px; }
-  .px-cards { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(10px, 2vw, 18px); }
+  .px-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 2vw, 18px); }
   @media (max-width: 900px) { .px-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .px-card.wide { grid-column: 1 / -1; } }
   .px-card { min-height: 0; padding: clamp(14px, 2.5vw, 22px); gap: 4px; border-radius: 20px; }
   .px-card .h { display: flex; justify-content: space-between; align-items: center; }
@@ -236,7 +236,19 @@
   .px-card.hl .hl-txt b { color: var(--fg); font-weight: 600; }
   .px-card.hl.ritmo-ok .kl::after { content: ""; }
 
-  @media (min-width: 901px) { .px-cards:has(.px-card.hl) { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (min-width: 901px) { .px-cards:has(.px-card.hl) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 900px) { .px-cards:has(.px-card.hl) > .px-card[data-go="ano"] { grid-column: 1 / -1; } .px-cards:not(:has(.px-card.hl)) > .px-card.wide { grid-column: auto; } }
+
+  .px-fam-row .nm small { display: block; color: var(--mut); font-size: 11px; margin-top: 2px; }
+  .px-fam-row .nm { white-space: normal; }
+
+  .px-minis3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 640px) {
+    .px-minis3 { gap: 8px; } .px-minis3 .px-mini { padding: 12px 10px; } .px-minis3 .v { font-size: 19px; } .px-minis3 .l { font-size: 11px; }
+    .px-fam-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "nm var" "bars bars"; row-gap: 6px; }
+    .px-fam-row .nm { grid-area: nm; } .px-fam-row .var { grid-area: var; } .px-fam-row .bars { grid-area: bars; }
+    .px-fam { gap: 16px; }
+  }
 </style>
 </head><body>
 <div id="dash-root">
@@ -286,20 +298,14 @@
           <span class="kv" data-draw="c2" data-source="rebate_resumo" data-field="atingimento" data-row="0">—</span>
           <span class="kl">do objetivo de rebate</span>
         </button>
-        <button class="px-card px-in" type="button" data-go="familias">
+        <button class="px-card px-in" type="button" data-go="ano">
           <span class="h"><span class="n">03</span><span class="go">→</span></span>
-          <h3>Famílias</h3>
+          <h3>Ano 2026</h3>
           <span class="kv" data-draw="c3" data-source="familias_total" data-field="variacao" data-row="0">—</span>
-          <span class="kl">2026 x 2025</span>
-        </button>
-        <button class="px-card px-in" type="button" data-go="ytd">
-          <span class="h"><span class="n">04</span><span class="go">→</span></span>
-          <h3>Performance YTD</h3>
-          <span class="kv" data-draw="c4" data-source="familias_total" data-field="kg_2026" data-row="0">—</span>
-          <span class="kl">kg vendidos no ano</span>
+          <span class="kl">por mês, contra 2025</span>
         </button>
         <button class="px-card px-in wide" type="button" data-go="q4" data-draw="c5_hl" data-source="plano">
-          <span class="h"><span class="n">05</span><span class="tag">EM DESTAQUE</span><span class="go">→</span></span>
+          <span class="h"><span class="n">04</span><span class="tag">EM DESTAQUE</span><span class="go">→</span></span>
           <h3>Objetivo 4º tri</h3>
           <span class="kv" data-draw="c5" data-source="q4" data-field="atingimento" data-row="0">—</span>
           <span class="kl" data-draw="c5_r" data-source="q4" data-field="ritmo" data-row="0">—</span>
@@ -368,61 +374,20 @@
       </div>
     </section>
 
-    <section data-page="familias" id="familias" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Famílias · 2025 x 2026</h2></div>
-      <p class="px-note">Média mensal em kg por família sistema: 2025 em 12 meses e 2026 nos meses já fechados, para comparar períodos de tamanhos diferentes.</p>
-      <div class="px-minis">
-        <div class="px-mini"><div class="l">Média mensal 2025</div><div class="v"><span data-draw="f_25" data-source="familias_total" data-field="media_25" data-row="0">—</span> kg</div></div>
-        <div class="px-mini"><div class="l">Média mensal 2026</div><div class="v gold"><span data-draw="f_26" data-source="familias_total" data-field="media_26" data-row="0">—</span> kg</div></div>
-        <div class="px-mini"><div class="l">Variação</div><div class="v" data-draw="f_var" data-source="familias_total" data-field="variacao" data-row="0">—</div></div>
-      </div>
-      <div class="px-panel">
-        <h4>Principais famílias</h4>
-        <div class="px-legend" style="margin: 6px 0 16px"><span><i style="background: #3a3a42"></i>Média 2025</span><span><i style="background: var(--gold)"></i>Média 2026</span></div>
-        <div class="px-fam" data-draw="fam_chart" data-source="familias_calc"></div>
-      </div>
-      <div class="px-panel">
-        <h4 style="margin-bottom: 12px">Todas as famílias</h4>
-        <div class="px-tw">
-          <table data-source="familias_calc" data-row-key="familia">
-            <thead><tr>
-              <th data-field="familia">Família sistema</th>
-              <th data-field="media_25">Média 2025</th>
-              <th data-field="media_26">Média 2026</th>
-              <th data-field="variacao">Var.</th>
-              <th data-field="positivacao_2026" class="h-sm">Clientes 2026</th>
-            </tr></thead>
-            <tbody data-draw="tab_fam"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-    <section data-page="ytd" id="ytd" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Performance YTD</h2></div>
-      <p class="px-note">Seu ano de 2026 até agora, comparado com 2025. Para ser justo, comparamos a <b>média por mês</b> de cada ano.</p>
-      <div class="px-minis">
+    <section data-page="ano" id="ano-2026" class="px-wrap" style="gap: inherit" hidden>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Ano 2026</h2></div>
+      <p class="px-note">Seu ano até agora comparado com 2025. Comparamos a <b>média por mês</b> de cada ano, para ser justo com o ano que ainda não acabou.</p>
+      <div class="px-minis px-minis3">
         <div class="px-mini"><div class="l">Vendido no ano</div><div class="v gold"><span data-draw="y_kg" data-source="familias_total" data-field="kg_2026" data-row="0">—</span> kg</div></div>
-        <div class="px-mini"><div class="l">Média por mês 2026</div><div class="v"><span data-draw="y_m26" data-source="familias_total" data-field="media_26" data-row="0">—</span> kg</div></div>
+        <div class="px-mini"><div class="l">Média por mês</div><div class="v"><span data-draw="y_m26" data-source="familias_total" data-field="media_26" data-row="0">—</span> kg</div></div>
         <div class="px-mini"><div class="l">Contra 2025</div><div class="v" data-draw="y_var" data-source="familias_total" data-field="variacao" data-row="0">—</div></div>
       </div>
-
       <div class="px-panel">
-        <h4>Seu mix de famílias</h4>
-        <p class="px-note" style="margin-bottom: 14px">De cada 100 kg vendidos, quantos são de cada família. Compare a barra de 2025 com a de 2026.</p>
-        <div class="px-mix" data-draw="mix_bars" data-source="mix"></div>
-        <div class="px-tw" style="margin-top: 16px; max-height: 360px">
-          <table data-source="mix" data-row-key="familia">
-            <thead><tr>
-              <th data-field="familia">Família</th>
-              <th data-field="share_25">Mix 2025</th>
-              <th data-field="share_26">Mix 2026</th>
-              <th data-field="diff_pp">Mudou</th>
-            </tr></thead>
-            <tbody data-draw="tab_mix"></tbody>
-          </table>
-        </div>
+        <h4>Suas famílias</h4>
+        <p class="px-note" style="margin-bottom: 6px">Média por mês de cada família. Barra cinza = 2025, barra dourada = 2026. O <b>mix</b> é quanto a família pesa no seu total.</p>
+        <div class="px-legend" style="margin: 6px 0 16px"><span><i style="background: #3a3a42"></i>2025</span><span><i style="background: var(--gold)"></i>2026</span></div>
+        <div class="px-fam" data-draw="fam_rows" data-source="familias_calc mix"></div>
       </div>
-
       <div class="px-duo">
         <div class="px-panel">
           <h4><span class="c-ok">▲</span> Clientes que mais cresceram</h4>
@@ -623,10 +588,9 @@ window.dash = (() => {
   val('k_fat_kg', 'plano', 'faturado', pxKg); val('k_vend_kg', 'performance', 'vendido', pxKg);
   val('c1', 'mes_resumo', 'sem_compra_mes', String);
   val('c2', 'rebate_resumo', 'atingimento', (v) => Math.round(v * 100) + '%');
-  val('c3', 'familias_total', 'variacao', pxVar);
   val('m_ativos', 'mes_resumo', 'clientes_ativos', String); val('m_com', 'mes_resumo', 'com_compra', String);
   val('m_sem', 'mes_resumo', 'sem_compra_mes', String); val('m_bat', 'mes_resumo', 'bateram', String);
-  val('c4', 'familias_total', 'kg_2026', pxKg); val('y_kg', 'familias_total', 'kg_2026', pxKg); val('y_m26', 'familias_total', 'media_26', pxKg);
+  val('y_kg', 'familias_total', 'kg_2026', pxKg); val('y_m26', 'familias_total', 'media_26', pxKg);
   dash.draw('y_var', (el) => { const r = pxOne('familias_total'); el.textContent = r ? (r.variacao >= 0 ? '▲ ' : '▼ ') + pxVar(r.variacao) : '—'; el.className = 'v ' + (r ? (r.variacao >= 0 ? 'c-ok' : 'c-bad') : ''); });
   val('f_25', 'familias_total', 'media_25', pxKg); val('f_26', 'familias_total', 'media_26', pxKg); val('f_var', 'familias_total', 'variacao', pxVar);
 
@@ -821,7 +785,25 @@ window.dash = (() => {
   document.querySelectorAll('[data-q4chip]').forEach((c) => c.addEventListener('click', () => { pxQ4.chip = c.dataset.q4chip;
     document.querySelectorAll('[data-q4chip]').forEach((x) => x.setAttribute('aria-pressed', String(x === c))); dash.draw('tab_q4'); }));
 
-  const ids = {home: 'inicio', mes: 'mes-atual', prime: 'prime', familias: 'familias', ytd: 'ytd', q4: 'objetivo-4tri'};
+  dash.draw('fam_rows', (el) => {
+    el.replaceChildren(); const d = dash.data('familias_calc'), mx = dash.data('mix'); if (d.status !== 'ok' || mx.status !== 'ok') return;
+    const share = new Map(mx.data.map((r) => [r.familia, r.share_26]));
+    const top = d.data.filter((r) => r.media_26 > 0 || r.media_25 > 0).slice(0, 8), max = Math.max(...top.map((r) => Math.max(r.media_25, r.media_26)));
+    top.forEach((r) => {
+      const row = document.createElement('div'); row.className = 'px-fam-row';
+      const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = r.familia.replace(/^\d+\s*-\s*/, '');
+      const sm = document.createElement('small'); sm.textContent = 'mix ' + Math.round((share.get(r.familia) || 0) * 100) + '% · ' + pxKg(r.media_26) + ' kg/mês'; nm.appendChild(sm);
+      const bars = document.createElement('div'); bars.className = 'bars';
+      const b25 = document.createElement('div'); b25.className = 'b25'; b25.style.width = r.media_25 / max * 100 + '%';
+      const b26 = document.createElement('div'); b26.className = 'b26'; b26.style.width = r.media_26 / max * 100 + '%';
+      bars.append(b25, b26);
+      const v = document.createElement('div'); v.className = 'var ' + (r.variacao >= 0 ? 'c-ok' : 'c-bad'); v.textContent = (r.variacao >= 0 ? '▲ ' : '▼ ') + pxVar(r.variacao);
+      row.append(nm, bars, v); el.appendChild(row);
+    });
+  });
+  dash.draw('c3', (el) => { const r = pxOne('familias_total'); el.textContent = r ? (r.variacao >= 0 ? '▲ ' : '▼ ') + pxVar(r.variacao) : '—'; el.className = 'kv ' + (r ? (r.variacao >= 0 ? 'c-ok' : 'c-bad') : ''); });
+
+  const ids = {home: 'inicio', mes: 'mes-atual', prime: 'prime', ano: 'ano-2026', q4: 'objetivo-4tri'};
   const show = (page) => {
     document.querySelectorAll('[data-page]').forEach((s) => { s.hidden = s.dataset.page !== page; });
     try { dash.setLink(page === 'home' ? null : ids[page]); } catch (e) {}
