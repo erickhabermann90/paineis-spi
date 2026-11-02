@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel Maria Fernanda Catarin Correa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fraunces:opsz,wght@9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root { --font-anthropic-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; --font-anthropic-serif: Fraunces, Georgia, serif; --cds-ease-out: cubic-bezier(.16,1,.3,1); color-scheme: dark; }
+  html, body { margin: 0; background: #050505; }
+  button { font-family: inherit; }
+</style>
+<style>
+  #dash-root { --dash-gutter: 0; }
+  .px { --bg: #050505; --card: #111113; --card2: #17171a; --line: #26262b; --fg: #f4f4f5; --mut: #9b9ba3; --gold: #ffc000; --gold2: #ffdb5c; --ok: #34d399; --warn: #fbbf24; --bad: #f87171;
+    background: radial-gradient(1200px 500px at 50% -120px, rgba(255,192,0,.16), transparent 70%), var(--bg);
+    color: var(--fg); font-family: var(--font-anthropic-sans); min-height: 100vh; padding: clamp(16px, 4vw, 48px); box-sizing: border-box; }
+  .px * { box-sizing: border-box; }
+  .px-wrap { max-width: 1120px; margin-inline: auto; display: grid; gap: clamp(20px, 3vw, 32px); }
+  .px-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+  .px-eyebrow { color: var(--gold); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; }
+  .px-name { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: clamp(26px, 4vw, 40px); margin: 6px 0 0; line-height: 1.1; }
+  .px-meta { color: var(--mut); font-size: 13px; text-align: right; line-height: 1.6; }
+  .px-meta b { color: var(--fg); font-weight: 600; }
+
+  .px-hero { position: relative; background: linear-gradient(160deg, #141416, #0b0b0c); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 4vw, 44px);
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,.9), 0 0 0 1px rgba(255,192,0,.06), 0 0 120px -40px rgba(255,192,0,.35); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(20px, 4vw, 48px); align-items: center; overflow: hidden; }
+  @media (max-width: 760px) { .px-hero { grid-template-columns: 1fr; } }
+  .px-ring { position: relative; width: min(100%, 340px); aspect-ratio: 1; margin-inline: auto; }
+  .px-ring svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .px-ring-center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+  .px-big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: clamp(56px, 9vw, 92px); line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums;
+    background: linear-gradient(180deg, #fff 10%, var(--gold2) 60%, var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 24px rgba(255,192,0,.35)); }
+  .px-big-lbl { color: var(--mut); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; margin-top: 8px; }
+  .px-badge { display: inline-flex; align-items: center; gap: 6px; margin: 12px auto 0; padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; background: rgba(52,211,153,.12); color: var(--ok); border: 1px solid rgba(52,211,153,.35); }
+  .px-badge.no { background: rgba(248,113,113,.12); color: var(--bad); border-color: rgba(248,113,113,.35); }
+  .px-hero h2 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: clamp(22px, 3vw, 30px); margin: 0 0 6px; }
+  .px-hero p.px-lead { color: var(--mut); margin: 0 0 22px; line-height: 1.5; font-size: 15px; }
+  .px-hero p.px-lead b { color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .px-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .px-stat { background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+  .px-stat .l { color: var(--mut); font-size: 12px; }
+  .px-stat .v { font-family: var(--font-anthropic-serif); font-size: clamp(22px, 2.6vw, 28px); font-variant-numeric: tabular-nums; margin-top: 4px; white-space: nowrap; }
+  .px-stat .v small { font-family: var(--font-anthropic-sans); font-size: 13px; color: var(--mut); margin-left: 4px; }
+  .px-track { margin-top: 22px; }
+  .px-track-bar { position: relative; height: 12px; border-radius: 999px; background: #1f1f23; }
+  .px-track-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px; }
+  .px-track-fill.fat { background: linear-gradient(90deg, #b88a00, var(--gold)); box-shadow: 0 0 18px rgba(255,192,0,.5); }
+  .px-track-fill.cart { background: repeating-linear-gradient(45deg, rgba(255,219,92,.45) 0 6px, rgba(255,219,92,.2) 6px 12px); }
+  .px-tick { position: absolute; top: -6px; bottom: -6px; width: 2px; background: #fff; opacity: .7; border-radius: 2px; }
+  .px-tick-lbls { position: relative; height: 34px; font-size: 11px; color: var(--mut); }
+  .px-tick-lbls span { position: absolute; top: 8px; transform: translateX(-50%); white-space: nowrap; text-align: center; line-height: 1.3; }
+  .px-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--mut); margin-top: 4px; }
+  .px-legend i { display: inline-block; width: 12px; height: 8px; border-radius: 3px; margin-right: 6px; vertical-align: middle; }
+
+  .px-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 18px; }
+  .px-card { all: unset; box-sizing: border-box; cursor: pointer; position: relative; display: flex; flex-direction: column; gap: 10px; min-height: 210px; padding: 22px; border-radius: 22px;
+    background: linear-gradient(165deg, var(--card2), var(--card)); border: 1px solid var(--line);
+    box-shadow: 0 18px 40px -12px rgba(0,0,0,.95), 0 2px 0 rgba(255,255,255,.03) inset; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; overflow: hidden; }
+  .px-card::after { content: ""; position: absolute; inset: auto -40% -60% auto; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(255,192,0,.18), transparent 70%); pointer-events: none; }
+  .px-card:hover, .px-card:focus-visible { transform: translateY(-6px); border-color: rgba(255,192,0,.55); box-shadow: 0 28px 60px -14px rgba(0,0,0,1), 0 0 40px -10px rgba(255,192,0,.45); }
+  .px-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .px-card .n { color: var(--gold); font-size: 12px; letter-spacing: .16em; font-weight: 600; }
+  .px-card h3 { margin: 0; font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 26px; color: var(--fg); }
+  .px-card .d { color: var(--mut); font-size: 13px; line-height: 1.45; }
+  .px-card .k { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 8px; }
+  .px-card .k .kv { font-family: var(--font-anthropic-serif); font-size: 30px; color: var(--fg); font-variant-numeric: tabular-nums; line-height: 1; }
+  .px-card .k .kl { color: var(--mut); font-size: 12px; margin-top: 4px; }
+  .px-card .go { color: var(--gold); font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .px-card.soon { cursor: default; border-style: dashed; background: transparent; box-shadow: none; }
+  .px-card.soon:hover { transform: none; border-color: var(--line); box-shadow: none; }
+  .px-card.soon h3, .px-card.soon .n { color: var(--mut); }
+
+  .px-page-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .px-back { all: unset; cursor: pointer; color: var(--gold); font-size: 14px; font-weight: 600; padding: 8px 14px; border: 1px solid rgba(255,192,0,.4); border-radius: 999px; }
+  .px-back:hover { background: rgba(255,192,0,.1); }
+  .px-page-head h2 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: clamp(26px, 3.5vw, 34px); margin: 0; }
+  .px-note { color: var(--mut); font-size: 13px; margin: 0; line-height: 1.5; }
+  .px-panel { background: linear-gradient(165deg, var(--card2), var(--card)); border: 1px solid var(--line); border-radius: 22px; padding: clamp(16px, 2.5vw, 24px); box-shadow: 0 18px 40px -12px rgba(0,0,0,.95); min-width: 0; }
+  .px-panel h4 { margin: 0 0 4px; font-size: 16px; font-weight: 600; }
+  .px-minis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 12px; }
+  .px-mini { background: linear-gradient(165deg, var(--card2), var(--card)); border: 1px solid var(--line); border-radius: 18px; padding: 16px; box-shadow: 0 14px 30px -12px rgba(0,0,0,.9); }
+  .px-mini .l { color: var(--mut); font-size: 12px; }
+  .px-mini .v { font-family: var(--font-anthropic-serif); font-size: 28px; margin-top: 4px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .px-mini .v.gold { color: var(--gold); }
+  .px-tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 14px 0; }
+  .px-search { flex: 1 1 220px; background: #0c0c0e; border: 1px solid var(--line); color: var(--fg); border-radius: 12px; padding: 10px 14px; font: inherit; font-size: 14px; min-width: 0; }
+  .px-search:focus { outline: none; border-color: var(--gold); }
+  .px-chip { all: unset; cursor: pointer; font-size: 13px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--mut); }
+  .px-chip[aria-pressed="true"] { color: #111; background: var(--gold); border-color: var(--gold); font-weight: 600; }
+  .px-tw { max-height: 560px; overflow: auto; border-radius: 14px; border: 1px solid var(--line); }
+  .px table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+  .px th { position: sticky; top: 0; background: #141416; color: var(--mut); font-weight: 600; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; z-index: 1; }
+  .px th, .px td { padding: 10px 12px; text-align: right; white-space: nowrap; border-bottom: 1px solid #1d1d21; }
+  .px th:first-child, .px td:first-child { text-align: left; }
+  .px td:first-child { white-space: normal; min-width: 180px; }
+  .px tbody tr:hover td { background: rgba(255,192,0,.05); }
+  .px-pct { display: inline-flex; align-items: center; gap: 8px; justify-content: flex-end; }
+  .px-pct i { display: inline-block; width: 56px; height: 6px; border-radius: 3px; background: #26262b; overflow: hidden; }
+  .px-pct i b { display: block; height: 100%; border-radius: 3px; background: currentColor; }
+  .c-top { color: #c084fc; } .c-ok { color: var(--ok); } .c-warn { color: var(--warn); } .c-bad { color: var(--bad); } .c-mut { color: var(--mut); }
+  .px-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: currentColor; vertical-align: middle; }
+  @media (max-width: 640px) { .px .h-sm { display: none; } }
+
+  .px-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 14px; }
+  .px-g { background: #0d0d0f; border: 1px solid var(--line); border-radius: 18px; padding: 18px; }
+  .px-g .t { display: flex; justify-content: space-between; align-items: baseline; }
+  .px-g .t span:first-child { font-weight: 600; }
+  .px-g .p { font-family: var(--font-anthropic-serif); font-size: 34px; margin: 6px 0 10px; font-variant-numeric: tabular-nums; }
+  .px-g .bar { height: 8px; border-radius: 4px; background: #232327; overflow: hidden; }
+  .px-g .bar b { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #b88a00, var(--gold)); }
+  .px-g .s { color: var(--mut); font-size: 12px; margin-top: 10px; line-height: 1.6; font-variant-numeric: tabular-nums; }
+
+  .px-redes { display: grid; gap: 18px; }
+  .px-rede { border: 1px solid var(--line); border-radius: 18px; padding: 18px; background: #0b0b0d; }
+  .px-rede-h { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .px-rede-h b { font-size: 15px; } .px-rede-h span { color: var(--mut); font-size: 12px; }
+  .px-fam { display: grid; gap: 12px; }
+  .px-fam-row { display: grid; grid-template-columns: minmax(110px, 200px) minmax(0, 1fr) 70px; gap: 12px; align-items: center; font-size: 13px; }
+  .px-fam-row .nm { color: var(--fg); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .px-fam-row .bars { display: grid; gap: 3px; }
+  .px-fam-row .bars div { height: 9px; border-radius: 3px; position: relative; }
+  .px-fam-row .b25 { background: #3a3a42; }
+  .px-fam-row .b26 { background: linear-gradient(90deg, #b88a00, var(--gold)); }
+  .px-fam-row .var { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .px-in { animation: pxIn .7s var(--cds-ease-out) both; }
+    .px-cards .px-card:nth-child(2) { animation-delay: .08s; } .px-cards .px-card:nth-child(3) { animation-delay: .16s; } .px-cards .px-card:nth-child(4) { animation-delay: .24s; }
+    .px-arc { animation: pxArc 1.6s var(--cds-ease-out) both; }
+    .px-arc2 { animation: pxArc 1.4s var(--cds-ease-out) .2s both; }
+    .px-track-fill { animation: pxGrow 1.4s var(--cds-ease-out) both; transform-origin: left; }
+  }
+  @keyframes pxIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes pxArc { from { stroke-dashoffset: var(--len); } }
+  @keyframes pxGrow { from { transform: scaleX(0); } }
+
+  /* home compacta */
+  .px { padding: clamp(14px, 3.5vw, 40px); }
+  .px-wrap { gap: clamp(14px, 2.5vw, 24px); }
+  .px-top { align-items: baseline; }
+  .px-name { margin: 0; font-size: clamp(20px, 3.4vw, 32px); }
+  .px-meta { font-size: 12px; text-align: left; }
+  .px-home { display: grid; gap: clamp(12px, 2.5vw, 22px); }
+  .px-hero { display: block; padding: clamp(16px, 3.5vw, 36px); border-radius: 24px; }
+  .px-hero-top { display: flex; align-items: center; gap: clamp(14px, 4vw, 44px); }
+  .px-ring { width: clamp(108px, 30vw, 240px); flex: none; margin: 0; }
+  .px-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(10px, 3vw, 36px); flex: 1; min-width: 0; }
+  @media (max-width: 520px) { .px-kpis { grid-template-columns: 1fr; gap: 10px; } }
+  .px-kpi-l { color: var(--mut); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .px-kpi-l .sw { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .px-kpi-l .sw.fat { background: var(--gold); box-shadow: 0 0 8px var(--gold); } .px-kpi-l .sw.vend { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+  .px-big { font-size: clamp(34px, 7.5vw, 76px); margin: 2px 0; }
+  .px-big.alt { background: linear-gradient(180deg, #fff 10%, #a7f3d0 60%, var(--ok)); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 20px rgba(52,211,153,.3)); }
+  .px-kpi-s { color: var(--mut); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .px-track { margin-top: clamp(14px, 3vw, 24px); }
+  .px-tick-lbls { height: 30px; font-size: 10px; }
+  .px-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 2vw, 18px); }
+  @media (max-width: 760px) { .px-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .px-card { min-height: 0; padding: clamp(14px, 2.5vw, 22px); gap: 4px; border-radius: 20px; }
+  .px-card .h { display: flex; justify-content: space-between; align-items: center; }
+  .px-card .go { color: var(--gold); font-size: 18px; line-height: 1; }
+  .px-card h3 { font-size: clamp(17px, 2.2vw, 22px); margin-bottom: 6px; }
+  .px-card .kv { font-family: var(--font-anthropic-serif); font-size: clamp(26px, 4vw, 34px); color: var(--fg); font-variant-numeric: tabular-nums; line-height: 1; }
+  .px-card .kl { color: var(--mut); font-size: 12px; }
+
+  .px-ring-hint { color: #5d5d66; letter-spacing: 0; text-transform: none; font-weight: 400; font-size: 11px; }
+  .px-big.t-top { background: linear-gradient(180deg, #fff 5%, #d8b4fe 55%, #c084fc); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 20px rgba(192,132,252,.35)); }
+  .px-big.t-ok { background: linear-gradient(180deg, #fff 5%, #a7f3d0 55%, #34d399); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 20px rgba(52,211,153,.3)); }
+  .px-big.t-warn { background: linear-gradient(180deg, #fff 5%, #fde68a 55%, #fbbf24); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 20px rgba(251,191,36,.3)); }
+  .px-big.t-bad { background: linear-gradient(180deg, #fff 5%, #fecaca 55%, #f87171); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 20px rgba(248,113,113,.3)); }
+  .px-big { font-size: clamp(30px, 6.5vw, 68px); white-space: nowrap; }
+  .px-gap { font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; margin-top: 4px; }
+  .px-gap.falta { color: var(--bad); } .px-gap.falta::before { content: "Gap p/ 100%: "; color: var(--mut); font-weight: 400; } .px-gap.falta::after { content: " kg"; }
+  .px-gap.sobra { color: var(--ok); } .px-gap.sobra::before { content: "Acima de 100%: +"; color: var(--mut); font-weight: 400; } .px-gap.sobra::after { content: " kg"; }
+  .px-tick-lbls { position: relative; height: 34px; }
+  .px-tick-lbls .lbl { position: absolute; transform: translateX(-50%); white-space: nowrap; font-size: 10px; color: var(--mut); }
+  .px-tick-lbls .lbl.a { top: 4px; color: var(--fg); }
+  .px-tick-lbls .lbl.b { top: 19px; }
+  .px-tick-lbls .lbl:first-child { transform: translateX(-30%); }
+  .px-tick-lbls .lbl:last-child { transform: translateX(-20%); }
+  .px-hero, .px-kpis, .px-kpi { min-width: 0; }
+
+  .px-sel { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .px-sel button { all: unset; cursor: pointer; font-size: 13px; padding: 9px 14px; border-radius: 12px; border: 1px solid var(--line); color: var(--mut); background: #0c0c0e; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .px-sel button[aria-pressed="true"] { color: #111; background: var(--gold); border-color: var(--gold); font-weight: 600; box-shadow: 0 0 18px -4px rgba(255,192,0,.6); }
+  .px-rede { border: none; padding: 0; background: none; }
+  .px-rede-status { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; padding: 8px 12px; border-radius: 12px; margin-bottom: 14px; }
+  .px-rede-status.ok { background: rgba(52,211,153,.12); color: var(--ok); } .px-rede-status.no { background: rgba(248,113,113,.1); color: var(--bad); }
+  .px-mix { display: grid; gap: 10px; }
+  .px-mix-row { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 10px; align-items: center; font-size: 12px; color: var(--mut); }
+  .px-mix-bar { display: flex; height: 26px; border-radius: 8px; overflow: hidden; background: #1d1d21; }
+  .px-mix-bar span { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #0b0b0c; font-weight: 700; overflow: hidden; white-space: nowrap; }
+  .px-mix-leg { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--mut); margin-top: 4px; }
+  .px-mix-leg i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+  .px-duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(12px, 2vw, 18px); }
+  .px-rank { display: grid; gap: 8px; }
+  .px-rank-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; padding: 10px 12px; border-radius: 12px; background: #0c0c0e; border: 1px solid #1d1d21; }
+  .px-rank-row .nm { font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .px-rank-row .dv { font-weight: 700; font-size: 13px; font-variant-numeric: tabular-nums; text-align: right; }
+  .px-rank-row .sub { grid-column: 1 / -1; font-size: 11px; color: var(--mut); font-variant-numeric: tabular-nums; }
+  .px-note b { color: var(--fg); }
+</style>
+</head><body>
+<div id="dash-root">
+
+<div class="px">
+  <div class="px-wrap">
+    <header class="px-top">
+      <h1 class="px-name" data-draw="nome" data-source="plano" data-field="representante" data-row="0">—</h1>
+      <div class="px-meta"><span data-draw="mes" data-source="plano" data-field="mes" data-row="0">—</span> · atualizado <b data-draw="atualizado" data-source="plano" data-field="atualizado_em" data-row="0">—</b></div>
+    </header>
+
+    <section data-page="home" id="inicio" class="px-home">
+      <div class="px-hero px-in">
+        <div class="px-hero-top">
+          <div class="px-ring" data-draw="ring" data-source="performance"></div>
+          <div class="px-kpis">
+            <div class="px-kpi">
+              <div class="px-kpi-l">Faturado <span class="px-ring-hint">anel interno</span></div>
+              <div class="px-big" data-draw="k_fat" data-source="performance" data-field="ating_faturado" data-row="0">—</div>
+              <div class="px-kpi-s"><span data-draw="k_fat_kg" data-source="plano" data-field="faturado" data-row="0">—</span> kg</div>
+              <div class="px-gap" data-draw="g_fat" data-source="performance" data-field="gap_faturado" data-row="0">—</div>
+            </div>
+            <div class="px-kpi">
+              <div class="px-kpi-l">Vendido <span class="px-ring-hint">anel externo</span></div>
+              <div class="px-big" data-draw="k_vend" data-source="performance" data-field="ating_vendido" data-row="0">—</div>
+              <div class="px-kpi-s"><span data-draw="k_vend_kg" data-source="performance" data-field="vendido" data-row="0">—</span> kg · fat. + carteira</div>
+              <div class="px-gap" data-draw="g_vend" data-source="performance" data-field="gap_vendido" data-row="0">—</div>
+            </div>
+          </div>
+        </div>
+        <div class="px-track">
+          <div class="px-track-bar" data-draw="track" data-source="plano"></div>
+          <div class="px-tick-lbls" data-draw="track_lbls" data-source="plano"></div>
+        </div>
+      </div>
+
+      <div class="px-cards">
+        <button class="px-card px-in" type="button" data-go="mes">
+          <span class="h"><span class="n">01</span><span class="go">→</span></span>
+          <h3>Mês atual</h3>
+          <span class="kv" data-draw="c1" data-source="mes_resumo" data-field="sem_compra_mes" data-row="0">—</span>
+          <span class="kl">sem compra no mês</span>
+        </button>
+        <button class="px-card px-in" type="button" data-go="prime">
+          <span class="h"><span class="n">02</span><span class="go">→</span></span>
+          <h3>Prime</h3>
+          <span class="kv" data-draw="c2" data-source="rebate_resumo" data-field="atingimento" data-row="0">—</span>
+          <span class="kl">da meta de rebate</span>
+        </button>
+        <button class="px-card px-in" type="button" data-go="familias">
+          <span class="h"><span class="n">03</span><span class="go">→</span></span>
+          <h3>Famílias</h3>
+          <span class="kv" data-draw="c3" data-source="familias_total" data-field="variacao" data-row="0">—</span>
+          <span class="kl">2026 x 2025</span>
+        </button>
+        <button class="px-card px-in" type="button" data-go="ytd">
+          <span class="h"><span class="n">04</span><span class="go">→</span></span>
+          <h3>Performance YTD</h3>
+          <span class="kv" data-draw="c4" data-source="familias_total" data-field="kg_2026" data-row="0">—</span>
+          <span class="kl">kg no ano (jan–out)</span>
+        </button>
+      </div>
+    </section>
+
+    <section data-page="mes" id="mes-atual" class="px-wrap" style="gap: inherit" hidden>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Mês atual</h2></div>
+      <p class="px-note">Plano do cliente = objetivo performance dividido entre os clientes ativos (com compra em 2026), na proporção da média mensal de 2026 de cada um.</p>
+      <div class="px-minis">
+        <div class="px-mini"><div class="l">Clientes ativos</div><div class="v" data-draw="m_ativos" data-source="mes_resumo" data-field="clientes_ativos" data-row="0">—</div></div>
+        <div class="px-mini"><div class="l">Compraram no mês</div><div class="v gold" data-draw="m_com" data-source="mes_resumo" data-field="com_compra" data-row="0">—</div></div>
+        <div class="px-mini"><div class="l">Sem compra no mês</div><div class="v" style="color: var(--bad)" data-draw="m_sem" data-source="mes_resumo" data-field="sem_compra_mes" data-row="0">—</div></div>
+        <div class="px-mini"><div class="l">Bateram o plano</div><div class="v" style="color: var(--ok)" data-draw="m_bat" data-source="mes_resumo" data-field="bateram" data-row="0">—</div></div>
+      </div>
+      <div class="px-panel">
+        <div class="px-tools">
+          <input class="px-search" type="search" placeholder="Buscar cliente…" aria-label="Buscar cliente" data-filter="busca">
+          <button class="px-chip" type="button" data-chip="todos" aria-pressed="true">Todos</button>
+          <button class="px-chip" type="button" data-chip="sem" aria-pressed="false">Sem compra no mês</button>
+          <button class="px-chip" type="button" data-chip="abaixo" aria-pressed="false">Abaixo do plano</button>
+        </div>
+        <div class="px-tw">
+          <table data-source="mes_atual" data-row-key="cod">
+            <thead><tr>
+              <th data-field="razao_social">Razão social</th>
+              <th data-field="plano_cliente">Plano (kg)</th>
+              <th data-field="faturado">Faturado</th>
+              <th data-field="carteira" class="h-sm">Carteira</th>
+              <th data-field="atingimento">Ating.</th>
+              <th data-field="dias_ult_compra">Dias s/ compra</th>
+            </tr></thead>
+            <tbody data-draw="tab_mes"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section data-page="prime" id="prime" class="px-wrap" style="gap: inherit" hidden>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Prime · Rebate</h2></div>
+      <p class="px-note">Escolha a rede. Cada barra mostra quantos kg já foram comprados contra a meta (meta do BI + 5%). O rebate só é liberado quando a <b>meta total</b> da rede é batida.</p>
+      <div class="px-panel">
+        <div class="px-sel" role="group" aria-label="Escolher rede" data-draw="rede_sel" data-source="rebate_calc"></div>
+        <div class="px-redes" data-draw="groups" data-source="rebate_calc"></div>
+      </div>
+      <div class="px-panel">
+        <h4>Lojas desta rede</h4>
+        <p class="px-note" style="margin-bottom: 12px">Quanto cada loja comprou no mês e há quantos dias não compra.</p>
+        <div class="px-tw">
+          <table data-source="prime_clientes" data-row-key="cod">
+            <thead><tr>
+              <th data-field="razao_social">Loja</th>
+              <th data-field="med_kg_26">Média/mês 2026</th>
+              <th data-field="kg_mes">Comprou no mês</th>
+              <th data-field="kg_carteira" class="h-sm">Em carteira</th>
+              <th data-field="dias_ult_compra">Dias sem comprar</th>
+            </tr></thead>
+            <tbody data-draw="tab_prime"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section data-page="familias" id="familias" class="px-wrap" style="gap: inherit" hidden>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Famílias · 2025 x 2026</h2></div>
+      <p class="px-note">Média mensal em kg por família sistema: 2025 em 12 meses, 2026 de janeiro a outubro (10 meses), para comparar períodos de tamanhos diferentes.</p>
+      <div class="px-minis">
+        <div class="px-mini"><div class="l">Média mensal 2025</div><div class="v"><span data-draw="f_25" data-source="familias_total" data-field="media_25" data-row="0">—</span> kg</div></div>
+        <div class="px-mini"><div class="l">Média mensal 2026</div><div class="v gold"><span data-draw="f_26" data-source="familias_total" data-field="media_26" data-row="0">—</span> kg</div></div>
+        <div class="px-mini"><div class="l">Variação</div><div class="v" data-draw="f_var" data-source="familias_total" data-field="variacao" data-row="0">—</div></div>
+      </div>
+      <div class="px-panel">
+        <h4>Principais famílias</h4>
+        <div class="px-legend" style="margin: 6px 0 16px"><span><i style="background: #3a3a42"></i>Média 2025</span><span><i style="background: var(--gold)"></i>Média 2026</span></div>
+        <div class="px-fam" data-draw="fam_chart" data-source="familias_calc"></div>
+      </div>
+      <div class="px-panel">
+        <h4 style="margin-bottom: 12px">Todas as famílias</h4>
+        <div class="px-tw">
+          <table data-source="familias_calc" data-row-key="familia">
+            <thead><tr>
+              <th data-field="familia">Família sistema</th>
+              <th data-field="media_25">Média 2025</th>
+              <th data-field="media_26">Média 2026</th>
+              <th data-field="variacao">Var.</th>
+              <th data-field="positivacao_2026" class="h-sm">Clientes 2026</th>
+            </tr></thead>
+            <tbody data-draw="tab_fam"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section data-page="ytd" id="ytd" class="px-wrap" style="gap: inherit" hidden>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Performance YTD</h2></div>
+      <p class="px-note">Seu ano até agora (janeiro a outubro de 2026), comparado com 2025. Para ser justo, comparamos a <b>média por mês</b> de cada ano.</p>
+      <div class="px-minis">
+        <div class="px-mini"><div class="l">Vendido no ano</div><div class="v gold"><span data-draw="y_kg" data-source="familias_total" data-field="kg_2026" data-row="0">—</span> kg</div></div>
+        <div class="px-mini"><div class="l">Média por mês 2026</div><div class="v"><span data-draw="y_m26" data-source="familias_total" data-field="media_26" data-row="0">—</span> kg</div></div>
+        <div class="px-mini"><div class="l">Contra 2025</div><div class="v" data-draw="y_var" data-source="familias_total" data-field="variacao" data-row="0">—</div></div>
+      </div>
+
+      <div class="px-panel">
+        <h4>Seu mix de famílias</h4>
+        <p class="px-note" style="margin-bottom: 14px">De cada 100 kg vendidos, quantos são de cada família. Compare a barra de 2025 com a de 2026.</p>
+        <div class="px-mix" data-draw="mix_bars" data-source="mix"></div>
+        <div class="px-tw" style="margin-top: 16px; max-height: 360px">
+          <table data-source="mix" data-row-key="familia">
+            <thead><tr>
+              <th data-field="familia">Família</th>
+              <th data-field="share_25">Mix 2025</th>
+              <th data-field="share_26">Mix 2026</th>
+              <th data-field="diff_pp">Mudou</th>
+            </tr></thead>
+            <tbody data-draw="tab_mix"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="px-duo">
+        <div class="px-panel">
+          <h4><span class="c-ok">▲</span> Clientes que mais cresceram</h4>
+          <p class="px-note" style="margin-bottom: 12px">Média por mês: 2025 → 2026.</p>
+          <div class="px-rank" data-draw="rank_up" data-source="clientes_ytd"></div>
+        </div>
+        <div class="px-panel">
+          <h4><span class="c-bad">▼</span> Clientes que mais caíram</h4>
+          <p class="px-note" style="margin-bottom: 12px">Média por mês: 2025 → 2026. Vale uma visita!</p>
+          <div class="px-rank" data-draw="rank_down" data-source="clientes_ytd"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+</div>
+<script>window.__DATA = {"plano": [{"representante": "MARIA FERNANDA CATARIN CORREA", "regional": "Regional SPI Campinas", "mes": "Outubro 2026", "atualizado_em": "2026-11-02", "objetivo": 44000, "acelerador": 46200, "minimo": 33000, "faturado": 53895, "carteira": 236}], "clientes": [{"cod": "31436", "razao_social": "CASTIGIONI E LANG LTDA ME", "rede": "SEM REDE", "med_kg_25": 3427, "med_kg_26": 4530, "kg_mes": 6934, "kg_carteira": 0, "dias_ult_compra": 3, "freq_media_dias": 11}, {"cod": "5198", "razao_social": "BARNABE AGROP E PET SHOP LTDA ME", "rede": "SEM REDE", "med_kg_25": 3534, "med_kg_26": 2970, "kg_mes": 5084, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 15}, {"cod": "21768", "razao_social": "ANA MARIA DE MEDEIROS M 19216225807", "rede": "SEM REDE", "med_kg_25": 2273, "med_kg_26": 2400, "kg_mes": 2858, "kg_carteira": 0, "dias_ult_compra": 2, "freq_media_dias": 10}, {"cod": "28406", "razao_social": "PARISI E ADORNO LTDA ME", "rede": "SEM REDE", "med_kg_25": 1797, "med_kg_26": 2325, "kg_mes": 1499, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 18}, {"cod": "12285", "razao_social": "MIRIA RAQUEL PESSIN DA SILVA ME", "rede": "REDE AGROPECUARIA CARDOSO RIO CLARO", "med_kg_25": 1898, "med_kg_26": 2082, "kg_mes": 3878, "kg_carteira": 0, "dias_ult_compra": 3, "freq_media_dias": 12}, {"cod": "159293", "razao_social": "53807356 VIVIANI APARECIDA LOPES DA S", "rede": "SEM REDE", "med_kg_25": 833, "med_kg_26": 1648, "kg_mes": 456, "kg_carteira": 0, "dias_ult_compra": 8, "freq_media_dias": 19}, {"cod": "10086", "razao_social": "PARISI AGRO NUTRICAO LTDAME", "rede": "SEM REDE", "med_kg_25": 1732, "med_kg_26": 1531, "kg_mes": 3241, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 23}, {"cod": "16540", "razao_social": "ALEXANDRO LAUTENSCHLAGER DE O BUENO", "rede": "REDE AGROPESCA DO LEMAO", "med_kg_25": 770, "med_kg_26": 1152, "kg_mes": 3389, "kg_carteira": 0, "dias_ult_compra": 3, "freq_media_dias": 25}, {"cod": "10559", "razao_social": "MARIZETE ALVES PAULINO DA SILVAME", "rede": "SEM REDE", "med_kg_25": 861, "med_kg_26": 1137, "kg_mes": 1080, "kg_carteira": 0, "dias_ult_compra": 9, "freq_media_dias": 25}, {"cod": "40135", "razao_social": "MURILO ELCIO ALEXANDRINO ME", "rede": "REDE ALEXANDRINO", "med_kg_25": 1300, "med_kg_26": 1044, "kg_mes": 120, "kg_carteira": 0, "dias_ult_compra": 28, "freq_media_dias": 34}, {"cod": "122505", "razao_social": "NALIATO E NOGUEIRA RACOES LTDA", "rede": "SEM REDE", "med_kg_25": 460, "med_kg_26": 961, "kg_mes": 2003, "kg_carteira": 0, "dias_ult_compra": 2, "freq_media_dias": 39}, {"cod": "8080", "razao_social": "ESTER LUIZA PIAZENTIN CARITA ME", "rede": "SEM REDE", "med_kg_25": 903, "med_kg_26": 950, "kg_mes": 1001, "kg_carteira": 0, "dias_ult_compra": 8, "freq_media_dias": 21}, {"cod": "73137", "razao_social": "COMERCIAL AGROPECUARIA ONCA LTDA ME", "rede": "SEM REDE", "med_kg_25": 828, "med_kg_26": 894, "kg_mes": 2192, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 41}, {"cod": "128549", "razao_social": "AGROPECUARIA IDEAL LTDA", "rede": "SEM REDE", "med_kg_25": 657, "med_kg_26": 870, "kg_mes": 1653, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 46}, {"cod": "17200", "razao_social": "DANIEL SIQUEIRA PET SHOP ME", "rede": "SEM REDE", "med_kg_25": 921, "med_kg_26": 862, "kg_mes": 3346, "kg_carteira": 0, "dias_ult_compra": 8, "freq_media_dias": 27}, {"cod": "4317", "razao_social": "AMERICO GABRIEL SALLES ME", "rede": "SEM REDE", "med_kg_25": 591, "med_kg_26": 767, "kg_mes": 1892, "kg_carteira": 0, "dias_ult_compra": 2, "freq_media_dias": 32}, {"cod": "138255", "razao_social": "CLALDIA LEITE MARIN", "rede": "SEM REDE", "med_kg_25": 263, "med_kg_26": 742, "kg_mes": 1067, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 46}, {"cod": "143483", "razao_social": "45160664 GISLEINE F DE MORAES", "rede": "SEM REDE", "med_kg_25": 858, "med_kg_26": 671, "kg_mes": 887, "kg_carteira": 0, "dias_ult_compra": 2, "freq_media_dias": 17}, {"cod": "119389", "razao_social": "MICHELE CAROLINA FURONI", "rede": "SEM REDE", "med_kg_25": 511, "med_kg_26": 668, "kg_mes": 1172, "kg_carteira": 0, "dias_ult_compra": 2, "freq_media_dias": 37}, {"cod": "6599", "razao_social": "AGROPECUARIA AGROMOM LTDA ME", "rede": "SEM REDE", "med_kg_25": 488, "med_kg_26": 573, "kg_mes": 1003, "kg_carteira": 0, "dias_ult_compra": 28, "freq_media_dias": 37}, {"cod": "71040", "razao_social": "DENIS CHIQUITO AGROVETERINARIA ME", "rede": "SEM REDE", "med_kg_25": 183, "med_kg_26": 551, "kg_mes": 999, "kg_carteira": 0, "dias_ult_compra": 16, "freq_media_dias": 34}, {"cod": "10644", "razao_social": "CARLOS IVAN BROETO ME", "rede": "SEM REDE", "med_kg_25": 506, "med_kg_26": 487, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 37, "freq_media_dias": 48}, {"cod": "15104", "razao_social": "CARLOS ADRIANO ZANI AGROPECUARIA ME", "rede": "SEM REDE", "med_kg_25": 321, "med_kg_26": 479, "kg_mes": 506, "kg_carteira": 0, "dias_ult_compra": 21, "freq_media_dias": 27}, {"cod": "172253", "razao_social": "AGROPECUARIA RECANTO LTDA", "rede": "SEM REDE", "med_kg_25": 385, "med_kg_26": 460, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 35, "freq_media_dias": 59}, {"cod": "99308", "razao_social": "AGROPEC PAIOL DO VEDOVELLO LTDA", "rede": "SEM REDE", "med_kg_25": 167, "med_kg_26": 433, "kg_mes": 140, "kg_carteira": 0, "dias_ult_compra": 23, "freq_media_dias": 19}, {"cod": "182801", "razao_social": "AGROPECUARIA QUINTAL DOS ALPES LTDA", "rede": "SEM REDE", "med_kg_25": 34, "med_kg_26": 433, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 44, "freq_media_dias": 35}, {"cod": "161295", "razao_social": "54176723 SIMONE CRISTINA DA R LIMA P", "rede": "SEM REDE", "med_kg_25": 241, "med_kg_26": 416, "kg_mes": 1283, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 53}, {"cod": "7998", "razao_social": "DANIEL LUVISOTTO ME", "rede": "SEM REDE", "med_kg_25": 360, "med_kg_26": 415, "kg_mes": 1190, "kg_carteira": 0, "dias_ult_compra": 8, "freq_media_dias": 52}, {"cod": "165047", "razao_social": "55140274 EDSON LUIZ AGUILLAR BURATTO", "rede": "SEM REDE", "med_kg_25": 434, "med_kg_26": 363, "kg_mes": 135, "kg_carteira": 0, "dias_ult_compra": 28, "freq_media_dias": 34}, {"cod": "181491", "razao_social": "CELEIRO AGROPECUARIA RDP LTDA", "rede": "SEM REDE", "med_kg_25": 124, "med_kg_26": 359, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 35, "freq_media_dias": 32}, {"cod": "86899", "razao_social": "RINY ARMAZENS E ACESSORIOS LTDA", "rede": "SEM REDE", "med_kg_25": 578, "med_kg_26": 343, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 49, "freq_media_dias": 41}, {"cod": "30764", "razao_social": "ALEX APARECIDO ALEXANDRINO", "rede": "REDE ALEXANDRINO", "med_kg_25": 0, "med_kg_26": 340, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 265, "freq_media_dias": null}, {"cod": "131557", "razao_social": "CARLOS HENRIQUE O DE S 22251433821", "rede": "SEM REDE", "med_kg_25": 358, "med_kg_26": 323, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 44, "freq_media_dias": 83}, {"cod": "190715", "razao_social": "08382246 WILSON GUSTAVO CARRILHO", "rede": "REDE GUSTAVO CARRILHO", "med_kg_25": 0, "med_kg_26": 278, "kg_mes": 1183, "kg_carteira": 0, "dias_ult_compra": 3, "freq_media_dias": 13}, {"cod": "14306", "razao_social": "R S COMERCIO DE PROD AGROPECUARIOS LTDA", "rede": "SEM REDE", "med_kg_25": 307, "med_kg_26": 268, "kg_mes": 447, "kg_carteira": 0, "dias_ult_compra": 16, "freq_media_dias": 26}, {"cod": "28527", "razao_social": "JOAO LUIZ ANTONIO FURONI", "rede": "SEM REDE", "med_kg_25": 282, "med_kg_26": 245, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 35, "freq_media_dias": 99}, {"cod": "170240", "razao_social": "53595861 BRUNA RAFAELA DIAS", "rede": "SEM REDE", "med_kg_25": 73, "med_kg_26": 239, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 37, "freq_media_dias": 64}, {"cod": "9578", "razao_social": "MARILDA LUIZA GOMES MANESCOME", "rede": "SEM REDE", "med_kg_25": 116, "med_kg_26": 230, "kg_mes": 245, "kg_carteira": 0, "dias_ult_compra": 16, "freq_media_dias": 53}, {"cod": "111041", "razao_social": "EDIL ISMAEL D SENTINELLA 12347150820", "rede": "SEM REDE", "med_kg_25": 188, "med_kg_26": 226, "kg_mes": 215, "kg_carteira": 0, "dias_ult_compra": 28, "freq_media_dias": 38}, {"cod": "8294", "razao_social": "CLAUDIO CAUMO ME", "rede": "SEM REDE", "med_kg_25": 83, "med_kg_26": 202, "kg_mes": 85, "kg_carteira": 0, "dias_ult_compra": 16, "freq_media_dias": 38}, {"cod": "24318", "razao_social": "ARNALDO SILVA 05511567833", "rede": "SEM REDE", "med_kg_25": 275, "med_kg_26": 195, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 50, "freq_media_dias": 69}, {"cod": "42981", "razao_social": "DORIVAL ROSADA CIA LTDA", "rede": "SEM REDE", "med_kg_25": 173, "med_kg_26": 181, "kg_mes": 202, "kg_carteira": 0, "dias_ult_compra": 28, "freq_media_dias": 44}, {"cod": "40570", "razao_social": "RITA DE CASSIA OLIVEIRA D S 94907595549", "rede": "SEM REDE", "med_kg_25": 114, "med_kg_26": 174, "kg_mes": 285, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 55}, {"cod": "68704", "razao_social": "RODRIGO ROBERTO MENEGHIN ME", "rede": "SEM REDE", "med_kg_25": 120, "med_kg_26": 165, "kg_mes": 308, "kg_carteira": 0, "dias_ult_compra": 28, "freq_media_dias": 25}, {"cod": "116419", "razao_social": "LAINOR DONIZETI DE SOUZA 02769155857", "rede": "SEM REDE", "med_kg_25": 150, "med_kg_26": 160, "kg_mes": 158, "kg_carteira": 0, "dias_ult_compra": 16, "freq_media_dias": 34}, {"cod": "10661", "razao_social": "AGROVIT ARARAS COM DE PROD AGROP LTDA", "rede": "SEM REDE", "med_kg_25": 151, "med_kg_26": 154, "kg_mes": 108, "kg_carteira": 0, "dias_ult_compra": 24, "freq_media_dias": 62}, {"cod": "96890", "razao_social": "CAO FASHION PET SHOP LTDA", "rede": "SEM REDE", "med_kg_25": 146, "med_kg_26": 148, "kg_mes": 163, "kg_carteira": 0, "dias_ult_compra": 8, "freq_media_dias": 24}, {"cod": "145801", "razao_social": "AMANDA BORB CAVELAGNA 45079310880", "rede": "SEM REDE", "med_kg_25": 105, "med_kg_26": 147, "kg_mes": 176, "kg_carteira": 0, "dias_ult_compra": 28, "freq_media_dias": 34}, {"cod": "40741", "razao_social": "GUSTAVO CARRILHO", "rede": "REDE GUSTAVO CARRILHO", "med_kg_25": 11, "med_kg_26": 140, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 147, "freq_media_dias": 31}, {"cod": "8357", "razao_social": "VANESSA CRISTINA MIGLIATTI ME", "rede": "SEM REDE", "med_kg_25": 165, "med_kg_26": 129, "kg_mes": 28, "kg_carteira": 0, "dias_ult_compra": 28, "freq_media_dias": 30}, {"cod": "7454", "razao_social": "FLG COMERCIO DE RACOES LTDA ME", "rede": "REDE PET SHOP E O BICHO", "med_kg_25": 149, "med_kg_26": 122, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 37, "freq_media_dias": 29}, {"cod": "130994", "razao_social": "AGROVET SAO CRISTOVAO LTDA", "rede": "SEM REDE", "med_kg_25": 190, "med_kg_26": 112, "kg_mes": 159, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 80}, {"cod": "76392", "razao_social": "CASSY JHONES FREITAS SILVA 42598759818", "rede": "SEM REDE", "med_kg_25": 240, "med_kg_26": 110, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 224, "freq_media_dias": 55}, {"cod": "180363", "razao_social": "MARIANE STELA BELLANI DEGASPARE LTDA", "rede": "SEM REDE", "med_kg_25": 27, "med_kg_26": 105, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 44, "freq_media_dias": 50}, {"cod": "15107", "razao_social": "TERRA NOBRE PRODUTOS ALIMENTICIOS LTDA", "rede": "SEM REDE", "med_kg_25": 45, "med_kg_26": 104, "kg_mes": 245, "kg_carteira": 0, "dias_ult_compra": 16, "freq_media_dias": 44}, {"cod": "13084", "razao_social": "CARLOS ALBERTO DE OLIVEIRA ME", "rede": "SEM REDE", "med_kg_25": 42, "med_kg_26": 104, "kg_mes": 180, "kg_carteira": 0, "dias_ult_compra": 2, "freq_media_dias": 46}, {"cod": "83894", "razao_social": "EDUARDO ARAUJO ALVES", "rede": "SEM REDE", "med_kg_25": 75, "med_kg_26": 71, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 37, "freq_media_dias": 63}, {"cod": "108856", "razao_social": "ERLANE SOUZA GOMES", "rede": "SEM REDE", "med_kg_25": 8, "med_kg_26": 64, "kg_mes": 0, "kg_carteira": 192, "dias_ult_compra": 3, "freq_media_dias": 63}, {"cod": "66273", "razao_social": "FLOR DI CAO PET SHOP E VETERINARIA LTDA", "rede": "SEM REDE", "med_kg_25": 91, "med_kg_26": 63, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 103, "freq_media_dias": 56}, {"cod": "153426", "razao_social": "44120505 MARY ELLEN CARDENA BUENO A", "rede": "SEM REDE", "med_kg_25": 53, "med_kg_26": 48, "kg_mes": 137, "kg_carteira": 0, "dias_ult_compra": 24, "freq_media_dias": 128}, {"cod": "5380", "razao_social": "AGROPECUARIA BELTRAME LTDA", "rede": "SEM REDE", "med_kg_25": 60, "med_kg_26": 48, "kg_mes": 125, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 72}, {"cod": "23901", "razao_social": "CAMILA RAQUEL BRAIDOTTI 35495640829", "rede": "SEM REDE", "med_kg_25": 39, "med_kg_26": 48, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 68, "freq_media_dias": 75}, {"cod": "112775", "razao_social": "CASA DO FAZENDEIRO PET E FLORES LTDA", "rede": "REDE CASA DO FAZENDEIRO SP", "med_kg_25": 59, "med_kg_26": 47, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 55, "freq_media_dias": 54}, {"cod": "103002", "razao_social": "ROSELI APARECIDA DAS NEVES 11019362820", "rede": "SEM REDE", "med_kg_25": 123, "med_kg_26": 32, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 195, "freq_media_dias": 56}, {"cod": "191202", "razao_social": "MARIANE LIBERA ALEXANDRINO LTDA", "rede": "REDE ALEXANDRINO", "med_kg_25": 0, "med_kg_26": 30, "kg_mes": 304, "kg_carteira": 0, "dias_ult_compra": 2, "freq_media_dias": 14}, {"cod": "71214", "razao_social": "MIGUEL SERGIO URBANO 70665516800", "rede": "REDE AGROPECUARIA URBANO", "med_kg_25": 0, "med_kg_26": 26, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 94, "freq_media_dias": 14}, {"cod": "176415", "razao_social": "57571278 EDIVANIR APARECIDO DE CASTRO", "rede": "SEM REDE", "med_kg_25": 11, "med_kg_26": 25, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 180, "freq_media_dias": 78}, {"cod": "106334", "razao_social": "LS AGROPECUARIA LTDA", "rede": "SEM REDE", "med_kg_25": 95, "med_kg_26": 23, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 97, "freq_media_dias": null}, {"cod": "136633", "razao_social": "AGROVIP COMERCIO DE PRODUTOS A LTDA", "rede": "SEM REDE", "med_kg_25": 6, "med_kg_26": 22, "kg_mes": 30, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 57}, {"cod": "22077", "razao_social": "FERNANDO ANTONIO PREZOTTO ME", "rede": "SEM REDE", "med_kg_25": 11, "med_kg_26": 19, "kg_mes": 62, "kg_carteira": 0, "dias_ult_compra": 7, "freq_media_dias": 79}, {"cod": "80038", "razao_social": "MILANI AGROPECUARIA LTDA", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 18, "kg_mes": 0, "kg_carteira": 44, "dias_ult_compra": 3, "freq_media_dias": 71}, {"cod": "96062", "razao_social": "ZENEIDE GOMES DA SILVA 02771816822", "rede": "SEM REDE", "med_kg_25": 13, "med_kg_26": 15, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 293, "freq_media_dias": null}, {"cod": "123219", "razao_social": "LUIZ ANTONIO GANASSIM", "rede": "REDE AGROPET DO CARECA", "med_kg_25": 8, "med_kg_26": 12, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 100, "freq_media_dias": 72}, {"cod": "192742", "razao_social": "AGROPECUARIA DELAMUTTA DE SAO PEDRO LTDA", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 4, "kg_mes": 41, "kg_carteira": 0, "dias_ult_compra": 24, "freq_media_dias": null}, {"cod": "146620", "razao_social": "DEGMAR CARDOSO DA SILVA 19703291813", "rede": "REDE AGROPECUARIA CARDOSO RIO CLARO", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 959, "freq_media_dias": null}, {"cod": "124584", "razao_social": "ANGELA MARIA APARECIDA B GANASSIM", "rede": "REDE AGROPET DO CARECA", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 792, "freq_media_dias": null}, {"cod": "180761", "razao_social": "61358062 DANIELE GANASSIM", "rede": "REDE AGROPET DO CARECA", "med_kg_25": 11, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 325, "freq_media_dias": null}, {"cod": "10385", "razao_social": "THIAGO ALEXANDRE DEYURI E CIA LTDA ME", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 1027, "freq_media_dias": null}, {"cod": "80043", "razao_social": "ALZENEIDE MONTEIRO CAMPINA DE SOUZA", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 994, "freq_media_dias": null}, {"cod": "83514", "razao_social": "ANDERSON PEREIRA PET SHOP", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 792, "freq_media_dias": null}, {"cod": "97287", "razao_social": "RICHARD GOMES BARBOSA JR 42022395808", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 1022, "freq_media_dias": null}, {"cod": "101715", "razao_social": "PET HOUSE CENTER LTDA", "rede": "SEM REDE", "med_kg_25": 10, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 602, "freq_media_dias": null}, {"cod": "107132", "razao_social": "TELMA APARECIDA DOS S P B 35512533827", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 672, "freq_media_dias": null}, {"cod": "119085", "razao_social": "IRENE DE OLIVEIRA 26663393863", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 674, "freq_media_dias": null}, {"cod": "134908", "razao_social": "ANGELELI PISCINAS LTDA", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 1010, "freq_media_dias": null}, {"cod": "144805", "razao_social": "BOMTORIN BOMTORIN AGROP LTDA", "rede": "SEM REDE", "med_kg_25": 16, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 400, "freq_media_dias": null}, {"cod": "149789", "razao_social": "VANESSA CRISTINA FELLIZATTI 38250626869", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 896, "freq_media_dias": null}, {"cod": "155271", "razao_social": "IVANETH DE PADUA BURATI", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 1021, "freq_media_dias": null}, {"cod": "156367", "razao_social": "31715647 ANTONIO CLAUDIO PERIN", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 912, "freq_media_dias": null}, {"cod": "156671", "razao_social": "MUNICIPIO DE SAO PEDRO", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 1003, "freq_media_dias": null}, {"cod": "163130", "razao_social": "MUNICIPIO DE CORDEIROPOLIS", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": 896, "freq_media_dias": null}, {"cod": "190716", "razao_social": "59671854 ANGELICA THAIS DE SIQUEIRA BARBOSA", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": null, "freq_media_dias": null}, {"cod": "191851", "razao_social": "AGROTEC IDEAL LTDA", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": null, "freq_media_dias": null}, {"cod": "192104", "razao_social": "68266059 DALILA ROBERTA FERMINO CONCEICAO", "rede": "SEM REDE", "med_kg_25": 0, "med_kg_26": 0, "kg_mes": 0, "kg_carteira": 0, "dias_ult_compra": null, "freq_media_dias": null}], "rebate": [{"cod": "31436", "rede": "CASTIGIONI E LANG LTDA ME", "grupo": "Total", "objetivo": 12500, "realizado": 6934, "rs_faturado": 54808, "rebate": 0}, {"cod": "31436", "rede": "CASTIGIONI E LANG LTDA ME", "grupo": "G1", "objetivo": 2300, "realizado": 530, "rs_faturado": 16185, "rebate": 0}, {"cod": "31436", "rede": "CASTIGIONI E LANG LTDA ME", "grupo": "G2", "objetivo": 2900, "realizado": 464, "rs_faturado": 6148, "rebate": 0}, {"cod": "31436", "rede": "CASTIGIONI E LANG LTDA ME", "grupo": "G3", "objetivo": 2200, "realizado": 1557, "rs_faturado": 11804, "rebate": 0}, {"cod": "6338", "rede": "REDE AGROPECUARIA CARDOSO RIO CLARO", "grupo": "Total", "objetivo": 7500, "realizado": 3878, "rs_faturado": 30675, "rebate": 0}, {"cod": "6338", "rede": "REDE AGROPECUARIA CARDOSO RIO CLARO", "grupo": "G1", "objetivo": 600, "realizado": 179, "rs_faturado": 5425, "rebate": 0}, {"cod": "6338", "rede": "REDE AGROPECUARIA CARDOSO RIO CLARO", "grupo": "G2", "objetivo": 1400, "realizado": 575, "rs_faturado": 6972, "rebate": 0}, {"cod": "6338", "rede": "REDE AGROPECUARIA CARDOSO RIO CLARO", "grupo": "G3", "objetivo": 2500, "realizado": 1338, "rs_faturado": 9827, "rebate": 0}, {"cod": "21768", "rede": "ANA MARIA DE MEDEIROS M 19216225807", "grupo": "Total", "objetivo": 8000, "realizado": 2858, "rs_faturado": 33754, "rebate": 0}, {"cod": "21768", "rede": "ANA MARIA DE MEDEIROS M 19216225807", "grupo": "G1", "objetivo": 900, "realizado": 350, "rs_faturado": 11830, "rebate": 0}, {"cod": "21768", "rede": "ANA MARIA DE MEDEIROS M 19216225807", "grupo": "G2", "objetivo": 2300, "realizado": 884, "rs_faturado": 12109, "rebate": 0}, {"cod": "21768", "rede": "ANA MARIA DE MEDEIROS M 19216225807", "grupo": "G3", "objetivo": 1800, "realizado": 1301, "rs_faturado": 7902, "rebate": 0}], "familias": [{"familia": "12 - PREMIUM 1", "kg_2026": 188654, "kg_2025": 192836, "positivacao_2026": 63}, {"familia": "08 - ORIGENS ESPECIAL", "kg_2026": 77261, "kg_2025": 70282, "positivacao_2026": 58}, {"familia": "02 - FN LIFE", "kg_2026": 48155, "kg_2025": 49191, "positivacao_2026": 55}, {"familia": "14 - STANDARD", "kg_2026": 16246, "kg_2025": 16986, "positivacao_2026": 26}, {"familia": "04 - FN FRESH", "kg_2026": 14328, "kg_2025": 13150, "positivacao_2026": 37}, {"familia": "11 - PREMIUM 2", "kg_2026": 14189, "kg_2025": 15831, "positivacao_2026": 42}, {"familia": "01 - FN PRO (NOVA)", "kg_2026": 10020, "kg_2025": 4477, "positivacao_2026": 24}, {"familia": "15 - ECONOMICO", "kg_2026": 7182, "kg_2025": 9498, "positivacao_2026": 14}, {"familia": "51 - BISCOITOS", "kg_2026": 4082, "kg_2025": 5116, "positivacao_2026": 55}, {"familia": "07 - FN VET CARE", "kg_2026": 2988, "kg_2025": 2850, "positivacao_2026": 30}, {"familia": "52 - BIFINHO", "kg_2026": 1910, "kg_2025": 2533, "positivacao_2026": 52}, {"familia": "61 - SACHES ORIGENS", "kg_2026": 1614, "kg_2025": 1464, "positivacao_2026": 46}, {"familia": "25 - FN VET CARE PATE", "kg_2026": 209, "kg_2025": 148, "positivacao_2026": 20}, {"familia": "62 - ORIGENS CREMINHO", "kg_2026": 125, "kg_2025": 62, "positivacao_2026": 15}, {"familia": "23 - FN RECEITAS CASEIRAS", "kg_2026": 107, "kg_2025": 146, "positivacao_2026": 8}, {"familia": "36 - RECHEADOS MAGNUS", "kg_2026": 93, "kg_2025": 127, "positivacao_2026": 23}, {"familia": "53 - PETISCO ORIGENS", "kg_2026": 54, "kg_2025": 32, "positivacao_2026": 13}, {"familia": "28 - FN GOURMET", "kg_2026": 42, "kg_2025": 25, "positivacao_2026": 6}, {"familia": "30 - FN SNACKS", "kg_2026": 27, "kg_2025": 27, "positivacao_2026": 10}, {"familia": "64 - FN COOKIES", "kg_2026": 18, "kg_2025": 11, "positivacao_2026": 7}, {"familia": "37 - DENTAL CARE", "kg_2026": 9, "kg_2025": 11, "positivacao_2026": 4}, {"familia": "65 - SNACK ORIGENS", "kg_2026": 7, "kg_2025": 13, "positivacao_2026": 6}, {"familia": "09 - SUPER PREMIUM", "kg_2026": 0, "kg_2025": 3429, "positivacao_2026": 0}, {"familia": "10 - PREMIUM ESPECIAL", "kg_2026": 0, "kg_2025": 950, "positivacao_2026": 0}, {"familia": "51 - PETISCO ORIGENS", "kg_2026": 0, "kg_2025": 2, "positivacao_2026": 0}]};</script>
+<script>
+window.dash = (() => {
+  const DATA = window.__DATA, calcs = {}, cache = {}, draws = {};
+  const data = (id) => {
+    if (cache[id]) return cache[id];
+    if (DATA[id]) return (cache[id] = {status: 'ok', data: DATA[id]});
+    const c = calcs[id];
+    if (c) { try { return (cache[id] = {status: 'ok', data: c.fn(...c.inputs.map((i) => data(i).data))}); } catch (e) { console.error(id, e); return {status: 'error', data: []}; } }
+    return {status: 'missing', data: []};
+  };
+  const run = (name) => document.querySelectorAll('[data-draw="' + name + '"]').forEach((el) => { try { draws[name](el); } catch (e) { console.error(name, e); } });
+  const api = {
+    data, calc: (id, o) => { calcs[id] = o; },
+    draw: (name, fn) => { if (fn) { draws[name] = fn; } else if (draws[name]) run(name); },
+    onData: (fn) => fn(), setLink: (n) => { try { history.replaceState(null, '', n ? '#' + n : location.pathname); } catch (e) {} },
+    _runAll: () => Object.keys(draws).forEach(run)
+  };
+  return api;
+})();
+</script>
+<script>
+  window.pxKg = (v) => Math.round(v).toLocaleString('pt-BR');
+  window.pxPct = (v) => (v * 100).toLocaleString('pt-BR', {minimumFractionDigits: 1, maximumFractionDigits: 1}) + '%';
+  window.pxVar = (v) => (v > 0 ? '+' : '') + pxPct(v);
+  window.pxOne = (id) => { const d = dash.data(id); return d.status === 'ok' && d.data && d.data.length ? d.data[0] : null; };
+  window.pxTone = (a) => a >= 1 ? 'c-ok' : a >= 0.8 ? 'c-warn' : 'c-bad';
+  window.pxHex = (a) => a >= 1 ? '#34d399' : a >= 0.8 ? '#fbbf24' : '#f87171';
+  window.pxDias = (d) => d == null ? 'c-mut' : d <= 30 ? 'c-ok' : d <= 60 ? 'c-warn' : 'c-bad';
+  window.pxUi = {busca: '', chip: 'todos'};
+
+  dash.calc('performance', {
+    title: 'Atingimento do plano performance', description: 'Atingimento = faturado ÷ objetivo performance; vendido = faturado + carteira; gap = objetivo − realizado (positivo = falta para 100%).',
+    inputs: ['plano'],
+    fn: (plano) => { const p = plano[0]; const vendido = p.faturado + p.carteira;
+      return [{ating_faturado: p.faturado / p.objetivo, ating_vendido: vendido / p.objetivo, vendido, gap_faturado: p.objetivo - p.faturado, gap_vendido: p.objetivo - vendido}]; }
+  });
+  dash.calc('mes_atual', {
+    title: 'Plano x realizado por cliente', description: 'Clientes com compra em 2026; plano = objetivo × média 2026 do cliente ÷ soma das médias 2026.',
+    inputs: ['clientes', 'plano'],
+    fn: (clientes, plano) => {
+      const ativos = clientes.filter((c) => Number(c.med_kg_26) > 0);
+      const soma = ativos.reduce((a, c) => a + Number(c.med_kg_26), 0), obj = plano[0].objetivo;
+      return ativos.map((c) => { const plano_cliente = obj * Number(c.med_kg_26) / soma;
+        return {cod: c.cod, razao_social: c.razao_social, plano_cliente, faturado: Number(c.kg_mes), carteira: Number(c.kg_carteira), atingimento: Number(c.kg_mes) / plano_cliente, dias_ult_compra: c.dias_ult_compra}; })
+        .sort((a, b) => b.plano_cliente - a.plano_cliente);
+    }
+  });
+  dash.calc('mes_resumo', {
+    title: 'Resumo da carteira no mês', description: 'Contagem de clientes ativos, com e sem faturamento no mês e que bateram o plano.',
+    inputs: ['mes_atual'],
+    fn: (mes_atual) => [{clientes_ativos: mes_atual.length, com_compra: mes_atual.filter((c) => c.faturado > 0).length,
+      sem_compra_mes: mes_atual.filter((c) => c.faturado === 0).length, bateram: mes_atual.filter((c) => c.atingimento >= 1).length}]
+  });
+  dash.calc('rebate_calc', {
+    title: 'Rebate por grupo', description: 'Meta = objetivo do BI + 5%; atingimento = realizado ÷ meta, por grupo de produto da rede.',
+    inputs: ['rebate'],
+    fn: (rebate) => rebate.map((r) => { const objetivo = r.objetivo * 1.05; return {chave: r.cod + '|' + r.grupo, cod: r.cod, rede: r.rede, grupo: r.grupo, objetivo_bi: r.objetivo, objetivo, realizado: r.realizado, atingimento: r.realizado / objetivo, falta: Math.max(objetivo - r.realizado, 0), rs_faturado: r.rs_faturado, rebate: r.rebate}; })
+  });
+  dash.calc('rebate_resumo', {
+    title: 'Resumo do rebate Prime', description: 'Soma das linhas Total de cada rede: realizado ÷ (objetivo do BI + 5%).',
+    inputs: ['rebate'],
+    fn: (rebate) => { const t = rebate.filter((r) => r.grupo === 'Total'); const s = (k) => t.reduce((a, r) => a + Number(r[k] || 0), 0) * (k === 'objetivo' ? 1.05 : 1);
+      return [{redes: t.length, objetivo: s('objetivo'), realizado: s('realizado'), atingimento: s('objetivo') ? s('realizado') / s('objetivo') : 0, rs_faturado: s('rs_faturado'), rebate: s('rebate')}]; }
+  });
+  dash.calc('prime_clientes', {
+    title: 'Clientes das redes com rebate', description: 'Clientes da carteira cuja rede tem rebate.',
+    inputs: ['clientes', 'rebate'],
+    fn: (clientes, rebate) => { const redes = new Set(rebate.map((r) => r.rede)), cods = new Set(rebate.map((r) => String(r.cod)));
+      const byName = new Map(rebate.map((r) => [r.rede, String(r.cod)]));
+      return clientes.filter((c) => redes.has(c.rede) || cods.has(String(c.cod))).map((c) => ({cod: c.cod, rede_cod: cods.has(String(c.cod)) ? String(c.cod) : byName.get(c.rede), razao_social: c.razao_social, med_kg_26: c.med_kg_26, kg_mes: c.kg_mes, kg_carteira: c.kg_carteira, dias_ult_compra: c.dias_ult_compra}))
+        .sort((a, b) => b.med_kg_26 - a.med_kg_26); }
+  });
+  dash.calc('familias_calc', {
+    title: 'Média mensal por família', description: 'Média 2025 = kg 2025 ÷ 12; média 2026 = kg 2026 ÷ 10 (jan–out).',
+    inputs: ['familias'],
+    fn: (familias) => familias.map((f) => { const media_25 = f.kg_2025 / 12, media_26 = f.kg_2026 / 10;
+      return {familia: f.familia, media_25, media_26, variacao: media_25 ? media_26 / media_25 - 1 : 0, positivacao_2026: f.positivacao_2026}; })
+      .sort((a, b) => b.media_26 - a.media_26)
+  });
+  dash.calc('mix', {
+    title: 'Mix por família', description: 'Participação de cada família no volume total: kg da família ÷ kg total, em 2025 e em 2026 (jan–out).',
+    inputs: ['familias'],
+    fn: (familias) => { const t25 = familias.reduce((a, f) => a + f.kg_2025, 0), t26 = familias.reduce((a, f) => a + f.kg_2026, 0);
+      return familias.map((f) => ({familia: f.familia, share_25: f.kg_2025 / t25, share_26: f.kg_2026 / t26, diff_pp: (f.kg_2026 / t26 - f.kg_2025 / t25) * 100}))
+        .filter((f) => f.share_25 > 0 || f.share_26 > 0).sort((a, b) => b.share_26 - a.share_26); }
+  });
+  dash.calc('clientes_ytd', {
+    title: 'Clientes: média 2025 x 2026', description: 'Diferença da média mensal em kg (2026 jan–out menos 2025) de cada cliente.',
+    inputs: ['clientes'],
+    fn: (clientes) => clientes.filter((c) => c.med_kg_25 > 0 || c.med_kg_26 > 0)
+      .map((c) => ({cod: c.cod, razao_social: c.razao_social, med_kg_25: c.med_kg_25, med_kg_26: c.med_kg_26, diff: c.med_kg_26 - c.med_kg_25, variacao: c.med_kg_25 ? c.med_kg_26 / c.med_kg_25 - 1 : null}))
+      .sort((a, b) => b.diff - a.diff)
+  });
+  dash.calc('familias_total', {
+    title: 'Média mensal total', description: 'Soma de todas as famílias; 2025 ÷ 12 e 2026 ÷ 10.',
+    inputs: ['familias'],
+    fn: (familias) => { const k25 = familias.reduce((a, f) => a + f.kg_2025, 0), k26 = familias.reduce((a, f) => a + f.kg_2026, 0);
+      return [{kg_2026: k26, media_25: k25 / 12, media_26: k26 / 10, variacao: (k26 / 10) / (k25 / 12) - 1}]; }
+  });
+
+  const val = (name, id, field, fmt) => dash.draw(name, (el) => { const r = pxOne(id); el.textContent = r ? fmt(r[field]) : '—'; });
+  const valW = (name, id, where, field, fmt) => dash.draw(name, (el) => { const d = dash.data(id); const r = d.status === 'ok' ? d.data.find(where) : null; el.textContent = r ? fmt(r[field]) : '—'; });
+  val('nome', 'plano', 'representante', String);
+  val('mes', 'plano', 'mes', String);
+  val('atualizado', 'plano', 'atualizado_em', (v) => v.slice(8, 10) + '/' + v.slice(5, 7));
+  const bigTone = (name, field) => dash.draw(name, (el) => { const r = pxOne('performance'); el.textContent = r ? pxPct(r[field]) : '—'; el.className = 'px-big ' + (r ? 't' + pxTone(r[field]).slice(1) : ''); });
+  bigTone('k_fat', 'ating_faturado'); bigTone('k_vend', 'ating_vendido');
+  const gapDraw = (name, field) => dash.draw(name, (el) => { const r = pxOne('performance'); el.textContent = r ? pxKg(Math.abs(r[field])) : '—'; el.className = 'px-gap ' + (r ? (r[field] > 0 ? 'falta' : 'sobra') : ''); });
+  gapDraw('g_fat', 'gap_faturado'); gapDraw('g_vend', 'gap_vendido');
+  val('k_fat_kg', 'plano', 'faturado', pxKg); val('k_vend_kg', 'performance', 'vendido', pxKg);
+  val('c1', 'mes_resumo', 'sem_compra_mes', String);
+  val('c2', 'rebate_resumo', 'atingimento', (v) => Math.round(v * 100) + '%');
+  val('c3', 'familias_total', 'variacao', pxVar);
+  val('m_ativos', 'mes_resumo', 'clientes_ativos', String); val('m_com', 'mes_resumo', 'com_compra', String);
+  val('m_sem', 'mes_resumo', 'sem_compra_mes', String); val('m_bat', 'mes_resumo', 'bateram', String);
+  val('c4', 'familias_total', 'kg_2026', pxKg); val('y_kg', 'familias_total', 'kg_2026', pxKg); val('y_m26', 'familias_total', 'media_26', pxKg);
+  dash.draw('y_var', (el) => { const r = pxOne('familias_total'); el.textContent = r ? (r.variacao >= 0 ? '▲ ' : '▼ ') + pxVar(r.variacao) : '—'; el.className = 'v ' + (r ? (r.variacao >= 0 ? 'c-ok' : 'c-bad') : ''); });
+  val('f_25', 'familias_total', 'media_25', pxKg); val('f_26', 'familias_total', 'media_26', pxKg); val('f_var', 'familias_total', 'variacao', pxVar);
+
+  const NS = 'http://www.w3.org/2000/svg';
+  const sv = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
+  dash.draw('ring', (el) => {
+    el.replaceChildren();
+    const r = pxOne('performance'); if (!r) return;
+    const svg = sv('svg', {viewBox: '0 0 200 200'}, el);
+    const defs = sv('defs', {}, svg);
+    const g = sv('linearGradient', {id: 'pxg', x1: '0', y1: '0', x2: '1', y2: '1'}, defs);
+    sv('stop', {offset: '0', style: 'stop-color:#fff2b3'}, g); sv('stop', {offset: '.5', style: 'stop-color:#ffc000'}, g); sv('stop', {offset: '1', style: 'stop-color:#b88a00'}, g);
+    const f = sv('filter', {id: 'pxglow', x: '-30%', y: '-30%', width: '160%', height: '160%'}, defs);
+    sv('feGaussianBlur', {stdDeviation: '4', result: 'b'}, f); const m = sv('feMerge', {}, f); sv('feMergeNode', {in: 'b'}, m); sv('feMergeNode', {in: 'SourceGraphic'}, m);
+    const arc = (R, w, val, stroke, cls) => {
+      const C = 2 * Math.PI * R;
+      sv('circle', {cx: 100, cy: 100, r: R, fill: 'none', stroke: '#1d1d21', 'stroke-width': w}, svg);
+      sv('circle', {class: cls, cx: 100, cy: 100, r: R, fill: 'none', stroke, 'stroke-width': w, 'stroke-linecap': 'round',
+        'stroke-dasharray': C, 'stroke-dashoffset': C * (1 - Math.min(val, 1)), transform: 'rotate(-90 100 100)', filter: 'url(#pxglow)', style: `--len:${C}`}, svg);
+    };
+    arc(88, 12, r.ating_vendido, pxHex(r.ating_vendido), 'px-arc2');
+    arc(66, 16, r.ating_faturado, pxHex(r.ating_faturado), 'px-arc');
+    const t = sv('text', {x: 100, y: 108, 'text-anchor': 'middle', 'font-size': 22, fill: '#9b9ba3', 'font-family': 'var(--font-anthropic-sans)'}, svg);
+    t.textContent = r.ating_faturado >= 1 ? '▲' : '▼';
+    t.setAttribute('fill', pxHex(r.ating_faturado));
+  });
+
+  const SCALE = 1.35;
+  dash.draw('track', (el) => {
+    el.replaceChildren(); const p = pxOne('plano'); if (!p) return;
+    const pos = (kg) => Math.min(kg / p.objetivo / SCALE, 1) * 100;
+    const cart = document.createElement('div'); cart.className = 'px-track-fill cart'; cart.style.width = pos(p.faturado + p.carteira) + '%';
+    const fat = document.createElement('div'); fat.className = 'px-track-fill fat'; fat.style.width = pos(p.faturado) + '%'; fat.style.background = pxHex(p.faturado / p.objetivo); fat.style.boxShadow = '0 0 14px ' + pxHex(p.faturado / p.objetivo);
+    el.append(cart, fat);
+    [p.minimo, p.objetivo, p.acelerador].forEach((k) => { const t = document.createElement('div'); t.className = 'px-tick'; t.style.left = pos(k) + '%'; el.appendChild(t); });
+  });
+  dash.draw('track_lbls', (el) => {
+    el.replaceChildren(); const p = pxOne('plano'); if (!p) return;
+    const pos = (kg) => Math.min(kg / p.objetivo / SCALE, 1) * 100;
+    [['Mín', p.minimo, 'b'], ['Obj', p.objetivo, 'a'], ['Acel', p.acelerador, 'b']].forEach(([n, k, row]) => {
+      const sp = document.createElement('span'); sp.className = 'lbl ' + row; sp.style.left = pos(k) + '%';
+      sp.textContent = n + ' ' + pxKg(k); el.appendChild(sp);
+    });
+  });
+
+  const td = (tr, text, cls) => { const c = document.createElement('td'); c.textContent = text; if (cls) c.className = cls; tr.appendChild(c); return c; };
+  const pctTd = (tr, a) => { const c = document.createElement('td'); const w = document.createElement('span'); w.className = 'px-pct ' + pxTone(a);
+    const i = document.createElement('i'); const b = document.createElement('b'); b.style.width = Math.min(a, 1) * 100 + '%'; i.appendChild(b);
+    w.append(i, document.createTextNode(pxPct(a))); c.appendChild(w); tr.appendChild(c); };
+  const diasTd = (tr, d) => { const c = document.createElement('td'); c.className = pxDias(d); const dot = document.createElement('span'); dot.className = 'px-dot';
+    c.append(dot, document.createTextNode(d == null ? '—' : String(d))); tr.appendChild(c); };
+
+  dash.draw('tab_mes', (tb) => {
+    tb.replaceChildren(); const d = dash.data('mes_atual'); if (d.status !== 'ok') return;
+    const q = pxUi.busca.trim().toUpperCase();
+    d.data.filter((r) => (!q || r.razao_social.toUpperCase().includes(q))
+      && (pxUi.chip === 'todos' || (pxUi.chip === 'sem' && r.faturado === 0) || (pxUi.chip === 'abaixo' && r.atingimento < 1)))
+      .forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = r.cod;
+        td(tr, r.razao_social); td(tr, pxKg(r.plano_cliente)); td(tr, pxKg(r.faturado)); td(tr, pxKg(r.carteira), 'h-sm'); pctTd(tr, r.atingimento); diasTd(tr, r.dias_ult_compra); tb.appendChild(tr); });
+  });
+
+  const redeAtual = () => { const d = dash.data('rebate_calc'); if (d.status !== 'ok' || !d.data.length) return null;
+    const cods = [...new Set(d.data.map((r) => r.cod))]; return cods.includes(pxUi.rede) ? pxUi.rede : cods[0]; };
+  dash.draw('rede_sel', (el) => {
+    el.replaceChildren(); const d = dash.data('rebate_calc'); if (d.status !== 'ok') return;
+    const cur = redeAtual();
+    d.data.filter((r) => r.grupo === 'Total').forEach((r) => {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = r.rede; b.setAttribute('aria-pressed', String(r.cod === cur));
+      b.onclick = () => { pxUi.rede = r.cod; dash.draw('rede_sel'); dash.draw('groups'); dash.draw('tab_prime'); };
+      el.appendChild(b);
+    });
+  });
+  dash.draw('groups', (el) => {
+    el.replaceChildren(); const d = dash.data('rebate_calc'); if (d.status !== 'ok') return;
+    const cur = redeAtual(); const rows = d.data.filter((r) => r.cod === cur); if (!rows.length) return;
+    const tot = rows.find((r) => r.grupo === 'Total') || rows[0];
+    const wrap = document.createElement('div'); wrap.className = 'px-rede';
+    const st = document.createElement('div'); st.className = 'px-rede-status ' + (tot.atingimento >= 1 ? 'ok' : 'no');
+    st.textContent = tot.atingimento >= 1 ? '✓ Meta total batida: rebate liberado' : '✕ Meta total ainda não batida: faltam ' + pxKg(tot.falta) + ' kg';
+    wrap.appendChild(st);
+    const grid = document.createElement('div'); grid.className = 'px-groups';
+    rows.forEach((r) => {
+      const box = document.createElement('div'); box.className = 'px-g';
+      const t = document.createElement('div'); t.className = 't'; const a = document.createElement('span'); a.textContent = r.grupo === 'Total' ? 'Meta total' : 'Grupo ' + r.grupo.slice(1);
+      const s2 = document.createElement('span'); s2.className = r.atingimento >= 1 ? 'c-ok' : 'c-mut'; s2.style.fontSize = '12px'; s2.textContent = r.atingimento >= 1 ? '✓ batida' : 'faltam ' + pxKg(r.falta) + ' kg'; t.append(a, s2);
+      const p = document.createElement('div'); p.className = 'p ' + pxTone(r.atingimento); p.textContent = pxPct(r.atingimento);
+      const bar = document.createElement('div'); bar.className = 'bar'; const b = document.createElement('b'); b.style.width = Math.min(r.atingimento, 1) * 100 + '%'; b.style.background = pxHex(r.atingimento); bar.appendChild(b);
+      const sx = document.createElement('div'); sx.className = 's'; sx.textContent = `Comprou ${pxKg(r.realizado)} de ${pxKg(r.objetivo)} kg`;
+      box.append(t, p, bar, sx); grid.appendChild(box);
+    });
+    wrap.appendChild(grid); el.appendChild(wrap);
+  });
+
+  dash.draw('tab_prime', (tb) => {
+    tb.replaceChildren(); const d = dash.data('prime_clientes'); if (d.status !== 'ok') return; const cur = redeAtual();
+    d.data.filter((r) => !cur || r.rede_cod === String(cur)).forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = r.cod;
+      td(tr, r.razao_social); td(tr, pxKg(r.med_kg_26)); td(tr, pxKg(r.kg_mes)); td(tr, pxKg(r.kg_carteira), 'h-sm'); diasTd(tr, r.dias_ult_compra); tb.appendChild(tr); });
+  });
+
+  dash.draw('fam_chart', (el) => {
+    el.replaceChildren(); const d = dash.data('familias_calc'); if (d.status !== 'ok') return;
+    const top = d.data.slice(0, 10), max = Math.max(...top.map((r) => Math.max(r.media_25, r.media_26)));
+    top.forEach((r) => {
+      const row = document.createElement('div'); row.className = 'px-fam-row';
+      const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = r.familia.replace(/^\d+\s*-\s*/, '');
+      const bars = document.createElement('div'); bars.className = 'bars';
+      const b25 = document.createElement('div'); b25.className = 'b25'; b25.style.width = r.media_25 / max * 100 + '%';
+      const b26 = document.createElement('div'); b26.className = 'b26'; b26.style.width = r.media_26 / max * 100 + '%';
+      bars.append(b25, b26);
+      const v = document.createElement('div'); v.className = 'var ' + (r.variacao >= 0 ? 'c-ok' : 'c-bad'); v.textContent = pxVar(r.variacao);
+      row.append(nm, bars, v); el.appendChild(row);
+    });
+  });
+
+  dash.draw('tab_fam', (tb) => {
+    tb.replaceChildren(); const d = dash.data('familias_calc'); if (d.status !== 'ok') return;
+    d.data.forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = r.familia;
+      td(tr, r.familia); td(tr, pxKg(r.media_25)); td(tr, pxKg(r.media_26)); td(tr, pxVar(r.variacao), r.variacao >= 0 ? 'c-ok' : 'c-bad'); td(tr, String(r.positivacao_2026), 'h-sm'); tb.appendChild(tr); });
+  });
+
+  const MIXC = ['#ffc000', '#34d399', '#60a5fa', '#f472b6', '#fb923c', '#a78bfa', '#5d5d66'];
+  dash.draw('mix_bars', (el) => {
+    el.replaceChildren(); const d = dash.data('mix'); if (d.status !== 'ok') return;
+    const top = d.data.slice(0, 6), rest = (k) => 1 - top.reduce((a, r) => a + r[k], 0);
+    const segs = [...top.map((r, i) => ({nm: r.familia.replace(/^\d+\s*-\s*/, ''), s25: r.share_25, s26: r.share_26, c: MIXC[i]})), {nm: 'Outras', s25: rest('share_25'), s26: rest('share_26'), c: MIXC[6]}];
+    [['2025', 's25'], ['2026', 's26']].forEach(([y, k]) => {
+      const row = document.createElement('div'); row.className = 'px-mix-row';
+      const l = document.createElement('div'); l.textContent = y;
+      const bar = document.createElement('div'); bar.className = 'px-mix-bar';
+      segs.forEach((sg) => { const sp = document.createElement('span'); sp.style.width = Math.max(sg[k], 0) * 100 + '%'; sp.style.background = sg.c; sp.textContent = sg[k] >= 0.07 ? Math.round(sg[k] * 100) + '%' : ''; bar.appendChild(sp); });
+      row.append(l, bar); el.appendChild(row);
+    });
+    const leg = document.createElement('div'); leg.className = 'px-mix-leg';
+    segs.forEach((sg) => { const it = document.createElement('span'); const i = document.createElement('i'); i.style.background = sg.c; it.append(i, document.createTextNode(sg.nm)); leg.appendChild(it); });
+    el.appendChild(leg);
+  });
+  const pct0 = (v) => (v * 100).toLocaleString('pt-BR', {maximumFractionDigits: 1}) + '%';
+  dash.draw('tab_mix', (tb) => {
+    tb.replaceChildren(); const d = dash.data('mix'); if (d.status !== 'ok') return;
+    d.data.forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = r.familia;
+      td(tr, r.familia); td(tr, pct0(r.share_25)); td(tr, pct0(r.share_26));
+      const pp = r.diff_pp; td(tr, (Math.abs(pp) < 0.05 ? '= ' : pp > 0 ? '▲ +' : '▼ ') + pp.toLocaleString('pt-BR', {maximumFractionDigits: 1}) + ' pp', Math.abs(pp) < 0.05 ? 'c-mut' : pp > 0 ? 'c-ok' : 'c-bad');
+      tb.appendChild(tr); });
+  });
+  const rank = (name, pick) => dash.draw(name, (el) => {
+    el.replaceChildren(); const d = dash.data('clientes_ytd'); if (d.status !== 'ok') return;
+    pick(d.data).forEach((r) => {
+      const row = document.createElement('div'); row.className = 'px-rank-row';
+      const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = r.razao_social;
+      const dv = document.createElement('div'); dv.className = 'dv ' + (r.diff >= 0 ? 'c-ok' : 'c-bad'); dv.textContent = (r.diff >= 0 ? '▲ +' : '▼ ') + pxKg(r.diff) + ' kg';
+      const sub = document.createElement('div'); sub.className = 'sub'; sub.textContent = pxKg(r.med_kg_25) + ' → ' + pxKg(r.med_kg_26) + ' kg/mês' + (r.variacao == null ? ' · cliente novo' : ' · ' + pxVar(r.variacao));
+      row.append(nm, dv, sub); el.appendChild(row);
+    });
+  });
+  rank('rank_up', (rows) => rows.filter((r) => r.diff > 0).slice(0, 5));
+  rank('rank_down', (rows) => rows.filter((r) => r.diff < 0).slice(-5).reverse());
+
+  const ids = {home: 'inicio', mes: 'mes-atual', prime: 'prime', familias: 'familias', ytd: 'ytd'};
+  const show = (page) => {
+    document.querySelectorAll('[data-page]').forEach((s) => { s.hidden = s.dataset.page !== page; });
+    try { dash.setLink(page === 'home' ? null : ids[page]); } catch (e) {}
+    document.querySelector('.px')?.scrollIntoView?.({block: 'start'});
+  };
+  document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => show(b.dataset.go)));
+  document.querySelectorAll('[data-filter="busca"]').forEach((i) => i.addEventListener('input', () => { pxUi.busca = i.value; dash.draw('tab_mes'); }));
+  document.querySelectorAll('[data-chip]').forEach((c) => c.addEventListener('click', () => {
+    pxUi.chip = c.dataset.chip;
+    document.querySelectorAll('[data-chip]').forEach((x) => x.setAttribute('aria-pressed', String(x === c)));
+    dash.draw('tab_mes');
+  }));
+  const start = Object.keys(ids).find((k) => ids[k] === location.hash.slice(1));
+  if (start && start !== 'home') show(start);
+</script>
+
+<script>dash._runAll(); let __t; addEventListener("resize", () => { clearTimeout(__t); __t = setTimeout(() => dash._runAll(), 200); });</script>
+</body></html>
