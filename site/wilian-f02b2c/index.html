@@ -208,6 +208,9 @@
   .px-q4m .ml { font-size: 12px; color: var(--mut); }
   .px-q4m .meta { position: absolute; left: 0; right: 0; border-top: 2px dashed rgba(255,255,255,.45); z-index: 2; pointer-events: none; }
   .px-q4m .meta span { position: absolute; right: 0; top: -18px; font-size: 10px; color: var(--mut); }
+
+  .px [hidden] { display: none !important; }
+  .px-card .kv.c-ok { color: var(--ok); } .px-card .kv.c-warn { color: var(--warn); } .px-card .kv.c-bad { color: var(--bad); }
 </style>
 </head><body>
 <div id="dash-root">
@@ -746,10 +749,10 @@ window.dash = (() => {
     const meta = d.data[0].meta_mes, max = Math.max(meta, ...d.data.map((r) => r.kg)) * 1.12, H = 150;
     d.data.forEach((r) => {
       const col = document.createElement('div'); col.className = 'col';
-      const vl = document.createElement('div'); vl.className = 'vl ' + (r.tem ? pxTone(r.kg / meta) : 'c-mut'); vl.textContent = r.tem ? pxKg(r.kg) + ' kg' : 'a vender';
+      const vl = document.createElement('div'); vl.className = 'vl ' + (r.tem ? pxTone(r.kg / meta) : 'c-mut'); vl.textContent = r.tem ? pxKg(r.kg) + ' kg' : '\u00a0';
       const bar = document.createElement('div'); bar.className = 'bar' + (r.tem ? '' : ' fut');
       bar.style.height = (r.tem ? Math.max(r.kg / max * H, 4) : meta / max * H) + 'px'; if (r.tem) bar.style.background = pxHex(r.kg / meta);
-      const ml = document.createElement('div'); ml.className = 'ml'; ml.textContent = r.mes;
+      const ml = document.createElement('div'); ml.className = 'ml'; ml.textContent = r.tem ? r.mes : r.mes + ' · a vender';
       col.append(vl, bar, ml); el.appendChild(col);
     });
     const line = document.createElement('div'); line.className = 'meta'; line.style.bottom = (meta / max * H + 24) + 'px';
