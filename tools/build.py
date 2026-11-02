@@ -20,6 +20,13 @@ hist_path = os.path.join(T, 'q4_mensal.json')
 q4hist = json.load(open(hist_path)) if os.path.exists(hist_path) else {}
 MESES = {'outubro': 'out', 'novembro': 'nov', 'dezembro': 'dez'}
 mes_key = MESES.get(mes.split()[0].lower())
+# fechamento do mês anterior (opcional): extrato_dir/mes_anterior.json = {"out"|"nov": [[cod_rc, cod_cliente, kg], ...]}
+ant = os.path.join(ext, 'mes_anterior.json')
+if os.path.exists(ant):
+    for k, linhas in json.load(open(ant)).items():
+        q4hist[k] = {}
+        for rc_, cli_, kg_ in linhas:
+            q4hist[k].setdefault(rc_, {})[cli_] = kg_
 if mes_key:
     q4hist[mes_key] = {}
     for x in clients:
@@ -27,6 +34,9 @@ if mes_key:
     json.dump(q4hist, open(hist_path, 'w'), ensure_ascii=False)
 hoje = datetime.date.fromisoformat(atualizado)
 meses_rest = max(12 - hoje.month + 1, 0) if hoje.month >= 10 else 3
+# meses do ano já fechados (o mês do painel conta como fechado só se não for o mês corrente)
+mes_painel = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'].index(mes.split()[0].lower()) + 1
+meses_fechados = mes_painel if mes_painel < hoje.month else mes_painel - 1
 
 # código do RC -> nome, a partir das linhas de rebate e do histórico
 nomes = {}
@@ -64,7 +74,7 @@ HEAD = open(os.path.join(T, 'head.html')).read()
 resumo = []
 for cod in alvo:
     nome = rcs[cod]['nome']; p = plano[nome]; f = flash.get(nome, [nome, 0, 0, 0])
-    cl = [{'cod': x[1], 'razao_social': x[2], 'rede': x[3], 'med_kg_25': round(x[4] / 12), 'med_kg_26': round(x[5] / 10),
+    cl = [{'cod': x[1], 'razao_social': x[2], 'rede': x[3], 'med_kg_25': round(x[4] / 12), 'med_kg_26': round((x[5] - (x[6] if mes_painel == hoje.month else 0)) / meses_fechados),
            'kg_mes': x[6], 'kg_carteira': x[7], 'dias_ult_compra': x[8], 'freq_media_dias': x[9]} for x in clients if x[0] == cod]
     reb = []
     for r in out['reb']:
@@ -79,10 +89,10 @@ for cod in alvo:
     nomes_cli = {x[1]: x[2] for x in clients if x[0] == cod}
     meta4t = [{'objetivo': m4['objetivo'] if m4 else 0, 'meses_rest': meses_rest, 'fechados': sum(1 for k in ('out', 'nov', 'dez') if kg_m[k]),
                **{k: sum(kg_m[k].values()) for k in ('out', 'nov', 'dez')}}]
-    clientes4t = [{'cod': c['cod'], 'razao_social': nomes_cli.get(c['cod'], c['cod']), 'meta': c['meta'], 'recuperar': c['recuperar'],
+    clientes4t = [{'cod': c['cod'], 'razao_social': nomes_cli.get(c['cod'], c['cod']), 'meta': c['meta'], 'alvo25': c.get('alvo25', 0),
                    'realizado': sum(kg_m[k].get(c['cod'], 0) for k in ('out', 'nov', 'dez'))} for c in (m4['clientes'] if m4 else [])]
     d = {'plano': [{'representante': nome, 'regional': 'Regional SPI Campinas', 'mes': mes, 'atualizado_em': atualizado,
-                    'objetivo': p[1], 'acelerador': p[2], 'minimo': p[3], 'faturado': f[2], 'carteira': f[3]}],
+                    'objetivo': p[1], 'acelerador': p[2], 'minimo': p[3], 'faturado': f[2], 'carteira': f[3], 'meses_fechados': meses_fechados}],
          'clientes': cl, 'rebate': reb, 'familias': fam, 'meta4t': meta4t, 'clientes4t': clientes4t}
     html = (HEAD % nome.title()) + styles + '\n</head><body>\n<div id="dash-root">' + markup + '</div>\n<script>window.__DATA = ' + json.dumps(d, ensure_ascii=False) + ';</script>\n' + SHIM + script + '\n<script>dash._runAll(); let __t; addEventListener("resize", () => { clearTimeout(__t); __t = setTimeout(() => dash._runAll(), 200); });</script>\n</body></html>\n'
     os.makedirs(os.path.join(SITE, rcs[cod]['slug']), exist_ok=True)

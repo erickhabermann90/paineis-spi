@@ -201,6 +201,14 @@
 
   .px [hidden] { display: none !important; }
   .px-card .kv.c-ok { color: var(--ok); } .px-card .kv.c-warn { color: var(--warn); } .px-card .kv.c-bad { color: var(--bad); }
+
+  .px-rec { border-color: rgba(251,191,36,.35); }
+  .px-rec-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  .px-rec .l { color: var(--mut); font-size: 12px; }
+  .px-rec .v { font-family: var(--font-anthropic-serif); font-size: 30px; color: var(--warn); font-variant-numeric: tabular-nums; }
+  .px-rec-n { color: var(--mut); font-size: 13px; } .px-rec-n b { color: var(--fg); font-size: 18px; }
+
+  @media (max-width: 640px) { .px table { font-size: 12px; } .px th, .px td { padding: 9px 8px; } .px td:first-child { min-width: 104px; } .px th { font-size: 10px; letter-spacing: .03em; } }
 </style>
 
 <div class="px">
@@ -246,7 +254,7 @@
           <span class="h"><span class="n">02</span><span class="go">→</span></span>
           <h3>Prime</h3>
           <span class="kv" data-draw="c2" data-source="rebate_resumo" data-field="atingimento" data-row="0">—</span>
-          <span class="kl">da meta de rebate</span>
+          <span class="kl">do objetivo de rebate</span>
         </button>
         <button class="px-card px-in" type="button" data-go="familias">
           <span class="h"><span class="n">03</span><span class="go">→</span></span>
@@ -258,11 +266,11 @@
           <span class="h"><span class="n">04</span><span class="go">→</span></span>
           <h3>Performance YTD</h3>
           <span class="kv" data-draw="c4" data-source="familias_total" data-field="kg_2026" data-row="0">—</span>
-          <span class="kl">kg no ano (jan–out)</span>
+          <span class="kl">kg vendidos no ano</span>
         </button>
         <button class="px-card px-in wide" type="button" data-go="q4">
           <span class="h"><span class="n">05</span><span class="go">→</span></span>
-          <h3>Meta 4º tri</h3>
+          <h3>Objetivo 4º tri</h3>
           <span class="kv" data-draw="c5" data-source="q4" data-field="atingimento" data-row="0">—</span>
           <span class="kl" data-draw="c5_r" data-source="q4" data-field="ritmo" data-row="0">—</span>
         </button>
@@ -303,7 +311,7 @@
 
     <section data-page="prime" id="prime" class="px-wrap" style="gap: inherit" hidden>
       <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Prime · Rebate</h2></div>
-      <p class="px-note">Escolha a rede. Cada barra mostra quantos kg já foram comprados contra a meta (meta do BI + 5%). O rebate só é liberado quando a <b>meta total</b> da rede é batida.</p>
+      <p class="px-note">Escolha a rede. Cada barra mostra quantos kg já foram comprados contra o objetivo (objetivo do BI + 5%). O rebate só é liberado quando o <b>objetivo total</b> da rede é batido.</p>
       <div class="px-panel">
         <div class="px-sel" role="group" aria-label="Escolher rede" data-draw="rede_sel" data-source="rebate_calc"></div>
         <div class="px-redes" data-draw="groups" data-source="rebate_calc"></div>
@@ -328,7 +336,7 @@
 
     <section data-page="familias" id="familias" class="px-wrap" style="gap: inherit" hidden>
       <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Famílias · 2025 x 2026</h2></div>
-      <p class="px-note">Média mensal em kg por família sistema: 2025 em 12 meses, 2026 de janeiro a outubro (10 meses), para comparar períodos de tamanhos diferentes.</p>
+      <p class="px-note">Média mensal em kg por família sistema: 2025 em 12 meses e 2026 nos meses já fechados, para comparar períodos de tamanhos diferentes.</p>
       <div class="px-minis">
         <div class="px-mini"><div class="l">Média mensal 2025</div><div class="v"><span data-draw="f_25" data-source="familias_total" data-field="media_25" data-row="0">—</span> kg</div></div>
         <div class="px-mini"><div class="l">Média mensal 2026</div><div class="v gold"><span data-draw="f_26" data-source="familias_total" data-field="media_26" data-row="0">—</span> kg</div></div>
@@ -357,7 +365,7 @@
     </section>
     <section data-page="ytd" id="ytd" class="px-wrap" style="gap: inherit" hidden>
       <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Performance YTD</h2></div>
-      <p class="px-note">Seu ano até agora (janeiro a outubro de 2026), comparado com 2025. Para ser justo, comparamos a <b>média por mês</b> de cada ano.</p>
+      <p class="px-note">Seu ano de 2026 até agora, comparado com 2025. Para ser justo, comparamos a <b>média por mês</b> de cada ano.</p>
       <div class="px-minis">
         <div class="px-mini"><div class="l">Vendido no ano</div><div class="v gold"><span data-draw="y_kg" data-source="familias_total" data-field="kg_2026" data-row="0">—</span> kg</div></div>
         <div class="px-mini"><div class="l">Média por mês 2026</div><div class="v"><span data-draw="y_m26" data-source="familias_total" data-field="media_26" data-row="0">—</span> kg</div></div>
@@ -394,38 +402,47 @@
         </div>
       </div>
     </section>
-    <section data-page="q4" id="meta-4tri" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Meta 4º trimestre</h2></div>
-      <p class="px-note">Sua meta de outubro a dezembro, combinada na reunião. Cada cliente tem a sua parte da meta: veja abaixo quem já bateu e quem ainda falta.</p>
+    <section data-page="q4" id="objetivo-4tri" class="px-wrap" style="gap: inherit" hidden>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Objetivo 4º trimestre</h2></div>
+      <p class="px-note">Seu objetivo de outubro a dezembro, combinado na reunião. Cada cliente tem a sua parte do objetivo: veja abaixo quem já bateu e quem ainda falta.</p>
       <div class="px-rede-status" data-draw="q_ritmo" data-source="q4" data-field="ritmo" data-row="0">—</div>
       <div class="px-minis">
-        <div class="px-mini"><div class="l">Meta do trimestre</div><div class="v"><span data-draw="q_obj" data-source="q4" data-field="objetivo" data-row="0">—</span> kg</div></div>
+        <div class="px-mini"><div class="l">Objetivo do trimestre</div><div class="v"><span data-draw="q_obj" data-source="q4" data-field="objetivo" data-row="0">—</span> kg</div></div>
         <div class="px-mini"><div class="l">Já vendido (out–dez)</div><div class="v"><span data-draw="q_real" data-source="q4" data-field="realizado" data-row="0">—</span> kg</div></div>
         <div class="px-mini"><div class="l">Falta</div><div class="v" style="color: var(--bad)"><span data-draw="q_falta" data-source="q4" data-field="falta" data-row="0">—</span> kg</div></div>
         <div class="px-mini"><div class="l">Precisa vender por mês</div><div class="v gold"><span data-draw="q_mes" data-source="q4" data-field="por_mes" data-row="0">—</span> kg</div></div>
       </div>
+      <div class="px-panel px-rec">
+        <div class="px-rec-top">
+          <div><div class="l">🔁 Recuperar 2025</div><div class="v"><span data-draw="q_rec" data-source="q4_rec" data-field="recuperar" data-row="0">—</span> kg</div></div>
+          <div class="px-rec-n"><b data-draw="q_rec_n" data-source="q4_rec" data-field="clientes" data-row="0">—</b> clientes ainda abaixo de 2025</div>
+        </div>
+        <p class="px-note">Mesmo batendo o objetivo, estes clientes não voltam ao volume que compravam em 2025. Recuperar = quanto eles ainda precisam comprar até dezembro para voltar ao volume de 2025.</p>
+      </div>
       <div class="px-panel">
         <h4>Mês a mês</h4>
-        <p class="px-note" style="margin-bottom: 14px">Quanto foi vendido em cada mês. A linha tracejada é a meta de um mês (meta do trimestre ÷ 3).</p>
+        <p class="px-note" style="margin-bottom: 14px">Quanto foi vendido em cada mês. A linha tracejada é o objetivo de um mês (objetivo do trimestre ÷ 3).</p>
         <div class="px-q4m" data-draw="q4_meses" data-source="q4_mensal"></div>
       </div>
       <div class="px-panel">
-        <h4>Meta por cliente</h4>
-        <p class="px-note" style="margin-bottom: 4px">🔁 = cliente que ainda compra menos que em 2025: vale buscar volume extra com ele.</p>
+        <h4>Objetivo por cliente</h4>
+        <p class="px-note" style="margin-bottom: 4px">A coluna <b>Recuperar</b> mostra quanto o cliente precisa comprar até dezembro para voltar ao volume de 2025.</p>
         <div class="px-tools">
           <input class="px-search" type="search" placeholder="Buscar cliente…" aria-label="Buscar cliente" data-q4filter="busca">
           <button class="px-chip" type="button" data-q4chip="todos" aria-pressed="true">Todos</button>
           <button class="px-chip" type="button" data-q4chip="falta" aria-pressed="false">Falta vender</button>
-          <button class="px-chip" type="button" data-q4chip="ok" aria-pressed="false">Meta batida</button>
+          <button class="px-chip" type="button" data-q4chip="ok" aria-pressed="false">Objetivo batido</button>
+          <button class="px-chip" type="button" data-q4chip="rec" aria-pressed="false">🔁 Recuperar 2025</button>
         </div>
         <div class="px-tw">
           <table data-source="q4_clientes" data-row-key="cod">
             <thead><tr>
               <th data-field="razao_social">Cliente</th>
-              <th data-field="meta">Meta 4º tri</th>
-              <th data-field="realizado">Já comprou</th>
-              <th data-field="atingimento">Ating.</th>
+              <th data-field="meta">Objetivo</th>
+              <th data-field="realizado" class="h-sm">Já comprou</th>
+              <th data-field="atingimento" class="h-sm">Ating.</th>
               <th data-field="falta">Falta</th>
+              <th data-field="recuperar">Recuperar</th>
             </tr></thead>
             <tbody data-draw="tab_q4"></tbody>
           </table>
@@ -469,7 +486,7 @@
       sem_compra_mes: mes_atual.filter((c) => c.faturado === 0).length, bateram: mes_atual.filter((c) => c.atingimento >= 1).length}]
   });
   dash.calc('rebate_calc', {
-    title: 'Rebate por grupo', description: 'Meta = objetivo do BI + 5%; atingimento = realizado ÷ meta, por grupo de produto da rede.',
+    title: 'Rebate por grupo', description: 'Objetivo = objetivo do BI + 5%; atingimento = realizado ÷ objetivo, por grupo de produto da rede.',
     inputs: ['rebate'],
     fn: (rebate) => rebate.map((r) => { const objetivo = r.objetivo * 1.05; return {chave: r.cod + '|' + r.grupo, cod: r.cod, rede: r.rede, grupo: r.grupo, objetivo_bi: r.objetivo, objetivo, realizado: r.realizado, atingimento: r.realizado / objetivo, falta: Math.max(objetivo - r.realizado, 0), rs_faturado: r.rs_faturado, rebate: r.rebate}; })
   });
@@ -488,49 +505,54 @@
         .sort((a, b) => b.med_kg_26 - a.med_kg_26); }
   });
   dash.calc('familias_calc', {
-    title: 'Média mensal por família', description: 'Média 2025 = kg 2025 ÷ 12; média 2026 = kg 2026 ÷ 10 (jan–out).',
-    inputs: ['familias'],
-    fn: (familias) => familias.map((f) => { const media_25 = f.kg_2025 / 12, media_26 = f.kg_2026 / 10;
+    title: 'Média mensal por família', description: 'Média 2025 = kg 2025 ÷ 12; média 2026 = kg 2026 ÷ meses fechados.',
+    inputs: ['familias', 'plano'],
+    fn: (familias, plano) => familias.map((f) => { const n = plano[0].meses_fechados || 10, media_25 = f.kg_2025 / 12, media_26 = f.kg_2026 / n;
       return {familia: f.familia, media_25, media_26, variacao: media_25 ? media_26 / media_25 - 1 : 0, positivacao_2026: f.positivacao_2026}; })
       .sort((a, b) => b.media_26 - a.media_26)
   });
   dash.calc('mix', {
-    title: 'Mix por família', description: 'Participação de cada família no volume total: kg da família ÷ kg total, em 2025 e em 2026 (jan–out).',
+    title: 'Mix por família', description: 'Participação de cada família no volume total: kg da família ÷ kg total, em 2025 e em 2026 até agora.',
     inputs: ['familias'],
     fn: (familias) => { const t25 = familias.reduce((a, f) => a + f.kg_2025, 0), t26 = familias.reduce((a, f) => a + f.kg_2026, 0);
       return familias.map((f) => ({familia: f.familia, share_25: f.kg_2025 / t25, share_26: f.kg_2026 / t26, diff_pp: (f.kg_2026 / t26 - f.kg_2025 / t25) * 100}))
         .filter((f) => f.share_25 > 0 || f.share_26 > 0).sort((a, b) => b.share_26 - a.share_26); }
   });
   dash.calc('clientes_ytd', {
-    title: 'Clientes: média 2025 x 2026', description: 'Diferença da média mensal em kg (2026 jan–out menos 2025) de cada cliente.',
+    title: 'Clientes: média 2025 x 2026', description: 'Diferença da média mensal em kg (2026 até agora menos 2025) de cada cliente.',
     inputs: ['clientes'],
     fn: (clientes) => clientes.filter((c) => c.med_kg_25 > 0 || c.med_kg_26 > 0)
       .map((c) => ({cod: c.cod, razao_social: c.razao_social, med_kg_25: c.med_kg_25, med_kg_26: c.med_kg_26, diff: c.med_kg_26 - c.med_kg_25, variacao: c.med_kg_25 ? c.med_kg_26 / c.med_kg_25 - 1 : null}))
       .sort((a, b) => b.diff - a.diff)
   });
   dash.calc('q4', {
-    title: 'Meta 4º trimestre', description: 'Atingimento = vendido out–dez ÷ meta do 4º tri; ritmo = atingimento ÷ parte do trimestre já passada (1/3 por mês fechado); por mês = falta ÷ meses que faltam.',
+    title: 'Objetivo 4º trimestre', description: 'Atingimento = vendido out–dez ÷ objetivo do 4º tri; ritmo = atingimento ÷ parte do trimestre já passada (1/3 por mês fechado); por mês = falta ÷ meses que faltam.',
     inputs: ['meta4t'],
     fn: (meta4t) => { const m = meta4t[0]; const realizado = m.out + m.nov + m.dez; const falta = Math.max(m.objetivo - realizado, 0);
       const esperado = Math.max(3 - m.meses_rest, 1) / 3;
       return [{objetivo: m.objetivo, realizado, atingimento: realizado / m.objetivo, ritmo: realizado / m.objetivo / esperado, esperado_kg: m.objetivo * esperado, falta, por_mes: m.meses_rest ? falta / m.meses_rest : falta}]; }
   });
   dash.calc('q4_mensal', {
-    title: 'Vendido por mês no 4º tri', description: 'Kg faturados em cada mês do trimestre; meta do mês = meta do trimestre ÷ 3.',
+    title: 'Vendido por mês no 4º tri', description: 'Kg faturados em cada mês do trimestre; objetivo do mês = objetivo do trimestre ÷ 3.',
     inputs: ['meta4t'],
     fn: (meta4t) => { const m = meta4t[0]; return [['Out', m.out, m.fechados >= 1], ['Nov', m.nov, m.fechados >= 2 || m.nov > 0], ['Dez', m.dez, m.fechados >= 3 || m.dez > 0]].map(([mes, kg, tem]) => ({mes, kg, tem, meta_mes: m.objetivo / 3})); }
   });
   dash.calc('q4_clientes', {
-    title: 'Meta 4º tri por cliente', description: 'Meta de cada cliente (reunião) x kg comprados de outubro a dezembro.',
+    title: 'Objetivo 4º tri por cliente', description: 'Objetivo de cada cliente (reunião) x kg comprados de outubro a dezembro; recuperar 2025 = quanto falta para o cliente voltar ao volume de 2025.',
     inputs: ['clientes4t'],
-    fn: (clientes4t) => clientes4t.map((c) => ({cod: c.cod, razao_social: c.razao_social, meta: c.meta, realizado: c.realizado, atingimento: c.meta ? c.realizado / c.meta : 0, falta: Math.max(c.meta - c.realizado, 0), recuperar: c.recuperar > 0}))
+    fn: (clientes4t) => clientes4t.map((c) => ({cod: c.cod, razao_social: c.razao_social, meta: c.meta, realizado: c.realizado, atingimento: c.meta ? c.realizado / c.meta : 0, falta: Math.max(c.meta - c.realizado, 0), recuperar: c.alvo25 ? Math.max(c.alvo25 - c.realizado, 0) : 0}))
       .sort((a, b) => b.falta - a.falta)
+  });
+  dash.calc('q4_rec', {
+    title: 'Recuperar 2025', description: 'Soma do que os clientes abaixo de 2025 ainda precisam comprar até dezembro para voltar ao volume de 2025.',
+    inputs: ['q4_clientes'],
+    fn: (q4_clientes) => { const r = q4_clientes.filter((c) => c.recuperar > 0); return [{recuperar: r.reduce((a, c) => a + c.recuperar, 0), clientes: r.length}]; }
   });
   dash.calc('familias_total', {
     title: 'Média mensal total', description: 'Soma de todas as famílias; 2025 ÷ 12 e 2026 ÷ 10.',
-    inputs: ['familias'],
-    fn: (familias) => { const k25 = familias.reduce((a, f) => a + f.kg_2025, 0), k26 = familias.reduce((a, f) => a + f.kg_2026, 0);
-      return [{kg_2026: k26, media_25: k25 / 12, media_26: k26 / 10, variacao: (k26 / 10) / (k25 / 12) - 1}]; }
+    inputs: ['familias', 'plano'],
+    fn: (familias, plano) => { const n = plano[0].meses_fechados || 10, k25 = familias.reduce((a, f) => a + f.kg_2025, 0), k26 = familias.reduce((a, f) => a + f.kg_2026, 0);
+      return [{kg_2026: k26, media_25: k25 / 12, media_26: k26 / n, variacao: (k26 / n) / (k25 / 12) - 1}]; }
   });
 
   const val = (name, id, field, fmt) => dash.draw(name, (el) => { const r = pxOne(id); el.textContent = r ? fmt(r[field]) : '—'; });
@@ -627,13 +649,13 @@
     const tot = rows.find((r) => r.grupo === 'Total') || rows[0];
     const wrap = document.createElement('div'); wrap.className = 'px-rede';
     const st = document.createElement('div'); st.className = 'px-rede-status ' + (tot.atingimento >= 1 ? 'ok' : 'no');
-    st.textContent = tot.atingimento >= 1 ? '✓ Meta total batida: rebate liberado' : '✕ Meta total ainda não batida: faltam ' + pxKg(tot.falta) + ' kg';
+    st.textContent = tot.atingimento >= 1 ? '✓ Objetivo total batido: rebate liberado' : '✕ Objetivo total ainda não batido: faltam ' + pxKg(tot.falta) + ' kg';
     wrap.appendChild(st);
     const grid = document.createElement('div'); grid.className = 'px-groups';
     rows.forEach((r) => {
       const box = document.createElement('div'); box.className = 'px-g';
-      const t = document.createElement('div'); t.className = 't'; const a = document.createElement('span'); a.textContent = r.grupo === 'Total' ? 'Meta total' : 'Grupo ' + r.grupo.slice(1);
-      const s2 = document.createElement('span'); s2.className = r.atingimento >= 1 ? 'c-ok' : 'c-mut'; s2.style.fontSize = '12px'; s2.textContent = r.atingimento >= 1 ? '✓ batida' : 'faltam ' + pxKg(r.falta) + ' kg'; t.append(a, s2);
+      const t = document.createElement('div'); t.className = 't'; const a = document.createElement('span'); a.textContent = r.grupo === 'Total' ? 'Objetivo total' : 'Grupo ' + r.grupo.slice(1);
+      const s2 = document.createElement('span'); s2.className = r.atingimento >= 1 ? 'c-ok' : 'c-mut'; s2.style.fontSize = '12px'; s2.textContent = r.atingimento >= 1 ? '✓ batido' : 'faltam ' + pxKg(r.falta) + ' kg'; t.append(a, s2);
       const p = document.createElement('div'); p.className = 'p ' + pxTone(r.atingimento); p.textContent = pxPct(r.atingimento);
       const bar = document.createElement('div'); bar.className = 'bar'; const b = document.createElement('b'); b.style.width = Math.min(r.atingimento, 1) * 100 + '%'; b.style.background = pxHex(r.atingimento); bar.appendChild(b);
       const sx = document.createElement('div'); sx.className = 's'; sx.textContent = `Comprou ${pxKg(r.realizado)} de ${pxKg(r.objetivo)} kg`;
@@ -707,8 +729,9 @@
   rank('rank_down', (rows) => rows.filter((r) => r.diff < 0).slice(-5).reverse());
 
   dash.draw('c5', (el) => { const r = pxOne('q4'); el.textContent = r ? pxPct(r.atingimento) : '—'; el.className = 'kv ' + (r ? pxTone(r.ritmo) : ''); });
-  dash.draw('c5_r', (el) => { const r = pxOne('q4'); el.textContent = r ? (r.ritmo >= 1 ? 'da meta · no ritmo ✓' : 'da meta · abaixo do ritmo') : '—'; el.className = 'kl'; });
-  dash.draw('q_ritmo', (el) => { const r = pxOne('q4'); if (!r) { el.textContent = '—'; return; } el.textContent = (r.ritmo >= 1 ? '✓ No ritmo: ' : '⚠ Abaixo do ritmo: ') + 'já vendeu ' + pxPct(r.atingimento) + ' da meta; o esperado até agora era ' + pxKg(r.esperado_kg) + ' kg.'; el.className = 'px-rede-status ' + (r.ritmo >= 1 ? 'ok' : 'no'); });
+  dash.draw('c5_r', (el) => { const r = pxOne('q4'); el.textContent = r ? (r.ritmo >= 1 ? 'do objetivo · no ritmo ✓' : 'do objetivo · abaixo do ritmo') : '—'; el.className = 'kl'; });
+  dash.draw('q_ritmo', (el) => { const r = pxOne('q4'); if (!r) { el.textContent = '—'; return; } el.textContent = (r.ritmo >= 1 ? '✓ No ritmo: ' : '⚠ Abaixo do ritmo: ') + 'já vendeu ' + pxPct(r.atingimento) + ' do objetivo; o esperado até agora era ' + pxKg(r.esperado_kg) + ' kg.'; el.className = 'px-rede-status ' + (r.ritmo >= 1 ? 'ok' : 'no'); });
+  val('q_rec', 'q4_rec', 'recuperar', pxKg); val('q_rec_n', 'q4_rec', 'clientes', String);
   val('q_obj', 'q4', 'objetivo', pxKg); val('q_real', 'q4', 'realizado', pxKg); val('q_falta', 'q4', 'falta', pxKg); val('q_mes', 'q4', 'por_mes', pxKg);
   dash.draw('q4_meses', (el) => {
     el.replaceChildren(); const d = dash.data('q4_mensal'); if (d.status !== 'ok') return;
@@ -722,22 +745,22 @@
       col.append(vl, bar, ml); el.appendChild(col);
     });
     const line = document.createElement('div'); line.className = 'meta'; line.style.bottom = (meta / max * H + 24) + 'px';
-    const lt = document.createElement('span'); lt.textContent = 'meta/mês ' + pxKg(meta) + ' kg'; line.appendChild(lt); el.appendChild(line);
+    const lt = document.createElement('span'); lt.textContent = 'objetivo/mês ' + pxKg(meta) + ' kg'; line.appendChild(lt); el.appendChild(line);
   });
   window.pxQ4 = {busca: '', chip: 'todos'};
   dash.draw('tab_q4', (tb) => {
     tb.replaceChildren(); const d = dash.data('q4_clientes'); if (d.status !== 'ok') return;
     const q = pxQ4.busca.trim().toUpperCase();
-    d.data.filter((r) => (!q || r.razao_social.toUpperCase().includes(q)) && (pxQ4.chip === 'todos' || (pxQ4.chip === 'falta' && r.falta > 0) || (pxQ4.chip === 'ok' && r.falta === 0)))
+    d.data.filter((r) => (!q || r.razao_social.toUpperCase().includes(q)) && (pxQ4.chip === 'todos' || (pxQ4.chip === 'falta' && r.falta > 0) || (pxQ4.chip === 'ok' && r.falta === 0) || (pxQ4.chip === 'rec' && r.recuperar > 0)))
       .forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = r.cod;
-        td(tr, (r.recuperar ? '🔁 ' : '') + r.razao_social); td(tr, pxKg(r.meta)); td(tr, pxKg(r.realizado)); pctTd(tr, r.atingimento);
-        td(tr, r.falta > 0 ? pxKg(r.falta) : '✓ batida', r.falta > 0 ? '' : 'c-ok'); tb.appendChild(tr); });
+        td(tr, r.razao_social); td(tr, pxKg(r.meta)); td(tr, pxKg(r.realizado), 'h-sm'); pctTd(tr, r.atingimento); tr.lastChild.classList.add('h-sm');
+        td(tr, r.falta > 0 ? pxKg(r.falta) : '✓ batido', r.falta > 0 ? '' : 'c-ok'); td(tr, r.recuperar > 0 ? pxKg(r.recuperar) : '—', r.recuperar > 0 ? 'c-warn' : 'c-mut'); tb.appendChild(tr); });
   });
   document.querySelectorAll('[data-q4filter="busca"]').forEach((i) => i.addEventListener('input', () => { pxQ4.busca = i.value; dash.draw('tab_q4'); }));
   document.querySelectorAll('[data-q4chip]').forEach((c) => c.addEventListener('click', () => { pxQ4.chip = c.dataset.q4chip;
     document.querySelectorAll('[data-q4chip]').forEach((x) => x.setAttribute('aria-pressed', String(x === c))); dash.draw('tab_q4'); }));
 
-  const ids = {home: 'inicio', mes: 'mes-atual', prime: 'prime', familias: 'familias', ytd: 'ytd', q4: 'meta-4tri'};
+  const ids = {home: 'inicio', mes: 'mes-atual', prime: 'prime', familias: 'familias', ytd: 'ytd', q4: 'objetivo-4tri'};
   const show = (page) => {
     document.querySelectorAll('[data-page]').forEach((s) => { s.hidden = s.dataset.page !== page; });
     try { dash.setLink(page === 'home' ? null : ids[page]); } catch (e) {}
