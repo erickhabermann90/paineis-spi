@@ -1,2 +1,6 @@
+# Publicação migrada para o Cloudflare Pages (paineis-spi.pages.dev).
+# "ignore = exit 0" faz o Netlify pular todas as publicações novas (não consome créditos);
+# os links antigos do Netlify continuam com a última versão publicada.
 [build]
   publish = "site"
+  ignore = "exit 0"
