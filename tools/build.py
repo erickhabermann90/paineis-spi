@@ -89,8 +89,15 @@ for cod in alvo:
     nomes_cli = {x[1]: x[2] for x in clients if x[0] == cod}
     meta4t = [{'objetivo': m4['objetivo'] if m4 else 0, 'meses_rest': meses_rest, 'fechados': sum(1 for k in ('out', 'nov', 'dez') if kg_m[k]),
                **{k: sum(kg_m[k].values()) for k in ('out', 'nov', 'dez')}}]
-    clientes4t = [{'cod': c['cod'], 'razao_social': nomes_cli.get(c['cod'], c['cod']), 'meta': c['meta'], 'alvo25': c.get('alvo25', 0),
-                   'realizado': sum(kg_m[k].get(c['cod'], 0) for k in ('out', 'nov', 'dez'))} for c in (m4['clientes'] if m4 else [])]
+    # Objetivo 4º tri por cliente: objetivo do RC dividido só entre os clientes ativos (compra em 2026),
+    # na proporção da média mensal 2026 de cada um. alvo25 (recuperar 2025) continua vindo da reunião.
+    alvo25 = {c['cod']: c.get('alvo25', 0) for c in (m4['clientes'] if m4 else [])}
+    ativos = [c for c in cl if c['med_kg_26'] > 0]
+    soma_med = sum(c['med_kg_26'] for c in ativos) or 1
+    obj4t = m4['objetivo'] if m4 else 0
+    clientes4t = [{'cod': c['cod'], 'razao_social': c['razao_social'], 'meta': round(obj4t * c['med_kg_26'] / soma_med),
+                   'alvo25': alvo25.get(c['cod'], 0),
+                   'realizado': sum(kg_m[k].get(c['cod'], 0) for k in ('out', 'nov', 'dez'))} for c in ativos]
     d = {'plano': [{'representante': nome, 'regional': 'Regional SPI Campinas', 'mes': mes, 'atualizado_em': atualizado,
                     'objetivo': p[1], 'acelerador': p[2], 'minimo': p[3], 'faturado': f[2], 'carteira': f[3], 'meses_fechados': meses_fechados}],
          'clientes': cl, 'rebate': reb, 'familias': fam, 'meta4t': meta4t, 'clientes4t': clientes4t}

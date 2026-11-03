@@ -462,7 +462,7 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
     </section>
     <section data-page="q4" id="objetivo-4tri" class="px-wrap" style="gap: inherit" hidden>
       <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Objetivo 4º trimestre</h2></div>
-      <p class="px-note">Objetivo de outubro a dezembro, definido na reunião.</p>
+      <p class="px-note">Objetivo de outubro a dezembro, definido na reunião. Por cliente: dividido entre os clientes ativos, conforme a média de compra de cada um.</p>
       <div class="px-rede-status" data-draw="q_ritmo" data-source="q4" data-field="ritmo" data-row="0">—</div>
       <div class="px-minis">
         <div class="px-mini"><div class="l">Objetivo do trimestre</div><div class="v"><span data-draw="q_obj" data-source="q4" data-field="objetivo" data-row="0">—</span> kg</div></div>
@@ -596,7 +596,7 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
     fn: (meta4t) => { const m = meta4t[0]; const cur = 3 - m.meses_rest; return [['Out', m.out, m.fechados >= 1], ['Nov', m.nov, m.fechados >= 2 || m.nov > 0], ['Dez', m.dez, m.fechados >= 3 || m.dez > 0]].map(([mes, kg, tem], i) => ({mes, kg, tem, atual: i === cur, meta_mes: m.objetivo / 3})); }
   });
   dash.calc('q4_clientes', {
-    title: 'Objetivo 4º tri por cliente', description: 'Objetivo de cada cliente (reunião) x kg comprados de outubro a dezembro; recuperar 2025 = quanto falta para o cliente voltar ao volume de 2025.',
+    title: 'Objetivo 4º tri por cliente', description: 'Objetivo do RC dividido pelos clientes ativos na proporção da média mensal 2026 x kg comprados de outubro a dezembro; recuperar 2025 = quanto falta para o cliente voltar ao volume de 2025.',
     inputs: ['clientes4t'],
     fn: (clientes4t) => clientes4t.map((c) => ({cod: c.cod, razao_social: c.razao_social, meta: c.meta, realizado: c.realizado, atingimento: c.meta ? c.realizado / c.meta : 0, falta: Math.max(c.meta - c.realizado, 0), recuperar: c.alvo25 ? Math.max(c.alvo25 - c.realizado, 0) : 0}))
       .sort((a, b) => b.falta - a.falta)
