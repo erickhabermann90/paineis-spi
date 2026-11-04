@@ -74,7 +74,8 @@ HEAD = open(os.path.join(T, 'head.html')).read()
 resumo = []
 for cod in alvo:
     nome = rcs[cod]['nome']; p = plano[nome]; f = flash.get(nome, [nome, 0, 0, 0])
-    cl = [{'cod': x[1], 'razao_social': x[2], 'rede': x[3], 'med_kg_25': round(x[4] / 12), 'med_kg_26': round((x[5] - (x[6] if mes_painel == hoje.month else 0)) / meses_fechados),
+    cl = [{'cod': x[1], 'razao_social': x[2], 'rede': x[3], # médias do próprio BI (MED KG 25/26, mesmo período) quando vierem no extrato
+           'med_kg_25': x[10] if len(x) > 11 else round(x[4] / 12), 'med_kg_26': x[11] if len(x) > 11 else round((x[5] - (x[6] if mes_painel == hoje.month else 0)) / meses_fechados),
            'kg_mes': x[6], 'kg_carteira': x[7], 'dias_ult_compra': x[8], 'freq_media_dias': x[9]} for x in clients if x[0] == cod]
     reb = []
     for r in out['reb']:
@@ -82,7 +83,8 @@ for cod in alvo:
         rc_cod, rede = r[1].split(' - ', 1)
         for g, vals in zip(['Total', 'G1', 'G2', 'G3'], r[2:6]):
             reb.append({'cod': rc_cod, 'rede': rede, 'grupo': g, 'objetivo': vals[0], 'realizado': vals[1], 'rs_faturado': vals[2], 'rebate': vals[3]})
-    fam = [{'familia': re.sub(r'(\d+)\s*-\s*', r'\1 - ', x[1]), 'kg_2026': x[2], 'kg_2025': x[3], 'positivacao_2026': x[4]}
+    fam = [{'familia': re.sub(r'(\d+)\s*-\s*', r'\1 - ', x[1]), 'kg_2026': x[2], 'kg_2025': x[3], 'positivacao_2026': x[4],
+            **({'med_26': x[5], 'med_25': x[6]} if len(x) > 6 else {})}
            for x in out['fam'] if x[0] == cod and (x[2] or x[3])]
     m4 = metas4t.get(cod)
     kg_m = {k: q4hist.get(k, {}).get(cod, {}) for k in ('out', 'nov', 'dez')}

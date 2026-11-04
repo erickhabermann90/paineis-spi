@@ -595,10 +595,11 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     fn: (q4_clientes) => { const r = q4_clientes.filter((c) => c.recuperar > 0); return [{recuperar: r.reduce((a, c) => a + c.recuperar, 0), clientes: r.length}]; }
   });
   dash.calc('familias_total', {
-    title: 'Média mensal total', description: 'Soma de todas as famílias; 2025 ÷ 12 e 2026 ÷ 10.',
+    title: 'Média mensal total', description: 'Médias mensais do BI (MED KG 26 x MED KG 25, mesmo período).',
     inputs: ['familias', 'plano'],
     fn: (familias, plano) => { const n = plano[0].meses_fechados || 10, k25 = familias.reduce((a, f) => a + f.kg_2025, 0), k26 = familias.reduce((a, f) => a + f.kg_2026, 0);
-      return [{kg_2026: k26, media_25: k25 / 12, media_26: k26 / n, variacao: (k26 / n) / (k25 / 12) - 1}]; }
+      const temMed = familias.some((f) => f.med_26 != null), m26 = temMed ? familias.reduce((a, f) => a + (f.med_26 || 0), 0) : k26 / n, m25 = temMed ? familias.reduce((a, f) => a + (f.med_25 || 0), 0) : k25 / 12;
+      return [{kg_2026: k26, media_25: m25, media_26: m26, variacao: m25 ? m26 / m25 - 1 : 0}]; }
   });
 
   const val = (name, id, field, fmt) => dash.draw(name, (el) => { const r = pxOne(id); el.textContent = r ? fmt(r[field]) : '—'; });
