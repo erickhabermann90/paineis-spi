@@ -72,10 +72,13 @@ SHIM = open(os.path.join(T, 'shim.js')).read()
 HEAD = open(os.path.join(T, 'head.html')).read()
 
 resumo = []
+# RCs pausados (ex.: desligados) não são regerados; a página fica com a última versão
+alvo = [c for c in alvo if not rcs[c].get('pausado')]
 for cod in alvo:
     nome = rcs[cod]['nome']; p = plano[nome]; f = flash.get(nome, [nome, 0, 0, 0])
     cl = [{'cod': x[1], 'razao_social': x[2], 'rede': x[3], # médias do próprio BI (MED KG 25/26, mesmo período) quando vierem no extrato
-           'med_kg_25': x[10] if len(x) > 11 else round(x[4] / 12), 'med_kg_26': x[11] if len(x) > 11 else round((x[5] - (x[6] if mes_painel == hoje.month else 0)) / meses_fechados),
+           # 2025 = média do ano inteiro (Histórico MÉD KG 25, jan–dez ÷ 12) quando vier no extrato (x[12])
+           'med_kg_25': x[12] if len(x) > 12 else (x[10] if len(x) > 11 else round(x[4] / 12)), 'med_kg_26': x[11] if len(x) > 11 else round((x[5] - (x[6] if mes_painel == hoje.month else 0)) / meses_fechados),
            'kg_mes': x[6], 'kg_carteira': x[7], 'dias_ult_compra': x[8], 'freq_media_dias': x[9]} for x in clients if x[0] == cod]
     reb = []
     for r in out['reb']:
