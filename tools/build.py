@@ -72,9 +72,10 @@ SHIM = open(os.path.join(T, 'shim.js')).read()
 HEAD = open(os.path.join(T, 'head.html')).read()
 
 # Itens por cliente nos últimos 12 meses (Curva ABC: RC × cliente × família × produto × PESO, filtro MES/ANO = 12 meses)
-# extrato_dir/itens.json = [[cod_rc, cod_cliente, produto, familia, kg], ...]
+# extrato_dir/itens.json = [[cod_cliente, produto, kg], ...] (formato antigo: [cod_rc, cod_cliente, produto, familia, kg])
 itens_path = os.path.join(ext, 'itens.json')
 itens_rows = json.load(open(itens_path)) if os.path.exists(itens_path) else []
+itens_rows = [[None, r[0], r[1], '', r[2]] if len(r) == 3 else r for r in itens_rows]
 EXCLUI_FAM = {f.strip().upper() for f in json.load(open(os.path.join(T, 'familias_excluidas.json')))} if os.path.exists(os.path.join(T, 'familias_excluidas.json')) else set()
 itens_rows = [r for r in itens_rows if r[4] > 0 and str(r[3]).strip().upper() not in EXCLUI_FAM]
 # ranking da Regional: nº de clientes distintos que compraram cada item
@@ -86,9 +87,11 @@ resumo = []
 # RCs pausados (ex.: desligados) não são regerados; a página fica com a última versão
 alvo = [c for c in alvo if not rcs[c].get('pausado')]
 def itens_cli(cod):
+    # itens por cliente da carteira ATUAL do RC (Histórico), não pelo RC da venda — clientes transferidos levam o histórico
+    carteira = {str(x[1]) for x in clients if x[0] == cod}
     out = {}
     for r in itens_rows:
-        if r[0] == cod:
+        if str(r[1]) in carteira:
             out.setdefault(str(r[1]), {}).setdefault(r[2], 0)
             out[str(r[1])][r[2]] += r[4]
     return {c: sorted(([k, v] for k, v in d.items()), key=lambda x: -x[1]) for c, d in out.items()}
