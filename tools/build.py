@@ -71,9 +71,28 @@ si = body.index('<script>'); markup, script = body[:si], body[si:]
 SHIM = open(os.path.join(T, 'shim.js')).read()
 HEAD = open(os.path.join(T, 'head.html')).read()
 
+# Itens por cliente nos últimos 12 meses (Curva ABC: RC × cliente × família × produto × PESO, filtro MES/ANO = 12 meses)
+# extrato_dir/itens.json = [[cod_rc, cod_cliente, produto, familia, kg], ...]
+itens_path = os.path.join(ext, 'itens.json')
+itens_rows = json.load(open(itens_path)) if os.path.exists(itens_path) else []
+EXCLUI_FAM = {f.strip().upper() for f in json.load(open(os.path.join(T, 'familias_excluidas.json')))} if os.path.exists(os.path.join(T, 'familias_excluidas.json')) else set()
+itens_rows = [r for r in itens_rows if r[4] > 0 and str(r[3]).strip().upper() not in EXCLUI_FAM]
+# ranking da Regional: nº de clientes distintos que compraram cada item
+_cli_por_item = {}
+for r in itens_rows: _cli_por_item.setdefault(r[2], set()).add(r[1])
+ranking = [{'item': k, 'n': len(v)} for k, v in sorted(_cli_por_item.items(), key=lambda kv: (-len(kv[1]), kv[0]))][:300]
+
 resumo = []
 # RCs pausados (ex.: desligados) não são regerados; a página fica com a última versão
 alvo = [c for c in alvo if not rcs[c].get('pausado')]
+def itens_cli(cod):
+    out = {}
+    for r in itens_rows:
+        if r[0] == cod:
+            out.setdefault(str(r[1]), {}).setdefault(r[2], 0)
+            out[str(r[1])][r[2]] += r[4]
+    return {c: sorted(([k, v] for k, v in d.items()), key=lambda x: -x[1]) for c, d in out.items()}
+
 for cod in alvo:
     nome = rcs[cod]['nome']; p = plano[nome]; f = flash.get(nome, [nome, 0, 0, 0])
     cl = [{'cod': x[1], 'razao_social': x[2], 'rede': x[3], # médias do próprio BI (MED KG 25/26, mesmo período) quando vierem no extrato
@@ -105,7 +124,8 @@ for cod in alvo:
                    'realizado': sum(kg_m[k].get(c['cod'], 0) for k in ('out', 'nov', 'dez'))} for c in ativos]
     d = {'plano': [{'representante': nome, 'regional': 'Regional SPI Campinas', 'mes': mes, 'atualizado_em': atualizado,
                     'objetivo': p[1], 'acelerador': p[2], 'minimo': p[3], 'faturado': f[2], 'carteira': f[3], 'meses_fechados': meses_fechados}],
-         'clientes': cl, 'rebate': reb, 'familias': fam, 'meta4t': meta4t, 'clientes4t': clientes4t}
+         'clientes': cl, 'rebate': reb, 'familias': fam, 'meta4t': meta4t, 'clientes4t': clientes4t,
+         'itens': [itens_cli(cod)], 'ranking': ranking}
     html = (HEAD % nome.title()) + styles + '\n</head><body>\n<div id="dash-root">' + markup + '</div>\n<script>window.__DATA = ' + json.dumps(d, ensure_ascii=False) + ';</script>\n' + SHIM + script + '\n<script>dash._runAll(); let __t; addEventListener("resize", () => { clearTimeout(__t); __t = setTimeout(() => dash._runAll(), 200); });</script>\n</body></html>\n'
     os.makedirs(os.path.join(SITE, rcs[cod]['slug']), exist_ok=True)
     open(os.path.join(SITE, rcs[cod]['slug'], 'index.html'), 'w').write(html)

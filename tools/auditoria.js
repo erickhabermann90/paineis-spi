@@ -5,8 +5,9 @@ const { chromium } = require('playwright');
     const p = await b.newPage({ viewport: { width: W, height: 800 } });
     await p.route('**/fonts.g*/**', r => r.abort());
     await p.goto('file://' + require('path').resolve(__dirname, '..', 'site') + '/' + rc + '/index.html'); await p.waitForTimeout(900);
-    for (const g of ['home','mes','prime','ano','q4']) {
-      if (g !== 'home') { await p.evaluate((g) => document.querySelector('.px-card[data-go="' + g + '"]').click(), g); await p.waitForTimeout(250); }
+    for (const g of ['home','mes','prime','ano','q4','pos','prop']) {
+      if (g !== 'home') { await p.evaluate((g) => document.querySelector('.px-card[data-go="' + g + '"]')?.click(), g); await p.waitForTimeout(250); }
+      if (g === 'pos' || g === 'prop') { await p.evaluate(() => { if (!window.pxCli) return; const pr = pxOne('proposta') || {}; const c = Object.keys(pr).sort((a, b) => pr[b].itens.length - pr[a].itens.length)[0]; pxCli.cod = c || null; pxRedrawCli(); }); await p.waitForTimeout(200); }
       const r = await p.evaluate(() => {
         const bad = []; const sec = document.querySelector('section:not([hidden])');
         const boxes = sec.querySelectorAll('.px-card, .px-mini, .px-panel, .px-hero, .px-g, .px-rank-row, .px-kpi, .px-rec, .px-rede-status, .px-tw');
@@ -26,6 +27,6 @@ const { chromium } = require('playwright');
         if (document.documentElement.scrollWidth > innerWidth) bad.push('página rola na horizontal');
         return [...new Set(bad)].slice(0, 8); });
       if (r.length) out[`${W} ${rc.split('-')[0]} ${g}`] = r;
-      if (g !== 'home') { await p.evaluate(() => document.querySelector('section:not([hidden]) .px-back').click()); await p.waitForTimeout(150); }
+      if (g !== 'home') { await p.evaluate(() => document.querySelector('section:not([hidden]) .px-back')?.click()); await p.waitForTimeout(150); }
     } await p.close(); }
   console.log(JSON.stringify(out, null, 1)); await b.close(); })();
