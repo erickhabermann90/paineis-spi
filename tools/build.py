@@ -105,8 +105,11 @@ for cod in alvo:
         rc_cod, rede = r[1].split(' - ', 1)
         for g, vals in zip(['Total', 'G1', 'G2', 'G3'], r[2:6]):
             reb.append({'cod': rc_cod, 'rede': rede, 'grupo': g, 'objetivo': vals[0], 'realizado': vals[1], 'rs_faturado': vals[2], 'rebate': vals[3]})
+    # kg 2026 só dos meses fechados: tira a parte do mês vigente na proporção do RC (faturado do mês ÷ kg 2026 do RC)
+    _k26 = sum(x[5] for x in clients if x[0] == cod); _mes = sum(x[6] for x in clients if x[0] == cod) if mes_painel == hoje.month else 0
+    _fech = (_k26 - _mes) / _k26 if _k26 else 1
     fam = [{'familia': re.sub(r'(\d+)\s*-\s*', r'\1 - ', x[1]), 'kg_2026': x[2], 'kg_2025': x[3], 'positivacao_2026': x[4],
-            **({'med_26': x[5], 'med_25': x[6]} if len(x) > 6 else {})}
+            'kg_2026_fech': round(x[2] * _fech)}
            for x in out['fam'] if x[0] == cod and (x[2] or x[3])]
     m4 = metas4t.get(cod)
     kg_m = {k: q4hist.get(k, {}).get(cod, {}) for k in ('out', 'nov', 'dez')}
@@ -126,7 +129,7 @@ for cod in alvo:
                     'objetivo': p[1], 'acelerador': p[2], 'minimo': p[3], 'faturado': f[2], 'carteira': f[3], 'meses_fechados': meses_fechados}],
          'clientes': cl, 'rebate': reb, 'familias': fam, 'meta4t': meta4t, 'clientes4t': clientes4t,
          'itens': [itens_cli(cod)], 'ranking': ranking}
-    html = (HEAD % nome.title()) + styles + '\n</head><body>\n<div id="dash-root">' + markup + '</div>\n<script>window.__DATA = ' + json.dumps(d, ensure_ascii=False) + ';</script>\n' + SHIM + script + '\n<script>dash._runAll(); let __t; addEventListener("resize", () => { clearTimeout(__t); __t = setTimeout(() => dash._runAll(), 200); });</script>\n</body></html>\n'
+    html = (HEAD % nome.title()) + styles + '\n</head><body>\n<div id="dash-root">' + markup + '</div>\n<script>window.__DATA = ' + json.dumps(d, ensure_ascii=False) + ';</script>\n' + SHIM + script + '\n<script>dash._runAll(); let __t, __w = innerWidth; addEventListener("resize", () => { if (innerWidth === __w) return; __w = innerWidth; clearTimeout(__t); __t = setTimeout(() => dash._runAll(), 200); });</script>\n</body></html>\n'
     os.makedirs(os.path.join(SITE, rcs[cod]['slug']), exist_ok=True)
     open(os.path.join(SITE, rcs[cod]['slug'], 'index.html'), 'w').write(html)
     q = meta4t[0]; rq = q['out'] + q['nov'] + q['dez']

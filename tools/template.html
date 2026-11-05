@@ -322,7 +322,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 /* ---- Positivação / Proposta ---- */
 .px-cli { display: grid; gap: 8px; }
 .px-cli .px-search { width: 100%; box-sizing: border-box; font-size: 16px; padding: 13px 14px; }
-.px-cli-list { display: grid; gap: 6px; max-height: 340px; overflow-y: auto; }
+.px-cli-list { display: grid; gap: 6px; max-height: 60vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .px-cli-list button { all: unset; box-sizing: border-box; cursor: pointer; padding: 12px 14px; border-radius: 12px; background: #faf8f3; border: 1px solid var(--line); font-size: 14px; line-height: 1.3; overflow-wrap: anywhere; }
 .px-cli-list button small { display: block; color: var(--mut); font-size: 12px; margin-top: 2px; }
 .px-cli-list .vazio { color: var(--mut); font-size: 13px; padding: 4px 2px; }
@@ -489,6 +489,11 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         <div class="px-mini"><div class="l">Média por mês</div><div class="v"><span data-draw="y_m26" data-source="familias_total" data-field="media_26" data-row="0">—</span> kg</div></div>
         <div class="px-mini"><div class="l">Contra 2025</div><div class="v" data-draw="y_var" data-source="familias_total" data-field="variacao" data-row="0">—</div></div>
       </div>
+      <div class="px-panel">
+        <h4>Famílias · média por mês</h4>
+        <div class="px-legend" style="margin: 6px 0 16px"><span><i style="background: #d9d5ca"></i>2025</span><span><i style="background: var(--gold)"></i>2026</span></div>
+        <div class="px-fam" data-draw="fam_rows" data-source="familias_calc"></div>
+      </div>
       <div class="px-duo">
         <div class="px-panel">
           <h4><span class="c-ok">▲</span> Clientes que mais cresceram</h4>
@@ -614,9 +619,9 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         .sort((a, b) => b.med_kg_26 - a.med_kg_26); }
   });
   dash.calc('familias_calc', {
-    title: 'Média mensal por família', description: 'Média 2025 = kg 2025 ÷ 12; média 2026 = kg 2026 ÷ meses fechados.',
+    title: 'Média mensal por família', description: 'Média 2025 = kg de 2025 inteiro ÷ 12; média 2026 = kg 2026 dos meses fechados ÷ meses fechados.',
     inputs: ['familias', 'plano'],
-    fn: (familias, plano) => familias.map((f) => { const n = plano[0].meses_fechados || 10, media_25 = f.kg_2025 / 12, media_26 = f.kg_2026 / n;
+    fn: (familias, plano) => familias.map((f) => { const n = plano[0].meses_fechados || 10, media_25 = f.kg_2025 / 12, media_26 = (f.kg_2026_fech != null ? f.kg_2026_fech : f.kg_2026) / n;
       return {familia: f.familia, media_25, media_26, variacao: media_25 ? media_26 / media_25 - 1 : 0, positivacao_2026: f.positivacao_2026}; })
       .sort((a, b) => b.media_26 - a.media_26)
   });
@@ -834,6 +839,24 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       row.append(nm, dv, sub); el.appendChild(row);
     });
   });
+  dash.draw('fam_rows', (el) => {
+    el.replaceChildren(); const d = dash.data('familias_calc'); if (d.status !== 'ok') return;
+    const rows = d.data.filter((r) => r.media_26 >= 1 || r.media_25 >= 1), max = Math.max(1, ...rows.map((r) => Math.max(r.media_25, r.media_26)));
+    const curto = (f) => f.replace(/^\d+\s*-\s*/, ''), cont = {}; rows.forEach((r) => { cont[curto(r.familia)] = (cont[curto(r.familia)] || 0) + 1; });
+    rows.forEach((r) => {
+      const row = document.createElement('div'); row.className = 'px-fam-row';
+      const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = cont[curto(r.familia)] > 1 ? r.familia : curto(r.familia);
+      const sm = document.createElement('small'); sm.textContent = pxKg(r.media_25) + ' → ' + pxKg(r.media_26) + ' kg/mês'; nm.appendChild(sm);
+      const bars = document.createElement('div'); bars.className = 'bars';
+      const b25 = document.createElement('div'); b25.className = 'b25'; b25.style.width = r.media_25 / max * 100 + '%';
+      const b26 = document.createElement('div'); b26.className = 'b26'; b26.style.width = r.media_26 / max * 100 + '%';
+      bars.append(b25, b26);
+      const v = document.createElement('div');
+      if (r.media_25 > 0) { v.className = 'var ' + (r.variacao >= 0 ? 'c-ok' : 'c-bad'); v.textContent = (r.variacao >= 0 ? '▲ ' : '▼ ') + pxVar(r.variacao); }
+      else { v.className = 'var c-ok'; v.textContent = 'nova'; }
+      row.append(nm, bars, v); el.appendChild(row);
+    });
+  });
   rank('rank_up', (rows) => rows.filter((r) => r.diff > 0).slice(0, 5));
   rank('rank_down', (rows) => rows.filter((r) => r.diff < 0).slice(-5).reverse());
 
@@ -876,22 +899,6 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   document.querySelectorAll('[data-q4chip]').forEach((c) => c.addEventListener('click', () => { pxQ4.chip = c.dataset.q4chip;
     document.querySelectorAll('[data-q4chip]').forEach((x) => x.setAttribute('aria-pressed', String(x === c))); dash.draw('tab_q4'); }));
 
-  dash.draw('fam_rows', (el) => {
-    el.replaceChildren(); const d = dash.data('familias_calc'), mx = dash.data('mix'); if (d.status !== 'ok' || mx.status !== 'ok') return;
-    const share = new Map(mx.data.map((r) => [r.familia, r.share_26]));
-    const top = d.data.filter((r) => r.media_26 > 0 || r.media_25 > 0).slice(0, 8), max = Math.max(...top.map((r) => Math.max(r.media_25, r.media_26)));
-    top.forEach((r) => {
-      const row = document.createElement('div'); row.className = 'px-fam-row';
-      const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = r.familia.replace(/^\d+\s*-\s*/, '');
-      const sm = document.createElement('small'); sm.textContent = 'mix ' + Math.round((share.get(r.familia) || 0) * 100) + '% · ' + pxKg(r.media_26) + ' kg/mês'; nm.appendChild(sm);
-      const bars = document.createElement('div'); bars.className = 'bars';
-      const b25 = document.createElement('div'); b25.className = 'b25'; b25.style.width = r.media_25 / max * 100 + '%';
-      const b26 = document.createElement('div'); b26.className = 'b26'; b26.style.width = r.media_26 / max * 100 + '%';
-      bars.append(b25, b26);
-      const v = document.createElement('div'); v.className = 'var ' + (r.variacao >= 0 ? 'c-ok' : 'c-bad'); v.textContent = (r.variacao >= 0 ? '▲ ' : '▼ ') + pxVar(r.variacao);
-      row.append(nm, bars, v); el.appendChild(row);
-    });
-  });
   dash.draw('c3', (el) => { const r = pxOne('familias_total'); el.textContent = r ? (r.variacao >= 0 ? '▲ ' : '▼ ') + pxVar(r.variacao) : '—'; el.className = 'kv ' + (r ? (r.variacao >= 0 ? 'c-ok' : 'c-bad') : ''); });
 
   /* ---------- Positivação e Proposta para fechamento ---------- */
@@ -923,20 +930,23 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       return [out]; }
   });
   const cliSel = (name, page, body) => dash.draw(name, (el) => {
-    el.replaceChildren(); const d = dash.data('carteira'); if (d.status !== 'ok') return;
+    const d = dash.data('carteira'); if (d.status !== 'ok') return;
     const cur = d.data.find((c) => c.cod === pxCli.cod);
+    if (!cur && el.dataset.modo === 'busca' && el.querySelector('input')) return;
+    el.dataset.modo = cur ? 'sel' : 'busca';
+    el.replaceChildren();
     if (cur) {
       const box = pxEl('div', 'px-cli-sel'); const nm = pxEl('b', '', cur.razao_social); nm.appendChild(pxEl('small', '', 'Cód. ' + cur.cod));
-      const tr = pxEl('button', '', 'Trocar'); tr.type = 'button'; tr.onclick = () => { pxCli.cod = null; pxCli.busca[page] = ''; pxRedrawCli(); setTimeout(() => document.querySelector('[data-draw="' + name + '"] input')?.focus(), 0); };
+      const tr = pxEl('button', '', 'Trocar'); tr.type = 'button'; tr.onclick = () => { pxCli.cod = null; document.querySelectorAll('.px-cli').forEach((e) => { delete e.dataset.modo; }); pxCli.busca[page] = ''; pxRedrawCli(); setTimeout(() => document.querySelector('[data-draw="' + name + '"] input')?.focus(), 0); };
       box.append(nm, tr); el.appendChild(box); return;
     }
     const inp = pxEl('input', 'px-search'); inp.type = 'search'; inp.placeholder = 'Buscar cliente da carteira…'; inp.setAttribute('aria-label', 'Buscar cliente'); inp.value = pxCli.busca[page];
     const list = pxEl('div', 'px-cli-list');
     const fill = () => { list.replaceChildren(); const q = pxNorm(inp.value.trim());
-      const hits = d.data.filter((c) => !q || pxNorm(c.razao_social).includes(q) || c.cod.includes(q) || pxNorm(c.rede).includes(q)).slice(0, 40);
+      const hits = d.data.filter((c) => !q || pxNorm(c.razao_social).includes(q) || c.cod.includes(q) || pxNorm(c.rede).includes(q));
       if (!hits.length) list.appendChild(pxEl('div', 'vazio', 'Nenhum cliente encontrado na carteira.'));
       hits.forEach((c) => { const b = pxEl('button', '', c.razao_social); b.type = 'button'; b.appendChild(pxEl('small', '', 'Cód. ' + c.cod));
-        b.onclick = () => { pxCli.cod = c.cod; pxRedrawCli(); }; list.appendChild(b); }); };
+        b.onclick = () => { pxCli.cod = c.cod; inp.blur(); pxRedrawCli(); }; list.appendChild(b); }); };
     inp.addEventListener('input', () => { pxCli.busca[page] = inp.value; fill(); });
     fill(); el.append(inp, list);
   });
@@ -946,8 +956,8 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   const blkHead = (title, aside) => { const h = pxEl('div', 'px-blk-h'); h.append(pxEl('h4', '', title), pxEl('span', '', aside)); return h; };
   dash.draw('pos_body', (el) => {
     el.replaceChildren(); if (!pxCli.cod) return; const p = pxOne('positivacao'); const r = p && p[pxCli.cod];
-    const b1 = pxEl('div', 'px-blk'); b1.appendChild(blkHead('Itens que o cliente compra', r && r.compra.length ? r.compra.length + ' itens · kg em 12 meses' : ''));
-    if (r && r.compra.length) b1.appendChild(itList(r.compra, (x, k) => { k.textContent = pxKg(x.kg) + ' kg'; }));
+    const b1 = pxEl('div', 'px-blk'); b1.appendChild(blkHead('Itens que o cliente compra', r && r.compra.length ? r.compra.length + ' itens · média kg/mês' : ''));
+    if (r && r.compra.length) b1.appendChild(itList(r.compra, (x, k) => { const m = x.kg / 12; k.textContent = (m < 1 ? '< 1' : pxKg(m)) + ' kg'; k.appendChild(pxEl('small', '', 'por mês')); }));
     else b1.appendChild(pxEl('div', 'px-msg', 'Sem compras nos últimos 12 meses.'));
     const intro = r ? r.intro : (dash.data('ranking').data || []).slice(0, 20);
     const b2 = pxEl('div', 'px-blk intro'); b2.appendChild(blkHead('Possível introdução', 'mais vendidos da Regional'));
