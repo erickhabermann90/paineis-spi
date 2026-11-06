@@ -73,8 +73,19 @@ HEAD = open(os.path.join(T, 'head.html')).read()
 
 # Itens por cliente nos últimos 12 meses (Curva ABC: RC × cliente × família × produto × PESO, filtro MES/ANO = 12 meses)
 # extrato_dir/itens.json = [[cod_cliente, produto, kg], ...] (formato antigo: [cod_rc, cod_cliente, produto, familia, kg])
+# Itens são extraídos 1x por semana: o extrato novo é guardado compactado em tools/itens.json e reaproveitado nos outros dias
 itens_path = os.path.join(ext, 'itens.json')
-itens_rows = json.load(open(itens_path)) if os.path.exists(itens_path) else []
+ITENS_REPO = os.path.join(T, 'itens.json')
+if os.path.exists(itens_path):
+    _novo = json.load(open(itens_path)); _novo = [[r[1], r[2], r[4]] if len(r) == 5 else r for r in _novo]
+    _P = sorted({r[1] for r in _novo}); _ix = {p: i for i, p in enumerate(_P)}
+    json.dump({'data': atualizado, 'produtos': _P, 'linhas': [[r[0], _ix[r[1]], r[2]] for r in _novo]}, open(ITENS_REPO, 'w'), ensure_ascii=False, separators=(',', ':'))
+    itens_rows = _novo; itens_data = atualizado
+elif os.path.exists(ITENS_REPO):
+    _r = json.load(open(ITENS_REPO)); itens_rows = [[c, _r['produtos'][i], k] for c, i, k in _r['linhas']]; itens_data = _r['data']
+else:
+    itens_rows = []; itens_data = None
+print('itens 12 meses:', len(itens_rows), 'linhas, extraídos em', itens_data)
 itens_rows = [[None, r[0], r[1], '', r[2]] if len(r) == 3 else r for r in itens_rows]
 EXCLUI_FAM = {f.strip().upper() for f in json.load(open(os.path.join(T, 'familias_excluidas.json')))} if os.path.exists(os.path.join(T, 'familias_excluidas.json')) else set()
 itens_rows = [r for r in itens_rows if r[4] > 0 and str(r[3]).strip().upper() not in EXCLUI_FAM]

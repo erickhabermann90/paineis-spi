@@ -1,7 +1,9 @@
 const { chromium } = require('playwright');
 (async () => { const b = await chromium.launch(); const out = {};
   const rcs = require('fs').readdirSync(require('path').resolve(__dirname, '..', 'site')).filter(d => /-/.test(d));
-  for (const W of [360, 390, 430, 768, 1280]) for (const rc of rcs) {
+  // node tools/auditoria.js --rapido → só 390px (dia a dia); sem argumento → todas as larguras (quando o layout mudar)
+  const LARG = process.argv.includes('--rapido') ? [390] : [360, 390, 430, 768, 1280];
+  for (const W of LARG) for (const rc of rcs) {
     const p = await b.newPage({ viewport: { width: W, height: 800 } });
     await p.route('**/fonts.g*/**', r => r.abort());
     await p.goto('file://' + require('path').resolve(__dirname, '..', 'site') + '/' + rc + '/index.html'); await p.waitForTimeout(900);
