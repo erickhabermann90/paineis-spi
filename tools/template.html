@@ -420,7 +420,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
           <span class="h"><span class="n">05</span><span class="go">→</span></span>
           <h3>Positivação</h3>
           <span class="kv" data-draw="c6">—</span>
-          <span class="kl">itens por cliente</span>
+          <span class="kl">itens para introduzir por cliente</span>
         </button>
         <button class="px-card px-in" type="button" data-go="prop">
           <span class="h"><span class="n">06</span><span class="go">→</span></span>
@@ -956,13 +956,10 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   const blkHead = (title, aside) => { const h = pxEl('div', 'px-blk-h'); h.append(pxEl('h4', '', title), pxEl('span', '', aside)); return h; };
   dash.draw('pos_body', (el) => {
     el.replaceChildren(); if (!pxCli.cod) return; const p = pxOne('positivacao'); const r = p && p[pxCli.cod];
-    const b1 = pxEl('div', 'px-blk'); b1.appendChild(blkHead('Itens que o cliente compra', r && r.compra.length ? r.compra.length + ' itens · média kg/mês' : ''));
-    if (r && r.compra.length) b1.appendChild(itList(r.compra, (x, k) => { const m = x.kg / 12; k.textContent = (m < 1 ? '< 1' : pxKg(m)) + ' kg'; k.appendChild(pxEl('small', '', 'por mês')); }));
-    else b1.appendChild(pxEl('div', 'px-msg', 'Sem compras nos últimos 12 meses.'));
     const intro = r ? r.intro : (dash.data('ranking').data || []).slice(0, 20);
     const b2 = pxEl('div', 'px-blk intro'); b2.appendChild(blkHead('Possível introdução', 'mais vendidos da Regional'));
     b2.appendChild(itList(intro, (x, k) => { k.textContent = x.n; k.appendChild(pxEl('small', '', 'clientes')); }));
-    el.append(b1, b2);
+    el.append(b2);
   });
   dash.draw('prop_body', (el) => {
     el.replaceChildren(); if (!pxCli.cod) return; const p = pxOne('proposta'); const r = p && p[pxCli.cod];
@@ -976,8 +973,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     const tot = pxEl('div', 'px-it-tot'); tot.append(pxEl('span', '', 'Total'), pxEl('b', '', pxKg(r.itens.reduce((a, x) => a + x.kg, 0)) + ' kg')); b.appendChild(tot);
     el.appendChild(b);
   });
-  dash.draw('c6', (el) => { const p = pxOne('positivacao'); if (!p) { el.textContent = '—'; return; } const v = Object.values(p).filter((r) => r.compra.length);
-    el.textContent = v.length ? (v.reduce((a, r) => a + r.compra.length, 0) / v.length).toLocaleString('pt-BR', {maximumFractionDigits: 1}) : '—'; });
+  dash.draw('c6', (el) => { const p = pxOne('positivacao'); el.textContent = p ? '20' : '—'; });
   dash.draw('c7', (el) => { const p = pxOne('proposta'); el.textContent = p ? String(Object.values(p).filter((r) => r.falta > 0).length) : '—'; });
 
   const ids = {home: 'inicio', mes: 'mes-atual', prime: 'prime', ano: 'ano-2026', q4: 'objetivo-4tri', pos: 'positivacao', prop: 'proposta'};

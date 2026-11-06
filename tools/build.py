@@ -132,7 +132,9 @@ for cod in alvo:
                **{k: sum(kg_m[k].values()) for k in ('out', 'nov', 'dez')}}]
     # Objetivo 4º tri por cliente: objetivo do RC dividido só entre os clientes ativos (compra em 2026),
     # na proporção da média mensal 2026 de cada um. alvo25 (recuperar 2025) continua vindo da reunião.
-    alvo25 = {c['cod']: c.get('alvo25', 0) for c in (m4['clientes'] if m4 else [])}
+    # alvo25 de qualquer RC da reunião (clientes transferidos de RC levam o alvo)
+    alvo25 = {c['cod']: c.get('alvo25', 0) for m_ in metas4t.values() for c in m_.get('clientes', [])}
+    alvo25.update({c['cod']: c.get('alvo25', 0) for c in (m4['clientes'] if m4 else [])})
     ativos = [c for c in cl if c['med_kg_26'] > 0]
     soma_med = sum(c['med_kg_26'] for c in ativos) or 1
     obj4t = m4['objetivo'] if m4 else 0

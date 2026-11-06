@@ -1,1 +1,5326 @@
-{"130253": {"objetivo": 75000, "pct": "22,0", "clientes": [{"cod": "132589", "meta": 8985, "recuperar": 0, "alvo25": 0}, {"cod": "4318", "meta": 5838, "recuperar": 0, "alvo25": 0}, {"cod": "111598", "meta": 4136, "recuperar": 0, "alvo25": 0}, {"cod": "85179", "meta": 3290, "recuperar": 0, "alvo25": 0}, {"cod": "14602", "meta": 2539, "recuperar": 0, "alvo25": 0}, {"cod": "14447", "meta": 2529, "recuperar": 0, "alvo25": 0}, {"cod": "79837", "meta": 2468, "recuperar": 0, "alvo25": 0}, {"cod": "4319", "meta": 2386, "recuperar": 0, "alvo25": 0}, {"cod": "10185", "meta": 2156, "recuperar": 0, "alvo25": 0}, {"cod": "5818", "meta": 2088, "recuperar": 0, "alvo25": 0}, {"cod": "73859", "meta": 1952, "recuperar": 0, "alvo25": 0}, {"cod": "20032", "meta": 1892, "recuperar": 0, "alvo25": 0}, {"cod": "13599", "meta": 1854, "recuperar": 0, "alvo25": 0}, {"cod": "67610", "meta": 1826, "recuperar": 0, "alvo25": 0}, {"cod": "12356", "meta": 1818, "recuperar": 0, "alvo25": 0}, {"cod": "12232", "meta": 1600, "recuperar": 1738, "alvo25": 2194}, {"cod": "132137", "meta": 1230, "recuperar": 0, "alvo25": 0}, {"cod": "150379", "meta": 1159, "recuperar": 0, "alvo25": 0}, {"cod": "121342", "meta": 1081, "recuperar": 0, "alvo25": 0}, {"cod": "163156", "meta": 1006, "recuperar": 0, "alvo25": 0}, {"cod": "129807", "meta": 991, "recuperar": 0, "alvo25": 0}, {"cod": "176554", "meta": 978, "recuperar": 0, "alvo25": 0}, {"cod": "125806", "meta": 965, "recuperar": 0, "alvo25": 0}, {"cod": "4322", "meta": 887, "recuperar": 0, "alvo25": 0}, {"cod": "29294", "meta": 868, "recuperar": 0, "alvo25": 0}, {"cod": "145679", "meta": 845, "recuperar": 0, "alvo25": 0}, {"cod": "148423", "meta": 839, "recuperar": 0, "alvo25": 0}, {"cod": "153345", "meta": 829, "recuperar": 0, "alvo25": 0}, {"cod": "18062", "meta": 813, "recuperar": 0, "alvo25": 0}, {"cod": "27054", "meta": 787, "recuperar": 0, "alvo25": 0}, {"cod": "133369", "meta": 787, "recuperar": 1227, "alvo25": 1227}, {"cod": "12346", "meta": 691, "recuperar": 0, "alvo25": 0}, {"cod": "43696", "meta": 637, "recuperar": 0, "alvo25": 0}, {"cod": "10322", "meta": 637, "recuperar": 0, "alvo25": 0}, {"cod": "74875", "meta": 632, "recuperar": 0, "alvo25": 0}, {"cod": "14742", "meta": 604, "recuperar": 0, "alvo25": 0}, {"cod": "84067", "meta": 598, "recuperar": 0, "alvo25": 0}, {"cod": "173310", "meta": 577, "recuperar": 0, "alvo25": 0}, {"cod": "13383", "meta": 571, "recuperar": 0, "alvo25": 0}, {"cod": "41998", "meta": 569, "recuperar": 0, "alvo25": 0}, {"cod": "14344", "meta": 538, "recuperar": 284, "alvo25": 1003}, {"cod": "158663", "meta": 528, "recuperar": 0, "alvo25": 0}, {"cod": "178584", "meta": 526, "recuperar": 0, "alvo25": 0}, {"cod": "125981", "meta": 418, "recuperar": 0, "alvo25": 0}, {"cod": "182322", "meta": 417, "recuperar": 0, "alvo25": 0}, {"cod": "18921", "meta": 412, "recuperar": 0, "alvo25": 0}, {"cod": "157976", "meta": 408, "recuperar": 0, "alvo25": 0}, {"cod": "66880", "meta": 373, "recuperar": 0, "alvo25": 0}, {"cod": "192750", "meta": 362, "recuperar": 0, "alvo25": 0}, {"cod": "174713", "meta": 354, "recuperar": 0, "alvo25": 0}, {"cod": "169887", "meta": 345, "recuperar": 439, "alvo25": 715}, {"cod": "88552", "meta": 336, "recuperar": 0, "alvo25": 0}, {"cod": "181308", "meta": 276, "recuperar": 0, "alvo25": 0}, {"cod": "65778", "meta": 228, "recuperar": 0, "alvo25": 0}, {"cod": "76679", "meta": 211, "recuperar": 0, "alvo25": 0}, {"cod": "25731", "meta": 209, "recuperar": 381, "alvo25": 425}, {"cod": "14164", "meta": 205, "recuperar": 540, "alvo25": 540}, {"cod": "4831", "meta": 196, "recuperar": 447, "alvo25": 447}, {"cod": "136810", "meta": 186, "recuperar": 0, "alvo25": 0}, {"cod": "74913", "meta": 178, "recuperar": 0, "alvo25": 0}, {"cod": "17645", "meta": 165, "recuperar": 195, "alvo25": 430}, {"cod": "150896", "meta": 141, "recuperar": 0, "alvo25": 0}, {"cod": "144628", "meta": 140, "recuperar": 2893, "alvo25": 2893}, {"cod": "187061", "meta": 135, "recuperar": 0, "alvo25": 0}, {"cod": "192582", "meta": 121, "recuperar": 0, "alvo25": 0}, {"cod": "77403", "meta": 111, "recuperar": 0, "alvo25": 0}, {"cod": "77266", "meta": 102, "recuperar": 0, "alvo25": 0}, {"cod": "102961", "meta": 89, "recuperar": 203, "alvo25": 203}, {"cod": "182357", "meta": 88, "recuperar": 141, "alvo25": 279}, {"cod": "96730", "meta": 81, "recuperar": 148, "alvo25": 148}, {"cod": "187483", "meta": 61, "recuperar": 0, "alvo25": 0}, {"cod": "192521", "meta": 52, "recuperar": 0, "alvo25": 0}, {"cod": "154604", "meta": 49, "recuperar": 75, "alvo25": 75}, {"cod": "33050", "meta": 31, "recuperar": 90, "alvo25": 90}, {"cod": "188696", "meta": 31, "recuperar": 0, "alvo25": 0}, {"cod": "193399", "meta": 0, "recuperar": 0, "alvo25": 0}]}, "150263": {"objetivo": 242900, "pct": "21,6", "clientes": [{"cod": "23424", "meta": 21993, "recuperar": 0, "alvo25": 0}, {"cod": "147895", "meta": 15055, "recuperar": 0, "alvo25": 0}, {"cod": "74470", "meta": 12834, "recuperar": 0, "alvo25": 0}, {"cod": "100249", "meta": 12713, "recuperar": 0, "alvo25": 0}, {"cod": "67550", "meta": 8169, "recuperar": 0, "alvo25": 0}, {"cod": "85759", "meta": 7632, "recuperar": 0, "alvo25": 0}, {"cod": "113658", "meta": 7358, "recuperar": 0, "alvo25": 0}, {"cod": "129154", "meta": 7087, "recuperar": 0, "alvo25": 0}, {"cod": "28230", "meta": 6644, "recuperar": 0, "alvo25": 0}, {"cod": "28697", "meta": 5954, "recuperar": 0, "alvo25": 0}, {"cod": "149015", "meta": 5742, "recuperar": 0, "alvo25": 0}, {"cod": "137398", "meta": 5607, "recuperar": 0, "alvo25": 0}, {"cod": "120522", "meta": 5582, "recuperar": 0, "alvo25": 0}, {"cod": "137740", "meta": 5394, "recuperar": 9641, "alvo25": 10454}, {"cod": "137709", "meta": 5292, "recuperar": 0, "alvo25": 0}, {"cod": "111809", "meta": 5174, "recuperar": 0, "alvo25": 0}, {"cod": "173900", "meta": 4747, "recuperar": 0, "alvo25": 0}, {"cod": "78246", "meta": 4562, "recuperar": 0, "alvo25": 0}, {"cod": "70637", "meta": 4442, "recuperar": 0, "alvo25": 0}, {"cod": "174291", "meta": 4410, "recuperar": 4978, "alvo25": 4978}, {"cod": "9984", "meta": 4401, "recuperar": 3973, "alvo25": 7028}, {"cod": "20303", "meta": 4100, "recuperar": 3175, "alvo25": 4638}, {"cod": "146491", "meta": 3722, "recuperar": 0, "alvo25": 0}, {"cod": "168815", "meta": 3702, "recuperar": 0, "alvo25": 0}, {"cod": "48883", "meta": 3390, "recuperar": 4997, "alvo25": 6459}, {"cod": "119906", "meta": 3293, "recuperar": 0, "alvo25": 0}, {"cod": "69593", "meta": 2757, "recuperar": 0, "alvo25": 0}, {"cod": "9071", "meta": 2752, "recuperar": 0, "alvo25": 0}, {"cod": "157891", "meta": 2731, "recuperar": 0, "alvo25": 0}, {"cod": "10057", "meta": 2690, "recuperar": 0, "alvo25": 0}, {"cod": "74154", "meta": 2661, "recuperar": 2310, "alvo25": 3508}, {"cod": "74221", "meta": 2601, "recuperar": 0, "alvo25": 0}, {"cod": "105765", "meta": 2287, "recuperar": 0, "alvo25": 0}, {"cod": "184274", "meta": 2286, "recuperar": 0, "alvo25": 0}, {"cod": "181675", "meta": 2246, "recuperar": 0, "alvo25": 0}, {"cod": "188091", "meta": 2144, "recuperar": 0, "alvo25": 0}, {"cod": "191168", "meta": 2115, "recuperar": 0, "alvo25": 0}, {"cod": "138186", "meta": 1953, "recuperar": 5968, "alvo25": 7477}, {"cod": "89332", "meta": 1846, "recuperar": 0, "alvo25": 0}, {"cod": "76092", "meta": 1751, "recuperar": 3628, "alvo25": 3628}, {"cod": "13381", "meta": 1744, "recuperar": 0, "alvo25": 0}, {"cod": "50184", "meta": 1689, "recuperar": 0, "alvo25": 0}, {"cod": "92263", "meta": 1687, "recuperar": 859, "alvo25": 1870}, {"cod": "74222", "meta": 1641, "recuperar": 0, "alvo25": 0}, {"cod": "9113", "meta": 1627, "recuperar": 5058, "alvo25": 5499}, {"cod": "103079", "meta": 1477, "recuperar": 0, "alvo25": 0}, {"cod": "9114", "meta": 1397, "recuperar": 1266, "alvo25": 2273}, {"cod": "166714", "meta": 1242, "recuperar": 4371, "alvo25": 4371}, {"cod": "9036", "meta": 1196, "recuperar": 0, "alvo25": 0}, {"cod": "157416", "meta": 1169, "recuperar": 0, "alvo25": 0}, {"cod": "177789", "meta": 1105, "recuperar": 0, "alvo25": 0}, {"cod": "90692", "meta": 1091, "recuperar": 1062, "alvo25": 2306}, {"cod": "173845", "meta": 1000, "recuperar": 0, "alvo25": 0}, {"cod": "43113", "meta": 918, "recuperar": 0, "alvo25": 0}, {"cod": "97954", "meta": 918, "recuperar": 0, "alvo25": 0}, {"cod": "189045", "meta": 904, "recuperar": 0, "alvo25": 0}, {"cod": "142856", "meta": 890, "recuperar": 0, "alvo25": 0}, {"cod": "185925", "meta": 879, "recuperar": 0, "alvo25": 0}, {"cod": "34933", "meta": 847, "recuperar": 0, "alvo25": 0}, {"cod": "170238", "meta": 839, "recuperar": 2576, "alvo25": 4133}, {"cod": "127123", "meta": 780, "recuperar": 1194, "alvo25": 1194}, {"cod": "19013", "meta": 777, "recuperar": 563, "alvo25": 941}, {"cod": "189236", "meta": 669, "recuperar": 0, "alvo25": 0}, {"cod": "141021", "meta": 649, "recuperar": 0, "alvo25": 0}, {"cod": "28431", "meta": 581, "recuperar": 0, "alvo25": 0}, {"cod": "81656", "meta": 574, "recuperar": 1593, "alvo25": 1913}, {"cod": "173228", "meta": 565, "recuperar": 348, "alvo25": 608}, {"cod": "186714", "meta": 546, "recuperar": 0, "alvo25": 0}, {"cod": "190058", "meta": 431, "recuperar": 0, "alvo25": 0}, {"cod": "99983", "meta": 401, "recuperar": 2363, "alvo25": 2363}, {"cod": "37868", "meta": 356, "recuperar": 707, "alvo25": 780}, {"cod": "13237", "meta": 231, "recuperar": 1785, "alvo25": 1785}, {"cod": "158904", "meta": 173, "recuperar": 304, "alvo25": 304}, {"cod": "100853", "meta": 110, "recuperar": 0, "alvo25": 0}, {"cod": "128662", "meta": 76, "recuperar": 0, "alvo25": 0}, {"cod": "172191", "meta": 27, "recuperar": 3432, "alvo25": 3432}, {"cod": "192416", "meta": 20, "recuperar": 0, "alvo25": 0}, {"cod": "189338", "meta": 9, "recuperar": 0, "alvo25": 0}, {"cod": "186200", "meta": 6, "recuperar": 0, "alvo25": 0}]}, "133242": {"objetivo": 181200, "pct": "20", "clientes": [{"cod": "120282", "meta": 22528, "recuperar": 0, "alvo25": 0}, {"cod": "133752", "meta": 18698, "recuperar": 0, "alvo25": 0}, {"cod": "9116", "meta": 11024, "recuperar": 0, "alvo25": 0}, {"cod": "9118", "meta": 10165, "recuperar": 0, "alvo25": 0}, {"cod": "9168", "meta": 8946, "recuperar": 0, "alvo25": 0}, {"cod": "126584", "meta": 7476, "recuperar": 7989, "alvo25": 8735}, {"cod": "46497", "meta": 6444, "recuperar": 5431, "alvo25": 7503}, {"cod": "9124", "meta": 6137, "recuperar": 0, "alvo25": 0}, {"cod": "9912", "meta": 6025, "recuperar": 0, "alvo25": 0}, {"cod": "9238", "meta": 6006, "recuperar": 0, "alvo25": 0}, {"cod": "16582", "meta": 5626, "recuperar": 0, "alvo25": 0}, {"cod": "9117", "meta": 5485, "recuperar": 16462, "alvo25": 18575}, {"cod": "182716", "meta": 4990, "recuperar": 0, "alvo25": 0}, {"cod": "134290", "meta": 4431, "recuperar": 5189, "alvo25": 5189}, {"cod": "9156", "meta": 3704, "recuperar": 0, "alvo25": 0}, {"cod": "134788", "meta": 3571, "recuperar": 2367, "alvo25": 5372}, {"cod": "184829", "meta": 3244, "recuperar": 0, "alvo25": 0}, {"cod": "74892", "meta": 3239, "recuperar": 3966, "alvo25": 4966}, {"cod": "108705", "meta": 2932, "recuperar": 0, "alvo25": 0}, {"cod": "99830", "meta": 2840, "recuperar": 0, "alvo25": 0}, {"cod": "68818", "meta": 2581, "recuperar": 0, "alvo25": 0}, {"cod": "88345", "meta": 2362, "recuperar": 0, "alvo25": 0}, {"cod": "14049", "meta": 2278, "recuperar": 0, "alvo25": 0}, {"cod": "9170", "meta": 2202, "recuperar": 2530, "alvo25": 3191}, {"cod": "138561", "meta": 2134, "recuperar": 0, "alvo25": 0}, {"cod": "135143", "meta": 1982, "recuperar": 0, "alvo25": 0}, {"cod": "118519", "meta": 1980, "recuperar": 0, "alvo25": 0}, {"cod": "117258", "meta": 1968, "recuperar": 4513, "alvo25": 5187}, {"cod": "9173", "meta": 1876, "recuperar": 0, "alvo25": 0}, {"cod": "9187", "meta": 1838, "recuperar": 0, "alvo25": 0}, {"cod": "22020", "meta": 1648, "recuperar": 0, "alvo25": 0}, {"cod": "9234", "meta": 1632, "recuperar": 0, "alvo25": 0}, {"cod": "175413", "meta": 1525, "recuperar": 5284, "alvo25": 6456}, {"cod": "187567", "meta": 1454, "recuperar": 0, "alvo25": 0}, {"cod": "9574", "meta": 1360, "recuperar": 3379, "alvo25": 4025}, {"cod": "163554", "meta": 1319, "recuperar": 0, "alvo25": 0}, {"cod": "29099", "meta": 1210, "recuperar": 0, "alvo25": 0}, {"cod": "177320", "meta": 1176, "recuperar": 0, "alvo25": 0}, {"cod": "189428", "meta": 987, "recuperar": 0, "alvo25": 0}, {"cod": "9151", "meta": 970, "recuperar": 3424, "alvo25": 3841}, {"cod": "155898", "meta": 910, "recuperar": 0, "alvo25": 0}, {"cod": "169172", "meta": 906, "recuperar": 0, "alvo25": 0}, {"cod": "176678", "meta": 891, "recuperar": 0, "alvo25": 0}, {"cod": "157313", "meta": 836, "recuperar": 1052, "alvo25": 1626}, {"cod": "138782", "meta": 831, "recuperar": 0, "alvo25": 0}, {"cod": "9498", "meta": 806, "recuperar": 2566, "alvo25": 3827}, {"cod": "111914", "meta": 779, "recuperar": 0, "alvo25": 0}, {"cod": "16975", "meta": 714, "recuperar": 1062, "alvo25": 1855}, {"cod": "9125", "meta": 706, "recuperar": 804, "alvo25": 1243}, {"cod": "9247", "meta": 634, "recuperar": 1344, "alvo25": 2537}, {"cod": "113167", "meta": 613, "recuperar": 0, "alvo25": 0}, {"cod": "176340", "meta": 609, "recuperar": 0, "alvo25": 0}, {"cod": "9228", "meta": 593, "recuperar": 0, "alvo25": 0}, {"cod": "76181", "meta": 543, "recuperar": 369, "alvo25": 575}, {"cod": "174949", "meta": 527, "recuperar": 618, "alvo25": 905}, {"cod": "188529", "meta": 526, "recuperar": 0, "alvo25": 0}, {"cod": "191651", "meta": 522, "recuperar": 0, "alvo25": 0}, {"cod": "190107", "meta": 445, "recuperar": 0, "alvo25": 0}, {"cod": "183772", "meta": 435, "recuperar": 0, "alvo25": 0}, {"cod": "9150", "meta": 434, "recuperar": 0, "alvo25": 0}, {"cod": "76509", "meta": 403, "recuperar": 0, "alvo25": 0}, {"cod": "110699", "meta": 271, "recuperar": 951, "alvo25": 1039}, {"cod": "158311", "meta": 154, "recuperar": 106, "alvo25": 162}, {"cod": "191974", "meta": 126, "recuperar": 0, "alvo25": 0}, {"cod": "110598", "meta": 120, "recuperar": 0, "alvo25": 0}, {"cod": "122293", "meta": 92, "recuperar": 1111, "alvo25": 1111}, {"cod": "190955", "meta": 46, "recuperar": 0, "alvo25": 0}, {"cod": "154359", "meta": 18, "recuperar": 0, "alvo25": 0}]}, "166091": {"objetivo": 187000, "pct": "41,2", "clientes": [{"cod": "8669", "meta": 14709, "recuperar": 0, "alvo25": 0}, {"cod": "79794", "meta": 8352, "recuperar": 21078, "alvo25": 25807}, {"cod": "108879", "meta": 7947, "recuperar": 0, "alvo25": 0}, {"cod": "38034", "meta": 7656, "recuperar": 0, "alvo25": 0}, {"cod": "86734", "meta": 7584, "recuperar": 0, "alvo25": 0}, {"cod": "8654", "meta": 6385, "recuperar": 9130, "alvo25": 9130}, {"cod": "81626", "meta": 6031, "recuperar": 0, "alvo25": 0}, {"cod": "13256", "meta": 5926, "recuperar": 0, "alvo25": 0}, {"cod": "121724", "meta": 5761, "recuperar": 0, "alvo25": 0}, {"cod": "6339", "meta": 5157, "recuperar": 0, "alvo25": 0}, {"cod": "183597", "meta": 5154, "recuperar": 0, "alvo25": 0}, {"cod": "13528", "meta": 4917, "recuperar": 0, "alvo25": 0}, {"cod": "176944", "meta": 4454, "recuperar": 0, "alvo25": 0}, {"cod": "103937", "meta": 4300, "recuperar": 0, "alvo25": 0}, {"cod": "166107", "meta": 4056, "recuperar": 5215, "alvo25": 8353}, {"cod": "8668", "meta": 3774, "recuperar": 0, "alvo25": 0}, {"cod": "48017", "meta": 3766, "recuperar": 0, "alvo25": 0}, {"cod": "36682", "meta": 3547, "recuperar": 0, "alvo25": 0}, {"cod": "130216", "meta": 3316, "recuperar": 0, "alvo25": 0}, {"cod": "131066", "meta": 3123, "recuperar": 0, "alvo25": 0}, {"cod": "23358", "meta": 2926, "recuperar": 10942, "alvo25": 14261}, {"cod": "8184", "meta": 2655, "recuperar": 0, "alvo25": 0}, {"cod": "162759", "meta": 2591, "recuperar": 6933, "alvo25": 7158}, {"cod": "5995", "meta": 2586, "recuperar": 5007, "alvo25": 5628}, {"cod": "179916", "meta": 2544, "recuperar": 0, "alvo25": 0}, {"cod": "8763", "meta": 2509, "recuperar": 0, "alvo25": 0}, {"cod": "128680", "meta": 2447, "recuperar": 0, "alvo25": 0}, {"cod": "95128", "meta": 2222, "recuperar": 0, "alvo25": 0}, {"cod": "171122", "meta": 2215, "recuperar": 1539, "alvo25": 3064}, {"cod": "21931", "meta": 2188, "recuperar": 0, "alvo25": 0}, {"cod": "96988", "meta": 2115, "recuperar": 0, "alvo25": 0}, {"cod": "9211", "meta": 2066, "recuperar": 2293, "alvo25": 3968}, {"cod": "28964", "meta": 2050, "recuperar": 0, "alvo25": 0}, {"cod": "10301", "meta": 1886, "recuperar": 0, "alvo25": 0}, {"cod": "171935", "meta": 1883, "recuperar": 0, "alvo25": 0}, {"cod": "8565", "meta": 1873, "recuperar": 998, "alvo25": 2212}, {"cod": "17816", "meta": 1808, "recuperar": 2038, "alvo25": 2602}, {"cod": "170709", "meta": 1697, "recuperar": 0, "alvo25": 0}, {"cod": "111237", "meta": 1670, "recuperar": 0, "alvo25": 0}, {"cod": "9208", "meta": 1661, "recuperar": 0, "alvo25": 0}, {"cod": "85712", "meta": 1586, "recuperar": 0, "alvo25": 0}, {"cod": "70671", "meta": 1508, "recuperar": 0, "alvo25": 0}, {"cod": "10303", "meta": 1501, "recuperar": 0, "alvo25": 0}, {"cod": "38645", "meta": 1443, "recuperar": 0, "alvo25": 0}, {"cod": "30032", "meta": 1435, "recuperar": 3715, "alvo25": 3715}, {"cod": "102306", "meta": 1343, "recuperar": 0, "alvo25": 0}, {"cod": "162930", "meta": 1337, "recuperar": 0, "alvo25": 0}, {"cod": "150757", "meta": 1242, "recuperar": 0, "alvo25": 0}, {"cod": "101916", "meta": 1239, "recuperar": 0, "alvo25": 0}, {"cod": "4311", "meta": 1213, "recuperar": 0, "alvo25": 0}, {"cod": "93915", "meta": 1207, "recuperar": 0, "alvo25": 0}, {"cod": "188038", "meta": 1067, "recuperar": 0, "alvo25": 0}, {"cod": "9428", "meta": 1036, "recuperar": 0, "alvo25": 0}, {"cod": "100491", "meta": 967, "recuperar": 0, "alvo25": 0}, {"cod": "167288", "meta": 906, "recuperar": 0, "alvo25": 0}, {"cod": "176159", "meta": 808, "recuperar": 0, "alvo25": 0}, {"cod": "181796", "meta": 803, "recuperar": 0, "alvo25": 0}, {"cod": "67739", "meta": 642, "recuperar": 967, "alvo25": 1112}, {"cod": "27910", "meta": 599, "recuperar": 1137, "alvo25": 1349}, {"cod": "156684", "meta": 589, "recuperar": 0, "alvo25": 0}, {"cod": "172611", "meta": 545, "recuperar": 762, "alvo25": 1032}, {"cod": "20733", "meta": 490, "recuperar": 657, "alvo25": 736}, {"cod": "178024", "meta": 489, "recuperar": 0, "alvo25": 0}, {"cod": "110581", "meta": 473, "recuperar": 2203, "alvo25": 2203}, {"cod": "73190", "meta": 455, "recuperar": 1054, "alvo25": 1054}, {"cod": "178732", "meta": 403, "recuperar": 0, "alvo25": 0}, {"cod": "182341", "meta": 396, "recuperar": 570, "alvo25": 570}, {"cod": "43410", "meta": 379, "recuperar": 1408, "alvo25": 2557}, {"cod": "114618", "meta": 351, "recuperar": 0, "alvo25": 0}, {"cod": "173921", "meta": 240, "recuperar": 655, "alvo25": 655}, {"cod": "147558", "meta": 231, "recuperar": 13228, "alvo25": 13228}, {"cod": "191566", "meta": 196, "recuperar": 0, "alvo25": 0}, {"cod": "191694", "meta": 123, "recuperar": 0, "alvo25": 0}, {"cod": "191581", "meta": 96, "recuperar": 0, "alvo25": 0}, {"cod": "176439", "meta": 87, "recuperar": 0, "alvo25": 0}, {"cod": "190313", "meta": 85, "recuperar": 0, "alvo25": 0}, {"cod": "192829", "meta": 70, "recuperar": 0, "alvo25": 0}, {"cod": "128334", "meta": 0, "recuperar": 0, "alvo25": 0}, {"cod": "193348", "meta": 0, "recuperar": 0, "alvo25": 0}]}, "186166": {"objetivo": 45700, "pct": "34,7", "clientes": [{"cod": "175231", "meta": 2740, "recuperar": 0, "alvo25": 0}, {"cod": "29407", "meta": 2532, "recuperar": 0, "alvo25": 0}, {"cod": "9186", "meta": 2072, "recuperar": 0, "alvo25": 0}, {"cod": "87148", "meta": 1919, "recuperar": 1161, "alvo25": 2322}, {"cod": "176020", "meta": 1781, "recuperar": 0, "alvo25": 0}, {"cod": "9620", "meta": 1683, "recuperar": 8900, "alvo25": 8900}, {"cod": "116133", "meta": 1614, "recuperar": 0, "alvo25": 0}, {"cod": "127119", "meta": 1441, "recuperar": 0, "alvo25": 0}, {"cod": "9172", "meta": 1374, "recuperar": 0, "alvo25": 0}, {"cod": "185658", "meta": 1035, "recuperar": 0, "alvo25": 0}, {"cod": "27495", "meta": 870, "recuperar": 0, "alvo25": 0}, {"cod": "123530", "meta": 837, "recuperar": 1895, "alvo25": 2109}, {"cod": "76552", "meta": 836, "recuperar": 0, "alvo25": 0}, {"cod": "147469", "meta": 832, "recuperar": 0, "alvo25": 0}, {"cod": "147178", "meta": 816, "recuperar": 0, "alvo25": 0}, {"cod": "141027", "meta": 801, "recuperar": 0, "alvo25": 0}, {"cod": "19451", "meta": 797, "recuperar": 0, "alvo25": 0}, {"cod": "168272", "meta": 717, "recuperar": 0, "alvo25": 0}, {"cod": "12345", "meta": 678, "recuperar": 2308, "alvo25": 2623}, {"cod": "136688", "meta": 661, "recuperar": 0, "alvo25": 0}, {"cod": "174276", "meta": 630, "recuperar": 0, "alvo25": 0}, {"cod": "170738", "meta": 626, "recuperar": 0, "alvo25": 0}, {"cod": "187039", "meta": 604, "recuperar": 0, "alvo25": 0}, {"cod": "79797", "meta": 595, "recuperar": 1714, "alvo25": 2339}, {"cod": "69114", "meta": 588, "recuperar": 0, "alvo25": 0}, {"cod": "10122", "meta": 572, "recuperar": 779, "alvo25": 1829}, {"cod": "182695", "meta": 562, "recuperar": 0, "alvo25": 0}, {"cod": "28035", "meta": 520, "recuperar": 0, "alvo25": 0}, {"cod": "142195", "meta": 519, "recuperar": 638, "alvo25": 692}, {"cod": "120526", "meta": 424, "recuperar": 321, "alvo25": 1014}, {"cod": "38862", "meta": 422, "recuperar": 440, "alvo25": 440}, {"cod": "73488", "meta": 422, "recuperar": 0, "alvo25": 0}, {"cod": "17599", "meta": 417, "recuperar": 0, "alvo25": 0}, {"cod": "88316", "meta": 416, "recuperar": 0, "alvo25": 0}, {"cod": "88909", "meta": 402, "recuperar": 513, "alvo25": 513}, {"cod": "153834", "meta": 394, "recuperar": 0, "alvo25": 0}, {"cod": "26616", "meta": 377, "recuperar": 0, "alvo25": 0}, {"cod": "85676", "meta": 371, "recuperar": 480, "alvo25": 628}, {"cod": "134559", "meta": 364, "recuperar": 0, "alvo25": 0}, {"cod": "132145", "meta": 346, "recuperar": 978, "alvo25": 978}, {"cod": "92756", "meta": 343, "recuperar": 0, "alvo25": 0}, {"cod": "187374", "meta": 339, "recuperar": 0, "alvo25": 0}, {"cod": "178735", "meta": 337, "recuperar": 0, "alvo25": 0}, {"cod": "177021", "meta": 324, "recuperar": 0, "alvo25": 0}, {"cod": "9718", "meta": 322, "recuperar": 0, "alvo25": 0}, {"cod": "152995", "meta": 318, "recuperar": 0, "alvo25": 0}, {"cod": "172855", "meta": 307, "recuperar": 336, "alvo25": 336}, {"cod": "108053", "meta": 306, "recuperar": 0, "alvo25": 0}, {"cod": "117758", "meta": 302, "recuperar": 0, "alvo25": 0}, {"cod": "27896", "meta": 302, "recuperar": 0, "alvo25": 0}, {"cod": "69932", "meta": 299, "recuperar": 527, "alvo25": 664}, {"cod": "124032", "meta": 297, "recuperar": 882, "alvo25": 882}, {"cod": "184309", "meta": 282, "recuperar": 0, "alvo25": 0}, {"cod": "72824", "meta": 269, "recuperar": 181, "alvo25": 451}, {"cod": "77838", "meta": 268, "recuperar": 0, "alvo25": 0}, {"cod": "140458", "meta": 266, "recuperar": 300, "alvo25": 300}, {"cod": "16634", "meta": 258, "recuperar": 300, "alvo25": 300}, {"cod": "9157", "meta": 254, "recuperar": 239, "alvo25": 309}, {"cod": "70814", "meta": 253, "recuperar": 0, "alvo25": 0}, {"cod": "175715", "meta": 247, "recuperar": 0, "alvo25": 0}, {"cod": "188157", "meta": 244, "recuperar": 0, "alvo25": 0}, {"cod": "69437", "meta": 229, "recuperar": 660, "alvo25": 660}, {"cod": "85846", "meta": 229, "recuperar": 0, "alvo25": 0}, {"cod": "91685", "meta": 210, "recuperar": 367, "alvo25": 367}, {"cod": "141502", "meta": 208, "recuperar": 1613, "alvo25": 1613}, {"cod": "138787", "meta": 186, "recuperar": 183, "alvo25": 248}, {"cod": "122980", "meta": 184, "recuperar": 220, "alvo25": 220}, {"cod": "9149", "meta": 180, "recuperar": 0, "alvo25": 0}, {"cod": "13291", "meta": 173, "recuperar": 0, "alvo25": 0}, {"cod": "172224", "meta": 172, "recuperar": 0, "alvo25": 0}, {"cod": "188833", "meta": 166, "recuperar": 0, "alvo25": 0}, {"cod": "154668", "meta": 155, "recuperar": 891, "alvo25": 1071}, {"cod": "131240", "meta": 147, "recuperar": 0, "alvo25": 0}, {"cod": "38717", "meta": 139, "recuperar": 0, "alvo25": 0}, {"cod": "108974", "meta": 135, "recuperar": 0, "alvo25": 0}, {"cod": "90028", "meta": 112, "recuperar": 420, "alvo25": 568}, {"cod": "124077", "meta": 110, "recuperar": 538, "alvo25": 618}, {"cod": "179341", "meta": 106, "recuperar": 125, "alvo25": 125}, {"cod": "137301", "meta": 99, "recuperar": 0, "alvo25": 0}, {"cod": "137115", "meta": 96, "recuperar": 0, "alvo25": 0}, {"cod": "183868", "meta": 95, "recuperar": 151, "alvo25": 151}, {"cod": "168606", "meta": 88, "recuperar": 104, "alvo25": 104}, {"cod": "176118", "meta": 85, "recuperar": 0, "alvo25": 0}, {"cod": "87737", "meta": 81, "recuperar": 221, "alvo25": 281}, {"cod": "26346", "meta": 70, "recuperar": 113, "alvo25": 113}, {"cod": "173499", "meta": 70, "recuperar": 1374, "alvo25": 1374}, {"cod": "187019", "meta": 66, "recuperar": 0, "alvo25": 0}, {"cod": "31172", "meta": 60, "recuperar": 322, "alvo25": 395}, {"cod": "133295", "meta": 54, "recuperar": 0, "alvo25": 0}, {"cod": "135822", "meta": 53, "recuperar": 213, "alvo25": 228}, {"cod": "26284", "meta": 53, "recuperar": 542, "alvo25": 542}, {"cod": "187289", "meta": 52, "recuperar": 0, "alvo25": 0}, {"cod": "116291", "meta": 31, "recuperar": 102, "alvo25": 102}, {"cod": "120227", "meta": 24, "recuperar": 4008, "alvo25": 4008}, {"cod": "9094", "meta": 23, "recuperar": 125, "alvo25": 125}, {"cod": "127835", "meta": 18, "recuperar": 32, "alvo25": 32}, {"cod": "179125", "meta": 13, "recuperar": 67, "alvo25": 97}]}, "23304": {"objetivo": 212000, "pct": "20", "clientes": [{"cod": "29627", "meta": 16461, "recuperar": 0, "alvo25": 0}, {"cod": "9224", "meta": 12292, "recuperar": 6202, "alvo25": 12571}, {"cod": "48560", "meta": 11577, "recuperar": 12721, "alvo25": 13151}, {"cod": "71955", "meta": 11422, "recuperar": 0, "alvo25": 0}, {"cod": "121286", "meta": 10625, "recuperar": 0, "alvo25": 0}, {"cod": "102318", "meta": 8539, "recuperar": 0, "alvo25": 0}, {"cod": "31132", "meta": 7994, "recuperar": 6694, "alvo25": 9204}, {"cod": "9171", "meta": 6362, "recuperar": 0, "alvo25": 0}, {"cod": "118110", "meta": 5751, "recuperar": 0, "alvo25": 0}, {"cod": "38302", "meta": 5222, "recuperar": 0, "alvo25": 0}, {"cod": "31679", "meta": 5211, "recuperar": 0, "alvo25": 0}, {"cod": "9284", "meta": 4989, "recuperar": 0, "alvo25": 0}, {"cod": "44799", "meta": 4984, "recuperar": 0, "alvo25": 0}, {"cod": "9225", "meta": 4708, "recuperar": 0, "alvo25": 0}, {"cod": "9067", "meta": 4549, "recuperar": 0, "alvo25": 0}, {"cod": "9249", "meta": 4523, "recuperar": 5361, "alvo25": 7093}, {"cod": "148041", "meta": 4352, "recuperar": 3384, "alvo25": 5431}, {"cod": "94574", "meta": 4244, "recuperar": 0, "alvo25": 0}, {"cod": "158582", "meta": 3844, "recuperar": 0, "alvo25": 0}, {"cod": "98115", "meta": 3732, "recuperar": 0, "alvo25": 0}, {"cod": "19966", "meta": 3700, "recuperar": 7065, "alvo25": 8788}, {"cod": "135368", "meta": 3383, "recuperar": 0, "alvo25": 0}, {"cod": "97353", "meta": 2814, "recuperar": 0, "alvo25": 0}, {"cod": "170765", "meta": 2750, "recuperar": 0, "alvo25": 0}, {"cod": "98741", "meta": 2700, "recuperar": 0, "alvo25": 0}, {"cod": "78346", "meta": 2637, "recuperar": 2062, "alvo25": 5662}, {"cod": "103418", "meta": 2512, "recuperar": 0, "alvo25": 0}, {"cod": "9068", "meta": 2383, "recuperar": 0, "alvo25": 0}, {"cod": "47491", "meta": 2180, "recuperar": 0, "alvo25": 0}, {"cod": "70813", "meta": 2169, "recuperar": 236, "alvo25": 2636}, {"cod": "17473", "meta": 2109, "recuperar": 2916, "alvo25": 3506}, {"cod": "151012", "meta": 2066, "recuperar": 0, "alvo25": 0}, {"cod": "38225", "meta": 1922, "recuperar": 2211, "alvo25": 2929}, {"cod": "187306", "meta": 1918, "recuperar": 0, "alvo25": 0}, {"cod": "184041", "meta": 1884, "recuperar": 0, "alvo25": 0}, {"cod": "183512", "meta": 1740, "recuperar": 0, "alvo25": 0}, {"cod": "174111", "meta": 1732, "recuperar": 0, "alvo25": 0}, {"cod": "140372", "meta": 1652, "recuperar": 0, "alvo25": 0}, {"cod": "110606", "meta": 1638, "recuperar": 565, "alvo25": 1642}, {"cod": "12740", "meta": 1563, "recuperar": 0, "alvo25": 0}, {"cod": "122105", "meta": 1527, "recuperar": 2973, "alvo25": 3358}, {"cod": "42326", "meta": 1512, "recuperar": 1732, "alvo25": 1732}, {"cod": "74341", "meta": 1174, "recuperar": 0, "alvo25": 0}, {"cod": "87042", "meta": 1155, "recuperar": 927, "alvo25": 1853}, {"cod": "91427", "meta": 1136, "recuperar": 2766, "alvo25": 2766}, {"cod": "173514", "meta": 1110, "recuperar": 0, "alvo25": 0}, {"cod": "9410", "meta": 1100, "recuperar": 782, "alvo25": 1765}, {"cod": "172273", "meta": 1044, "recuperar": 7381, "alvo25": 7381}, {"cod": "23506", "meta": 1029, "recuperar": 0, "alvo25": 0}, {"cod": "96087", "meta": 977, "recuperar": 0, "alvo25": 0}, {"cod": "190928", "meta": 949, "recuperar": 0, "alvo25": 0}, {"cod": "93218", "meta": 943, "recuperar": 0, "alvo25": 0}, {"cod": "171175", "meta": 925, "recuperar": 0, "alvo25": 0}, {"cod": "26349", "meta": 905, "recuperar": 0, "alvo25": 0}, {"cod": "9630", "meta": 851, "recuperar": 974, "alvo25": 1556}, {"cod": "10105", "meta": 831, "recuperar": 0, "alvo25": 0}, {"cod": "37066", "meta": 781, "recuperar": 787, "alvo25": 1043}, {"cod": "119383", "meta": 770, "recuperar": 1284, "alvo25": 1284}, {"cod": "84675", "meta": 748, "recuperar": 395, "alvo25": 756}, {"cod": "101558", "meta": 712, "recuperar": 961, "alvo25": 961}, {"cod": "72709", "meta": 694, "recuperar": 1197, "alvo25": 1562}, {"cod": "106911", "meta": 641, "recuperar": 1222, "alvo25": 1590}, {"cod": "25557", "meta": 635, "recuperar": 1015, "alvo25": 1283}, {"cod": "101834", "meta": 626, "recuperar": 0, "alvo25": 0}, {"cod": "166646", "meta": 595, "recuperar": 0, "alvo25": 0}, {"cod": "9122", "meta": 587, "recuperar": 0, "alvo25": 0}, {"cod": "27258", "meta": 552, "recuperar": 0, "alvo25": 0}, {"cod": "79555", "meta": 518, "recuperar": 0, "alvo25": 0}, {"cod": "30546", "meta": 508, "recuperar": 668, "alvo25": 668}, {"cod": "100950", "meta": 437, "recuperar": 1952, "alvo25": 3111}, {"cod": "97080", "meta": 424, "recuperar": 0, "alvo25": 0}, {"cod": "73739", "meta": 383, "recuperar": 0, "alvo25": 0}, {"cod": "74447", "meta": 330, "recuperar": 0, "alvo25": 0}, {"cod": "175741", "meta": 244, "recuperar": 676, "alvo25": 676}, {"cod": "140990", "meta": 204, "recuperar": 0, "alvo25": 0}, {"cod": "191996", "meta": 190, "recuperar": 0, "alvo25": 0}, {"cod": "189755", "meta": 154, "recuperar": 0, "alvo25": 0}, {"cod": "186512", "meta": 137, "recuperar": 0, "alvo25": 0}, {"cod": "189746", "meta": 87, "recuperar": 0, "alvo25": 0}, {"cod": "108119", "meta": 68, "recuperar": 1335, "alvo25": 1335}, {"cod": "192899", "meta": 0, "recuperar": 0, "alvo25": 0}]}, "190423": {"objetivo": 132000, "pct": "21,0", "clientes": [{"cod": "31436", "meta": 15474, "recuperar": 0, "alvo25": 0}, {"cod": "5198", "meta": 9930, "recuperar": 12703, "alvo25": 17787}, {"cod": "28406", "meta": 8773, "recuperar": 0, "alvo25": 0}, {"cod": "21768", "meta": 8527, "recuperar": 0, "alvo25": 0}, {"cod": "12285", "meta": 6833, "recuperar": 0, "alvo25": 0}, {"cod": "159293", "meta": 6465, "recuperar": 0, "alvo25": 0}, {"cod": "10086", "meta": 4869, "recuperar": 5474, "alvo25": 8715}, {"cod": "40135", "meta": 4164, "recuperar": 5151, "alvo25": 5271}, {"cod": "10559", "meta": 4149, "recuperar": 0, "alvo25": 0}, {"cod": "8080", "meta": 3430, "recuperar": 0, "alvo25": 0}, {"cod": "16540", "meta": 3279, "recuperar": 0, "alvo25": 0}, {"cod": "122505", "meta": 3068, "recuperar": 0, "alvo25": 0}, {"cod": "128549", "meta": 2842, "recuperar": 0, "alvo25": 0}, {"cod": "73137", "meta": 2723, "recuperar": 987, "alvo25": 3179}, {"cod": "138255", "meta": 2562, "recuperar": 0, "alvo25": 0}, {"cod": "143483", "meta": 2348, "recuperar": 3593, "alvo25": 4480}, {"cod": "4317", "meta": 2330, "recuperar": 0, "alvo25": 0}, {"cod": "119389", "meta": 2223, "recuperar": 0, "alvo25": 0}, {"cod": "17200", "meta": 2126, "recuperar": 3654, "alvo25": 7000}, {"cod": "10644", "meta": 1964, "recuperar": 0, "alvo25": 0}, {"cod": "6599", "meta": 1906, "recuperar": 0, "alvo25": 0}, {"cod": "172253", "meta": 1857, "recuperar": 0, "alvo25": 0}, {"cod": "71040", "meta": 1820, "recuperar": 0, "alvo25": 0}, {"cod": "182801", "meta": 1746, "recuperar": 0, "alvo25": 0}, {"cod": "15104", "meta": 1726, "recuperar": 0, "alvo25": 0}, {"cod": "99308", "meta": 1691, "recuperar": 0, "alvo25": 0}, {"cod": "181491", "meta": 1447, "recuperar": 0, "alvo25": 0}, {"cod": "165047", "meta": 1410, "recuperar": 1576, "alvo25": 1711}, {"cod": "86899", "meta": 1383, "recuperar": 3513, "alvo25": 3513}, {"cod": "131557", "meta": 1302, "recuperar": 0, "alvo25": 0}, {"cod": "7998", "meta": 1194, "recuperar": 169, "alvo25": 1359}, {"cod": "161295", "meta": 1158, "recuperar": 0, "alvo25": 0}, {"cod": "28527", "meta": 989, "recuperar": 0, "alvo25": 0}, {"cod": "170240", "meta": 965, "recuperar": 0, "alvo25": 0}, {"cod": "14306", "meta": 900, "recuperar": 1011, "alvo25": 1458}, {"cod": "9578", "meta": 827, "recuperar": 0, "alvo25": 0}, {"cod": "111041", "meta": 826, "recuperar": 0, "alvo25": 0}, {"cod": "24318", "meta": 787, "recuperar": 1346, "alvo25": 1346}, {"cod": "8294", "meta": 781, "recuperar": 0, "alvo25": 0}, {"cod": "42981", "meta": 648, "recuperar": 0, "alvo25": 0}, {"cod": "190715", "meta": 643, "recuperar": 0, "alvo25": 0}, {"cod": "40570", "meta": 587, "recuperar": 0, "alvo25": 0}, {"cod": "116419", "meta": 582, "recuperar": 0, "alvo25": 0}, {"cod": "10661", "meta": 576, "recuperar": 0, "alvo25": 0}, {"cod": "68704", "meta": 542, "recuperar": 0, "alvo25": 0}, {"cod": "96890", "meta": 530, "recuperar": 0, "alvo25": 0}, {"cod": "145801", "meta": 520, "recuperar": 0, "alvo25": 0}, {"cod": "8357", "meta": 511, "recuperar": 681, "alvo25": 709}, {"cod": "7454", "meta": 490, "recuperar": 572, "alvo25": 572}, {"cod": "180363", "meta": 424, "recuperar": 0, "alvo25": 0}, {"cod": "130994", "meta": 390, "recuperar": 1150, "alvo25": 1309}, {"cod": "13084", "meta": 347, "recuperar": 0, "alvo25": 0}, {"cod": "15107", "meta": 321, "recuperar": 0, "alvo25": 0}, {"cod": "83894", "meta": 286, "recuperar": 0, "alvo25": 0}, {"cod": "108856", "meta": 257, "recuperar": 0, "alvo25": 0}, {"cod": "66273", "meta": 255, "recuperar": 455, "alvo25": 455}, {"cod": "23901", "meta": 193, "recuperar": 0, "alvo25": 0}, {"cod": "112775", "meta": 188, "recuperar": 237, "alvo25": 237}, {"cod": "5380", "meta": 143, "recuperar": 241, "alvo25": 366}, {"cod": "153426", "meta": 139, "recuperar": 150, "alvo25": 287}, {"cod": "103002", "meta": 131, "recuperar": 1155, "alvo25": 1155}, {"cod": "71214", "meta": 107, "recuperar": 0, "alvo25": 0}, {"cod": "176415", "meta": 100, "recuperar": 0, "alvo25": 0}, {"cod": "106334", "meta": 92, "recuperar": 917, "alvo25": 917}, {"cod": "136633", "meta": 79, "recuperar": 0, "alvo25": 0}, {"cod": "80038", "meta": 73, "recuperar": 0, "alvo25": 0}, {"cod": "22077", "meta": 52, "recuperar": 0, "alvo25": 0}, {"cod": "123219", "meta": 48, "recuperar": 0, "alvo25": 0}, {"cod": "191202", "meta": 0, "recuperar": 0, "alvo25": 0}, {"cod": "192742", "meta": 0, "recuperar": 0, "alvo25": 0}]}, "138467": {"objetivo": 201000, "pct": "20", "clientes": [{"cod": "27742", "meta": 21948, "recuperar": 0, "alvo25": 0}, {"cod": "9093", "meta": 14008, "recuperar": 0, "alvo25": 0}, {"cod": "10031", "meta": 11413, "recuperar": 0, "alvo25": 0}, {"cod": "145200", "meta": 9962, "recuperar": 21716, "alvo25": 21716}, {"cod": "155858", "meta": 9300, "recuperar": 0, "alvo25": 0}, {"cod": "94838", "meta": 9008, "recuperar": 0, "alvo25": 0}, {"cod": "4168", "meta": 7636, "recuperar": 0, "alvo25": 0}, {"cod": "9047", "meta": 7246, "recuperar": 0, "alvo25": 0}, {"cod": "157314", "meta": 7176, "recuperar": 0, "alvo25": 0}, {"cod": "9023", "meta": 7146, "recuperar": 6051, "alvo25": 11194}, {"cod": "24823", "meta": 7134, "recuperar": 0, "alvo25": 0}, {"cod": "103783", "meta": 6354, "recuperar": 8906, "alvo25": 12360}, {"cod": "176609", "meta": 6276, "recuperar": 0, "alvo25": 0}, {"cod": "28769", "meta": 5604, "recuperar": 0, "alvo25": 0}, {"cod": "108206", "meta": 5494, "recuperar": 0, "alvo25": 0}, {"cod": "72083", "meta": 5448, "recuperar": 0, "alvo25": 0}, {"cod": "76066", "meta": 5350, "recuperar": 0, "alvo25": 0}, {"cod": "185683", "meta": 4696, "recuperar": 0, "alvo25": 0}, {"cod": "135775", "meta": 4449, "recuperar": 0, "alvo25": 0}, {"cod": "9025", "meta": 2928, "recuperar": 0, "alvo25": 0}, {"cod": "187973", "meta": 2829, "recuperar": 0, "alvo25": 0}, {"cod": "77000", "meta": 2660, "recuperar": 7345, "alvo25": 7392}, {"cod": "13104", "meta": 2555, "recuperar": 6793, "alvo25": 6883}, {"cod": "173440", "meta": 2421, "recuperar": 0, "alvo25": 0}, {"cod": "125763", "meta": 2387, "recuperar": 0, "alvo25": 0}, {"cod": "79730", "meta": 2280, "recuperar": 4659, "alvo25": 4684}, {"cod": "177989", "meta": 2186, "recuperar": 0, "alvo25": 0}, {"cod": "147147", "meta": 2008, "recuperar": 0, "alvo25": 0}, {"cod": "171233", "meta": 1820, "recuperar": 0, "alvo25": 0}, {"cod": "16789", "meta": 1748, "recuperar": 0, "alvo25": 0}, {"cod": "146365", "meta": 1666, "recuperar": 0, "alvo25": 0}, {"cod": "146772", "meta": 1594, "recuperar": 2477, "alvo25": 2477}, {"cod": "182826", "meta": 1368, "recuperar": 0, "alvo25": 0}, {"cod": "9325", "meta": 1358, "recuperar": 0, "alvo25": 0}, {"cod": "19417", "meta": 1350, "recuperar": 1865, "alvo25": 2346}, {"cod": "178879", "meta": 1344, "recuperar": 0, "alvo25": 0}, {"cod": "28141", "meta": 1266, "recuperar": 2106, "alvo25": 2381}, {"cod": "174353", "meta": 1232, "recuperar": 0, "alvo25": 0}, {"cod": "89975", "meta": 1206, "recuperar": 546, "alvo25": 1326}, {"cod": "28489", "meta": 1186, "recuperar": 0, "alvo25": 0}, {"cod": "93984", "meta": 1088, "recuperar": 0, "alvo25": 0}, {"cod": "166370", "meta": 1054, "recuperar": 2069, "alvo25": 2069}, {"cod": "132409", "meta": 989, "recuperar": 0, "alvo25": 0}, {"cod": "30886", "meta": 966, "recuperar": 2600, "alvo25": 3628}, {"cod": "66225", "meta": 880, "recuperar": 939, "alvo25": 939}, {"cod": "101484", "meta": 795, "recuperar": 1268, "alvo25": 1268}, {"cod": "94646", "meta": 767, "recuperar": 0, "alvo25": 0}, {"cod": "118928", "meta": 752, "recuperar": 1090, "alvo25": 1090}, {"cod": "101843", "meta": 700, "recuperar": 717, "alvo25": 1169}, {"cod": "135266", "meta": 678, "recuperar": 1570, "alvo25": 1570}, {"cod": "190063", "meta": 674, "recuperar": 0, "alvo25": 0}, {"cod": "13306", "meta": 633, "recuperar": 9792, "alvo25": 9882}, {"cod": "140099", "meta": 609, "recuperar": 1016, "alvo25": 1016}, {"cod": "154521", "meta": 506, "recuperar": 2091, "alvo25": 2091}, {"cod": "180643", "meta": 496, "recuperar": 0, "alvo25": 0}, {"cod": "160374", "meta": 492, "recuperar": 3735, "alvo25": 3735}, {"cod": "9080", "meta": 488, "recuperar": 832, "alvo25": 904}, {"cod": "181358", "meta": 422, "recuperar": 0, "alvo25": 0}, {"cod": "181029", "meta": 410, "recuperar": 0, "alvo25": 0}, {"cod": "189903", "meta": 164, "recuperar": 0, "alvo25": 0}, {"cod": "19938", "meta": 122, "recuperar": 713, "alvo25": 713}, {"cod": "28955", "meta": 70, "recuperar": 4910, "alvo25": 4910}, {"cod": "191551", "meta": 54, "recuperar": 0, "alvo25": 0}, {"cod": "9024", "meta": 6, "recuperar": 79, "alvo25": 79}, {"cod": "193366", "meta": 0, "recuperar": 0, "alvo25": 0}]}, "127497": {"objetivo": 182300, "pct": "20", "clientes": [{"cod": "16962", "meta": 15126, "recuperar": 0, "alvo25": 0}, {"cod": "79810", "meta": 11952, "recuperar": 0, "alvo25": 0}, {"cod": "10673", "meta": 10826, "recuperar": 0, "alvo25": 0}, {"cod": "113787", "meta": 9346, "recuperar": 0, "alvo25": 0}, {"cod": "145416", "meta": 6877, "recuperar": 0, "alvo25": 0}, {"cod": "166490", "meta": 5725, "recuperar": 0, "alvo25": 0}, {"cod": "19853", "meta": 5668, "recuperar": 0, "alvo25": 0}, {"cod": "112101", "meta": 5642, "recuperar": 0, "alvo25": 0}, {"cod": "40174", "meta": 5468, "recuperar": 0, "alvo25": 0}, {"cod": "14884", "meta": 5373, "recuperar": 0, "alvo25": 0}, {"cod": "178941", "meta": 4887, "recuperar": 0, "alvo25": 0}, {"cod": "116594", "meta": 4457, "recuperar": 0, "alvo25": 0}, {"cod": "174572", "meta": 4194, "recuperar": 0, "alvo25": 0}, {"cod": "92259", "meta": 4173, "recuperar": 0, "alvo25": 0}, {"cod": "182756", "meta": 4052, "recuperar": 0, "alvo25": 0}, {"cod": "17456", "meta": 4042, "recuperar": 0, "alvo25": 0}, {"cod": "23908", "meta": 3753, "recuperar": 0, "alvo25": 0}, {"cod": "24017", "meta": 3719, "recuperar": 0, "alvo25": 0}, {"cod": "181920", "meta": 3634, "recuperar": 0, "alvo25": 0}, {"cod": "146161", "meta": 3412, "recuperar": 0, "alvo25": 0}, {"cod": "14033", "meta": 3317, "recuperar": 2736, "alvo25": 3784}, {"cod": "68352", "meta": 3271, "recuperar": 0, "alvo25": 0}, {"cod": "12737", "meta": 3236, "recuperar": 0, "alvo25": 0}, {"cod": "14270", "meta": 2947, "recuperar": 2149, "alvo25": 3210}, {"cod": "106109", "meta": 2886, "recuperar": 1264, "alvo25": 4285}, {"cod": "110334", "meta": 2876, "recuperar": 0, "alvo25": 0}, {"cod": "83300", "meta": 2808, "recuperar": 0, "alvo25": 0}, {"cod": "81694", "meta": 2568, "recuperar": 0, "alvo25": 0}, {"cod": "14370", "meta": 2489, "recuperar": 0, "alvo25": 0}, {"cod": "136343", "meta": 2358, "recuperar": 0, "alvo25": 0}, {"cod": "90960", "meta": 2244, "recuperar": 2279, "alvo25": 3022}, {"cod": "15614", "meta": 2237, "recuperar": 0, "alvo25": 0}, {"cod": "96533", "meta": 2144, "recuperar": 0, "alvo25": 0}, {"cod": "141603", "meta": 1969, "recuperar": 1531, "alvo25": 2502}, {"cod": "48126", "meta": 1941, "recuperar": 1898, "alvo25": 1992}, {"cod": "123589", "meta": 1895, "recuperar": 0, "alvo25": 0}, {"cod": "78713", "meta": 1798, "recuperar": 0, "alvo25": 0}, {"cod": "81379", "meta": 1756, "recuperar": 0, "alvo25": 0}, {"cod": "9715", "meta": 1723, "recuperar": 0, "alvo25": 0}, {"cod": "186825", "meta": 1637, "recuperar": 0, "alvo25": 0}, {"cod": "167670", "meta": 1599, "recuperar": 0, "alvo25": 0}, {"cod": "86343", "meta": 1577, "recuperar": 0, "alvo25": 0}, {"cod": "72044", "meta": 1534, "recuperar": 0, "alvo25": 0}, {"cod": "106718", "meta": 1529, "recuperar": 0, "alvo25": 0}, {"cod": "129207", "meta": 1500, "recuperar": 1721, "alvo25": 2229}, {"cod": "177552", "meta": 1496, "recuperar": 0, "alvo25": 0}, {"cod": "146273", "meta": 1473, "recuperar": 3320, "alvo25": 3320}, {"cod": "38245", "meta": 1451, "recuperar": 6849, "alvo25": 6849}, {"cod": "26533", "meta": 1336, "recuperar": 1115, "alvo25": 1666}, {"cod": "128444", "meta": 1293, "recuperar": 0, "alvo25": 0}, {"cod": "173892", "meta": 1283, "recuperar": 2581, "alvo25": 2886}, {"cod": "17015", "meta": 1279, "recuperar": 0, "alvo25": 0}, {"cod": "186911", "meta": 1200, "recuperar": 0, "alvo25": 0}, {"cod": "14153", "meta": 1184, "recuperar": 0, "alvo25": 0}, {"cod": "174812", "meta": 1098, "recuperar": 0, "alvo25": 0}, {"cod": "9921", "meta": 1071, "recuperar": 0, "alvo25": 0}, {"cod": "21648", "meta": 1030, "recuperar": 641, "alvo25": 1207}, {"cod": "87226", "meta": 1029, "recuperar": 73, "alvo25": 1056}, {"cod": "14069", "meta": 935, "recuperar": 0, "alvo25": 0}, {"cod": "15581", "meta": 834, "recuperar": 0, "alvo25": 0}, {"cod": "188279", "meta": 820, "recuperar": 0, "alvo25": 0}, {"cod": "184552", "meta": 789, "recuperar": 0, "alvo25": 0}, {"cod": "10271", "meta": 783, "recuperar": 83, "alvo25": 798}, {"cod": "73598", "meta": 770, "recuperar": 0, "alvo25": 0}, {"cod": "16894", "meta": 726, "recuperar": 1811, "alvo25": 1868}, {"cod": "48503", "meta": 708, "recuperar": 0, "alvo25": 0}, {"cod": "23999", "meta": 662, "recuperar": 1216, "alvo25": 1216}, {"cod": "111334", "meta": 652, "recuperar": 0, "alvo25": 0}, {"cod": "95565", "meta": 650, "recuperar": 506, "alvo25": 996}, {"cod": "23393", "meta": 609, "recuperar": 0, "alvo25": 0}, {"cod": "129712", "meta": 603, "recuperar": 0, "alvo25": 0}, {"cod": "182049", "meta": 602, "recuperar": 0, "alvo25": 0}, {"cod": "12939", "meta": 522, "recuperar": 1008, "alvo25": 1228}, {"cod": "102509", "meta": 516, "recuperar": 360, "alvo25": 614}, {"cod": "188863", "meta": 510, "recuperar": 0, "alvo25": 0}, {"cod": "31491", "meta": 462, "recuperar": 8197, "alvo25": 8197}, {"cod": "144031", "meta": 451, "recuperar": 1527, "alvo25": 1722}, {"cod": "187881", "meta": 414, "recuperar": 0, "alvo25": 0}, {"cod": "170226", "meta": 374, "recuperar": 896, "alvo25": 896}, {"cod": "120940", "meta": 354, "recuperar": 0, "alvo25": 0}, {"cod": "158580", "meta": 336, "recuperar": 1054, "alvo25": 1535}, {"cod": "185348", "meta": 327, "recuperar": 0, "alvo25": 0}, {"cod": "100069", "meta": 297, "recuperar": 0, "alvo25": 0}, {"cod": "171896", "meta": 294, "recuperar": 0, "alvo25": 0}, {"cod": "186933", "meta": 293, "recuperar": 0, "alvo25": 0}, {"cod": "90788", "meta": 288, "recuperar": 0, "alvo25": 0}, {"cod": "136230", "meta": 285, "recuperar": 734, "alvo25": 734}, {"cod": "179692", "meta": 282, "recuperar": 0, "alvo25": 0}, {"cod": "15823", "meta": 281, "recuperar": 267, "alvo25": 455}, {"cod": "187233", "meta": 216, "recuperar": 0, "alvo25": 0}, {"cod": "129150", "meta": 178, "recuperar": 0, "alvo25": 0}, {"cod": "80133", "meta": 159, "recuperar": 381, "alvo25": 381}, {"cod": "184304", "meta": 158, "recuperar": 0, "alvo25": 0}, {"cod": "9665", "meta": 156, "recuperar": 0, "alvo25": 0}, {"cod": "15381", "meta": 136, "recuperar": 122, "alvo25": 202}, {"cod": "192885", "meta": 124, "recuperar": 0, "alvo25": 0}, {"cod": "138856", "meta": 112, "recuperar": 381, "alvo25": 381}, {"cod": "190661", "meta": 106, "recuperar": 0, "alvo25": 0}, {"cod": "9556", "meta": 101, "recuperar": 572, "alvo25": 572}, {"cod": "192497", "meta": 86, "recuperar": 0, "alvo25": 0}, {"cod": "33822", "meta": 71, "recuperar": 0, "alvo25": 0}, {"cod": "47188", "meta": 71, "recuperar": 137, "alvo25": 137}, {"cod": "169441", "meta": 70, "recuperar": 354, "alvo25": 403}, {"cod": "34585", "meta": 48, "recuperar": 562, "alvo25": 562}, {"cod": "151076", "meta": 40, "recuperar": 689, "alvo25": 819}, {"cod": "191718", "meta": 38, "recuperar": 0, "alvo25": 0}, {"cod": "150438", "meta": 36, "recuperar": 78, "alvo25": 115}, {"cod": "176993", "meta": 24, "recuperar": 102, "alvo25": 102}, {"cod": "192283", "meta": 17, "recuperar": 0, "alvo25": 0}, {"cod": "107426", "meta": 0, "recuperar": 2309, "alvo25": 2447}]}, "162141": {"objetivo": 146300, "pct": "20", "clientes": [{"cod": "72985", "meta": 14407, "recuperar": 0, "alvo25": 0}, {"cod": "170574", "meta": 6885, "recuperar": 0, "alvo25": 0}, {"cod": "81457", "meta": 6357, "recuperar": 9964, "alvo25": 10104}, {"cod": "96974", "meta": 6357, "recuperar": 0, "alvo25": 0}, {"cod": "27593", "meta": 5484, "recuperar": 0, "alvo25": 0}, {"cod": "93778", "meta": 5176, "recuperar": 0, "alvo25": 0}, {"cod": "13193", "meta": 4880, "recuperar": 0, "alvo25": 0}, {"cod": "102023", "meta": 4300, "recuperar": 4458, "alvo25": 4458}, {"cod": "9312", "meta": 4298, "recuperar": 0, "alvo25": 0}, {"cod": "42923", "meta": 4056, "recuperar": 4174, "alvo25": 5674}, {"cod": "89289", "meta": 3941, "recuperar": 0, "alvo25": 0}, {"cod": "9248", "meta": 3835, "recuperar": 2300, "alvo25": 4215}, {"cod": "97926", "meta": 3656, "recuperar": 4849, "alvo25": 6708}, {"cod": "9000", "meta": 3535, "recuperar": 3442, "alvo25": 4717}, {"cod": "69218", "meta": 3458, "recuperar": 4380, "alvo25": 4605}, {"cod": "20298", "meta": 3195, "recuperar": 0, "alvo25": 0}, {"cod": "9053", "meta": 2873, "recuperar": 3096, "alvo25": 3096}, {"cod": "9054", "meta": 2788, "recuperar": 0, "alvo25": 0}, {"cod": "145804", "meta": 2646, "recuperar": 4004, "alvo25": 4004}, {"cod": "115701", "meta": 2472, "recuperar": 0, "alvo25": 0}, {"cod": "40006", "meta": 2296, "recuperar": 0, "alvo25": 0}, {"cod": "28435", "meta": 2239, "recuperar": 0, "alvo25": 0}, {"cod": "125896", "meta": 2187, "recuperar": 0, "alvo25": 0}, {"cod": "14497", "meta": 2123, "recuperar": 0, "alvo25": 0}, {"cod": "81481", "meta": 2102, "recuperar": 0, "alvo25": 0}, {"cod": "20460", "meta": 2076, "recuperar": 3546, "alvo25": 4101}, {"cod": "136747", "meta": 1890, "recuperar": 0, "alvo25": 0}, {"cod": "18517", "meta": 1884, "recuperar": 0, "alvo25": 0}, {"cod": "181472", "meta": 1845, "recuperar": 0, "alvo25": 0}, {"cod": "153571", "meta": 1803, "recuperar": 892, "alvo25": 2962}, {"cod": "155798", "meta": 1749, "recuperar": 0, "alvo25": 0}, {"cod": "124884", "meta": 1702, "recuperar": 0, "alvo25": 0}, {"cod": "9051", "meta": 1674, "recuperar": 0, "alvo25": 0}, {"cod": "22603", "meta": 1628, "recuperar": 0, "alvo25": 0}, {"cod": "106542", "meta": 1453, "recuperar": 0, "alvo25": 0}, {"cod": "123733", "meta": 1341, "recuperar": 0, "alvo25": 0}, {"cod": "117246", "meta": 1253, "recuperar": 3192, "alvo25": 3223}, {"cod": "191780", "meta": 1225, "recuperar": 0, "alvo25": 0}, {"cod": "186936", "meta": 1166, "recuperar": 0, "alvo25": 0}, {"cod": "65850", "meta": 1126, "recuperar": 1312, "alvo25": 1515}, {"cod": "84810", "meta": 1063, "recuperar": 0, "alvo25": 0}, {"cod": "134158", "meta": 1026, "recuperar": 1195, "alvo25": 1764}, {"cod": "113040", "meta": 1018, "recuperar": 1139, "alvo25": 1139}, {"cod": "181566", "meta": 1012, "recuperar": 0, "alvo25": 0}, {"cod": "24290", "meta": 954, "recuperar": 829, "alvo25": 1304}, {"cod": "86374", "meta": 902, "recuperar": 0, "alvo25": 0}, {"cod": "110869", "meta": 901, "recuperar": 0, "alvo25": 0}, {"cod": "9143", "meta": 892, "recuperar": 0, "alvo25": 0}, {"cod": "124007", "meta": 887, "recuperar": 0, "alvo25": 0}, {"cod": "72589", "meta": 882, "recuperar": 0, "alvo25": 0}, {"cod": "130237", "meta": 873, "recuperar": 484, "alvo25": 1009}, {"cod": "175941", "meta": 858, "recuperar": 0, "alvo25": 0}, {"cod": "23843", "meta": 816, "recuperar": 1990, "alvo25": 1990}, {"cod": "155078", "meta": 789, "recuperar": 0, "alvo25": 0}, {"cod": "9230", "meta": 754, "recuperar": 1309, "alvo25": 1309}, {"cod": "106620", "meta": 702, "recuperar": 0, "alvo25": 0}, {"cod": "39098", "meta": 660, "recuperar": 499, "alvo25": 713}, {"cod": "83984", "meta": 659, "recuperar": 0, "alvo25": 0}, {"cod": "19916", "meta": 653, "recuperar": 1005, "alvo25": 1005}, {"cod": "135400", "meta": 649, "recuperar": 0, "alvo25": 0}, {"cod": "42853", "meta": 626, "recuperar": 0, "alvo25": 0}, {"cod": "39343", "meta": 518, "recuperar": 0, "alvo25": 0}, {"cod": "80787", "meta": 472, "recuperar": 983, "alvo25": 983}, {"cod": "9354", "meta": 444, "recuperar": 171, "alvo25": 1206}, {"cod": "72844", "meta": 414, "recuperar": 552, "alvo25": 552}, {"cod": "100462", "meta": 388, "recuperar": 0, "alvo25": 0}, {"cod": "92018", "meta": 354, "recuperar": 0, "alvo25": 0}, {"cod": "118423", "meta": 282, "recuperar": 856, "alvo25": 856}, {"cod": "167512", "meta": 259, "recuperar": 0, "alvo25": 0}, {"cod": "13771", "meta": 254, "recuperar": 0, "alvo25": 0}, {"cod": "192242", "meta": 233, "recuperar": 0, "alvo25": 0}, {"cod": "191457", "meta": 96, "recuperar": 0, "alvo25": 0}, {"cod": "15173", "meta": 86, "recuperar": 0, "alvo25": 0}, {"cod": "140169", "meta": 82, "recuperar": 781, "alvo25": 781}, {"cod": "159001", "meta": 78, "recuperar": 829, "alvo25": 829}, {"cod": "107403", "meta": 62, "recuperar": 606, "alvo25": 606}, {"cod": "24291", "meta": 54, "recuperar": 0, "alvo25": 0}, {"cod": "9240", "meta": 45, "recuperar": 498, "alvo25": 498}, {"cod": "84259", "meta": 42, "recuperar": 99, "alvo25": 99}, {"cod": "191190", "meta": 14, "recuperar": 0, "alvo25": 0}, {"cod": "125505", "meta": 0, "recuperar": 0, "alvo25": 0}]}, "122174": {"objetivo": 182100, "pct": "20", "clientes": [{"cod": "43540", "meta": 12006, "recuperar": 0, "alvo25": 0}, {"cod": "5282", "meta": 10629, "recuperar": 17370, "alvo25": 20525}, {"cod": "152024", "meta": 10156, "recuperar": 0, "alvo25": 0}, {"cod": "5906", "meta": 9362, "recuperar": 0, "alvo25": 0}, {"cod": "169986", "meta": 8975, "recuperar": 0, "alvo25": 0}, {"cod": "177510", "meta": 7468, "recuperar": 0, "alvo25": 0}, {"cod": "10243", "meta": 7270, "recuperar": 0, "alvo25": 0}, {"cod": "13201", "meta": 6732, "recuperar": 0, "alvo25": 0}, {"cod": "49345", "meta": 6526, "recuperar": 0, "alvo25": 0}, {"cod": "27663", "meta": 6366, "recuperar": 0, "alvo25": 0}, {"cod": "17097", "meta": 5618, "recuperar": 0, "alvo25": 0}, {"cod": "80081", "meta": 5161, "recuperar": 0, "alvo25": 0}, {"cod": "133356", "meta": 5005, "recuperar": 0, "alvo25": 0}, {"cod": "70392", "meta": 4948, "recuperar": 0, "alvo25": 0}, {"cod": "12304", "meta": 4503, "recuperar": 0, "alvo25": 0}, {"cod": "8845", "meta": 4487, "recuperar": 0, "alvo25": 0}, {"cod": "49772", "meta": 3951, "recuperar": 0, "alvo25": 0}, {"cod": "101107", "meta": 3870, "recuperar": 5535, "alvo25": 5535}, {"cod": "8608", "meta": 3744, "recuperar": 0, "alvo25": 0}, {"cod": "28560", "meta": 3271, "recuperar": 0, "alvo25": 0}, {"cod": "140678", "meta": 3007, "recuperar": 0, "alvo25": 0}, {"cod": "77268", "meta": 2993, "recuperar": 3840, "alvo25": 3840}, {"cod": "106961", "meta": 2674, "recuperar": 0, "alvo25": 0}, {"cod": "29019", "meta": 2531, "recuperar": 0, "alvo25": 0}, {"cod": "12649", "meta": 2432, "recuperar": 3639, "alvo25": 4357}, {"cod": "12871", "meta": 2288, "recuperar": 5490, "alvo25": 6749}, {"cod": "170716", "meta": 2171, "recuperar": 0, "alvo25": 0}, {"cod": "10293", "meta": 2118, "recuperar": 5978, "alvo25": 5978}, {"cod": "85310", "meta": 2099, "recuperar": 0, "alvo25": 0}, {"cod": "137360", "meta": 1952, "recuperar": 1976, "alvo25": 3151}, {"cod": "87780", "meta": 1930, "recuperar": 2742, "alvo25": 4051}, {"cod": "183539", "meta": 1826, "recuperar": 0, "alvo25": 0}, {"cod": "95187", "meta": 1809, "recuperar": 2873, "alvo25": 3428}, {"cod": "182724", "meta": 1759, "recuperar": 0, "alvo25": 0}, {"cod": "188722", "meta": 1734, "recuperar": 0, "alvo25": 0}, {"cod": "22770", "meta": 1627, "recuperar": 0, "alvo25": 0}, {"cod": "139869", "meta": 1617, "recuperar": 1427, "alvo25": 1645}, {"cod": "12286", "meta": 1566, "recuperar": 1332, "alvo25": 3019}, {"cod": "45823", "meta": 1558, "recuperar": 1783, "alvo25": 1783}, {"cod": "28216", "meta": 1509, "recuperar": 2178, "alvo25": 2178}, {"cod": "21098", "meta": 1220, "recuperar": 0, "alvo25": 0}, {"cod": "76538", "meta": 1145, "recuperar": 0, "alvo25": 0}, {"cod": "86935", "meta": 1132, "recuperar": 2355, "alvo25": 2913}, {"cod": "187144", "meta": 1112, "recuperar": 0, "alvo25": 0}, {"cod": "120238", "meta": 1079, "recuperar": 0, "alvo25": 0}, {"cod": "90942", "meta": 1006, "recuperar": 0, "alvo25": 0}, {"cod": "47965", "meta": 1000, "recuperar": 0, "alvo25": 0}, {"cod": "95938", "meta": 995, "recuperar": 774, "alvo25": 1745}, {"cod": "175880", "meta": 949, "recuperar": 0, "alvo25": 0}, {"cod": "130800", "meta": 942, "recuperar": 0, "alvo25": 0}, {"cod": "77134", "meta": 747, "recuperar": 1256, "alvo25": 1256}, {"cod": "122333", "meta": 639, "recuperar": 1220, "alvo25": 1455}, {"cod": "135863", "meta": 623, "recuperar": 0, "alvo25": 0}, {"cod": "132291", "meta": 612, "recuperar": 0, "alvo25": 0}, {"cod": "95447", "meta": 579, "recuperar": 375, "alvo25": 609}, {"cod": "10272", "meta": 555, "recuperar": 0, "alvo25": 0}, {"cod": "98376", "meta": 554, "recuperar": 0, "alvo25": 0}, {"cod": "133451", "meta": 514, "recuperar": 738, "alvo25": 929}, {"cod": "82766", "meta": 495, "recuperar": 351, "alvo25": 511}, {"cod": "125363", "meta": 466, "recuperar": 880, "alvo25": 880}, {"cod": "85752", "meta": 457, "recuperar": 0, "alvo25": 0}, {"cod": "156762", "meta": 456, "recuperar": 0, "alvo25": 0}, {"cod": "187081", "meta": 350, "recuperar": 0, "alvo25": 0}, {"cod": "8189", "meta": 264, "recuperar": 0, "alvo25": 0}, {"cod": "21096", "meta": 259, "recuperar": 34, "alvo25": 274}, {"cod": "20086", "meta": 192, "recuperar": 0, "alvo25": 0}, {"cod": "8020", "meta": 177, "recuperar": 0, "alvo25": 0}, {"cod": "191125", "meta": 38, "recuperar": 0, "alvo25": 0}, {"cod": "181333", "meta": 22, "recuperar": 780, "alvo25": 780}, {"cod": "145336", "meta": 0, "recuperar": 0, "alvo25": 0}]}}
+{
+ "130253": {
+  "objetivo": 75000,
+  "pct": "22,0",
+  "clientes": [
+   {
+    "cod": "132589",
+    "meta": 8985,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "4318",
+    "meta": 5838,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "111598",
+    "meta": 4136,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "85179",
+    "meta": 3290,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14602",
+    "meta": 2539,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14447",
+    "meta": 2529,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "79837",
+    "meta": 2468,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "4319",
+    "meta": 2386,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10185",
+    "meta": 2156,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "5818",
+    "meta": 2088,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "73859",
+    "meta": 1952,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "20032",
+    "meta": 1892,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "13599",
+    "meta": 1854,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "67610",
+    "meta": 1826,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "12356",
+    "meta": 1818,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "12232",
+    "meta": 1600,
+    "recuperar": 1738,
+    "alvo25": 2194
+   },
+   {
+    "cod": "132137",
+    "meta": 1230,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "150379",
+    "meta": 1159,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "121342",
+    "meta": 1081,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "163156",
+    "meta": 1006,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "129807",
+    "meta": 991,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "176554",
+    "meta": 978,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "125806",
+    "meta": 965,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "4322",
+    "meta": 887,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "29294",
+    "meta": 868,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "145679",
+    "meta": 845,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "148423",
+    "meta": 839,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "153345",
+    "meta": 829,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "18062",
+    "meta": 813,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "27054",
+    "meta": 787,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "133369",
+    "meta": 787,
+    "recuperar": 1227,
+    "alvo25": 1227
+   },
+   {
+    "cod": "12346",
+    "meta": 691,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "43696",
+    "meta": 637,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10322",
+    "meta": 637,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "74875",
+    "meta": 632,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14742",
+    "meta": 604,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "84067",
+    "meta": 598,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "173310",
+    "meta": 577,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "13383",
+    "meta": 571,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "41998",
+    "meta": 569,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14344",
+    "meta": 538,
+    "recuperar": 284,
+    "alvo25": 1003
+   },
+   {
+    "cod": "158663",
+    "meta": 528,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "178584",
+    "meta": 526,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "125981",
+    "meta": 418,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "182322",
+    "meta": 417,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "18921",
+    "meta": 412,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "157976",
+    "meta": 408,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "66880",
+    "meta": 373,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "192750",
+    "meta": 362,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "174713",
+    "meta": 354,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "169887",
+    "meta": 345,
+    "recuperar": 439,
+    "alvo25": 715
+   },
+   {
+    "cod": "88552",
+    "meta": 336,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "181308",
+    "meta": 276,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "65778",
+    "meta": 228,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "76679",
+    "meta": 211,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "25731",
+    "meta": 209,
+    "recuperar": 381,
+    "alvo25": 425
+   },
+   {
+    "cod": "14164",
+    "meta": 205,
+    "recuperar": 540,
+    "alvo25": 540
+   },
+   {
+    "cod": "4831",
+    "meta": 196,
+    "recuperar": 447,
+    "alvo25": 447
+   },
+   {
+    "cod": "136810",
+    "meta": 186,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "74913",
+    "meta": 178,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "17645",
+    "meta": 165,
+    "recuperar": 195,
+    "alvo25": 430
+   },
+   {
+    "cod": "150896",
+    "meta": 141,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "144628",
+    "meta": 140,
+    "recuperar": 2893,
+    "alvo25": 2893
+   },
+   {
+    "cod": "187061",
+    "meta": 135,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "192582",
+    "meta": 121,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "77403",
+    "meta": 111,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "77266",
+    "meta": 102,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "102961",
+    "meta": 89,
+    "recuperar": 203,
+    "alvo25": 203
+   },
+   {
+    "cod": "182357",
+    "meta": 88,
+    "recuperar": 141,
+    "alvo25": 279
+   },
+   {
+    "cod": "96730",
+    "meta": 81,
+    "recuperar": 148,
+    "alvo25": 148
+   },
+   {
+    "cod": "187483",
+    "meta": 61,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "192521",
+    "meta": 52,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "154604",
+    "meta": 49,
+    "recuperar": 75,
+    "alvo25": 75
+   },
+   {
+    "cod": "33050",
+    "meta": 31,
+    "recuperar": 90,
+    "alvo25": 90
+   },
+   {
+    "cod": "188696",
+    "meta": 31,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "193399",
+    "meta": 0,
+    "recuperar": 0,
+    "alvo25": 0
+   }
+  ]
+ },
+ "150263": {
+  "objetivo": 242900,
+  "pct": "21,6",
+  "clientes": [
+   {
+    "cod": "23424",
+    "meta": 21993,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "147895",
+    "meta": 15055,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "74470",
+    "meta": 12834,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "100249",
+    "meta": 12713,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "67550",
+    "meta": 8169,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "85759",
+    "meta": 7632,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "113658",
+    "meta": 7358,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "129154",
+    "meta": 7087,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "28230",
+    "meta": 6644,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "28697",
+    "meta": 5954,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "149015",
+    "meta": 5742,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "137398",
+    "meta": 5607,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "120522",
+    "meta": 5582,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "137740",
+    "meta": 5394,
+    "recuperar": 9641,
+    "alvo25": 10454
+   },
+   {
+    "cod": "137709",
+    "meta": 5292,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "111809",
+    "meta": 5174,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "173900",
+    "meta": 4747,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "78246",
+    "meta": 4562,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "70637",
+    "meta": 4442,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "174291",
+    "meta": 4410,
+    "recuperar": 4978,
+    "alvo25": 4978
+   },
+   {
+    "cod": "9984",
+    "meta": 4401,
+    "recuperar": 3973,
+    "alvo25": 7028
+   },
+   {
+    "cod": "20303",
+    "meta": 4100,
+    "recuperar": 3175,
+    "alvo25": 4638
+   },
+   {
+    "cod": "146491",
+    "meta": 3722,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "168815",
+    "meta": 3702,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "48883",
+    "meta": 3390,
+    "recuperar": 4997,
+    "alvo25": 6459
+   },
+   {
+    "cod": "119906",
+    "meta": 3293,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "69593",
+    "meta": 2757,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9071",
+    "meta": 2752,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "157891",
+    "meta": 2731,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10057",
+    "meta": 2690,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "74154",
+    "meta": 2661,
+    "recuperar": 2310,
+    "alvo25": 3508
+   },
+   {
+    "cod": "74221",
+    "meta": 2601,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "105765",
+    "meta": 2287,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "184274",
+    "meta": 2286,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "181675",
+    "meta": 2246,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "188091",
+    "meta": 2144,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "191168",
+    "meta": 2115,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "138186",
+    "meta": 1953,
+    "recuperar": 5968,
+    "alvo25": 7477
+   },
+   {
+    "cod": "89332",
+    "meta": 1846,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "76092",
+    "meta": 1751,
+    "recuperar": 3628,
+    "alvo25": 3628
+   },
+   {
+    "cod": "13381",
+    "meta": 1744,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "50184",
+    "meta": 1689,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "92263",
+    "meta": 1687,
+    "recuperar": 859,
+    "alvo25": 1870
+   },
+   {
+    "cod": "74222",
+    "meta": 1641,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9113",
+    "meta": 1627,
+    "recuperar": 5058,
+    "alvo25": 5499
+   },
+   {
+    "cod": "103079",
+    "meta": 1477,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9114",
+    "meta": 1397,
+    "recuperar": 1266,
+    "alvo25": 2273
+   },
+   {
+    "cod": "166714",
+    "meta": 1242,
+    "recuperar": 4371,
+    "alvo25": 4371
+   },
+   {
+    "cod": "9036",
+    "meta": 1196,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "157416",
+    "meta": 1169,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "177789",
+    "meta": 1105,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "90692",
+    "meta": 1091,
+    "recuperar": 1062,
+    "alvo25": 2306
+   },
+   {
+    "cod": "173845",
+    "meta": 1000,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "43113",
+    "meta": 918,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "97954",
+    "meta": 918,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "189045",
+    "meta": 904,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "142856",
+    "meta": 890,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "185925",
+    "meta": 879,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "34933",
+    "meta": 847,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "170238",
+    "meta": 839,
+    "recuperar": 2576,
+    "alvo25": 4133
+   },
+   {
+    "cod": "127123",
+    "meta": 780,
+    "recuperar": 1194,
+    "alvo25": 1194
+   },
+   {
+    "cod": "19013",
+    "meta": 777,
+    "recuperar": 563,
+    "alvo25": 941
+   },
+   {
+    "cod": "189236",
+    "meta": 669,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "141021",
+    "meta": 649,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "28431",
+    "meta": 581,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "81656",
+    "meta": 574,
+    "recuperar": 1593,
+    "alvo25": 1913
+   },
+   {
+    "cod": "173228",
+    "meta": 565,
+    "recuperar": 348,
+    "alvo25": 608
+   },
+   {
+    "cod": "186714",
+    "meta": 546,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "190058",
+    "meta": 431,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "99983",
+    "meta": 401,
+    "recuperar": 2363,
+    "alvo25": 2363
+   },
+   {
+    "cod": "37868",
+    "meta": 356,
+    "recuperar": 707,
+    "alvo25": 780
+   },
+   {
+    "cod": "13237",
+    "meta": 231,
+    "recuperar": 1785,
+    "alvo25": 1785
+   },
+   {
+    "cod": "158904",
+    "meta": 173,
+    "recuperar": 304,
+    "alvo25": 304
+   },
+   {
+    "cod": "100853",
+    "meta": 110,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "128662",
+    "meta": 76,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "172191",
+    "meta": 27,
+    "recuperar": 3432,
+    "alvo25": 3432
+   },
+   {
+    "cod": "192416",
+    "meta": 20,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "189338",
+    "meta": 9,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "186200",
+    "meta": 6,
+    "recuperar": 0,
+    "alvo25": 0
+   }
+  ]
+ },
+ "133242": {
+  "objetivo": 181200,
+  "pct": "20",
+  "clientes": [
+   {
+    "cod": "120282",
+    "meta": 22528,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "133752",
+    "meta": 18698,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9116",
+    "meta": 11024,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9118",
+    "meta": 10165,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9168",
+    "meta": 8946,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "126584",
+    "meta": 7476,
+    "recuperar": 7989,
+    "alvo25": 8735
+   },
+   {
+    "cod": "46497",
+    "meta": 6444,
+    "recuperar": 5431,
+    "alvo25": 7503
+   },
+   {
+    "cod": "9124",
+    "meta": 6137,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9912",
+    "meta": 6025,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9238",
+    "meta": 6006,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "16582",
+    "meta": 5626,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9117",
+    "meta": 5485,
+    "recuperar": 16462,
+    "alvo25": 18575
+   },
+   {
+    "cod": "182716",
+    "meta": 4990,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "134290",
+    "meta": 4431,
+    "recuperar": 5189,
+    "alvo25": 5189
+   },
+   {
+    "cod": "9156",
+    "meta": 3704,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "134788",
+    "meta": 3571,
+    "recuperar": 2367,
+    "alvo25": 5372
+   },
+   {
+    "cod": "184829",
+    "meta": 3244,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "74892",
+    "meta": 3239,
+    "recuperar": 3966,
+    "alvo25": 4966
+   },
+   {
+    "cod": "108705",
+    "meta": 2932,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "99830",
+    "meta": 2840,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "68818",
+    "meta": 2581,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "88345",
+    "meta": 2362,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14049",
+    "meta": 2278,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9170",
+    "meta": 2202,
+    "recuperar": 2530,
+    "alvo25": 3191
+   },
+   {
+    "cod": "138561",
+    "meta": 2134,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "135143",
+    "meta": 1982,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "118519",
+    "meta": 1980,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "117258",
+    "meta": 1968,
+    "recuperar": 4513,
+    "alvo25": 5187
+   },
+   {
+    "cod": "9173",
+    "meta": 1876,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9187",
+    "meta": 1838,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "22020",
+    "meta": 1648,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9234",
+    "meta": 1632,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "175413",
+    "meta": 1525,
+    "recuperar": 5284,
+    "alvo25": 6456
+   },
+   {
+    "cod": "187567",
+    "meta": 1454,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9574",
+    "meta": 1360,
+    "recuperar": 3379,
+    "alvo25": 4025
+   },
+   {
+    "cod": "163554",
+    "meta": 1319,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "29099",
+    "meta": 1210,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "177320",
+    "meta": 1176,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "189428",
+    "meta": 987,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9151",
+    "meta": 970,
+    "recuperar": 3424,
+    "alvo25": 3841
+   },
+   {
+    "cod": "155898",
+    "meta": 910,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "169172",
+    "meta": 906,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "176678",
+    "meta": 891,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "157313",
+    "meta": 836,
+    "recuperar": 1052,
+    "alvo25": 1626
+   },
+   {
+    "cod": "138782",
+    "meta": 831,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9498",
+    "meta": 806,
+    "recuperar": 2566,
+    "alvo25": 3827
+   },
+   {
+    "cod": "111914",
+    "meta": 779,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "16975",
+    "meta": 714,
+    "recuperar": 1062,
+    "alvo25": 1855
+   },
+   {
+    "cod": "9125",
+    "meta": 706,
+    "recuperar": 804,
+    "alvo25": 1243
+   },
+   {
+    "cod": "9247",
+    "meta": 634,
+    "recuperar": 1344,
+    "alvo25": 2537
+   },
+   {
+    "cod": "113167",
+    "meta": 613,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "176340",
+    "meta": 609,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9228",
+    "meta": 593,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "76181",
+    "meta": 543,
+    "recuperar": 369,
+    "alvo25": 575
+   },
+   {
+    "cod": "174949",
+    "meta": 527,
+    "recuperar": 618,
+    "alvo25": 905
+   },
+   {
+    "cod": "188529",
+    "meta": 526,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "191651",
+    "meta": 522,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "190107",
+    "meta": 445,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "183772",
+    "meta": 435,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9150",
+    "meta": 434,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "76509",
+    "meta": 403,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "110699",
+    "meta": 271,
+    "recuperar": 951,
+    "alvo25": 1039
+   },
+   {
+    "cod": "158311",
+    "meta": 154,
+    "recuperar": 106,
+    "alvo25": 162
+   },
+   {
+    "cod": "191974",
+    "meta": 126,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "110598",
+    "meta": 120,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "122293",
+    "meta": 92,
+    "recuperar": 1111,
+    "alvo25": 1111
+   },
+   {
+    "cod": "190955",
+    "meta": 46,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "154359",
+    "meta": 18,
+    "recuperar": 0,
+    "alvo25": 0
+   }
+  ]
+ },
+ "166091": {
+  "objetivo": 187000,
+  "pct": "41,2",
+  "clientes": [
+   {
+    "cod": "8669",
+    "meta": 14709,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "79794",
+    "meta": 8352,
+    "recuperar": 21078,
+    "alvo25": 25807
+   },
+   {
+    "cod": "108879",
+    "meta": 7947,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "38034",
+    "meta": 7656,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "86734",
+    "meta": 7584,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "8654",
+    "meta": 6385,
+    "recuperar": 9130,
+    "alvo25": 9130
+   },
+   {
+    "cod": "81626",
+    "meta": 6031,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "13256",
+    "meta": 5926,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "121724",
+    "meta": 5761,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "6339",
+    "meta": 5157,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "183597",
+    "meta": 5154,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "13528",
+    "meta": 4917,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "176944",
+    "meta": 4454,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "103937",
+    "meta": 4300,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "166107",
+    "meta": 4056,
+    "recuperar": 5215,
+    "alvo25": 8353
+   },
+   {
+    "cod": "8668",
+    "meta": 3774,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "48017",
+    "meta": 3766,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "36682",
+    "meta": 3547,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "130216",
+    "meta": 3316,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "131066",
+    "meta": 3123,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "23358",
+    "meta": 2926,
+    "recuperar": 10942,
+    "alvo25": 14261
+   },
+   {
+    "cod": "8184",
+    "meta": 2655,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "162759",
+    "meta": 2591,
+    "recuperar": 6933,
+    "alvo25": 7158
+   },
+   {
+    "cod": "5995",
+    "meta": 2586,
+    "recuperar": 5007,
+    "alvo25": 5628
+   },
+   {
+    "cod": "179916",
+    "meta": 2544,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "8763",
+    "meta": 2509,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "128680",
+    "meta": 2447,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "95128",
+    "meta": 2222,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "171122",
+    "meta": 2215,
+    "recuperar": 1539,
+    "alvo25": 3064
+   },
+   {
+    "cod": "21931",
+    "meta": 2188,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "96988",
+    "meta": 2115,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9211",
+    "meta": 2066,
+    "recuperar": 2293,
+    "alvo25": 3968
+   },
+   {
+    "cod": "28964",
+    "meta": 2050,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10301",
+    "meta": 1886,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "171935",
+    "meta": 1883,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "8565",
+    "meta": 1873,
+    "recuperar": 998,
+    "alvo25": 2212
+   },
+   {
+    "cod": "17816",
+    "meta": 1808,
+    "recuperar": 2038,
+    "alvo25": 2602
+   },
+   {
+    "cod": "170709",
+    "meta": 1697,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "111237",
+    "meta": 1670,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9208",
+    "meta": 1661,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "85712",
+    "meta": 1586,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "70671",
+    "meta": 1508,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10303",
+    "meta": 1501,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "38645",
+    "meta": 1443,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "30032",
+    "meta": 1435,
+    "recuperar": 3715,
+    "alvo25": 3715
+   },
+   {
+    "cod": "102306",
+    "meta": 1343,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "162930",
+    "meta": 1337,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "150757",
+    "meta": 1242,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "101916",
+    "meta": 1239,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "4311",
+    "meta": 1213,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "93915",
+    "meta": 1207,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "188038",
+    "meta": 1067,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9428",
+    "meta": 1036,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "100491",
+    "meta": 967,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "167288",
+    "meta": 906,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "176159",
+    "meta": 808,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "181796",
+    "meta": 803,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "67739",
+    "meta": 642,
+    "recuperar": 967,
+    "alvo25": 1112
+   },
+   {
+    "cod": "27910",
+    "meta": 599,
+    "recuperar": 1137,
+    "alvo25": 1349
+   },
+   {
+    "cod": "156684",
+    "meta": 589,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "172611",
+    "meta": 545,
+    "recuperar": 762,
+    "alvo25": 1032
+   },
+   {
+    "cod": "20733",
+    "meta": 490,
+    "recuperar": 657,
+    "alvo25": 736
+   },
+   {
+    "cod": "178024",
+    "meta": 489,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "110581",
+    "meta": 473,
+    "recuperar": 2203,
+    "alvo25": 2203
+   },
+   {
+    "cod": "73190",
+    "meta": 455,
+    "recuperar": 1054,
+    "alvo25": 1054
+   },
+   {
+    "cod": "178732",
+    "meta": 403,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "182341",
+    "meta": 396,
+    "recuperar": 570,
+    "alvo25": 570
+   },
+   {
+    "cod": "43410",
+    "meta": 379,
+    "recuperar": 1408,
+    "alvo25": 2557
+   },
+   {
+    "cod": "114618",
+    "meta": 351,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "173921",
+    "meta": 240,
+    "recuperar": 655,
+    "alvo25": 655
+   },
+   {
+    "cod": "147558",
+    "meta": 231,
+    "recuperar": 13228,
+    "alvo25": 13228
+   },
+   {
+    "cod": "191566",
+    "meta": 196,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "191694",
+    "meta": 123,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "191581",
+    "meta": 96,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "176439",
+    "meta": 87,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "190313",
+    "meta": 85,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "192829",
+    "meta": 70,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "128334",
+    "meta": 0,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "193348",
+    "meta": 0,
+    "recuperar": 0,
+    "alvo25": 0
+   }
+  ]
+ },
+ "186166": {
+  "objetivo": 45700,
+  "pct": "34,7",
+  "clientes": [
+   {
+    "cod": "175231",
+    "meta": 2740,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "29407",
+    "meta": 2532,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9186",
+    "meta": 2072,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "87148",
+    "meta": 1919,
+    "recuperar": 1161,
+    "alvo25": 2322
+   },
+   {
+    "cod": "176020",
+    "meta": 1781,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9620",
+    "meta": 1683,
+    "recuperar": 8900,
+    "alvo25": 8900
+   },
+   {
+    "cod": "116133",
+    "meta": 1614,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "127119",
+    "meta": 1441,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9172",
+    "meta": 1374,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "185658",
+    "meta": 1035,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "27495",
+    "meta": 870,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "123530",
+    "meta": 837,
+    "recuperar": 1895,
+    "alvo25": 2109
+   },
+   {
+    "cod": "76552",
+    "meta": 836,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "147469",
+    "meta": 832,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "147178",
+    "meta": 816,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "141027",
+    "meta": 801,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "19451",
+    "meta": 797,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "168272",
+    "meta": 717,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "12345",
+    "meta": 678,
+    "recuperar": 2308,
+    "alvo25": 2623
+   },
+   {
+    "cod": "136688",
+    "meta": 661,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "174276",
+    "meta": 630,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "170738",
+    "meta": 626,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "187039",
+    "meta": 604,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "79797",
+    "meta": 595,
+    "recuperar": 1714,
+    "alvo25": 2339
+   },
+   {
+    "cod": "69114",
+    "meta": 588,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10122",
+    "meta": 572,
+    "recuperar": 779,
+    "alvo25": 1829
+   },
+   {
+    "cod": "182695",
+    "meta": 562,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "28035",
+    "meta": 520,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "142195",
+    "meta": 519,
+    "recuperar": 638,
+    "alvo25": 692
+   },
+   {
+    "cod": "120526",
+    "meta": 424,
+    "recuperar": 321,
+    "alvo25": 1014
+   },
+   {
+    "cod": "38862",
+    "meta": 422,
+    "recuperar": 440,
+    "alvo25": 440
+   },
+   {
+    "cod": "73488",
+    "meta": 422,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "17599",
+    "meta": 417,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "88316",
+    "meta": 416,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "88909",
+    "meta": 402,
+    "recuperar": 513,
+    "alvo25": 513
+   },
+   {
+    "cod": "153834",
+    "meta": 394,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "26616",
+    "meta": 377,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "85676",
+    "meta": 371,
+    "recuperar": 480,
+    "alvo25": 628
+   },
+   {
+    "cod": "134559",
+    "meta": 364,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "132145",
+    "meta": 346,
+    "recuperar": 978,
+    "alvo25": 978
+   },
+   {
+    "cod": "92756",
+    "meta": 343,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "187374",
+    "meta": 339,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "178735",
+    "meta": 337,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "177021",
+    "meta": 324,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9718",
+    "meta": 322,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "152995",
+    "meta": 318,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "172855",
+    "meta": 307,
+    "recuperar": 336,
+    "alvo25": 336
+   },
+   {
+    "cod": "108053",
+    "meta": 306,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "117758",
+    "meta": 302,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "27896",
+    "meta": 302,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "69932",
+    "meta": 299,
+    "recuperar": 527,
+    "alvo25": 664
+   },
+   {
+    "cod": "124032",
+    "meta": 297,
+    "recuperar": 882,
+    "alvo25": 882
+   },
+   {
+    "cod": "184309",
+    "meta": 282,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "72824",
+    "meta": 269,
+    "recuperar": 181,
+    "alvo25": 451
+   },
+   {
+    "cod": "77838",
+    "meta": 268,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "140458",
+    "meta": 266,
+    "recuperar": 300,
+    "alvo25": 300
+   },
+   {
+    "cod": "16634",
+    "meta": 258,
+    "recuperar": 300,
+    "alvo25": 300
+   },
+   {
+    "cod": "9157",
+    "meta": 254,
+    "recuperar": 239,
+    "alvo25": 309
+   },
+   {
+    "cod": "70814",
+    "meta": 253,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "175715",
+    "meta": 247,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "188157",
+    "meta": 244,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "69437",
+    "meta": 229,
+    "recuperar": 660,
+    "alvo25": 660
+   },
+   {
+    "cod": "85846",
+    "meta": 229,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "91685",
+    "meta": 210,
+    "recuperar": 367,
+    "alvo25": 367
+   },
+   {
+    "cod": "141502",
+    "meta": 208,
+    "recuperar": 1613,
+    "alvo25": 1613
+   },
+   {
+    "cod": "138787",
+    "meta": 186,
+    "recuperar": 183,
+    "alvo25": 248
+   },
+   {
+    "cod": "122980",
+    "meta": 184,
+    "recuperar": 220,
+    "alvo25": 220
+   },
+   {
+    "cod": "9149",
+    "meta": 180,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "13291",
+    "meta": 173,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "172224",
+    "meta": 172,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "188833",
+    "meta": 166,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "154668",
+    "meta": 155,
+    "recuperar": 891,
+    "alvo25": 1071
+   },
+   {
+    "cod": "131240",
+    "meta": 147,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "38717",
+    "meta": 139,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "108974",
+    "meta": 135,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "90028",
+    "meta": 112,
+    "recuperar": 420,
+    "alvo25": 568
+   },
+   {
+    "cod": "124077",
+    "meta": 110,
+    "recuperar": 538,
+    "alvo25": 618
+   },
+   {
+    "cod": "179341",
+    "meta": 106,
+    "recuperar": 125,
+    "alvo25": 125
+   },
+   {
+    "cod": "137301",
+    "meta": 99,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "137115",
+    "meta": 96,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "183868",
+    "meta": 95,
+    "recuperar": 151,
+    "alvo25": 151
+   },
+   {
+    "cod": "168606",
+    "meta": 88,
+    "recuperar": 104,
+    "alvo25": 104
+   },
+   {
+    "cod": "176118",
+    "meta": 85,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "87737",
+    "meta": 81,
+    "recuperar": 221,
+    "alvo25": 281
+   },
+   {
+    "cod": "26346",
+    "meta": 70,
+    "recuperar": 113,
+    "alvo25": 113
+   },
+   {
+    "cod": "173499",
+    "meta": 70,
+    "recuperar": 1374,
+    "alvo25": 1374
+   },
+   {
+    "cod": "187019",
+    "meta": 66,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "31172",
+    "meta": 60,
+    "recuperar": 322,
+    "alvo25": 395
+   },
+   {
+    "cod": "133295",
+    "meta": 54,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "135822",
+    "meta": 53,
+    "recuperar": 213,
+    "alvo25": 228
+   },
+   {
+    "cod": "26284",
+    "meta": 53,
+    "recuperar": 542,
+    "alvo25": 542
+   },
+   {
+    "cod": "187289",
+    "meta": 52,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "116291",
+    "meta": 31,
+    "recuperar": 102,
+    "alvo25": 102
+   },
+   {
+    "cod": "120227",
+    "meta": 24,
+    "recuperar": 4008,
+    "alvo25": 4008
+   },
+   {
+    "cod": "9094",
+    "meta": 23,
+    "recuperar": 125,
+    "alvo25": 125
+   },
+   {
+    "cod": "127835",
+    "meta": 18,
+    "recuperar": 32,
+    "alvo25": 32
+   },
+   {
+    "cod": "179125",
+    "meta": 13,
+    "recuperar": 67,
+    "alvo25": 97
+   }
+  ]
+ },
+ "23304": {
+  "objetivo": 212000,
+  "pct": "20",
+  "clientes": [
+   {
+    "cod": "29627",
+    "meta": 16461,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9224",
+    "meta": 12292,
+    "recuperar": 6202,
+    "alvo25": 12571
+   },
+   {
+    "cod": "48560",
+    "meta": 11577,
+    "recuperar": 12721,
+    "alvo25": 13151
+   },
+   {
+    "cod": "71955",
+    "meta": 11422,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "121286",
+    "meta": 10625,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "102318",
+    "meta": 8539,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "31132",
+    "meta": 7994,
+    "recuperar": 6694,
+    "alvo25": 9204
+   },
+   {
+    "cod": "9171",
+    "meta": 6362,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "118110",
+    "meta": 5751,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "38302",
+    "meta": 5222,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "31679",
+    "meta": 5211,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9284",
+    "meta": 4989,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "44799",
+    "meta": 4984,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9225",
+    "meta": 4708,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9067",
+    "meta": 4549,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9249",
+    "meta": 4523,
+    "recuperar": 5361,
+    "alvo25": 7093
+   },
+   {
+    "cod": "148041",
+    "meta": 4352,
+    "recuperar": 3384,
+    "alvo25": 5431
+   },
+   {
+    "cod": "94574",
+    "meta": 4244,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "158582",
+    "meta": 3844,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "98115",
+    "meta": 3732,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "19966",
+    "meta": 3700,
+    "recuperar": 7065,
+    "alvo25": 8788
+   },
+   {
+    "cod": "135368",
+    "meta": 3383,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "97353",
+    "meta": 2814,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "170765",
+    "meta": 2750,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "98741",
+    "meta": 2700,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "78346",
+    "meta": 2637,
+    "recuperar": 2062,
+    "alvo25": 5662
+   },
+   {
+    "cod": "103418",
+    "meta": 2512,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9068",
+    "meta": 2383,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "47491",
+    "meta": 2180,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "70813",
+    "meta": 2169,
+    "recuperar": 236,
+    "alvo25": 2636
+   },
+   {
+    "cod": "17473",
+    "meta": 2109,
+    "recuperar": 2916,
+    "alvo25": 3506
+   },
+   {
+    "cod": "151012",
+    "meta": 2066,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "38225",
+    "meta": 1922,
+    "recuperar": 2211,
+    "alvo25": 2929
+   },
+   {
+    "cod": "187306",
+    "meta": 1918,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "184041",
+    "meta": 1884,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "183512",
+    "meta": 1740,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "174111",
+    "meta": 1732,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "140372",
+    "meta": 1652,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "110606",
+    "meta": 1638,
+    "recuperar": 565,
+    "alvo25": 1642
+   },
+   {
+    "cod": "12740",
+    "meta": 1563,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "122105",
+    "meta": 1527,
+    "recuperar": 2973,
+    "alvo25": 3358
+   },
+   {
+    "cod": "42326",
+    "meta": 1512,
+    "recuperar": 1732,
+    "alvo25": 1732
+   },
+   {
+    "cod": "74341",
+    "meta": 1174,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "87042",
+    "meta": 1155,
+    "recuperar": 927,
+    "alvo25": 1853
+   },
+   {
+    "cod": "91427",
+    "meta": 1136,
+    "recuperar": 2766,
+    "alvo25": 2766
+   },
+   {
+    "cod": "173514",
+    "meta": 1110,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9410",
+    "meta": 1100,
+    "recuperar": 782,
+    "alvo25": 1765
+   },
+   {
+    "cod": "172273",
+    "meta": 1044,
+    "recuperar": 7381,
+    "alvo25": 7381
+   },
+   {
+    "cod": "23506",
+    "meta": 1029,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "96087",
+    "meta": 977,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "190928",
+    "meta": 949,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "93218",
+    "meta": 943,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "171175",
+    "meta": 925,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "26349",
+    "meta": 905,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9630",
+    "meta": 851,
+    "recuperar": 974,
+    "alvo25": 1556
+   },
+   {
+    "cod": "10105",
+    "meta": 831,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "37066",
+    "meta": 781,
+    "recuperar": 787,
+    "alvo25": 1043
+   },
+   {
+    "cod": "119383",
+    "meta": 770,
+    "recuperar": 1284,
+    "alvo25": 1284
+   },
+   {
+    "cod": "84675",
+    "meta": 748,
+    "recuperar": 395,
+    "alvo25": 756
+   },
+   {
+    "cod": "101558",
+    "meta": 712,
+    "recuperar": 961,
+    "alvo25": 961
+   },
+   {
+    "cod": "72709",
+    "meta": 694,
+    "recuperar": 1197,
+    "alvo25": 1562
+   },
+   {
+    "cod": "106911",
+    "meta": 641,
+    "recuperar": 1222,
+    "alvo25": 1590
+   },
+   {
+    "cod": "25557",
+    "meta": 635,
+    "recuperar": 1015,
+    "alvo25": 1283
+   },
+   {
+    "cod": "101834",
+    "meta": 626,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "166646",
+    "meta": 595,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9122",
+    "meta": 587,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "27258",
+    "meta": 552,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "79555",
+    "meta": 518,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "30546",
+    "meta": 508,
+    "recuperar": 668,
+    "alvo25": 668
+   },
+   {
+    "cod": "100950",
+    "meta": 437,
+    "recuperar": 1952,
+    "alvo25": 3111
+   },
+   {
+    "cod": "97080",
+    "meta": 424,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "73739",
+    "meta": 383,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "74447",
+    "meta": 330,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "175741",
+    "meta": 244,
+    "recuperar": 676,
+    "alvo25": 676
+   },
+   {
+    "cod": "140990",
+    "meta": 204,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "191996",
+    "meta": 190,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "189755",
+    "meta": 154,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "186512",
+    "meta": 137,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "189746",
+    "meta": 87,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "108119",
+    "meta": 68,
+    "recuperar": 1335,
+    "alvo25": 1335
+   },
+   {
+    "cod": "192899",
+    "meta": 0,
+    "recuperar": 0,
+    "alvo25": 0
+   }
+  ]
+ },
+ "190423": {
+  "objetivo": 132000,
+  "pct": "21,0",
+  "clientes": [
+   {
+    "cod": "31436",
+    "meta": 15474,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "5198",
+    "meta": 9930,
+    "recuperar": 12703,
+    "alvo25": 17787
+   },
+   {
+    "cod": "28406",
+    "meta": 8773,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "21768",
+    "meta": 8527,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "12285",
+    "meta": 6833,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "159293",
+    "meta": 6465,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10086",
+    "meta": 4869,
+    "recuperar": 5474,
+    "alvo25": 8715
+   },
+   {
+    "cod": "40135",
+    "meta": 4164,
+    "recuperar": 5151,
+    "alvo25": 5271
+   },
+   {
+    "cod": "10559",
+    "meta": 4149,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "8080",
+    "meta": 3430,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "16540",
+    "meta": 3279,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "122505",
+    "meta": 3068,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "128549",
+    "meta": 2842,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "73137",
+    "meta": 2723,
+    "recuperar": 987,
+    "alvo25": 3179
+   },
+   {
+    "cod": "138255",
+    "meta": 2562,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "143483",
+    "meta": 2348,
+    "recuperar": 3593,
+    "alvo25": 4480
+   },
+   {
+    "cod": "4317",
+    "meta": 2330,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "119389",
+    "meta": 2223,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "17200",
+    "meta": 2126,
+    "recuperar": 3654,
+    "alvo25": 7000
+   },
+   {
+    "cod": "10644",
+    "meta": 1964,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "6599",
+    "meta": 1906,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "172253",
+    "meta": 1857,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "71040",
+    "meta": 1820,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "182801",
+    "meta": 1746,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "15104",
+    "meta": 1726,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "99308",
+    "meta": 1691,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "181491",
+    "meta": 1447,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "165047",
+    "meta": 1410,
+    "recuperar": 1576,
+    "alvo25": 1711
+   },
+   {
+    "cod": "86899",
+    "meta": 1383,
+    "recuperar": 3513,
+    "alvo25": 3513
+   },
+   {
+    "cod": "131557",
+    "meta": 1302,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "7998",
+    "meta": 1194,
+    "recuperar": 169,
+    "alvo25": 1359
+   },
+   {
+    "cod": "161295",
+    "meta": 1158,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "28527",
+    "meta": 989,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "170240",
+    "meta": 965,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14306",
+    "meta": 900,
+    "recuperar": 1011,
+    "alvo25": 1458
+   },
+   {
+    "cod": "9578",
+    "meta": 827,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "111041",
+    "meta": 826,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "24318",
+    "meta": 787,
+    "recuperar": 1346,
+    "alvo25": 1346
+   },
+   {
+    "cod": "8294",
+    "meta": 781,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "42981",
+    "meta": 648,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "190715",
+    "meta": 643,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "40570",
+    "meta": 587,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "116419",
+    "meta": 582,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10661",
+    "meta": 576,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "68704",
+    "meta": 542,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "96890",
+    "meta": 530,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "145801",
+    "meta": 520,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "8357",
+    "meta": 511,
+    "recuperar": 681,
+    "alvo25": 709
+   },
+   {
+    "cod": "7454",
+    "meta": 490,
+    "recuperar": 572,
+    "alvo25": 572
+   },
+   {
+    "cod": "180363",
+    "meta": 424,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "130994",
+    "meta": 390,
+    "recuperar": 1150,
+    "alvo25": 1309
+   },
+   {
+    "cod": "13084",
+    "meta": 347,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "15107",
+    "meta": 321,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "83894",
+    "meta": 286,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "108856",
+    "meta": 257,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "66273",
+    "meta": 255,
+    "recuperar": 455,
+    "alvo25": 455
+   },
+   {
+    "cod": "23901",
+    "meta": 193,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "112775",
+    "meta": 188,
+    "recuperar": 237,
+    "alvo25": 237
+   },
+   {
+    "cod": "5380",
+    "meta": 143,
+    "recuperar": 241,
+    "alvo25": 366
+   },
+   {
+    "cod": "153426",
+    "meta": 139,
+    "recuperar": 150,
+    "alvo25": 287
+   },
+   {
+    "cod": "103002",
+    "meta": 131,
+    "recuperar": 1155,
+    "alvo25": 1155
+   },
+   {
+    "cod": "71214",
+    "meta": 107,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "176415",
+    "meta": 100,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "106334",
+    "meta": 92,
+    "recuperar": 917,
+    "alvo25": 917
+   },
+   {
+    "cod": "136633",
+    "meta": 79,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "80038",
+    "meta": 73,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "22077",
+    "meta": 52,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "123219",
+    "meta": 48,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "191202",
+    "meta": 0,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "192742",
+    "meta": 0,
+    "recuperar": 0,
+    "alvo25": 0
+   }
+  ]
+ },
+ "138467": {
+  "objetivo": 201000,
+  "pct": "20",
+  "clientes": [
+   {
+    "cod": "27742",
+    "meta": 21948,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9093",
+    "meta": 14008,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10031",
+    "meta": 11413,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "145200",
+    "meta": 9962,
+    "recuperar": 21716,
+    "alvo25": 21716
+   },
+   {
+    "cod": "155858",
+    "meta": 9300,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "94838",
+    "meta": 9008,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "4168",
+    "meta": 7636,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9047",
+    "meta": 7246,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "157314",
+    "meta": 7176,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9023",
+    "meta": 7146,
+    "recuperar": 6051,
+    "alvo25": 11194
+   },
+   {
+    "cod": "24823",
+    "meta": 7134,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "103783",
+    "meta": 6354,
+    "recuperar": 8906,
+    "alvo25": 12360
+   },
+   {
+    "cod": "176609",
+    "meta": 6276,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "28769",
+    "meta": 5604,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "108206",
+    "meta": 5494,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "72083",
+    "meta": 5448,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "76066",
+    "meta": 5350,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "185683",
+    "meta": 4696,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "135775",
+    "meta": 4449,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9025",
+    "meta": 2928,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "187973",
+    "meta": 2829,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "77000",
+    "meta": 2660,
+    "recuperar": 7345,
+    "alvo25": 7392
+   },
+   {
+    "cod": "13104",
+    "meta": 2555,
+    "recuperar": 6793,
+    "alvo25": 6883
+   },
+   {
+    "cod": "173440",
+    "meta": 2421,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "125763",
+    "meta": 2387,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "79730",
+    "meta": 2280,
+    "recuperar": 4659,
+    "alvo25": 4684
+   },
+   {
+    "cod": "177989",
+    "meta": 2186,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "147147",
+    "meta": 2008,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "171233",
+    "meta": 1820,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "16789",
+    "meta": 1748,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "146365",
+    "meta": 1666,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "146772",
+    "meta": 1594,
+    "recuperar": 2477,
+    "alvo25": 2477
+   },
+   {
+    "cod": "182826",
+    "meta": 1368,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9325",
+    "meta": 1358,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "19417",
+    "meta": 1350,
+    "recuperar": 1865,
+    "alvo25": 2346
+   },
+   {
+    "cod": "178879",
+    "meta": 1344,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "28141",
+    "meta": 1266,
+    "recuperar": 2106,
+    "alvo25": 2381
+   },
+   {
+    "cod": "174353",
+    "meta": 1232,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "89975",
+    "meta": 1206,
+    "recuperar": 546,
+    "alvo25": 1326
+   },
+   {
+    "cod": "28489",
+    "meta": 1186,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "93984",
+    "meta": 1088,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "166370",
+    "meta": 1054,
+    "recuperar": 2069,
+    "alvo25": 2069
+   },
+   {
+    "cod": "132409",
+    "meta": 989,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "30886",
+    "meta": 966,
+    "recuperar": 2600,
+    "alvo25": 3628
+   },
+   {
+    "cod": "66225",
+    "meta": 880,
+    "recuperar": 939,
+    "alvo25": 939
+   },
+   {
+    "cod": "101484",
+    "meta": 795,
+    "recuperar": 1268,
+    "alvo25": 1268
+   },
+   {
+    "cod": "94646",
+    "meta": 767,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "118928",
+    "meta": 752,
+    "recuperar": 1090,
+    "alvo25": 1090
+   },
+   {
+    "cod": "101843",
+    "meta": 700,
+    "recuperar": 717,
+    "alvo25": 1169
+   },
+   {
+    "cod": "135266",
+    "meta": 678,
+    "recuperar": 1570,
+    "alvo25": 1570
+   },
+   {
+    "cod": "190063",
+    "meta": 674,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "13306",
+    "meta": 633,
+    "recuperar": 9792,
+    "alvo25": 9882
+   },
+   {
+    "cod": "140099",
+    "meta": 609,
+    "recuperar": 1016,
+    "alvo25": 1016
+   },
+   {
+    "cod": "154521",
+    "meta": 506,
+    "recuperar": 2091,
+    "alvo25": 2091
+   },
+   {
+    "cod": "180643",
+    "meta": 496,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "160374",
+    "meta": 492,
+    "recuperar": 3735,
+    "alvo25": 3735
+   },
+   {
+    "cod": "9080",
+    "meta": 488,
+    "recuperar": 832,
+    "alvo25": 904
+   },
+   {
+    "cod": "181358",
+    "meta": 422,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "181029",
+    "meta": 410,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "189903",
+    "meta": 164,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "19938",
+    "meta": 122,
+    "recuperar": 713,
+    "alvo25": 713
+   },
+   {
+    "cod": "28955",
+    "meta": 70,
+    "recuperar": 4910,
+    "alvo25": 4910
+   },
+   {
+    "cod": "191551",
+    "meta": 54,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9024",
+    "meta": 6,
+    "recuperar": 79,
+    "alvo25": 79
+   },
+   {
+    "cod": "193366",
+    "meta": 0,
+    "recuperar": 0,
+    "alvo25": 0
+   }
+  ]
+ },
+ "127497": {
+  "objetivo": 182300,
+  "pct": "20",
+  "clientes": [
+   {
+    "cod": "16962",
+    "meta": 15126,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "79810",
+    "meta": 11952,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10673",
+    "meta": 10826,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "113787",
+    "meta": 9346,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "145416",
+    "meta": 6877,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "166490",
+    "meta": 5725,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "19853",
+    "meta": 5668,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "112101",
+    "meta": 5642,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "40174",
+    "meta": 5468,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14884",
+    "meta": 5373,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "178941",
+    "meta": 4887,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "116594",
+    "meta": 4457,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "174572",
+    "meta": 4194,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "92259",
+    "meta": 4173,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "182756",
+    "meta": 4052,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "17456",
+    "meta": 4042,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "23908",
+    "meta": 3753,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "24017",
+    "meta": 3719,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "181920",
+    "meta": 3634,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "146161",
+    "meta": 3412,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14033",
+    "meta": 3317,
+    "recuperar": 2736,
+    "alvo25": 3784
+   },
+   {
+    "cod": "68352",
+    "meta": 3271,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "12737",
+    "meta": 3236,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14270",
+    "meta": 2947,
+    "recuperar": 2149,
+    "alvo25": 3210
+   },
+   {
+    "cod": "106109",
+    "meta": 2886,
+    "recuperar": 1264,
+    "alvo25": 4285
+   },
+   {
+    "cod": "110334",
+    "meta": 2876,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "83300",
+    "meta": 2808,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "81694",
+    "meta": 2568,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14370",
+    "meta": 2489,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "136343",
+    "meta": 2358,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "90960",
+    "meta": 2244,
+    "recuperar": 2279,
+    "alvo25": 3022
+   },
+   {
+    "cod": "15614",
+    "meta": 2237,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "96533",
+    "meta": 2144,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "141603",
+    "meta": 1969,
+    "recuperar": 1531,
+    "alvo25": 2502
+   },
+   {
+    "cod": "48126",
+    "meta": 1941,
+    "recuperar": 1898,
+    "alvo25": 1992
+   },
+   {
+    "cod": "123589",
+    "meta": 1895,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "78713",
+    "meta": 1798,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "81379",
+    "meta": 1756,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9715",
+    "meta": 1723,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "186825",
+    "meta": 1637,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "167670",
+    "meta": 1599,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "86343",
+    "meta": 1577,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "72044",
+    "meta": 1534,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "106718",
+    "meta": 1529,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "129207",
+    "meta": 1500,
+    "recuperar": 1721,
+    "alvo25": 2229
+   },
+   {
+    "cod": "177552",
+    "meta": 1496,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "146273",
+    "meta": 1473,
+    "recuperar": 3320,
+    "alvo25": 3320
+   },
+   {
+    "cod": "38245",
+    "meta": 1451,
+    "recuperar": 6849,
+    "alvo25": 6849
+   },
+   {
+    "cod": "26533",
+    "meta": 1336,
+    "recuperar": 1115,
+    "alvo25": 1666
+   },
+   {
+    "cod": "128444",
+    "meta": 1293,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "173892",
+    "meta": 1283,
+    "recuperar": 2581,
+    "alvo25": 2886
+   },
+   {
+    "cod": "17015",
+    "meta": 1279,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "186911",
+    "meta": 1200,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14153",
+    "meta": 1184,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "174812",
+    "meta": 1098,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9921",
+    "meta": 1071,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "21648",
+    "meta": 1030,
+    "recuperar": 641,
+    "alvo25": 1207
+   },
+   {
+    "cod": "87226",
+    "meta": 1029,
+    "recuperar": 73,
+    "alvo25": 1056
+   },
+   {
+    "cod": "14069",
+    "meta": 935,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "15581",
+    "meta": 834,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "188279",
+    "meta": 820,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "184552",
+    "meta": 789,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10271",
+    "meta": 783,
+    "recuperar": 83,
+    "alvo25": 798
+   },
+   {
+    "cod": "73598",
+    "meta": 770,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "16894",
+    "meta": 726,
+    "recuperar": 1811,
+    "alvo25": 1868
+   },
+   {
+    "cod": "48503",
+    "meta": 708,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "23999",
+    "meta": 662,
+    "recuperar": 1216,
+    "alvo25": 1216
+   },
+   {
+    "cod": "111334",
+    "meta": 652,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "95565",
+    "meta": 650,
+    "recuperar": 506,
+    "alvo25": 996
+   },
+   {
+    "cod": "23393",
+    "meta": 609,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "129712",
+    "meta": 603,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "182049",
+    "meta": 602,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "12939",
+    "meta": 522,
+    "recuperar": 1008,
+    "alvo25": 1228
+   },
+   {
+    "cod": "102509",
+    "meta": 516,
+    "recuperar": 360,
+    "alvo25": 614
+   },
+   {
+    "cod": "188863",
+    "meta": 510,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "31491",
+    "meta": 462,
+    "recuperar": 8197,
+    "alvo25": 8197
+   },
+   {
+    "cod": "144031",
+    "meta": 451,
+    "recuperar": 1527,
+    "alvo25": 1722
+   },
+   {
+    "cod": "187881",
+    "meta": 414,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "170226",
+    "meta": 374,
+    "recuperar": 896,
+    "alvo25": 896
+   },
+   {
+    "cod": "120940",
+    "meta": 354,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "158580",
+    "meta": 336,
+    "recuperar": 1054,
+    "alvo25": 1535
+   },
+   {
+    "cod": "185348",
+    "meta": 327,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "100069",
+    "meta": 297,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "171896",
+    "meta": 294,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "186933",
+    "meta": 293,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "90788",
+    "meta": 288,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "136230",
+    "meta": 285,
+    "recuperar": 734,
+    "alvo25": 734
+   },
+   {
+    "cod": "179692",
+    "meta": 282,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "15823",
+    "meta": 281,
+    "recuperar": 267,
+    "alvo25": 455
+   },
+   {
+    "cod": "187233",
+    "meta": 216,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "129150",
+    "meta": 178,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "80133",
+    "meta": 159,
+    "recuperar": 381,
+    "alvo25": 381
+   },
+   {
+    "cod": "184304",
+    "meta": 158,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9665",
+    "meta": 156,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "15381",
+    "meta": 136,
+    "recuperar": 122,
+    "alvo25": 202
+   },
+   {
+    "cod": "192885",
+    "meta": 124,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "138856",
+    "meta": 112,
+    "recuperar": 381,
+    "alvo25": 381
+   },
+   {
+    "cod": "190661",
+    "meta": 106,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9556",
+    "meta": 101,
+    "recuperar": 572,
+    "alvo25": 572
+   },
+   {
+    "cod": "192497",
+    "meta": 86,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "33822",
+    "meta": 71,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "47188",
+    "meta": 71,
+    "recuperar": 137,
+    "alvo25": 137
+   },
+   {
+    "cod": "169441",
+    "meta": 70,
+    "recuperar": 354,
+    "alvo25": 403
+   },
+   {
+    "cod": "34585",
+    "meta": 48,
+    "recuperar": 562,
+    "alvo25": 562
+   },
+   {
+    "cod": "151076",
+    "meta": 40,
+    "recuperar": 689,
+    "alvo25": 819
+   },
+   {
+    "cod": "191718",
+    "meta": 38,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "150438",
+    "meta": 36,
+    "recuperar": 78,
+    "alvo25": 115
+   },
+   {
+    "cod": "176993",
+    "meta": 24,
+    "recuperar": 102,
+    "alvo25": 102
+   },
+   {
+    "cod": "192283",
+    "meta": 17,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "107426",
+    "meta": 0,
+    "recuperar": 2309,
+    "alvo25": 2447
+   }
+  ]
+ },
+ "162141": {
+  "objetivo": 192000,
+  "pct": "20",
+  "clientes": [
+   {
+    "cod": "72985",
+    "meta": 14407,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "170574",
+    "meta": 6885,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "81457",
+    "meta": 6357,
+    "recuperar": 9964,
+    "alvo25": 10104
+   },
+   {
+    "cod": "96974",
+    "meta": 6357,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "27593",
+    "meta": 5484,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "93778",
+    "meta": 5176,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "13193",
+    "meta": 4880,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "102023",
+    "meta": 4300,
+    "recuperar": 4458,
+    "alvo25": 4458
+   },
+   {
+    "cod": "9312",
+    "meta": 4298,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "42923",
+    "meta": 4056,
+    "recuperar": 4174,
+    "alvo25": 5674
+   },
+   {
+    "cod": "89289",
+    "meta": 3941,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9248",
+    "meta": 3835,
+    "recuperar": 2300,
+    "alvo25": 4215
+   },
+   {
+    "cod": "97926",
+    "meta": 3656,
+    "recuperar": 4849,
+    "alvo25": 6708
+   },
+   {
+    "cod": "9000",
+    "meta": 3535,
+    "recuperar": 3442,
+    "alvo25": 4717
+   },
+   {
+    "cod": "69218",
+    "meta": 3458,
+    "recuperar": 4380,
+    "alvo25": 4605
+   },
+   {
+    "cod": "20298",
+    "meta": 3195,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9053",
+    "meta": 2873,
+    "recuperar": 3096,
+    "alvo25": 3096
+   },
+   {
+    "cod": "9054",
+    "meta": 2788,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "145804",
+    "meta": 2646,
+    "recuperar": 4004,
+    "alvo25": 4004
+   },
+   {
+    "cod": "115701",
+    "meta": 2472,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "40006",
+    "meta": 2296,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "28435",
+    "meta": 2239,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "125896",
+    "meta": 2187,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "14497",
+    "meta": 2123,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "81481",
+    "meta": 2102,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "20460",
+    "meta": 2076,
+    "recuperar": 3546,
+    "alvo25": 4101
+   },
+   {
+    "cod": "136747",
+    "meta": 1890,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "18517",
+    "meta": 1884,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "181472",
+    "meta": 1845,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "153571",
+    "meta": 1803,
+    "recuperar": 892,
+    "alvo25": 2962
+   },
+   {
+    "cod": "155798",
+    "meta": 1749,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "124884",
+    "meta": 1702,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9051",
+    "meta": 1674,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "22603",
+    "meta": 1628,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "106542",
+    "meta": 1453,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "123733",
+    "meta": 1341,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "117246",
+    "meta": 1253,
+    "recuperar": 3192,
+    "alvo25": 3223
+   },
+   {
+    "cod": "191780",
+    "meta": 1225,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "186936",
+    "meta": 1166,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "65850",
+    "meta": 1126,
+    "recuperar": 1312,
+    "alvo25": 1515
+   },
+   {
+    "cod": "84810",
+    "meta": 1063,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "134158",
+    "meta": 1026,
+    "recuperar": 1195,
+    "alvo25": 1764
+   },
+   {
+    "cod": "113040",
+    "meta": 1018,
+    "recuperar": 1139,
+    "alvo25": 1139
+   },
+   {
+    "cod": "181566",
+    "meta": 1012,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "24290",
+    "meta": 954,
+    "recuperar": 829,
+    "alvo25": 1304
+   },
+   {
+    "cod": "86374",
+    "meta": 902,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "110869",
+    "meta": 901,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9143",
+    "meta": 892,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "124007",
+    "meta": 887,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "72589",
+    "meta": 882,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "130237",
+    "meta": 873,
+    "recuperar": 484,
+    "alvo25": 1009
+   },
+   {
+    "cod": "175941",
+    "meta": 858,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "23843",
+    "meta": 816,
+    "recuperar": 1990,
+    "alvo25": 1990
+   },
+   {
+    "cod": "155078",
+    "meta": 789,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9230",
+    "meta": 754,
+    "recuperar": 1309,
+    "alvo25": 1309
+   },
+   {
+    "cod": "106620",
+    "meta": 702,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "39098",
+    "meta": 660,
+    "recuperar": 499,
+    "alvo25": 713
+   },
+   {
+    "cod": "83984",
+    "meta": 659,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "19916",
+    "meta": 653,
+    "recuperar": 1005,
+    "alvo25": 1005
+   },
+   {
+    "cod": "135400",
+    "meta": 649,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "42853",
+    "meta": 626,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "39343",
+    "meta": 518,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "80787",
+    "meta": 472,
+    "recuperar": 983,
+    "alvo25": 983
+   },
+   {
+    "cod": "9354",
+    "meta": 444,
+    "recuperar": 171,
+    "alvo25": 1206
+   },
+   {
+    "cod": "72844",
+    "meta": 414,
+    "recuperar": 552,
+    "alvo25": 552
+   },
+   {
+    "cod": "100462",
+    "meta": 388,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "92018",
+    "meta": 354,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "118423",
+    "meta": 282,
+    "recuperar": 856,
+    "alvo25": 856
+   },
+   {
+    "cod": "167512",
+    "meta": 259,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "13771",
+    "meta": 254,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "192242",
+    "meta": 233,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "191457",
+    "meta": 96,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "15173",
+    "meta": 86,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "140169",
+    "meta": 82,
+    "recuperar": 781,
+    "alvo25": 781
+   },
+   {
+    "cod": "159001",
+    "meta": 78,
+    "recuperar": 829,
+    "alvo25": 829
+   },
+   {
+    "cod": "107403",
+    "meta": 62,
+    "recuperar": 606,
+    "alvo25": 606
+   },
+   {
+    "cod": "24291",
+    "meta": 54,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "9240",
+    "meta": 45,
+    "recuperar": 498,
+    "alvo25": 498
+   },
+   {
+    "cod": "84259",
+    "meta": 42,
+    "recuperar": 99,
+    "alvo25": 99
+   },
+   {
+    "cod": "191190",
+    "meta": 14,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "125505",
+    "meta": 0,
+    "recuperar": 0,
+    "alvo25": 0
+   }
+  ],
+  "objetivo_original": 146300,
+  "obs": "06/11/26: somado o objetivo 4T do Marcelo (186166, 45.700 kg) após transferência da carteira; redistribuído entre os clientes ativos"
+ },
+ "122174": {
+  "objetivo": 182100,
+  "pct": "20",
+  "clientes": [
+   {
+    "cod": "43540",
+    "meta": 12006,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "5282",
+    "meta": 10629,
+    "recuperar": 17370,
+    "alvo25": 20525
+   },
+   {
+    "cod": "152024",
+    "meta": 10156,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "5906",
+    "meta": 9362,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "169986",
+    "meta": 8975,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "177510",
+    "meta": 7468,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10243",
+    "meta": 7270,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "13201",
+    "meta": 6732,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "49345",
+    "meta": 6526,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "27663",
+    "meta": 6366,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "17097",
+    "meta": 5618,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "80081",
+    "meta": 5161,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "133356",
+    "meta": 5005,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "70392",
+    "meta": 4948,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "12304",
+    "meta": 4503,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "8845",
+    "meta": 4487,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "49772",
+    "meta": 3951,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "101107",
+    "meta": 3870,
+    "recuperar": 5535,
+    "alvo25": 5535
+   },
+   {
+    "cod": "8608",
+    "meta": 3744,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "28560",
+    "meta": 3271,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "140678",
+    "meta": 3007,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "77268",
+    "meta": 2993,
+    "recuperar": 3840,
+    "alvo25": 3840
+   },
+   {
+    "cod": "106961",
+    "meta": 2674,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "29019",
+    "meta": 2531,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "12649",
+    "meta": 2432,
+    "recuperar": 3639,
+    "alvo25": 4357
+   },
+   {
+    "cod": "12871",
+    "meta": 2288,
+    "recuperar": 5490,
+    "alvo25": 6749
+   },
+   {
+    "cod": "170716",
+    "meta": 2171,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "10293",
+    "meta": 2118,
+    "recuperar": 5978,
+    "alvo25": 5978
+   },
+   {
+    "cod": "85310",
+    "meta": 2099,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "137360",
+    "meta": 1952,
+    "recuperar": 1976,
+    "alvo25": 3151
+   },
+   {
+    "cod": "87780",
+    "meta": 1930,
+    "recuperar": 2742,
+    "alvo25": 4051
+   },
+   {
+    "cod": "183539",
+    "meta": 1826,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "95187",
+    "meta": 1809,
+    "recuperar": 2873,
+    "alvo25": 3428
+   },
+   {
+    "cod": "182724",
+    "meta": 1759,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "188722",
+    "meta": 1734,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "22770",
+    "meta": 1627,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "139869",
+    "meta": 1617,
+    "recuperar": 1427,
+    "alvo25": 1645
+   },
+   {
+    "cod": "12286",
+    "meta": 1566,
+    "recuperar": 1332,
+    "alvo25": 3019
+   },
+   {
+    "cod": "45823",
+    "meta": 1558,
+    "recuperar": 1783,
+    "alvo25": 1783
+   },
+   {
+    "cod": "28216",
+    "meta": 1509,
+    "recuperar": 2178,
+    "alvo25": 2178
+   },
+   {
+    "cod": "21098",
+    "meta": 1220,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "76538",
+    "meta": 1145,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "86935",
+    "meta": 1132,
+    "recuperar": 2355,
+    "alvo25": 2913
+   },
+   {
+    "cod": "187144",
+    "meta": 1112,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "120238",
+    "meta": 1079,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "90942",
+    "meta": 1006,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "47965",
+    "meta": 1000,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "95938",
+    "meta": 995,
+    "recuperar": 774,
+    "alvo25": 1745
+   },
+   {
+    "cod": "175880",
+    "meta": 949,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "130800",
+    "meta": 942,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "77134",
+    "meta": 747,
+    "recuperar": 1256,
+    "alvo25": 1256
+   },
+   {
+    "cod": "122333",
+    "meta": 639,
+    "recuperar": 1220,
+    "alvo25": 1455
+   },
+   {
+    "cod": "135863",
+    "meta": 623,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "132291",
+    "meta": 612,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "95447",
+    "meta": 579,
+    "recuperar": 375,
+    "alvo25": 609
+   },
+   {
+    "cod": "10272",
+    "meta": 555,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "98376",
+    "meta": 554,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "133451",
+    "meta": 514,
+    "recuperar": 738,
+    "alvo25": 929
+   },
+   {
+    "cod": "82766",
+    "meta": 495,
+    "recuperar": 351,
+    "alvo25": 511
+   },
+   {
+    "cod": "125363",
+    "meta": 466,
+    "recuperar": 880,
+    "alvo25": 880
+   },
+   {
+    "cod": "85752",
+    "meta": 457,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "156762",
+    "meta": 456,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "187081",
+    "meta": 350,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "8189",
+    "meta": 264,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "21096",
+    "meta": 259,
+    "recuperar": 34,
+    "alvo25": 274
+   },
+   {
+    "cod": "20086",
+    "meta": 192,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "8020",
+    "meta": 177,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "191125",
+    "meta": 38,
+    "recuperar": 0,
+    "alvo25": 0
+   },
+   {
+    "cod": "181333",
+    "meta": 22,
+    "recuperar": 780,
+    "alvo25": 780
+   },
+   {
+    "cod": "145336",
+    "meta": 0,
+    "recuperar": 0,
+    "alvo25": 0
+   }
+  ]
+ }
+}
