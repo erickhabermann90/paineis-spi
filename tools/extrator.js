@@ -22,6 +22,7 @@ const grab=()=>{for(const r of __rows(vi)){ if(r[0]==='Selecionar Linha') store[
 grab(); const t0=Date.now();
 while(Date.now()-t0<ms){ if(s.scrollTop+s.clientHeight>=s.scrollHeight-2){await new Promise(r=>setTimeout(r,1500)); grab(); if(s.scrollTop+s.clientHeight>=s.scrollHeight-2) return {done:true,n:Object.keys(store).length};} s.scrollTop+=step; s.dispatchEvent(new Event('scroll')); await new Promise(r=>setTimeout(r,500)); grab(); }
 return {done:false,n:Object.keys(store).length};};
+// ATENÇÃO: a ordem das colunas de medida muda entre sessões (em 10/11 veio KG 26 antes de KG 25): ler sempre pelo nome no cabeçalho (__rows(0)[0].indexOf("KG 25")).
 // Curva ABC: deixa marcados exatamente os itens `targets` no parâmetro de campo vi (1 = dimensões, 2 = medidas).
 // Leva ~20–40s: rodar em segundo plano e esperar (ver SKILL).
 window.__setSel=async(vi,targets)=>{const v=[...document.querySelectorAll('visual-container')][vi]; const sc=[...v.querySelectorAll('*')].find(e=>e.scrollHeight>e.clientHeight+5 && getComputedStyle(e).overflowY!='visible'); const log=[];
