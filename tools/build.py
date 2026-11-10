@@ -97,6 +97,45 @@ ranking = [{'item': k, 'n': len(v)} for k, v in sorted(_cli_por_item.items(), ke
 resumo = []
 # RCs pausados (ex.: desligados) não são regerados; a página fica com a última versão
 alvo = [c for c in alvo if not rcs[c].get('pausado')]
+# ---- Campanha Bike / Dispenser / Baldes (4º tri) ----
+# tools/campanha_base.json (fixo): {"jan_set": {cli: [kg26, kg_fn, kg_origens]}, "hist": {"produtos": [...], "cli": {cli: [idx...]}}}
+#   jan_set = kg jan–set/2026; hist = itens comprados de jan/2025 a set/2026 (para saber o que é item novo)
+# extrato_dir/campanha.json (diário): {"q4": [[cli, kg26, fn, origens]], "q4_itens": [[cli, produto, kg]]} com filtro out–dez/2026
+CAMP_BASE = os.path.join(T, 'campanha_base.json')
+camp_base = json.load(open(CAMP_BASE)) if os.path.exists(CAMP_BASE) else None
+_camp_ext = os.path.join(ext, 'campanha.json')
+camp_dia = json.load(open(_camp_ext)) if os.path.exists(_camp_ext) else None
+CAMP_FO = os.path.join(T, 'campanha_fo_mes.json')
+camp_fo = json.load(open(CAMP_FO)) if os.path.exists(CAMP_FO) else {}
+# extrato_dir/campanha.json pode trazer "fo_mes_atual": [[cli, kg FN + Origens no mês vigente]] → regrava o mês vigente
+if camp_dia and camp_dia.get('fo_mes_atual') is not None:
+    camp_fo[str(hoje.month)] = {str(c): kg for c, kg in camp_dia['fo_mes_atual'] if kg}
+    json.dump(camp_fo, open(CAMP_FO, 'w'), ensure_ascii=False, separators=(',', ':'))
+CAMP_REGRAS = {'acrescimo': 0.30, 'meses_base': 9, 'meses_tri': 3, 'itens_novos': 15, 'dispenser_min_kg': 6000, 'bike_min_kg': 1000}
+
+def campanha_cli(carteira):
+    if not (camp_base and camp_dia):
+        return {}
+    js = camp_base['jan_set']; P = camp_base['hist']['produtos']
+    hist = {c: {P[i] for i in ix} for c, ix in camp_base['hist']['cli'].items()}
+    q4 = {str(r[0]): r for r in camp_dia['q4']}
+    q4it = {}
+    for c, prod, kg in camp_dia['q4_itens']:
+        if kg > 0:
+            q4it.setdefault(str(c), set()).add(prod)
+    R = CAMP_REGRAS; fator = (1 + R['acrescimo']) * R['meses_tri'] / R['meses_base']
+    out = {}
+    for c in carteira:
+        b = js.get(c, [0, 0, 0]); q = q4.get(c, [c, 0, 0, 0])
+        obj_vol = round(b[0] * fator); obj_fo = round((b[1] + b[2]) / R['meses_base'] * (1 + R['acrescimo']))  # baldes: só média mensal + 30% (sem × 3)
+        novos = sorted(q4it.get(c, set()) - hist.get(c, set()))
+        out[c] = {'base_mes': round(b[0] / R['meses_base']), 'obj_vol': max(obj_vol, R['bike_min_kg']) if obj_vol > 0 else 0, 'obj_vol_calc': obj_vol, 'obj_disp': max(obj_vol, R['dispenser_min_kg']),
+                  'real_vol': q[1], 'base_fo_mes': round((b[1] + b[2]) / R['meses_base']), 'obj_balde': obj_fo,
+                  # baldes: atingimento dentro de um mês (não soma meses) → kg FN + Origens de cada mês do tri
+                  'balde_mes': [[m, camp_fo.get(m, {}).get(c, 0)] for m in ('10', '11', '12')],
+                  'novos': novos}
+    return out
+
 def itens_cli(cod):
     # itens por cliente da carteira ATUAL do RC (Histórico), não pelo RC da venda — clientes transferidos levam o histórico
     carteira = {str(x[1]) for x in clients if x[0] == cod}
@@ -144,7 +183,9 @@ for cod in alvo:
     d = {'plano': [{'representante': nome, 'regional': 'Regional SPI Campinas', 'mes': mes, 'atualizado_em': atualizado,
                     'objetivo': p[1], 'acelerador': p[2], 'minimo': p[3], 'faturado': f[2], 'carteira': f[3], 'meses_fechados': meses_fechados}],
          'clientes': cl, 'rebate': reb, 'familias': fam, 'meta4t': meta4t, 'clientes4t': clientes4t,
-         'itens': [itens_cli(cod)], 'ranking': ranking}
+         'itens': [itens_cli(cod)], 'ranking': ranking,
+         'campanha': [campanha_cli([str(x[1]) for x in clients if x[0] == cod])], 'campanha_regras': [CAMP_REGRAS],
+         'carteira_kg': [{str(x[1]): x[7] for x in clients if x[0] == cod}]}
     html = (HEAD % nome.title()) + styles + '\n</head><body>\n<div id="dash-root">' + markup + '</div>\n<script>window.__DATA = ' + json.dumps(d, ensure_ascii=False) + ';</script>\n' + SHIM + script + '\n<script>dash._runAll(); let __t, __w = innerWidth; addEventListener("resize", () => { if (innerWidth === __w) return; __w = innerWidth; clearTimeout(__t); __t = setTimeout(() => dash._runAll(), 200); });</script>\n</body></html>\n'
     os.makedirs(os.path.join(SITE, rcs[cod]['slug']), exist_ok=True)
     open(os.path.join(SITE, rcs[cod]['slug'], 'index.html'), 'w').write(html)

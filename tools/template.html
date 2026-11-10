@@ -319,6 +319,26 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
 }
 html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
+/* ---- Campanha Bike / Dispenser / Baldes ---- */
+.px-premios { display: grid; gap: 12px; }
+.px-premio { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: grid; gap: 10px; background: #fff; }
+.px-premio.ok { border-color: #9fd8bd; background: #f1faf5; }
+.px-premio-h { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.px-premio-h b { font-size: 17px; }
+.px-premio-h .st { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #fdecec; color: var(--bad); white-space: nowrap; }
+.px-premio.ok .px-premio-h .st { background: #d7f0e3; color: #0b7a53; }
+.px-premio-l { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 13px; color: var(--mut); }
+.px-premio-l b { font-size: 15px; color: var(--fg); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.px-premio-l b.falta { color: var(--bad); font-size: 18px; }
+.px-premio-l b.ok { color: #0b7a53; }
+.px-pbar { height: 8px; border-radius: 99px; background: #ece8de; overflow: hidden; }
+.px-pbar i { display: block; height: 100%; border-radius: 99px; }
+.px-premio small { font-size: 12px; color: var(--mut); }
+.px-novos summary { cursor: pointer; font-size: 13px; color: var(--fg); font-weight: 600; padding: 4px 0; }
+.px-novos ul { margin: 6px 0 0; padding-left: 18px; font-size: 13px; line-height: 1.5; }
+.px-regras { font-size: 12.5px; color: var(--mut); line-height: 1.55; border-top: 1px solid var(--line); padding-top: 14px; }
+.px-regras b { color: var(--fg); }
+.px-regras ul { margin: 6px 0 0; padding-left: 18px; }
 /* ---- Positivação / Proposta ---- */
 .px-cli { display: grid; gap: 8px; }
 .px-cli .px-search { width: 100%; box-sizing: border-box; font-size: 16px; padding: 13px 14px; }
@@ -418,9 +438,9 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         </button>
         <button class="px-card px-in" type="button" data-go="pos">
           <span class="h"><span class="n">05</span><span class="go">→</span></span>
-          <h3>Positivação</h3>
+          <h3>Bike · Dispenser · Baldes</h3>
           <span class="kv" data-draw="c6">—</span>
-          <span class="kl">itens para introduzir por cliente</span>
+          <span class="kl">clientes com prêmio atingido</span>
         </button>
         <button class="px-card px-in" type="button" data-go="prop">
           <span class="h"><span class="n">06</span><span class="go">→</span></span>
@@ -549,10 +569,12 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     </section>
 
     <section data-page="pos" id="positivacao" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Positivação</h2></div>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Bike · Dispenser · Baldes</h2></div>
       <div class="px-panel px-stack">
         <div class="px-cli" data-draw="cli_pos"></div>
+        <div class="px-stack" data-draw="camp_body"></div>
         <div class="px-stack" data-draw="pos_body"></div>
+        <div class="px-regras" data-draw="camp_regras"></div>
       </div>
     </section>
 
@@ -951,7 +973,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     fill(); el.append(inp, list);
   });
   cliSel('cli_pos', 'pos'); cliSel('cli_prop', 'prop');
-  window.pxRedrawCli = () => ['cli_pos', 'pos_body', 'cli_prop', 'prop_body'].forEach((n) => dash.draw(n));
+  window.pxRedrawCli = () => ['cli_pos', 'camp_body', 'pos_body', 'cli_prop', 'prop_body'].forEach((n) => dash.draw(n));
   const itList = (rows, fmtR) => { const w = pxEl('div', 'px-it'); rows.forEach((r, i) => { const row = pxEl('div', 'px-it-row'); row.append(pxEl('div', 'i', String(i + 1)), pxEl('div', 'nm', r.item)); const k = pxEl('div', 'kg'); fmtR(r, k); row.appendChild(k); w.appendChild(row); }); return w; };
   const blkHead = (title, aside) => { const h = pxEl('div', 'px-blk-h'); h.append(pxEl('h4', '', title), pxEl('span', '', aside)); return h; };
   dash.draw('pos_body', (el) => {
@@ -973,7 +995,56 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     const tot = pxEl('div', 'px-it-tot'); tot.append(pxEl('span', '', 'Total'), pxEl('b', '', pxKg(r.itens.reduce((a, x) => a + x.kg, 0)) + ' kg')); b.appendChild(tot);
     el.appendChild(b);
   });
-  dash.draw('c6', (el) => { const p = pxOne('positivacao'); el.textContent = p ? '20' : '—'; });
+  const campCor = (p) => p >= 1 ? 'var(--ok)' : p >= 0.8 ? '#e0a800' : 'var(--bad)';
+  const campStatus = (c, R) => { const vol = c.real_vol >= c.obj_vol && c.obj_vol > 0, nov = c.novos.length >= R.itens_novos;
+    return {bike: vol && nov, disp: c.real_vol >= c.obj_disp && nov, balde: c.obj_balde > 0 && c.balde_mes.some((m) => m[1] >= c.obj_balde)}; };
+  dash.draw('c6', (el) => { const c = pxOne('campanha'), R = pxOne('campanha_regras'); if (!c || !R) { el.textContent = '—'; return; }
+    el.textContent = String(Object.values(c).filter((x) => { const s = campStatus(x, R); return s.bike || s.disp || s.balde; }).length); });
+  dash.draw('camp_body', (el) => {
+    el.replaceChildren(); if (!pxCli.cod) return; const C = pxOne('campanha'), R = pxOne('campanha_regras'); const c = C && C[pxCli.cod];
+    if (!c || !R) { el.appendChild(pxEl('div', 'px-msg', 'Sem dados da campanha para este cliente.')); return; }
+    const st = campStatus(c, R), cart = (pxOne('carteira_kg') || {})[pxCli.cod] || 0;
+    const box = pxEl('div', 'px-premios');
+    const premio = (nome, ok, obj, real, extra) => {
+      const d = pxEl('div', 'px-premio' + (ok ? ' ok' : '')); const h = pxEl('div', 'px-premio-h'); h.append(pxEl('b', '', nome), pxEl('span', 'st', ok ? '✓ Atingido' : 'Em andamento')); d.appendChild(h);
+      if (obj <= 0) { d.appendChild(pxEl('small', '', 'Cliente sem compra de jan a set de 2026: sem objetivo calculado.')); return d; }
+      const p = real / obj, bar = pxEl('div', 'px-pbar'), i = document.createElement('i'); i.style.width = Math.min(100, p * 100) + '%'; i.style.background = campCor(p); bar.appendChild(i);
+      const l1 = pxEl('div', 'px-premio-l'); l1.append(pxEl('span', '', 'Objetivo out–dez'), pxEl('b', '', pxKg(obj) + ' kg'));
+      const l2 = pxEl('div', 'px-premio-l'); l2.append(pxEl('span', '', 'Realizado (faturado)'), pxEl('b', '', pxKg(real) + ' kg · ' + Math.round(p * 100) + '%'));
+      const falta = Math.max(obj - real, 0), l3 = pxEl('div', 'px-premio-l'); l3.append(pxEl('span', '', falta ? 'Falta' : 'Volume'), pxEl('b', falta ? 'falta' : 'ok', falta ? pxKg(falta) + ' kg' : '✓ batido'));
+      d.append(l1, l2, bar, l3); if (extra) extra(d); return d; };
+    const itensNovos = (d) => { const n = c.novos.length, p = n / R.itens_novos, l = pxEl('div', 'px-premio-l'); l.append(pxEl('span', '', 'Itens novos no 4º tri'), pxEl('b', n >= R.itens_novos ? 'ok' : 'falta', n + ' de ' + R.itens_novos));
+      const bar = pxEl('div', 'px-pbar'), i = document.createElement('i'); i.style.width = Math.min(100, p * 100) + '%'; i.style.background = campCor(p); bar.appendChild(i); d.append(l, bar); };
+    box.appendChild(premio('Bicicleta', st.bike, c.obj_vol, c.real_vol, (d) => { itensNovos(d); if (c.obj_vol > (c.obj_vol_calc || 0)) d.appendChild(pxEl('small', '', 'Objetivo mínimo de ' + pxKg(R.bike_min_kg) + ' kg no trimestre.')); }));
+    box.appendChild(premio('Dispenser', st.disp, c.obj_disp, c.real_vol, (d) => { itensNovos(d); if (c.obj_disp > c.obj_vol) d.appendChild(pxEl('small', '', 'Objetivo mínimo de ' + pxKg(R.dispenser_min_kg) + ' kg no trimestre.')); }));
+    const MES = {'10': 'Outubro', '11': 'Novembro', '12': 'Dezembro'}, mesAtual = String(Number((pxOne('plano') || {}).atualizado_em?.slice(5, 7) || (new Date().getMonth() + 1)));
+    const bd = pxEl('div', 'px-premio' + (st.balde ? ' ok' : '')), bh = pxEl('div', 'px-premio-h'); bh.append(pxEl('b', '', 'Baldes'), pxEl('span', 'st', st.balde ? '✓ Atingido' : 'Em andamento')); bd.appendChild(bh);
+    if (c.obj_balde <= 0) bd.appendChild(pxEl('small', '', 'Cliente sem compra de Fórmula Natural/Origens de jan a set de 2026: sem objetivo calculado.'));
+    else {
+      const l0 = pxEl('div', 'px-premio-l'); l0.append(pxEl('span', '', 'Objetivo no mês (FN + Origens)'), pxEl('b', '', pxKg(c.obj_balde) + ' kg')); bd.appendChild(l0);
+      c.balde_mes.forEach(([m, kg]) => { if (Number(m) > Number(mesAtual) && !kg) return; const p = kg / c.obj_balde, ok = kg >= c.obj_balde;
+        const l = pxEl('div', 'px-premio-l'); l.append(pxEl('span', '', MES[m]), pxEl('b', ok ? 'ok' : '', pxKg(kg) + ' kg · ' + (ok ? '✓' : Math.round(p * 100) + '%'))); bd.appendChild(l);
+        const bar = pxEl('div', 'px-pbar'), i = document.createElement('i'); i.style.width = Math.min(100, p * 100) + '%'; i.style.background = campCor(p); bar.appendChild(i); bd.appendChild(bar); });
+      if (!st.balde) { const cur = (c.balde_mes.find((m) => m[0] === mesAtual) || [0, 0])[1], l = pxEl('div', 'px-premio-l'); l.append(pxEl('span', '', 'Falta em ' + (MES[mesAtual] || 'este mês').toLowerCase()), pxEl('b', 'falta', pxKg(Math.max(c.obj_balde - cur, 0)) + ' kg')); bd.appendChild(l); }
+      bd.appendChild(pxEl('small', '', 'Só Fórmula Natural + Origens. Vale o volume dentro de um mesmo mês.'));
+    }
+    box.appendChild(bd);
+    el.appendChild(box);
+    if (cart) el.appendChild(pxEl('div', 'px-prop-sub', '+ ' + pxKg(cart) + ' kg em carteira, ainda não faturados (entram quando faturar).'));
+    if (c.novos.length) { const det = document.createElement('details'); det.className = 'px-novos'; det.appendChild(pxEl('summary', '', 'Ver os ' + c.novos.length + ' itens novos já comprados'));
+      det.addEventListener('toggle', () => { const old = det.querySelector('ul'); if (old) old.remove(); if (!det.open) return; const ul = document.createElement('ul'); c.novos.forEach((n) => ul.appendChild(pxEl('li', '', n))); det.appendChild(ul); }); el.appendChild(det); }
+  });
+  dash.draw('camp_regras', (el) => {
+    el.replaceChildren(); const R = pxOne('campanha_regras'); if (!R) return; const pct = Math.round(R.acrescimo * 100);
+    const t = pxEl('div'); t.appendChild(pxEl('b', '', 'Regras da campanha (out–dez)'));
+    const ul = document.createElement('ul');
+    ['Objetivo de volume = média por mês de jan a set de 2026 + ' + pct + '%, × 3 meses; falta = objetivo − faturado de out a dez.',
+     'Baldes: comprar, dentro de um mesmo mês (out, nov ou dez), a média por mês de Fórmula Natural + Origens de jan a set de 2026 + ' + pct + '%. Não soma meses.',
+     'Bicicleta: atingir o volume proposto + ' + R.itens_novos + ' itens novos (mínimo de ' + pxKg(R.bike_min_kg) + ' kg).',
+     'Dispenser: atingir o volume proposto + ' + R.itens_novos + ' itens novos (mínimo de ' + pxKg(R.dispenser_min_kg / 1000) + ' toneladas).',
+     'Item novo = item que o cliente não comprou em 2025 nem em 2026 até setembro.'].forEach((x) => ul.appendChild(pxEl('li', '', x)));
+    t.appendChild(ul); el.appendChild(t);
+  });
   dash.draw('c7', (el) => { const p = pxOne('proposta'); el.textContent = p ? String(Object.values(p).filter((r) => r.falta > 0).length) : '—'; });
 
   const ids = {home: 'inicio', mes: 'mes-atual', prime: 'prime', ano: 'ano-2026', q4: 'objetivo-4tri', pos: 'positivacao', prop: 'proposta'};

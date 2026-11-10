@@ -56,3 +56,17 @@ window.__rebate=async()=>{const v=[...document.querySelectorAll('visual-containe
  const g=(o,a)=>a.map(i=>__num(o[i]));
  window.__reb=Object.values(rb).filter(o=>o['4']&&/ - /.test(o['4'])&&o['5']).map(o=>[o['4'].replace(/^\*/,''),o['5'],g(o,[6,7,9,10]),g(o,[11,12,14,15]),g(o,[16,17,19,20]),g(o,[21,22,24,25]),o['27']]);
  return {cols:Object.keys(rh).length, completo:Object.values(rb).every(o=>Object.keys(o).length>=27), n:__reb.length};};
+// Filtro MES/ANO sem usar a caixa de pesquisa (que às vezes não filtra): limpa o cartão e marca os meses rolando a lista.
+// Depois de mudar o filtro, a tabela pode mostrar o total antigo até alguma medida mudar: conferir a linha Total.
+window.__filtroLista=async(meses)=>{
+ const b=[...document.querySelectorAll('button')].find(b=>b.getAttribute('aria-label')==='MES/ANO Expandir ou recolher o cartão de filtro');
+ const card=b?.closest('filter-visual-card, [class*="filterCard"], .filter-card')||b?.parentElement?.parentElement; const l=card&&[...card.querySelectorAll('button')].find(x=>/Limpar filtro/i.test(x.getAttribute('aria-label')||x.title||'')); l?.click(); await new Promise(r=>setTimeout(r,3000));
+ if(b?.getAttribute('aria-expanded')!=='true'){ b?.click(); await new Promise(r=>setTimeout(r,2500)); }
+ const it0=[...document.querySelectorAll('.slicerItemContainer')].find(e=>/^\d\d\/20\d\d/.test(e.innerText.trim())); let sc=it0; while(sc && !(sc.scrollHeight>sc.clientHeight+5)) sc=sc.parentElement;
+ const done=new Set(); for(let k=0;k<60 && done.size<meses.length;k++){ for(const e of [...document.querySelectorAll('.slicerItemContainer')]){ const t=e.innerText.trim().split(/\s/)[0]; if(meses.includes(t)&&!done.has(t)){ if(e.getAttribute('aria-checked')!=='true'){ e.click(); await new Promise(r=>setTimeout(r,900)); } done.add(t);} }
+  sc.dispatchEvent(new WheelEvent('wheel',{deltaY:120,bubbles:true,cancelable:true})); sc.scrollTop+=60; sc.dispatchEvent(new Event('scroll')); await new Promise(r=>setTimeout(r,500)); }
+ return {n:done.size, resumo:[...document.querySelectorAll('*')].filter(x=>x.children.length===0 && /^é .*\/20/.test((x.innerText||'').trim())).map(x=>x.innerText.trim())[0]};};
+// Campanha Bike/Dispenser/Baldes (diário): filtro out–dez/2026 (__filtroLista(['10/2026','11/2026','12/2026']))
+//  a) dims [CÓD CLIENTE], medidas [KG 26, KG FN 26, KG ORIGENS 26] → q4 = [[cli, kg26, fn, origens]] (ler colunas pelo nome)
+//  b) dims [CÓD CLIENTE, PRODUTO], medida [PESO] ordenado desc → __itensBg() → q4_itens = [[cli, produto, kg]]
+//  gravar extrato/campanha.json = {q4, q4_itens}. A base fixa (jan–set/2026 e itens jan/2025–set/2026) está em tools/campanha_base.json.
