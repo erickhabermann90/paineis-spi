@@ -1026,7 +1026,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         const l = pxEl('div', 'px-premio-l'); l.append(pxEl('span', '', MES[m]), pxEl('b', ok ? 'ok' : '', pxKg(kg) + ' kg · ' + (ok ? '✓' : Math.round(p * 100) + '%'))); bd.appendChild(l);
         const bar = pxEl('div', 'px-pbar'), i = document.createElement('i'); i.style.width = Math.min(100, p * 100) + '%'; i.style.background = campCor(p); bar.appendChild(i); bd.appendChild(bar); });
       if (!st.balde) { const cur = (c.balde_mes.find((m) => m[0] === mesAtual) || [0, 0])[1], l = pxEl('div', 'px-premio-l'); l.append(pxEl('span', '', 'Falta em ' + (MES[mesAtual] || 'este mês').toLowerCase()), pxEl('b', 'falta', pxKg(Math.max(c.obj_balde - cur, 0)) + ' kg')); bd.appendChild(l); }
-      bd.appendChild(pxEl('small', '', 'Só Fórmula Natural + Origens. Vale o volume dentro de um mesmo mês.'));
+      bd.appendChild(pxEl('small', '', 'Só Fórmula Natural + Origens comprado em novembro.'));
     }
     box.appendChild(bd);
     el.appendChild(box);
@@ -1039,7 +1039,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     const t = pxEl('div'); t.appendChild(pxEl('b', '', 'Regras da campanha (out–dez)'));
     const ul = document.createElement('ul');
     ['Objetivo de volume = média por mês de jan a set de 2026 + ' + pct + '%, × 3 meses; falta = objetivo − faturado de out a dez.',
-     'Baldes: comprar, dentro de um mesmo mês (out, nov ou dez), a média por mês de Fórmula Natural + Origens de jan a set de 2026 + ' + pct + '%. Não soma meses.',
+     'Baldes: comprar em novembro a média por mês de Fórmula Natural + Origens de jan a set de 2026 + ' + pct + '%. Conta só o volume de novembro.',
      'Bicicleta: atingir o volume proposto + ' + R.itens_novos + ' itens novos (mínimo de ' + pxKg(R.bike_min_kg) + ' kg).',
      'Dispenser: atingir o volume proposto + ' + R.itens_novos + ' itens novos (mínimo de ' + pxKg(R.dispenser_min_kg / 1000) + ' toneladas).',
      'Item novo = item que o cliente não comprou em 2025 nem em 2026 até setembro.'].forEach((x) => ul.appendChild(pxEl('li', '', x)));

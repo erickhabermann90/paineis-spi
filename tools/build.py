@@ -111,7 +111,7 @@ camp_fo = json.load(open(CAMP_FO)) if os.path.exists(CAMP_FO) else {}
 if camp_dia and camp_dia.get('fo_mes_atual') is not None:
     camp_fo[str(hoje.month)] = {str(c): kg for c, kg in camp_dia['fo_mes_atual'] if kg}
     json.dump(camp_fo, open(CAMP_FO, 'w'), ensure_ascii=False, separators=(',', ':'))
-CAMP_REGRAS = {'acrescimo': 0.30, 'meses_base': 9, 'meses_tri': 3, 'itens_novos': 15, 'dispenser_min_kg': 6000, 'bike_min_kg': 1000}
+CAMP_REGRAS = {'acrescimo': 0.30, 'meses_base': 9, 'meses_tri': 3, 'itens_novos': 15, 'dispenser_min_kg': 6000, 'bike_min_kg': 1000, 'balde_meses': ['11']}
 
 def campanha_cli(carteira):
     if not (camp_base and camp_dia):
@@ -132,7 +132,7 @@ def campanha_cli(carteira):
         out[c] = {'base_mes': round(b[0] / R['meses_base']), 'obj_vol': max(obj_vol, R['bike_min_kg']) if obj_vol > 0 else 0, 'obj_vol_calc': obj_vol, 'obj_disp': max(obj_vol, R['dispenser_min_kg']),
                   'real_vol': q[1], 'base_fo_mes': round((b[1] + b[2]) / R['meses_base']), 'obj_balde': obj_fo,
                   # baldes: atingimento dentro de um mês (não soma meses) → kg FN + Origens de cada mês do tri
-                  'balde_mes': [[m, camp_fo.get(m, {}).get(c, 0)] for m in ('10', '11', '12')],
+                  'balde_mes': [[m, camp_fo.get(m, {}).get(c, 0)] for m in R['balde_meses']],
                   'novos': novos}
     return out
 
