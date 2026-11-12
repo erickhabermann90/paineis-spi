@@ -186,6 +186,14 @@ for cod in alvo:
          'itens': [itens_cli(cod)], 'ranking': ranking,
          'campanha': [campanha_cli([str(x[1]) for x in clients if x[0] == cod])], 'campanha_regras': [CAMP_REGRAS],
          'carteira_kg': [{str(x[1]): x[7] for x in clients if x[0] == cod}]}
+    # piloto de positivação (só para RCs com "piloto": true em rcs.json, ou PILOTO=<cód> no ambiente para prévia)
+    if rcs[cod].get('piloto') or os.environ.get('PILOTO') == cod:
+        import base64
+        pcfg = json.load(open(os.path.join(T, 'piloto', 'piloto.json')))
+        for fx in pcfg['faixas']:
+            fx['src'] = 'data:image/webp;base64,' + base64.b64encode(open(os.path.join(T, 'piloto', fx['img'] + '.webp'), 'rb').read()).decode()
+        pcomp = os.path.join(T, 'piloto', 'compras.json')
+        d['piloto'] = [pcfg]; d['piloto_compras'] = [json.load(open(pcomp)) if os.path.exists(pcomp) else {}]
     html = (HEAD % nome.title()) + styles + '\n</head><body>\n<div id="dash-root">' + markup + '</div>\n<script>window.__DATA = ' + json.dumps(d, ensure_ascii=False) + ';</script>\n' + SHIM + script + '\n<script>dash._runAll(); let __t, __w = innerWidth; addEventListener("resize", () => { if (innerWidth === __w) return; __w = innerWidth; clearTimeout(__t); __t = setTimeout(() => dash._runAll(), 200); });</script>\n</body></html>\n'
     os.makedirs(os.path.join(SITE, rcs[cod]['slug']), exist_ok=True)
     open(os.path.join(SITE, rcs[cod]['slug'], 'index.html'), 'w').write(html)

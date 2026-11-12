@@ -1,0 +1,24 @@
+{
+ "nome": "Positivou, Ganhou!",
+ "periodo": "a definir",
+ "faixas": [
+  {
+   "n": 5,
+   "premio": "Cafeteira Electrolux",
+   "valor": 150,
+   "img": "cafeteira"
+  },
+  {
+   "n": 10,
+   "premio": "Echo Dot (Alexa)",
+   "valor": 300,
+   "img": "echo"
+  },
+  {
+   "n": 15,
+   "premio": "Robô aspirador Electrolux",
+   "valor": 600,
+   "img": "robo"
+  }
+ ]
+}
