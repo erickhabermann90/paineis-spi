@@ -448,7 +448,6 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .pil-limpa { all: unset; cursor: pointer; -webkit-tap-highlight-color: transparent; font-size: 11px; font-weight: 700; color: #16181d; border: 1px solid #16181d; border-radius: 99px; padding: 2px 9px; white-space: nowrap; }
 .pil-itens .h { gap: 8px; }
 .pil-bts { display: flex; align-items: center; gap: 6px; flex: none; }
-.pil-csv { background: #16181d; color: #fff; }
 .pil-it.ok { background: #effbf5; border-color: #9fe3c6; }
 .pil-it.ok .c { background: var(--ok); border-color: var(--ok); }
 .pil-it.ok .t { color: #0b6b49; font-weight: 600; }
@@ -540,7 +539,6 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
             <h3 data-draw="c8_nome">Campeões de Giro</h3>
             <span class="kv" data-draw="c8">—</span>
             <span class="kl">clientes com prêmio garantido</span>
-            <span class="pil-nota-c">Coloque 5, 10 ou 15 dos mais vendidos da região e ganhe bonificação em produtos.</span>
           </span>
           <span class="pil-fotos" data-draw="c8_fotos"></span>
           <span class="go pil-go">→</span>
@@ -680,7 +678,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       <label class="pil-sel"><span>Cliente</span><select data-draw="pil_cli" aria-label="Selecionar cliente"></select></label>
       <div class="pil-prog" data-draw="pil_prog"></div>
       <div class="pil-premios" data-draw="pil_premios"></div>
-      <div class="pil-nota">Coloque 5, 10 ou 15 destes itens na loja e ganhe <b>bonificação em produtos</b> no valor indicado. As fotos são sugestão de compra.</div>
+      <div class="pil-nota">Prêmio para o cliente <b>sortear na loja</b>, pago em <b>bonificação de produtos</b> no valor indicado.</div>
       <div class="pil-itens" data-draw="pil_itens"></div>
     </section>
 
@@ -1183,14 +1181,6 @@ window.dash = (() => {
     const n = lista.filter((x) => comp.has(x)).length, sel = pxPil.sel[cod] || (pxPil.sel[cod] = new Set());
     sel.forEach((x) => { if (comp.has(x)) sel.delete(x); });
     return {P, lista, comp, n, sel, tot: n + sel.size}; };
-  const pilCsv = (d) => { const cli = (dash.data('carteira').data || []).find((c) => c.cod === pxPil.cod) || {}, P = d.P, hoje = new Date().toISOString().slice(0, 10);
-    const q = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"';
-    const linhas = [['Cód. cliente', 'Cliente', 'Nº', 'Item', 'Situação'].map(q).join(';')];
-    d.lista.forEach((it, i) => linhas.push([pxPil.cod, cli.razao_social, i + 1, it, d.comp.has(it) ? 'Comprado' : d.sel.has(it) ? 'No pedido' : 'Falta'].map(q).join(';')));
-    const pr = P.faixas.filter((f) => d.tot >= f.n).pop();
-    linhas.push('', [q('Total'), q(d.tot + ' de ' + P.faixas[P.faixas.length - 1].n + ' (' + d.n + ' comprados + ' + d.sel.size + ' no pedido)'), q(''), q('Prêmio'), q(pr ? pr.premio + ' · R$ ' + pr.valor + ' em produtos (bonificação)' : 'nenhum ainda')].join(';'));
-    const blob = new Blob(['﻿' + linhas.join('\r\n')], {type: 'text/csv;charset=utf-8'}), url = URL.createObjectURL(blob), a = document.createElement('a');
-    a.href = url; a.download = 'campeoes_de_giro_' + pxPil.cod + '_' + hoje + '.csv'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 4000); };
   const pilRedraw = () => ['pil_prog', 'pil_premios', 'pil_itens'].forEach((n) => dash.draw(n));
   dash.draw('c8_card', (el) => { el.hidden = !pxOne('piloto'); });
   dash.draw('c8_fotos', (el) => { el.replaceChildren(); const P = pxOne('piloto'); if (!P) return;
@@ -1225,7 +1215,6 @@ window.dash = (() => {
     const bt = pxEl('div', 'pil-bts');
     if (d.sel.size) { const lp = pxEl('button', 'pil-limpa', 'Limpar'); lp.type = 'button'; lp.onclick = () => { d.sel.clear(); pilRedraw(); }; bt.appendChild(lp); }
     else bt.appendChild(pxEl('span', '', 'toque para montar o pedido'));
-    const cs = pxEl('button', 'pil-limpa pil-csv', '⬇ CSV'); cs.type = 'button'; cs.setAttribute('aria-label', 'Exportar itens em CSV'); cs.onclick = () => pilCsv(d); bt.appendChild(cs);
     h.appendChild(bt);
     el.appendChild(h);
     const g = pxEl('div', 'pil-grid'); d.lista.forEach((it) => { const ok = d.comp.has(it), on = d.sel.has(it), r = pxEl('button', 'pil-it' + (ok ? ' ok' : on ? ' sel' : ''));
