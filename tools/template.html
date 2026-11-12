@@ -422,7 +422,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .pil-nota-c { margin-top: 6px; font-size: 11px; line-height: 1.25; color: #8a6a00; }
 .pil-itens { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 4px; }
 .pil-itens .h { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; }
-.pil-itens .h b { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+.pil-itens .h b { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
 .pil-itens .h span { color: var(--mut); }
 .pil-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: column; grid-template-rows: repeat(10, minmax(0, 1fr)); gap: 3px 6px; }
 .pil-it { display: flex; align-items: center; gap: 6px; min-height: 0; overflow: hidden; border-radius: 8px; padding: 0 6px; background: #fff; border: 1px solid var(--line); font-size: 10.5px; line-height: 1.15; }
@@ -514,10 +514,10 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         <button class="px-card px-in px-pil-card" type="button" data-go="pil" data-draw="c8_card" hidden>
           <span class="pil-txt">
             <span class="h"><span class="n">07</span><span class="pil-tag">PILOTO</span></span>
-            <h3 data-draw="c8_nome">Piloto</h3>
+            <h3 data-draw="c8_nome">Campeões de Giro</h3>
             <span class="kv" data-draw="c8">—</span>
             <span class="kl">clientes com prêmio garantido</span>
-            <span class="pil-nota-c">Prêmio em bonificação de produtos · fotos = sugestão de compra</span>
+            <span class="pil-nota-c">Coloque 5, 10 ou 15 dos mais vendidos da região e ganhe bonificação em produtos.</span>
           </span>
           <span class="pil-fotos" data-draw="c8_fotos"></span>
           <span class="go pil-go">→</span>
@@ -653,11 +653,11 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     </section>
 
     <section data-page="pil" id="piloto" class="px-pil" hidden>
-      <div class="pil-head"><button class="px-back" type="button" data-go="home">← Início</button><div class="pil-tit"><small>Piloto de positivação</small><b data-draw="pil_nome">—</b></div></div>
+      <div class="pil-head"><button class="px-back" type="button" data-go="home">← Início</button><div class="pil-tit"><small>Piloto · mais vendidos da região</small><b data-draw="pil_nome">—</b></div></div>
       <label class="pil-sel"><span>Cliente</span><select data-draw="pil_cli" aria-label="Selecionar cliente"></select></label>
       <div class="pil-prog" data-draw="pil_prog"></div>
       <div class="pil-premios" data-draw="pil_premios"></div>
-      <div class="pil-nota">Prêmio pago em <b>bonificação de produtos</b> no valor indicado. Os itens das fotos são sugestão de compra com esse valor.</div>
+      <div class="pil-nota">Coloque 5, 10 ou 15 destes itens na loja e ganhe <b>bonificação em produtos</b> no valor indicado. As fotos são sugestão de compra.</div>
       <div class="pil-itens" data-draw="pil_itens"></div>
     </section>
 
@@ -1149,7 +1149,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     el.addEventListener('change', () => { pxPil.cod = el.value || null; ['pil_prog', 'pil_premios', 'pil_itens'].forEach((n) => dash.draw(n)); }); });
   dash.draw('pil_prog', (el) => { el.replaceChildren(); const P = pxOne('piloto'); if (!P) return; const d = pilDados(pxPil.cod), n = d ? d.n : 0, max = P.faixas[P.faixas.length - 1].n;
     const prox = P.faixas.find((f) => n < f.n), l = pxEl('div', 'l'), a = pxEl('div');
-    a.append(pxEl('b', '', String(n)), pxEl('span', '', ' de ' + max + ' itens positivados'));
+    a.append(pxEl('b', '', String(n)), pxEl('span', '', ' de ' + max + ' campeões na loja'));
     l.append(a, pxEl('span', '', !d ? 'Período: ' + P.periodo : prox ? 'Faltam ' + (prox.n - n) + ' p/ o próximo' : '✓ Prêmio máximo'));
     const bar = pxEl('div', 'pil-bar'), i = document.createElement('i'); i.style.width = Math.min(100, n / max * 100) + '%'; if (n >= max) i.className = 'ok'; bar.appendChild(i);
     P.faixas.forEach((f) => { const m = document.createElement('em'); m.style.left = Math.min(100, f.n / max * 100) + '%'; if (n >= f.n) m.className = 'ok'; if (f.n === max) m.style.marginLeft = '-16px'; bar.appendChild(m); });
@@ -1162,8 +1162,8 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         pxEl('span', 's', ok ? '✓ Garantido' : d ? 'Faltam ' + (f.n - n) : ' '));
       el.appendChild(c); }); });
   dash.draw('pil_itens', (el) => { el.replaceChildren(); const d = pilDados(pxPil.cod);
-    if (!d) { el.appendChild(pxEl('div', 'pil-vazio', 'Selecione o cliente para ver os itens a positivar.')); return; }
-    const h = pxEl('div', 'h'); h.append(pxEl('b', '', 'Itens a positivar'), pxEl('span', '', 'top ' + d.lista.length + ' da Regional')); el.appendChild(h);
+    if (!d) { el.appendChild(pxEl('div', 'pil-vazio', 'Selecione o cliente para ver os mais vendidos da região que faltam na loja.')); return; }
+    const h = pxEl('div', 'h'); h.append(pxEl('b', '', 'Mais vendidos da região que faltam na loja')); el.appendChild(h);
     const g = pxEl('div', 'pil-grid'); d.lista.forEach((it) => { const ok = d.comp.has(it), r = pxEl('div', 'pil-it' + (ok ? ' ok' : '')); r.append(pxEl('span', 'c', ok ? '✓' : ''), pxEl('span', 't', it)); g.appendChild(r); });
     el.appendChild(g); });
   dash.draw('c7', (el) => { const p = pxOne('proposta'); el.textContent = p ? String(Object.values(p).filter((r) => r.falta > 0).length) : '—'; });
