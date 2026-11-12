@@ -425,9 +425,17 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .pil-itens .h b { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
 .pil-itens .h span { color: var(--mut); }
 .pil-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: column; grid-template-rows: repeat(10, minmax(0, 1fr)); gap: 3px 6px; }
+.pil-it { all: unset; box-sizing: border-box; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; color: var(--fg); text-align: left; transition: transform .08s, background .15s; }
 .pil-it { display: flex; align-items: center; gap: 6px; min-height: 0; overflow: hidden; border-radius: 8px; padding: 0 6px; background: #fff; border: 1px solid var(--line); font-size: 10.5px; line-height: 1.15; }
 .pil-it .c { flex: none; width: 15px; height: 15px; border-radius: 50%; border: 1.5px solid #b9b9c0; display: grid; place-items: center; font-size: 10px; font-weight: 800; color: #fff; }
 .pil-it .t { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.pil-it:active { transform: scale(.97); }
+.pil-it.sel { background: #fff4d6; border-color: #ffc000; box-shadow: inset 0 0 0 1px #ffc000; }
+.pil-it.sel .c { background: #ffc000; border-color: #ffc000; color: #16181d; }
+.pil-it.sel .t { font-weight: 700; }
+.pil-it[disabled] { cursor: default; }
+.pil-limpa { all: unset; cursor: pointer; font-size: 11px; font-weight: 700; color: #16181d; border: 1px solid #16181d; border-radius: 99px; padding: 2px 9px; white-space: nowrap; }
+.pil-itens .h { gap: 8px; }
 .pil-it.ok { background: #effbf5; border-color: #9fe3c6; }
 .pil-it.ok .c { background: var(--ok); border-color: var(--ok); }
 .pil-it.ok .t { color: #0b6b49; font-weight: 600; }
@@ -1130,12 +1138,15 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   });
 
   // ===== Piloto de positivação =====
-  window.pxPil = {cod: null};
+  window.pxPil = {cod: null, sel: {}};
   const pilDemo = /[?&]demo=1/.test(location.search);
   const pilDados = (cod) => { const P = pxOne('piloto'); if (!P || !cod) return null; const pos = pxOne('positivacao'), r = pos && pos[cod];
     const lista = (r ? r.intro : (dash.data('ranking').data || []).slice(0, 20)).map((x) => x.item);
     const comp = new Set(((pxOne('piloto_compras') || {})[cod]) || (pilDemo ? lista.filter((_, i) => i % 3 !== 2).slice(0, 7) : []));
-    const n = lista.filter((x) => comp.has(x)).length; return {P, lista, comp, n}; };
+    const n = lista.filter((x) => comp.has(x)).length, sel = pxPil.sel[cod] || (pxPil.sel[cod] = new Set());
+    sel.forEach((x) => { if (comp.has(x)) sel.delete(x); });
+    return {P, lista, comp, n, sel, tot: n + sel.size}; };
+  const pilRedraw = () => ['pil_prog', 'pil_premios', 'pil_itens'].forEach((n) => dash.draw(n));
   dash.draw('c8_card', (el) => { el.hidden = !pxOne('piloto'); });
   dash.draw('c8_fotos', (el) => { el.replaceChildren(); const P = pxOne('piloto'); if (!P) return;
     P.faixas.forEach((f) => { const w = pxEl('span'), im = document.createElement('img'); im.src = f.src; im.alt = f.premio; w.append(im, pxEl('small', '', f.n + ' itens')); el.appendChild(w); }); });
@@ -1146,25 +1157,34 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   dash.draw('pil_cli', (el) => { const d = dash.data('carteira'); if (d.status !== 'ok' || el.options.length) return;
     const o0 = document.createElement('option'); o0.value = ''; o0.textContent = 'Selecione o cliente…'; el.appendChild(o0);
     d.data.forEach((c) => { const o = document.createElement('option'); o.value = c.cod; o.textContent = c.razao_social + ' · ' + c.cod; el.appendChild(o); });
-    el.addEventListener('change', () => { pxPil.cod = el.value || null; ['pil_prog', 'pil_premios', 'pil_itens'].forEach((n) => dash.draw(n)); }); });
-  dash.draw('pil_prog', (el) => { el.replaceChildren(); const P = pxOne('piloto'); if (!P) return; const d = pilDados(pxPil.cod), n = d ? d.n : 0, max = P.faixas[P.faixas.length - 1].n;
+    el.addEventListener('change', () => { pxPil.cod = el.value || null; pilRedraw(); }); });
+  dash.draw('pil_prog', (el) => { el.replaceChildren(); const P = pxOne('piloto'); if (!P) return; const d = pilDados(pxPil.cod), n = d ? d.tot : 0, max = P.faixas[P.faixas.length - 1].n;
     const prox = P.faixas.find((f) => n < f.n), l = pxEl('div', 'l'), a = pxEl('div');
-    a.append(pxEl('b', '', String(n)), pxEl('span', '', ' de ' + max + ' campeões na loja'));
-    l.append(a, pxEl('span', '', !d ? 'Período: ' + P.periodo : prox ? 'Faltam ' + (prox.n - n) + ' p/ o próximo' : '✓ Prêmio máximo'));
-    const bar = pxEl('div', 'pil-bar'), i = document.createElement('i'); i.style.width = Math.min(100, n / max * 100) + '%'; if (n >= max) i.className = 'ok'; bar.appendChild(i);
-    P.faixas.forEach((f) => { const m = document.createElement('em'); m.style.left = Math.min(100, f.n / max * 100) + '%'; if (n >= f.n) m.className = 'ok'; if (f.n === max) m.style.marginLeft = '-16px'; bar.appendChild(m); });
+    a.append(pxEl('b', '', String(n)), pxEl('span', '', ' de ' + max + (d && d.sel.size ? ' com o pedido' : ' campeões na loja')));
+    l.append(a, pxEl('span', '', !d ? 'Período: ' + P.periodo : d.sel.size ? d.n + ' comprados + ' + d.sel.size + ' no pedido' : prox ? 'Faltam ' + (prox.n - n) + ' p/ o próximo' : '✓ Prêmio máximo'));
+    const bar = pxEl('div', 'pil-bar');
+    if (d && d.n) { const i0 = document.createElement('i'); i0.className = 'ok'; i0.style.width = Math.min(100, d.n / max * 100) + '%'; i0.style.zIndex = 1; bar.appendChild(i0); }
+    const i = document.createElement('i'); i.style.width = Math.min(100, n / max * 100) + '%'; bar.appendChild(i);
+    P.faixas.forEach((f) => { const m = document.createElement('em'); m.style.left = Math.min(100, f.n / max * 100) + '%'; if (n >= f.n) m.className = 'ok'; if (f.n === max) m.style.marginLeft = '-16px'; m.style.zIndex = 2; bar.appendChild(m); });
     el.append(l, bar); });
-  dash.draw('pil_premios', (el) => { el.replaceChildren(); const P = pxOne('piloto'); if (!P) return; const d = pilDados(pxPil.cod), n = d ? d.n : 0;
+  dash.draw('pil_premios', (el) => { el.replaceChildren(); const P = pxOne('piloto'); if (!P) return; const d = pilDados(pxPil.cod), n = d ? d.tot : 0;
     const prox = P.faixas.find((f) => n < f.n);
-    P.faixas.forEach((f) => { const ok = d && n >= f.n, c = pxEl('div', 'pil-pr' + (ok ? ' ok' : d && f === prox ? ' prox' : ''));
+    P.faixas.forEach((f) => { const ok = d && n >= f.n, gar = d && d.n >= f.n, c = pxEl('div', 'pil-pr' + (ok ? ' ok' : d && f === prox ? ' prox' : ''));
       const im = document.createElement('img'); im.src = f.src; im.alt = f.premio; im.loading = 'eager';
       c.append(im, pxEl('span', 'n', f.n + ' itens'), pxEl('span', 'p', f.premio), pxEl('span', 'v', 'R$ ' + f.valor + ' em produtos'),
-        pxEl('span', 's', ok ? '✓ Garantido' : d ? 'Faltam ' + (f.n - n) : ' '));
+        pxEl('span', 's', gar ? '✓ Garantido' : ok ? '✓ Com este pedido' : d ? 'Faltam ' + (f.n - n) : ' '));
       el.appendChild(c); }); });
   dash.draw('pil_itens', (el) => { el.replaceChildren(); const d = pilDados(pxPil.cod);
     if (!d) { el.appendChild(pxEl('div', 'pil-vazio', 'Selecione o cliente para ver os mais vendidos da região que faltam na loja.')); return; }
-    const h = pxEl('div', 'h'); h.append(pxEl('b', '', 'Mais vendidos da região que faltam na loja')); el.appendChild(h);
-    const g = pxEl('div', 'pil-grid'); d.lista.forEach((it) => { const ok = d.comp.has(it), r = pxEl('div', 'pil-it' + (ok ? ' ok' : '')); r.append(pxEl('span', 'c', ok ? '✓' : ''), pxEl('span', 't', it)); g.appendChild(r); });
+    const h = pxEl('div', 'h'); h.append(pxEl('b', '', 'Mais vendidos da região que faltam na loja'));
+    if (d.sel.size) { const lp = pxEl('button', 'pil-limpa', 'Limpar pedido'); lp.type = 'button'; lp.onclick = () => { d.sel.clear(); pilRedraw(); }; h.appendChild(lp); }
+    else h.appendChild(pxEl('span', '', 'toque para montar o pedido'));
+    el.appendChild(h);
+    const g = pxEl('div', 'pil-grid'); d.lista.forEach((it) => { const ok = d.comp.has(it), on = d.sel.has(it), r = pxEl('button', 'pil-it' + (ok ? ' ok' : on ? ' sel' : ''));
+      r.type = 'button'; r.setAttribute('aria-pressed', String(ok || on)); r.disabled = ok;
+      r.append(pxEl('span', 'c', ok || on ? '✓' : ''), pxEl('span', 't', it));
+      if (!ok) r.onclick = () => { on ? d.sel.delete(it) : d.sel.add(it); pilRedraw(); };
+      g.appendChild(r); });
     el.appendChild(g); });
   dash.draw('c7', (el) => { const p = pxOne('proposta'); el.textContent = p ? String(Object.values(p).filter((r) => r.falta > 0).length) : '—'; });
 
