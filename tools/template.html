@@ -517,7 +517,23 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 
 /* na tela inicial (padrão): campanhas sem número, só a etiqueta */
-.px-cards > .cmp-list .cmp-card .n { display: none; }
+
+
+/* card Campanhas na tela inicial (padrão) */
+.g-camp { grid-column: 1 / -1 !important; position: relative; overflow: hidden; display: grid !important; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "h ps" "t ps" "v ps" "l ps"; column-gap: 10px;
+  background: linear-gradient(120deg, #fffaea 0%, #ffecb0 100%) !important; border: 1px solid #f0c94f !important; box-shadow: inset 4px 0 0 #ffc000, 0 8px 22px -16px rgba(120,90,0,.4) !important; }
+.g-camp .h { grid-area: h; } .g-camp h3 { grid-area: t; display: flex; align-items: center; gap: 6px; color: #16181d !important; }
+.g-camp .kv { grid-area: v; color: #16181d !important; } .g-camp .kl { grid-area: l; color: #6c5a2e !important; }
+.g-camp .n, .g-camp .go { color: #b07d00 !important; }
+.g-new { font-size: 9.5px; letter-spacing: .1em; font-weight: 800; color: #fff; background: #d7262e; border-radius: 99px; padding: 2px 7px; animation: gnew 1.4s ease-in-out infinite alternate; }
+@keyframes gnew { to { transform: scale(1.08); } }
+.g-ps { grid-area: ps; display: flex; align-items: flex-end; align-self: end; margin-bottom: -6px; }
+.g-ps img { position: relative; height: clamp(58px, 16vw, 92px); width: auto; filter: drop-shadow(0 4px 6px rgba(0,0,0,.3)); }
+.g-ps img + img { margin-left: -22px; }
+.g-ps img:nth-child(odd) { transform: rotate(-5deg); } .g-ps img:nth-child(even) { transform: rotate(4deg) translateY(-3px); }
+@media (max-width: 380px) { .g-ps img:nth-child(n+4) { display: none; } }
+[data-page="camp"] .px-cards { gap: 10px !important; grid-auto-rows: auto !important; align-items: start; }
+[data-page="camp"] .cmp-card { margin: 0 !important; grid-column: 1 / -1 !important; }
 </style>
 
 <div class="px">
@@ -581,11 +597,12 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
             <span class="hl-txt">Faltam <b data-draw="c5_falta" data-source="q4" data-field="falta" data-row="0">—</b> kg para o objetivo do trimestre</span>
           </span>
         </button>
-        <button class="px-card px-in cmp-card cp-card f-bb" type="button" data-go="pos" style="--c1:#3d86ea;--c2:#1846b8;--fx:#0f2a6b;--tg:#ffc000;--tt:#fff;--ts:0 2px 0 rgba(0,0,0,.3);--ac:#ffc000;--sb:#e6efff">
-          <div class="cmp-tx"><span class="h"><span class="n">05</span><span class="cmp-tag" style="color:#16181d">SELL OUT</span></span>
-            <h3>Bike · Balde</h3><span class="cmp-sub">Origens / FN</span></div>
-          <div class="cmp-ps"><img src="../assets/campanhas/camp_bike_px.webp" alt="Bicicleta Origens"><img src="../assets/campanhas/camp_baldes_px.webp" alt="Balde FN"></div>
-          <div class="cmp-fx"><span><b data-draw="c6">—</b> clientes com prêmio</span><b>out–dez →</b></div>
+        <button class="px-card px-in g-camp" type="button" data-go="camp">
+          <span class="h"><span class="n">05</span><span class="go">→</span></span>
+          <h3>Campanhas <span class="g-new">NOVO</span></h3>
+          <span class="kv" data-draw="g2">—</span>
+          <span class="kl" data-draw="g2l">campanhas ativas</span>
+          <span class="g-ps" data-draw="g2ps"></span>
         </button>
         <button class="px-card px-in" type="button" data-go="prop">
           <span class="h"><span class="n">06</span><span class="go">→</span></span>
@@ -593,7 +610,6 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
           <span class="kv" data-draw="c7">—</span>
           <span class="kl">clientes abaixo do objetivo do 4º tri</span>
         </button>
-        <div class="cmp-list" data-draw="cmp_list"></div>
         <button class="px-card px-in px-pil-card" type="button" data-go="pil" data-draw="c8_card" hidden>
           <span class="pil-txt">
             <span class="h"><span class="n">07</span><span class="pil-tag">PILOTO</span></span>
@@ -725,7 +741,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     </section>
 
     <section data-page="pos" id="positivacao" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Bicicleta · Baldes</h2></div>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="camp">← Campanhas</button><h2>Bicicleta · Baldes</h2></div>
       <div class="px-panel px-stack">
         <div class="px-cli" data-draw="cli_pos"></div>
         <div class="px-stack" data-draw="camp_body"></div>
@@ -743,8 +759,21 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       <div class="pil-itens" data-draw="pil_itens"></div>
     </section>
 
+    <section data-page="camp" id="campanhas" class="px-wrap" style="gap: inherit" hidden>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Campanhas</h2></div>
+      <div class="px-cards">
+        <button class="px-card px-in cmp-card cp-card f-bb" type="button" data-go="pos" style="--c1:#3d86ea;--c2:#1846b8;--fx:#0f2a6b;--tg:#ffc000;--tt:#fff;--ts:0 2px 0 rgba(0,0,0,.3);--ac:#ffc000;--sb:#e6efff">
+          <div class="cmp-tx"><span class="h"><span class="n">01</span><span class="cmp-tag" style="color:#16181d">SELL OUT</span></span>
+            <h3>Bike · Balde</h3><span class="cmp-sub">Origens / FN</span></div>
+          <div class="cmp-ps"><img src="../assets/campanhas/camp_bike_px.webp" alt="Bicicleta Origens"><img src="../assets/campanhas/camp_baldes_px.webp" alt="Balde FN"></div>
+          <div class="cmp-fx"><span><b data-draw="c6">—</b> clientes com prêmio</span><b>out–dez →</b></div>
+        </button>
+        <div class="cmp-list" data-draw="cmp_list"></div>
+      </div>
+    </section>
+
     <section data-page="cmp" id="campanha" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2 data-draw="cmp_tit">Campanha</h2></div>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="camp">← Campanhas</button><h2 data-draw="cmp_tit">Campanha</h2></div>
       <div class="cmp-det" data-draw="cmp_det"></div>
     </section>
 
@@ -1295,9 +1324,13 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       const a2 = pxEl('div'); a2.appendChild(pxEl('h4', '', 'Ganhe')); ln.ganhe.forEach((x) => a2.appendChild(pxEl('div', 'cmp-it g', x))); t.append(a1, a2); el.appendChild(t); });
     if (c.como_funciona) { const t = pxEl('div', 'cmp-bx'); t.append(pxEl('h4', '', 'Como funciona'), pxEl('p', '', c.como_funciona)); el.appendChild(t); } });
 
+  const g2Ativas = () => { const P = pxOne('plano'); return (dash.data('campanhas_extra').data || []).filter((c) => { const d = c.data_final.split('/'); return !P || (d[2] + '-' + d[1] + '-' + d[0]) >= P.atualizado_em; }); };
+  dash.draw('g2', (el) => { el.textContent = String(g2Ativas().length + 1); });
+  dash.draw('g2l', (el) => { const c6 = document.querySelector('[data-draw="c6"]'); el.textContent = 'campanhas ativas · toque para ver'; });
+  dash.draw('g2ps', (el) => { el.replaceChildren(); [].concat(g2Ativas().map((c) => c.packshots[Math.floor(c.packshots.length / 2)])).slice(0, 4).forEach((f, i) => { const im = document.createElement('img'); im.src = '../assets/campanhas/' + f; im.alt = ''; im.style.zIndex = 10 - i; el.appendChild(im); }); });
   dash.draw('c7', (el) => { const p = pxOne('proposta'); el.textContent = p ? String(Object.values(p).filter((r) => r.falta > 0).length) : '—'; });
 
-  const ids = {home: 'inicio', cmp: 'campanha', mes: 'mes-atual', prime: 'prime', ano: 'ano-2026', q4: 'objetivo-4tri', pos: 'positivacao', prop: 'proposta', pil: 'piloto'};
+  const ids = {home: 'inicio', camp: 'campanhas', cmp: 'campanha', mes: 'mes-atual', prime: 'prime', ano: 'ano-2026', q4: 'objetivo-4tri', pos: 'positivacao', prop: 'proposta', pil: 'piloto'};
   const show = (page) => {
     document.querySelectorAll('[data-page]').forEach((s) => { s.hidden = s.dataset.page !== page; });
     if (page === 'q4') { try { dash.draw('q4_meses'); } catch (e) {} }
