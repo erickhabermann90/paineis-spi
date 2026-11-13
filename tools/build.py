@@ -146,6 +146,7 @@ def itens_cli(cod):
             out[str(r[1])][r[2]] += r[4]
     return {c: sorted(([k, v] for k, v in d.items()), key=lambda x: -x[1]) for c, d in out.items()}
 
+gest = []
 for cod in alvo:
     nome = rcs[cod]['nome']; p = plano[nome]; f = flash.get(nome, [nome, 0, 0, 0])
     cl = [{'cod': x[1], 'razao_social': x[2], 'rede': x[3], # médias do próprio BI (MED KG 25/26, mesmo período) quando vierem no extrato
@@ -199,8 +200,17 @@ for cod in alvo:
     open(os.path.join(SITE, rcs[cod]['slug'], 'index.html'), 'w').write(html)
     q = meta4t[0]; rq = q['out'] + q['nov'] + q['dez']
     resumo.append((nome, f[2], p[1], f[2] / p[1], len(cl), sum(c['kg_mes'] for c in cl), q['objetivo'], rq))
+    gest.append({'nome': nome.title(), 'slug': rcs[cod]['slug'], 'fat': f[2], 'carteira': f[3], 'obj': p[1], 'obj4t': q['objetivo'], 'real4t': rq})
 
 open(os.path.join(SITE, 'index.html'), 'w').write('<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>Acesso restrito</title><body style="background:#050505;color:#999;font-family:system-ui;display:grid;place-items:center;height:100vh;margin:0">Use o link enviado pelo seu gestor.</body>')
+# página do gestor: lista dos RCs + espelho do painel de cada um (slug fixo em tools/gestor.json)
+GJ = os.path.join(T, 'gestor.json')
+if not os.path.exists(GJ): json.dump({'slug': 'gestor-' + secrets.token_hex(4)}, open(GJ, 'w'))
+gslug = json.load(open(GJ))['slug']
+os.makedirs(os.path.join(SITE, gslug), exist_ok=True)
+open(os.path.join(SITE, gslug, 'index.html'), 'w').write(open(os.path.join(T, 'gestor.html')).read().replace('__DATA__', json.dumps(
+    {'mes': mes, 'data': atualizado[8:10] + '/' + atualizado[5:7], 'rcs': sorted(gest, key=lambda r: r['nome'])}, ensure_ascii=False)))
+print('gestor: /' + gslug + '/')
 open(os.path.join(SITE, 'robots.txt'), 'w').write('User-agent: *\nDisallow: /\n')
 open(os.path.join(SITE, '_headers'), 'w').write('/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: no-cache\n')
 for r in resumo: print('%-34s fat %7d obj %7d %6.1f%% | 4T meta %7d real %7d %5.1f%%' % (r[0], r[1], r[2], r[3] * 100, r[6], r[7], (r[7] / r[6] * 100) if r[6] else 0))

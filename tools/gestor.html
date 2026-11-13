@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f4f2ec">
+<title>Painéis SPI · Gestor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#f4f2ec; --card:#fff; --line:#e7e3d8; --fg:#16181d; --mut:#6c6f78; --gold:#ffc000; --ok:#0f9d6b; --warn:#c98a00; --bad:#d64545; color-scheme: light; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-text-size-adjust: 100%; }
+  button, select { font: inherit; }
+  .lista { max-width: 760px; margin: 0 auto; padding: 18px 16px 32px; display: grid; gap: 14px; }
+  .top small { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--mut); font-weight: 600; }
+  .top h1 { margin: 4px 0 2px; font-size: 26px; letter-spacing: -.02em; }
+  .top p { margin: 0; color: var(--mut); font-size: 13px; }
+  .tot { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .tot div { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+  .tot span { display: block; font-size: 11px; color: var(--mut); }
+  .tot b { font-size: 19px; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .rcs { display: grid; gap: 8px; }
+  .rc { all: unset; box-sizing: border-box; cursor: pointer; -webkit-tap-highlight-color: transparent; display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 10px 14px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; box-shadow: 0 6px 18px -12px rgba(30,30,40,.25); }
+  .rc:active { transform: scale(.99); }
+  .rc .nm { font-weight: 700; font-size: 15px; line-height: 1.2; overflow-wrap: anywhere; }
+  .rc .nm small { display: block; font-weight: 400; font-size: 12px; color: var(--mut); margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .rc .k { text-align: right; font-variant-numeric: tabular-nums; }
+  .rc .k b { display: block; font-size: 17px; letter-spacing: -.02em; }
+  .rc .k span { font-size: 10.5px; color: var(--mut); text-transform: uppercase; letter-spacing: .06em; }
+  .rc .bar { grid-column: 1 / -1; height: 6px; border-radius: 99px; background: var(--line); position: relative; overflow: hidden; }
+  .rc .bar i { position: absolute; inset: 0 auto 0 0; border-radius: 99px; }
+  .c-ok { color: var(--ok); } .c-warn { color: var(--warn); } .c-bad { color: var(--bad); }
+  .nota { font-size: 12px; color: var(--mut); text-align: center; }
+  .espelho { position: fixed; inset: 0; display: flex; flex-direction: column; background: var(--bg); }
+  .espelho[hidden], .lista[hidden] { display: none; }
+  .barra { display: flex; align-items: center; gap: 8px; padding: max(8px, env(safe-area-inset-top)) 10px 8px; background: #16181d; }
+  .barra button { all: unset; cursor: pointer; color: #fff; font-size: 13px; font-weight: 600; padding: 7px 12px; border: 1px solid rgba(255,255,255,.35); border-radius: 99px; white-space: nowrap; }
+  .barra select { flex: 1; min-width: 0; font-size: 15px; font-weight: 700; color: #16181d; background: var(--gold); border: 0; border-radius: 10px; padding: 8px 10px; }
+  .barra .tag { color: var(--gold); font-size: 10px; letter-spacing: .14em; font-weight: 700; }
+  iframe { flex: 1; width: 100%; border: 0; background: var(--bg); }
+</style>
+</head><body>
+<main class="lista" id="lista">
+  <header class="top"><small>Regional SPI Campinas · gestor</small><h1>Painéis dos RCs</h1><p id="atual"></p></header>
+  <section class="tot" id="tot"></section>
+  <section class="rcs" id="rcs"></section>
+  <p class="nota">Toque num RC para abrir o painel dele exatamente como ele vê.</p>
+</main>
+<section class="espelho" id="espelho" hidden>
+  <div class="barra"><button type="button" id="voltar">← RCs</button><span class="tag">ESPELHO</span><select id="sel" aria-label="Escolher representante"></select></div>
+  <iframe id="frame" title="Painel do representante"></iframe>
+</section>
+<script>
+  const D = __DATA__;
+  const kg = (v) => Math.round(v).toLocaleString('pt-BR');
+  const pct = (v) => (v * 100).toLocaleString('pt-BR', {minimumFractionDigits: 1, maximumFractionDigits: 1}) + '%';
+  const tom = (a) => a >= 1 ? 'c-ok' : a >= .8 ? 'c-warn' : 'c-bad';
+  const cor = (a) => a >= 1 ? 'var(--ok)' : a >= .8 ? 'var(--warn)' : 'var(--bad)';
+  const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
+  document.getElementById('atual').textContent = D.mes + ' · dados de ' + D.data;
+  const T = D.rcs.reduce((a, r) => ({fat: a.fat + r.fat, obj: a.obj + r.obj, o4: a.o4 + r.obj4t, r4: a.r4 + r.real4t}), {fat: 0, obj: 0, o4: 0, r4: 0});
+  [['Faturado (kg)', kg(T.fat)], ['% objetivo mês', pct(T.fat / T.obj)], ['Objetivo 4º tri', pct(T.r4 / T.o4)]].forEach(([l, v]) => { const d = el('div'); d.append(el('span', '', l), el('b', '', v)); document.getElementById('tot').appendChild(d); });
+  const rcs = document.getElementById('rcs'), sel = document.getElementById('sel');
+  D.rcs.forEach((r) => {
+    const a = r.fat / r.obj, a4 = r.obj4t ? r.real4t / r.obj4t : 0, b = el('button', 'rc'); b.type = 'button';
+    const nm = el('div', 'nm', r.nome); nm.appendChild(el('small', '', kg(r.fat) + ' de ' + kg(r.obj) + ' kg no mês'));
+    const k1 = el('div', 'k'); k1.append(el('b', tom(a), pct(a)), el('span', '', 'mês'));
+    const k2 = el('div', 'k'); k2.append(el('b', tom(a4), pct(a4)), el('span', '', '4º tri'));
+    const bar = el('div', 'bar'), i = el('i'); i.style.width = Math.min(100, a * 100) + '%'; i.style.background = cor(a); bar.appendChild(i);
+    b.append(nm, k1, k2, bar); b.onclick = () => abrir(r.slug); rcs.appendChild(b);
+    const o = el('option', '', r.nome); o.value = r.slug; sel.appendChild(o);
+  });
+  const lista = document.getElementById('lista'), esp = document.getElementById('espelho'), frame = document.getElementById('frame');
+  const mostrar = () => { const s = location.hash.slice(1), r = D.rcs.find((x) => x.slug === s);
+    lista.hidden = !!r; esp.hidden = !r; if (!r) return; sel.value = s; const src = '../' + s + '/'; if (frame.getAttribute('src') !== src) frame.setAttribute('src', src); };
+  const abrir = (s) => { location.hash = s; };
+  sel.onchange = () => abrir(sel.value);
+  document.getElementById('voltar').onclick = () => { location.hash = ''; };
+  addEventListener('hashchange', mostrar); mostrar();
+</script>
+</body></html>
