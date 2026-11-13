@@ -1,0 +1,367 @@
+[
+ {
+  "id": "fn_life",
+  "titulo": "Fórmula Natural Life",
+  "subtitulo": "Cães · filhote, adulto e sênior",
+  "data_final": "18/11/2026",
+  "publico": "",
+  "abrangencia": "",
+  "destaque": "A cada 15 → 1 grátis",
+  "cores": {
+   "de": "#ffffff",
+   "ate": "#3aa9bd",
+   "faixa": "#7a4b6e",
+   "tag": "#a8873a",
+   "titulo": "#16181d",
+   "acento": "#f3c6e3",
+   "sub": "#3a3d45"
+  },
+  "packshots": [
+   "fnlife_filhote_mg.webp",
+   "fnlife_adulto_mp.webp",
+   "fnlife_senior_mp.webp"
+  ],
+  "arte": "fnlife_arte.webp",
+  "tabela": {
+   "cab": [
+    "Regra",
+    "Mecânica"
+   ],
+   "linhas": [
+    [
+     "A cada 15 unidades dos itens participantes",
+     "15 pra 1"
+    ]
+   ]
+  },
+  "linhas": [
+   {
+    "compre": [
+     "FN LIFE FILH PORT MED/GR 10,1 KG",
+     "FN LIFE FILH PORT MINI/PEQ 10,1 KG",
+     "FN LIFE AD PORT MINI/PEQ 10,1 KG",
+     "FN LIFE SENIOR PORT MIN/PEQ 10,1 KG",
+     "FN LIFE AD PORT MED/GR 15 KG",
+     "FN LIFE AD PORT MINI/PEQ 15 KG",
+     "FN LIFE FILH PORT MED/GR 15 KG",
+     "FN LIFE FILH PORT MINI/PEQ 15 KG",
+     "FN LIFE SENIOR PORT MINI/PEQ 15 KG",
+     "FN LIFE SENIOR PORT MED/GR 15 KG"
+    ],
+    "ganhe": [
+     "FN LIFE AD PORT MINI/PEQ 15 KG"
+    ]
+   }
+  ],
+  "como_funciona": "A cada 15 unidades compradas dos produtos participantes, o cliente recebe 1 unidade de FN LIFE AD PORT MINI/PEQ 15 KG em bonificação."
+ },
+ {
+  "id": "origens_minpeq",
+  "titulo": "Origens Mini/Peq",
+  "subtitulo": "Carne e Frango · 10,1 e 15 kg",
+  "data_final": "18/11/2026",
+  "publico": "Varejo, Televendas, Star Max e Distribuidor especializado",
+  "abrangencia": "São Paulo",
+  "condicao": "5% de desconto adicional",
+  "destaque": "+5% de desconto",
+  "formato": "desconto",
+  "cores": {
+   "de": "#2c3f66",
+   "ate": "#141f38",
+   "faixa": "#c8952f",
+   "tag": "#c8952f",
+   "titulo": "#ffffff",
+   "acento": "#16181d",
+   "sub": "#e9ecf5"
+  },
+  "packshots": [
+   "origens_minpeq_carne.webp",
+   "origens_minpeq_frango.webp"
+  ],
+  "arte": "origens_minpeq_arte.webp",
+  "tabelas": [
+   {
+    "titulo": "Produtos participantes",
+    "cab": [
+     "Produto"
+    ],
+    "linhas": [
+     [
+      "ORIGENS CÃO MIN/PEQ CN/CER 10,1 KG"
+     ],
+     [
+      "ORIGENS CÃO MIN/PEQ CN/CER 15 KG"
+     ],
+     [
+      "ORIGENS CÃO MIN/PEQ FG/CER 10,1 KG"
+     ],
+     [
+      "ORIGENS CÃO MIN/PEQ FG/CER 15 KG"
+     ]
+    ]
+   },
+   {
+    "titulo": "Exemplo de aplicação",
+    "cab": [
+     "Desconto atual",
+     "Adicional SP",
+     "Novo desconto"
+    ],
+    "linhas": [
+     [
+      "19%",
+      "+ 5%",
+      "24%"
+     ]
+    ]
+   }
+  ],
+  "como_funciona": "Desconto adicional cadastrado para os quatro produtos participantes em São Paulo, conforme o canal de venda. A ação busca aproximar os preços ao do ORIGENS CLASS AD MIN/P CN/FG 15 KG, que sai de linha."
+ },
+ {
+  "id": "premium1",
+  "titulo": "Premium 1",
+  "subtitulo": "Magnus Todo Dia · Chips",
+  "data_final": "30/11/2026",
+  "publico": "Varejo",
+  "abrangencia": "São Paulo",
+  "destaque": "250 kg → 50 pra 4 · 500 kg → 100 pra 10",
+  "cores": {
+   "de": "#ffb81c",
+   "ate": "#f08a00",
+   "faixa": "#16181d",
+   "tag": "#d7262e",
+   "titulo": "#ffffff"
+  },
+  "packshots": [
+   "magnus_td_carne.webp",
+   "magnus_td_pp_carne_frango.webp",
+   "magnus_chips_carne_frango.webp"
+  ],
+  "arte": "premium1_arte.webp",
+  "como_funciona": "A bonificação é concedida conforme a quantidade de unidades compradas do mesmo produto, de acordo com a mecânica estabelecida, sendo necessária a inclusão de mix.",
+  "tabela": {
+   "cab": [
+    "Mix mínimo (FN/Origens/Pet Care)",
+    "Mecânica"
+   ],
+   "linhas": [
+    [
+     "250 kg",
+     "50 pra 4"
+    ],
+    [
+     "500 kg",
+     "100 pra 10"
+    ]
+   ]
+  },
+  "linhas": [
+   {
+    "compre": [
+     "MAGNUS T D SABOR CARNE 15KG (83)",
+     "MAGNUS T D PEQ PORTE CN/FG 15KG (3045)",
+     "MAGNUS CHIPS AD CN/FG 15KG (595)",
+     "MAGNUS T D SABOR CARNE 20KG (150)",
+     "MAGNUS T D PEQ PORTE CN/FG 20KG (3046)",
+     "MAGNUS CHIPS AD CN/FG 20KG (3042)"
+    ],
+    "ganhe": [
+     "MAGNUS T D SABOR CARNE 15KG (83)"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "fnpro",
+  "titulo": "FN PRO",
+  "subtitulo": "Fórmula Natural Pro · cães",
+  "data_final": "30/11/2026",
+  "publico": "Varejo e Televendas",
+  "abrangencia": "São Paulo",
+  "destaque": "Combo de 1.000 kg → 20 pra 1",
+  "cores": {
+   "de": "#f4efe4",
+   "ate": "#2bb3c0",
+   "faixa": "#0d4f5c",
+   "tag": "#a8873a",
+   "titulo": "#16181d",
+   "acento": "#e6c873"
+  },
+  "packshots": [
+   "fnpro_adulto_mg.webp",
+   "fnpro_senior_mg.webp",
+   "fnpro_filhote_mg.webp"
+  ],
+  "arte": "fnpro_arte.webp",
+  "tabela": {
+   "cab": [
+    "Regra de peso",
+    "Volume total",
+    "Mecânica"
+   ],
+   "linhas": [
+    [
+     "Combo de 1.000 kg",
+     "A partir de 1.000 kg",
+     "20 pra 1"
+    ]
+   ]
+  },
+  "linhas": [
+   {
+    "compre": [
+     "FN PRO CAES SENIO MED/GD 15KG (3190)",
+     "FN PRO CAES FILH MINI/PEQ 15KG (490)",
+     "FN PRO CAES FILH MED/GD 15KG (1105)",
+     "FN PRO CAES AD MINI/PEQ 15KG (1109)",
+     "FN PRO CAES AD MED/GR 15KG (1110)"
+    ],
+    "ganhe": [
+     "FN PRO CAES AD MED/GR 15KG (1110)"
+    ]
+   },
+   {
+    "compre": [
+     "FN PRO CAES AD MED/GD 20KG (3192)",
+     "FN PRO CAES AD MINI/PEQ 20KG (3191)"
+    ],
+    "ganhe": [
+     "FN PRO CAES AD MED/GD 20KG (3192)"
+    ]
+   }
+  ],
+  "como_funciona": "A bonificação é concedida conforme a quantidade de unidades compradas dos itens mencionados em cada linha, sendo permitida a composição entre os produtos. Para a liberação da bonificação, é necessário atender às quantidades exigidas pela mecânica e respeitar a regra de peso do pedido."
+ },
+ {
+  "id": "sache_origens",
+  "titulo": "Sachê Origens",
+  "subtitulo": "Cães e gatos",
+  "data_final": "30/11/2026",
+  "publico": "Varejo, Televendas e Star Max",
+  "abrangencia": "Todas as filiais",
+  "destaque": "A cada 10 sachês → 1 grátis",
+  "cores": {
+   "de": "#33476e",
+   "ate": "#16213a",
+   "faixa": "#e5484d",
+   "tag": "#e5484d",
+   "titulo": "#ffffff",
+   "acento": "#ffe3e0",
+   "sub": "#e9ecf5"
+  },
+  "packshots": [
+   "origens_sache_carne_abobora.webp",
+   "origens_sache_cordeiro.webp",
+   "origens_sache_gato_castrado.webp"
+  ],
+  "arte": "origens_sache_arte.webp",
+  "tabela": {
+   "cab": [
+    "Compre",
+    "Ganhe",
+    "Mecânica"
+   ],
+   "linhas": [
+    [
+     "Família Sachê Origens",
+     "SACHE ORIGENS CAO PP FRAN 18X85G (10.759)",
+     "10 pra 1"
+    ]
+   ]
+  },
+  "como_funciona": "A cada 10 unidades compradas da família Sachê Origens, o cliente recebe 1 unidade do SACHÊ ORIGENS CÃO PP FRAN 18X85G em bonificação.",
+  "formato": "sache"
+ },
+ {
+  "id": "origens_class",
+  "titulo": "Origens Class",
+  "subtitulo": "Gatos Castrados 10,1 kg",
+  "data_final": "30/11/2026",
+  "publico": "Varejo, Televendas e Star Max",
+  "abrangencia": "Todas as filiais",
+  "destaque": "Compre 15 → ganhe 2",
+  "cores": {
+   "de": "#f6b3aa",
+   "ate": "#e07f74",
+   "faixa": "#1f5a48",
+   "tag": "#1f5a48",
+   "titulo": "#ffffff",
+   "acento": "#ffd9d3",
+   "sub": "#3b1f1c"
+  },
+  "packshots": [
+   "origens_class_gato_cast.webp"
+  ],
+  "arte": "origens_class_arte.webp",
+  "tabela": {
+   "cab": [
+    "Compre",
+    "Ganhe",
+    "Mecânica"
+   ],
+   "linhas": [
+    [
+     "ORIGENS CLASS GATO CAST 10,1KG (123.317)",
+     "ORIGENS CLASS GATO CAST 10,1KG (123.317)",
+     "15 pra 2"
+    ]
+   ]
+  },
+  "como_funciona": "A cada 15 unidades compradas do ORIGENS CLASS GATO CAST 10,1KG o cliente recebe 2 unidades do mesmo produto em bonificação."
+ },
+ {
+  "id": "lancamentos",
+  "titulo": "Lançamentos",
+  "subtitulo": "Origens Natural · Energy Power · FN Pro",
+  "data_final": "30/11/2026",
+  "publico": "Varejo, Televendas e Star Max",
+  "abrangencia": "Todas as filiais (exceto MG - UBL e RBN)",
+  "destaque": "Compre 10 → ganhe 1 + 5 baldes",
+  "cores": {
+   "de": "#f3ecdf",
+   "ate": "#9fbf8a",
+   "faixa": "#1d2b4f",
+   "tag": "#b8862f",
+   "titulo": "#1d2b4f",
+   "acento": "#f2c94c",
+   "sub": "#3a3d45"
+  },
+  "packshots": [
+   "lanc_origens_natural.webp",
+   "lanc_energy_power.webp",
+   "lanc_fnpro_peso.webp"
+  ],
+  "arte": [
+   "lanc_arte1.webp",
+   "lanc_arte2.webp"
+  ],
+  "linhas": [
+   {
+    "compre": [
+     "ORIGENS ENERGY POWER FILH 15KG",
+     "ORIGENS ENERGY POWER AD 15KG",
+     "ORIGENS ENERGY POWER AD 16KG",
+     "FN PRO CONT CAO AD MG PERU 15KG",
+     "FN PRO CONT CAO AD MP PERU 10,1KG",
+     "FN PRO SKIN CAO AD MP COR 10,1KG",
+     "FN PRO SKIN CAO AD MG COR 15KG",
+     "ORIGENS NAT CAO FILH MP FG 10,1KG",
+     "ORIGENS NAT CAO FILH MG FG 12KG",
+     "ORIGENS NAT CAO AD M/P 10,1KG",
+     "ORIGENS NAT CAO AD M/G 12KG",
+     "ORIGENS NAT CAO SEN M/P 10,1KG",
+     "ORIGENS NAT CAO SEN M/G 12KG",
+     "ORIGENS NAT CAO AD MP OVEL 10,1KG",
+     "ORIGENS NAT CAO AD MG OVEL 12KG"
+    ],
+    "ganhe": [
+     "1 × ORIGENS NAT CAO AD MP OVEL 10,1KG (10 pra 1)",
+     "5 × CONJ. BALDE E TAMPA ORIGENS CAO 12L (10 pra 5)"
+    ]
+   }
+  ],
+  "como_funciona": "São duas ações sobre os mesmos itens: a cada 10 unidades compradas dos lançamentos participantes, o cliente ganha 1 ORIGENS NAT CAO AD MP OVEL 10,1KG (10 pra 1) e também 5 conjuntos de balde e tampa Origens 12L (10 pra 5).",
+  "formato": "lanc"
+ }
+]

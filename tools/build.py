@@ -97,7 +97,7 @@ ranking = [{'item': k, 'n': len(v)} for k, v in sorted(_cli_por_item.items(), ke
 resumo = []
 # RCs pausados (ex.: desligados) não são regerados; a página fica com a última versão
 alvo = [c for c in alvo if not rcs[c].get('pausado')]
-# ---- Campanha Bike / Dispenser / Baldes (4º tri) ----
+# ---- Campanha Bicicleta / Baldes (4º tri; Dispenser encerrado em 13/11) ----
 # tools/campanha_base.json (fixo): {"jan_set": {cli: [kg26, kg_fn, kg_origens]}, "hist": {"produtos": [...], "cli": {cli: [idx...]}}}
 #   jan_set = kg jan–set/2026; hist = itens comprados de jan/2025 a set/2026 (para saber o que é item novo)
 # extrato_dir/campanha.json (diário): {"q4": [[cli, kg26, fn, origens]], "q4_itens": [[cli, produto, kg]]} com filtro out–dez/2026
@@ -146,7 +146,21 @@ def itens_cli(cod):
             out[str(r[1])][r[2]] += r[4]
     return {c: sorted(([k, v] for k, v in d.items()), key=lambda x: -x[1]) for c, d in out.items()}
 
+# campanhas: copia as imagens uma vez por build
+import shutil
+CJ = os.path.join(T, 'campanhas', 'campanhas.json')
+CAMPANHAS = json.load(open(CJ)) if os.path.exists(CJ) else []
+if CAMPANHAS:
+    os.makedirs(os.path.join(SITE, 'assets', 'campanhas'), exist_ok=True)
+    for _f in os.listdir(os.path.join(T, 'campanhas', 'img')):
+        shutil.copy2(os.path.join(T, 'campanhas', 'img', _f), os.path.join(SITE, 'assets', 'campanhas', _f))
 gest = []
+# ranking da Regional por % vendido (faturado + carteira) ÷ objetivo do Plano Performance — sem nomes
+_vend = {}
+for _c in alvo:
+    _n = rcs[_c]['nome']; _f = flash.get(_n, [_n, 0, 0, 0]); _o = plano[_n][1]
+    if _o: _vend[_c] = (_f[2] + _f[3]) / _o
+_lista = sorted(_vend.values(), reverse=True)
 for cod in alvo:
     nome = rcs[cod]['nome']; p = plano[nome]; f = flash.get(nome, [nome, 0, 0, 0])
     cl = [{'cod': x[1], 'razao_social': x[2], 'rede': x[3], # médias do próprio BI (MED KG 25/26, mesmo período) quando vierem no extrato
@@ -186,7 +200,10 @@ for cod in alvo:
          'clientes': cl, 'rebate': reb, 'familias': fam, 'meta4t': meta4t, 'clientes4t': clientes4t,
          'itens': [itens_cli(cod)], 'ranking': ranking,
          'campanha': [campanha_cli([str(x[1]) for x in clients if x[0] == cod])], 'campanha_regras': [CAMP_REGRAS],
-         'carteira_kg': [{str(x[1]): x[7] for x in clients if x[0] == cod}]}
+         'carteira_kg': [{str(x[1]): x[7] for x in clients if x[0] == cod}],
+         'ranking_rc': [{'lista': _lista, 'meu': _vend.get(cod, 0), 'pos': sorted(_vend, key=lambda c: -_vend[c]).index(cod) + 1 if cod in _vend else None, 'n': len(_lista), 'objetivo': p[1]}]}
+    # campanhas com arte e packshots (tools/campanhas/campanhas.json; imagens copiadas para site/assets/campanhas/)
+    d['campanhas_extra'] = CAMPANHAS
     # piloto de positivação (só para RCs com "piloto": true em rcs.json, ou PILOTO=<cód> no ambiente para prévia)
     if rcs[cod].get('piloto') or os.environ.get('PILOTO') == cod:
         import base64
