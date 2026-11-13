@@ -534,6 +534,65 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 @media (max-width: 380px) { .g-ps img:nth-child(n+4) { display: none; } }
 [data-page="camp"] .px-cards { gap: 10px !important; grid-auto-rows: auto !important; align-items: start; }
 [data-page="camp"] .cmp-card { margin: 0 !important; grid-column: 1 / -1 !important; }
+
+/* ===== tela inicial (padrão): cards em faixas horizontais, todos visíveis sem rolagem ===== */
+.px-home { display: flex !important; flex-direction: column; gap: 8px !important; }
+.px-home > .px-cards { flex: 1; display: flex !important; flex-direction: column; gap: 7px !important; }
+.px-home > .px-cards > .px-card { flex: 1 1 auto; min-height: 50px !important; display: grid !important; grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "n t v go" "n l v go";
+  align-items: center; align-content: center; column-gap: 12px; row-gap: 1px; padding: 8px 14px !important; border-radius: 16px !important; order: 2; }
+.px-home > .px-cards > .px-card .h { display: contents; } .px-home > .px-cards > .px-card .tag { display: none; }
+.px-home > .px-cards > .px-card .n { grid-area: n; font-size: 12px; } .px-home > .px-cards > .px-card .go { grid-area: go; }
+.px-home > .px-cards > .px-card h3 { grid-area: t; margin: 0 !important; font-size: 15.5px !important; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 6px; }
+.px-home > .px-cards > .px-card .kl { grid-area: l; font-size: 11.5px !important; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.px-home > .px-cards > .px-card .kv { grid-area: v; font-size: clamp(20px, 6vw, 26px) !important; text-align: right; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+/* objetivo 4º tri primeiro, com a barra fina embaixo */
+.px-home > .px-cards > .px-card[data-go="q4"] { order: 0; grid-template-areas: "n t v go" "n l v go" "x x x x"; }
+.px-home > .px-cards > .px-card[data-go="q4"] .hl-extra { grid-area: x; display: grid; gap: 3px; margin-top: 4px; }
+.px-home > .px-cards > .px-card[data-go="q4"] .hl-bar { height: 6px !important; } .px-home > .px-cards > .px-card[data-go="q4"] .hl-txt { font-size: 11.5px !important; }
+.px-home > .px-cards > .px-card[data-go="mes"] { order: 1; } .px-home > .px-cards > .px-card[data-go="prime"] { order: 1; } .px-home > .px-cards > .px-card[data-go="ano"] { order: 1; }
+.px-home > .px-cards > .g-camp { order: 1; grid-template-columns: auto minmax(0, 1fr) auto auto !important; grid-template-areas: "n t ps go" "n l ps go" !important; }
+.px-home > .px-cards > .g-camp .kv { display: none !important; }
+.px-home > .px-cards > .g-camp .g-ps { grid-area: ps; align-self: center; margin: -8px 0; }
+.px-home > .px-cards > .g-camp .g-ps img { height: clamp(36px, 6dvh, 58px) !important; }
+.px-home > .px-cards > .px-card[data-go="prop"] { order: 1; }
+.px-home > .px-cards > .px-pil-card { order: 3; flex: 1 1 auto; padding: 8px 14px !important; }
+.px-home > .px-cards > .px-pil-card .kl { display: none; } .px-home > .px-cards > .px-pil-card .kv { font-size: 20px !important; }
+.px-home > .px-cards > .px-pil-card .pil-fotos { margin-top: 10px; } .px-home > .px-cards > .px-pil-card .pil-fotos img { width: clamp(34px, 9vw, 52px) !important; }
+/* cabeçalho do Plano Performance um pouco mais compacto */
+.px-home > .px-hero { padding: 14px 16px !important; }
+.px-home .px-ring { width: clamp(96px, 26vw, 200px) !important; }
+.px-home .px-big { font-size: clamp(28px, 8vw, 54px) !important; }
+.px-home .px-track { margin-top: 10px !important; }
+@media (max-height: 700px) and (max-width: 600px) {
+  .px-name { font-size: 18px !important; } .px-home .px-ring { width: 80px !important; } .px-home .px-big { font-size: 24px !important; }
+  .px-home .px-kpi-s, .px-home .px-gap { font-size: 11px !important; } .px-home > .px-cards > .px-card { min-height: 42px !important; padding: 6px 12px !important; }
+  .px-home > .px-cards > .px-card h3 { font-size: 14px !important; } .px-home > .px-cards > .px-card .kl { font-size: 10.5px !important; }
+  .px-home > .px-cards > .px-card[data-go="q4"] .hl-txt { display: none; } }
+@media (min-width: 901px) { .px-home > .px-cards > .px-card { min-height: 56px !important; } }
+
+/* cabeçalho: faturado e vendido lado a lado (o anel some no celular; a barra mostra o caminho até o objetivo) */
+.px-home .px-hero-top { display: flex !important; align-items: center; gap: 14px; }
+.px-home .px-kpis { flex: 1; display: grid !important; grid-template-columns: 1fr 1fr; gap: 10px !important; }
+.px-home .px-kpi { min-width: 0; }
+.px-home .px-kpi-l { font-size: 10.5px !important; }
+.px-home .px-kpi-s, .px-home .px-gap { font-size: 11.5px !important; line-height: 1.25; }
+.px-home .px-tick-lbls { display: flex !important; flex-wrap: nowrap !important; gap: 10px !important; font-size: 11px !important; white-space: nowrap; overflow: hidden; }
+@media (max-width: 600px) { .px-home .px-ring { display: none !important; } .px-home .px-big { font-size: clamp(30px, 9vw, 40px) !important; } }
+@media (min-width: 601px) { .px-home .px-ring { width: 120px !important; } }
+.px-home > .px-cards > .px-pil-card { display: grid !important; grid-template-columns: minmax(0, 1fr) auto; align-items: center; padding-right: 34px !important; }
+.px-home > .px-cards > .px-pil-card .pil-txt { display: flex; flex-direction: column; gap: 2px; }
+.px-home > .px-cards > .px-pil-card .h { display: flex !important; gap: 8px; align-items: center; }
+.px-home > .px-cards > .px-pil-card h3 { font-size: 15px !important; margin: 0 !important; }
+.px-home > .px-cards > .px-pil-card .pil-fotos { margin-top: 0 !important; }
+.px-home > .px-cards > .px-pil-card .pil-fotos small { font-size: 10px; }
+
+.px-home > .px-cards > .px-card[hidden] { display: none !important; }
+.px-home .px-tick-lbls { flex-wrap: wrap !important; gap: 2px 10px !important; overflow: visible; }
+.px-home, .px-home > .px-hero, .px-home > .px-cards { min-width: 0; max-width: 100%; }
+@media (max-width: 380px) { .px-home .px-tick-lbls { font-size: 10px !important; } .px-home .px-big { font-size: 28px !important; } .px-home .px-kpis { gap: 8px !important; } }
+
+@media (max-height: 700px) and (max-width: 600px) { .px-home > .px-cards > .px-pil-card .pil-fotos img { width: 30px !important; } .px-home > .px-cards > .px-pil-card .pil-fotos small { display: none; } .px-home > .px-cards > .px-pil-card h3 { font-size: 13.5px !important; } .px-home > .px-cards > .px-pil-card .kv { font-size: 16px !important; } .px-home > .px-cards { gap: 5px !important; } .px-home > .px-hero { padding: 10px 14px !important; } }
+@media (min-width: 901px) { .px-home > .px-hero { padding: 14px 20px !important; } .px-home .px-big { font-size: 38px !important; } }
 </style>
 
 <div class="px">
@@ -570,25 +629,25 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
       <div class="px-cards">
         <button class="px-card px-in" type="button" data-go="mes">
-          <span class="h"><span class="n">01</span><span class="go">→</span></span>
+          <span class="h"><span class="n">02</span><span class="go">→</span></span>
           <h3>Mês atual</h3>
           <span class="kv" data-draw="c1" data-source="mes_resumo" data-field="sem_compra_mes" data-row="0">—</span>
           <span class="kl">sem compra no mês</span>
         </button>
         <button class="px-card px-in" type="button" data-go="prime">
-          <span class="h"><span class="n">02</span><span class="go">→</span></span>
+          <span class="h"><span class="n">03</span><span class="go">→</span></span>
           <h3>Prime</h3>
           <span class="kv" data-draw="c2" data-source="rebate_resumo" data-field="atingimento" data-row="0">—</span>
           <span class="kl">do objetivo de rebate</span>
         </button>
         <button class="px-card px-in" type="button" data-go="ano">
-          <span class="h"><span class="n">03</span><span class="go">→</span></span>
+          <span class="h"><span class="n">04</span><span class="go">→</span></span>
           <h3>Ano 2026</h3>
           <span class="kv" data-draw="c3" data-source="familias_total" data-field="variacao" data-row="0">—</span>
           <span class="kl">por mês, contra 2025</span>
         </button>
         <button class="px-card px-in wide" type="button" data-go="q4" data-draw="c5_hl" data-source="plano">
-          <span class="h"><span class="n">04</span><span class="tag">EM DESTAQUE</span><span class="go">→</span></span>
+          <span class="h"><span class="n">01</span><span class="tag">EM DESTAQUE</span><span class="go">→</span></span>
           <h3>Objetivo 4º tri</h3>
           <span class="kv" data-draw="c5" data-source="q4" data-field="atingimento" data-row="0">—</span>
           <span class="kl" data-draw="c5_r" data-source="q4" data-field="ritmo" data-row="0">—</span>
@@ -1328,6 +1387,10 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   dash.draw('g2', (el) => { el.textContent = String(g2Ativas().length + 1); });
   dash.draw('g2l', (el) => { const c6 = document.querySelector('[data-draw="c6"]'); el.textContent = 'campanhas ativas · toque para ver'; });
   dash.draw('g2ps', (el) => { el.replaceChildren(); [].concat(g2Ativas().map((c) => c.packshots[Math.floor(c.packshots.length / 2)])).slice(0, 4).forEach((f, i) => { const im = document.createElement('img'); im.src = '../assets/campanhas/' + f; im.alt = ''; im.style.zIndex = 10 - i; el.appendChild(im); }); });
+
+  // a tela inicial ocupa toda a altura: os cards esticam até o fim
+  const pxFill = () => { const h = document.querySelector('.px-home'); if (!h || h.hidden) return; h.style.minHeight = Math.max(0, innerHeight - h.getBoundingClientRect().top - window.scrollY - 14) + 'px'; };
+  addEventListener('resize', pxFill); setTimeout(pxFill, 50); setTimeout(pxFill, 600);
   dash.draw('c7', (el) => { const p = pxOne('proposta'); el.textContent = p ? String(Object.values(p).filter((r) => r.falta > 0).length) : '—'; });
 
   const ids = {home: 'inicio', camp: 'campanhas', cmp: 'campanha', mes: 'mes-atual', prime: 'prime', ano: 'ano-2026', q4: 'objetivo-4tri', pos: 'positivacao', prop: 'proposta', pil: 'piloto'};
