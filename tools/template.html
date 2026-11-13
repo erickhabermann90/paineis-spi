@@ -319,7 +319,7 @@ html, body { background: #f4f2ec !important; color-scheme: light; }
 }
 html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
-/* ---- Campanha Bicicleta / Baldes ---- */
+/* ---- Campanha Bike / Dispenser / Baldes ---- */
 .px-premios { display: grid; gap: 12px; }
 .px-premio { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: grid; gap: 10px; background: #fff; }
 .px-premio.ok { border-color: #9fd8bd; background: #f1faf5; }
@@ -445,84 +445,6 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .pil-it { font-size: 10px; line-height: 1.08; padding: 0 5px; gap: 5px; } .pil-it .c { width: 13px; height: 13px; } .pil-grid { gap: 3px 5px; } }
 .pil-prog .l > span { white-space: nowrap; }
 @media (min-width: 721px) { .px-pil { padding-inline: 24px; } .pil-it { font-size: 12.5px; } }
-
-/* ===== Tela inicial em grupos: tudo numa tela ===== */
-.px-grp { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px !important; }
-.px-grp > .px-card { padding: 11px 10px 10px; gap: 2px; border-radius: 16px; }
-.px-grp > .px-card h3 { font-size: clamp(12.5px, 3.7vw, 15px); letter-spacing: -.01em; line-height: 1.12; margin: 2px 0 4px; min-height: 2.24em; }
-.px-grp > .px-card .kv { font-size: clamp(19px, 5.6vw, 24px); white-space: nowrap; }
-.px-grp > .px-pil-card { order: 1 !important; }
-.px-grp > .px-card .kl { font-size: 11px; line-height: 1.2; }
-.px-grp > .px-card .n { font-size: 11px; }
-.px-grp > .g-fech { background: linear-gradient(150deg, #ffd24d, #ffc000) !important; border-color: #ffc000 !important; }
-.px-grp > .g-fech h3, .px-grp > .g-fech .n, .px-grp > .g-fech .go, .px-grp > .g-fech .kl { color: #16181d !important; }
-.px-grp > .g-fech .kv { color: #16181d !important; }
-.px-grp > .px-pil-card { padding: 10px 12px; }
-.px-grp > .px-pil-card .kv { font-size: 22px; }
-.px-grp > .px-pil-card h3 { min-height: 0; font-size: 16px; margin: 0; }
-.px-grp > .px-pil-card .pil-fotos { margin-top: 14px; }
-.px-grp > .px-pil-card .pil-fotos img { width: clamp(40px, 11vw, 64px); }
-.px-home { gap: 12px !important; }
-.cp-fotos { display: flex; gap: 8px; margin-top: 10px; }
-.cp-fotos > span { flex: 1; display: grid; justify-items: center; gap: 4px; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 8px 4px 6px; min-height: 56px; align-content: end; }
-.cp-fotos img { width: 100%; max-width: 220px; aspect-ratio: 3 / 2; object-fit: contain; border-radius: 10px; }
-.cp-fotos small { font-size: 11px; font-weight: 700; color: var(--fg); }
-.cp-card, .px-soon { grid-column: 1 / -1 !important; }
-.px-soon { min-height: 0 !important; flex-direction: row !important; align-items: center; gap: 10px !important; }
-.px-soon h3 { margin: 0 !important; font-size: 16px !important; }
-.px-soon { cursor: default; opacity: .55; border-style: dashed !important; }
-@media (min-width: 901px) { .px-grp { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } .px-grp > .px-pil-card { grid-column: 1 / -1; } }
-@media (max-height: 690px) and (max-width: 600px) { .px-name { font-size: 18px !important; } .px-hero { padding: 12px !important; } .px-ring { width: 84px !important; } .px-big { font-size: 28px !important; } .px-kpi-s, .px-gap { font-size: 11px !important; } .px-tick-lbls { font-size: 9.5px !important; } .px-grp > .px-pil-card .pil-fotos img { width: 38px; } .px-grp > .px-pil-card .pil-fotos { margin-top: 10px; } }
-@media (max-height: 760px) and (max-width: 600px) { .px-hero { padding: 14px !important; } .px-ring { width: clamp(96px, 26vw, 200px) !important; } .px-big { font-size: clamp(30px, 7vw, 60px) !important; } .px-track { margin-top: 10px !important; } }
-
-/* cards de grupo em faixas horizontais, um abaixo do outro */
-.px-grp { grid-template-columns: 1fr !important; gap: 8px !important; }
-.px-grp > .px-card:not(.px-pil-card) { display: grid !important; grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "n t v go" "n l v go"; align-items: center; column-gap: 12px; row-gap: 0; padding: 11px 14px !important; }
-.px-grp > .px-card:not(.px-pil-card) .h { display: contents; }
-.px-grp > .px-card:not(.px-pil-card) .n { grid-area: n; font-size: 12px; }
-.px-grp > .px-card:not(.px-pil-card) h3 { grid-area: t; min-height: 0 !important; margin: 0 !important; font-size: 16px !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.px-grp > .px-card:not(.px-pil-card) .kl { grid-area: l; font-size: 11.5px !important; }
-.px-grp > .px-card:not(.px-pil-card) .kv { grid-area: v; font-size: clamp(22px, 6.4vw, 28px) !important; text-align: right; }
-.px-grp > .px-card:not(.px-pil-card) .go { grid-area: go; }
-@media (min-width: 901px) { .px-grp { grid-template-columns: 1fr !important; } }
-@media (max-height: 690px) and (max-width: 600px) { .px-grp { gap: 6px !important; } .px-grp > .px-card:not(.px-pil-card) { padding: 8px 12px !important; } .px-grp > .px-card:not(.px-pil-card) h3 { font-size: 15px !important; } .px-grp > .px-pil-card { padding: 8px 12px !important; } .px-grp > .px-pil-card .kl { display: none; } .px-grp > .px-pil-card .kv { font-size: 18px !important; } .px-home { gap: 8px !important; } }
-
-/* ===== cabeçalho em níveis + ranking; cards preenchem a tela ===== */
-.px-home { display: flex !important; flex-direction: column; gap: 10px !important; }
-.px-home > .px-grp { flex: 1; display: flex !important; flex-direction: column; }
-.px-home > .px-grp > .px-card { flex: 1 1 auto; }
-.px-grp > .px-card { min-height: 52px; }
-.nv { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 14px 14px 12px; box-shadow: 0 10px 30px -18px rgba(0,0,0,.25); display: grid; gap: 10px; }
-.nv-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-.nv-k { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--mut); font-weight: 700; }
-.nv-t { font-size: 21px; font-weight: 800; letter-spacing: -.02em; margin-top: 2px; }
-.nv-lv.l1 { color: #b8732f; } .nv-lv.l2 { color: #d29a00; } .nv-lv.l3 { color: #7c3aed; } .nv-lv.l0 { color: var(--fg); }
-.nv-num { text-align: right; line-height: 1; } .nv-num b { display: block; font-size: 30px; font-weight: 800; letter-spacing: -.03em; } .nv-num small { font-size: 11.5px; color: var(--mut); }
-.nv-st { display: grid; grid-template-columns: repeat(4, 1fr); align-items: end; gap: 6px; height: clamp(88px, 13dvh, 140px); margin-top: 12px; }
-.nv-s { position: relative; border-radius: 12px 12px 4px 4px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 6px 2px; text-align: center; color: #16181d; }
-.nv-s:not(.ok) > :not(.gp) { opacity: .6; }
-.nv-s .ic { font-size: 18px; line-height: 1; } .nv-s b { font-size: 11px; } .nv-s small { font-size: 9.5px; font-weight: 600; opacity: .8; }
-.nv-s.l0 { height: 32%; background: #efece4; } .nv-s.l1 { height: 56%; background: linear-gradient(#ecc29b, #c98a4b); } .nv-s.l2 { height: 78%; background: linear-gradient(#ffe07a, #ffc000); } .nv-s.l3 { height: 100%; background: linear-gradient(#c4b5fd, #8b5cf6); color: #fff; }
-.nv-s.cur { box-shadow: 0 0 0 2px #16181d; }
-.nv-me { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: #16181d; color: #fff; border-radius: 99px; padding: 3px 8px; font-size: 10px; font-weight: 700; white-space: nowrap; animation: nvbob 1.2s ease-in-out infinite alternate; }
-@keyframes nvbob { to { transform: translate(-50%, -4px); } }
-.nv-ft { background: var(--bg); border-radius: 12px; padding: 8px 10px; }
-.nv-ftt { font-size: 12.5px; } .nv-ftt b { font-size: 14px; }
-.nv-pb { height: 7px; border-radius: 99px; background: #e2ddd0; margin-top: 6px; overflow: hidden; } .nv-pb i { display: block; height: 100%; border-radius: 99px; }
-.nv-pb i.l1 { background: linear-gradient(90deg, #c98a4b, #ecc29b); } .nv-pb i.l2 { background: linear-gradient(90deg, #e0a800, #ffd24d); } .nv-pb i.l3 { background: linear-gradient(90deg, #7c3aed, #c4b5fd); }
-.rkb { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; background: linear-gradient(120deg, #fff, #fff8e1); border: 1px solid #f1d58a; border-radius: 18px; padding: 9px 14px; }
-.rk-p { line-height: 1; } .rk-p b { font-size: 26px; font-weight: 800; letter-spacing: -.03em; } .rk-p small { display: block; font-size: 10.5px; color: #8a6a00; font-weight: 600; margin-top: 2px; }
-.rk-b { display: flex; align-items: flex-end; gap: 3px; height: 34px; } .rk-b i { flex: 1; border-radius: 3px 3px 1px 1px; background: #e2ddd0; } .rk-b i.top { background: #ffc000; } .rk-b i.me { background: var(--bad); box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--bad); }
-.rk-t { font-size: 11.5px; text-align: right; max-width: 120px; line-height: 1.25; } .rk-t b { font-size: 13px; }
-@media (max-height: 690px) and (max-width: 600px) { .nv { padding: 10px 12px; gap: 8px; } .nv-t { font-size: 18px; } .nv-num b { font-size: 24px; } .nv-st { height: 78px; margin-top: 14px; } .nv-s small { display: none; } .rkb { padding: 6px 12px; } .rk-p b { font-size: 21px; } .rk-b { height: 26px; } }
-@media (min-width: 901px) { .nv-st { height: 120px; max-width: 760px; } .rk-b { max-width: 260px; } }
-
-.nv-s .gp { font-style: normal; font-size: 10.5px; font-weight: 800; margin-top: 3px; background: rgba(255,255,255,.85); color: #d64545; border-radius: 99px; padding: 1px 7px; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.nv-s .gp.ok { color: #0f9d6b; }
-.nv-s.l3 .gp { background: rgba(255,255,255,.9); }
-.nv-st { height: clamp(104px, 15dvh, 150px) !important; }
-@media (max-height: 690px) and (max-width: 600px) { .nv-st { height: 92px !important; } .nv-s .ic { font-size: 15px; } .nv-s .gp { font-size: 9.5px; padding: 1px 5px; } }
-
 /* ===== cards de campanha com packshots ===== */
 .cmp-list { display: contents; }
 .cmp-card { grid-column: 1 / -1 !important; position: relative; overflow: hidden; display: grid !important; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 1fr auto; gap: 0 !important; padding: 0 !important; min-height: 168px;
@@ -592,6 +514,10 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 [data-page="camp"] .px-cards { gap: 10px !important; grid-auto-rows: auto !important; align-items: start; }
 [data-page="camp"] .cmp-card { margin: 0 !important; }
+
+
+/* na tela inicial (padrão): campanhas sem número, só a etiqueta */
+.px-cards > .cmp-list .cmp-card .n { display: none; }
 </style>
 
 <div class="px">
@@ -602,9 +528,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     </header>
 
     <section data-page="home" id="inicio" class="px-home">
-      <div class="nv px-in" data-draw="nivel"></div>
-      <div class="rkb px-in" data-draw="rank"></div>
-      <div class="px-hero px-in" hidden>
+      <div class="px-hero px-in">
         <div class="px-hero-top">
           <div class="px-ring" data-draw="ring" data-source="performance"></div>
           <div class="px-kpis">
@@ -628,28 +552,51 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         </div>
       </div>
 
-      <div class="px-cards px-grp">
-        <button class="px-card px-in g-fech" type="button" data-go="fech">
+      <div class="px-cards">
+        <button class="px-card px-in" type="button" data-go="mes">
           <span class="h"><span class="n">01</span><span class="go">→</span></span>
-          <h3>Fechamento de ano</h3>
-          <span class="kv" data-draw="g1">—</span>
-          <span class="kl">objetivo 4º tri</span>
+          <h3>Mês atual</h3>
+          <span class="kv" data-draw="c1" data-source="mes_resumo" data-field="sem_compra_mes" data-row="0">—</span>
+          <span class="kl">sem compra no mês</span>
         </button>
-        <button class="px-card px-in" type="button" data-go="camp">
+        <button class="px-card px-in" type="button" data-go="prime">
           <span class="h"><span class="n">02</span><span class="go">→</span></span>
-          <h3>Campanhas</h3>
-          <span class="kv" data-draw="g2">—</span>
-          <span class="kl">clientes com prêmio</span>
+          <h3>Prime</h3>
+          <span class="kv" data-draw="c2" data-source="rebate_resumo" data-field="atingimento" data-row="0">—</span>
+          <span class="kl">do objetivo de rebate</span>
         </button>
-        <button class="px-card px-in" type="button" data-go="perf">
+        <button class="px-card px-in" type="button" data-go="ano">
           <span class="h"><span class="n">03</span><span class="go">→</span></span>
-          <h3>Performance</h3>
-          <span class="kv" data-draw="g3">—</span>
-          <span class="kl">2026 contra 2025</span>
+          <h3>Ano 2026</h3>
+          <span class="kv" data-draw="c3" data-source="familias_total" data-field="variacao" data-row="0">—</span>
+          <span class="kl">por mês, contra 2025</span>
         </button>
+        <button class="px-card px-in wide" type="button" data-go="q4" data-draw="c5_hl" data-source="plano">
+          <span class="h"><span class="n">04</span><span class="tag">EM DESTAQUE</span><span class="go">→</span></span>
+          <h3>Objetivo 4º tri</h3>
+          <span class="kv" data-draw="c5" data-source="q4" data-field="atingimento" data-row="0">—</span>
+          <span class="kl" data-draw="c5_r" data-source="q4" data-field="ritmo" data-row="0">—</span>
+          <span class="hl-extra">
+            <span class="hl-bar"><b data-draw="c5_bar" data-source="q4"></b><i data-draw="c5_esp" data-source="q4"></i></span>
+            <span class="hl-txt">Faltam <b data-draw="c5_falta" data-source="q4" data-field="falta" data-row="0">—</b> kg para o objetivo do trimestre</span>
+          </span>
+        </button>
+        <button class="px-card px-in cmp-card cp-card f-bb" type="button" data-go="pos" style="--c1:#3d86ea;--c2:#1846b8;--fx:#0f2a6b;--tg:#ffc000;--tt:#fff;--ts:0 2px 0 rgba(0,0,0,.3);--ac:#ffc000;--sb:#e6efff">
+          <div class="cmp-tx"><span class="h"><span class="n">05</span><span class="cmp-tag" style="color:#16181d">SELL OUT</span></span>
+            <h3>Bike · Balde</h3><span class="cmp-sub">Origens / FN</span></div>
+          <div class="cmp-ps"><img src="../assets/campanhas/camp_bike_px.webp" alt="Bicicleta Origens"><img src="../assets/campanhas/camp_baldes_px.webp" alt="Balde FN"></div>
+          <div class="cmp-fx"><span><b data-draw="c6">—</b> clientes com prêmio</span><b>out–dez →</b></div>
+        </button>
+        <button class="px-card px-in" type="button" data-go="prop">
+          <span class="h"><span class="n">06</span><span class="go">→</span></span>
+          <h3>Proposta para fechamento</h3>
+          <span class="kv" data-draw="c7">—</span>
+          <span class="kl">clientes abaixo do objetivo do 4º tri</span>
+        </button>
+        <div class="cmp-list" data-draw="cmp_list"></div>
         <button class="px-card px-in px-pil-card" type="button" data-go="pil" data-draw="c8_card" hidden>
           <span class="pil-txt">
-            <span class="h"><span class="n">04</span><span class="pil-tag">PILOTO</span></span>
+            <span class="h"><span class="n">07</span><span class="pil-tag">PILOTO</span></span>
             <h3 data-draw="c8_nome">Campeões de Giro</h3>
             <span class="kv" data-draw="c8">—</span>
             <span class="kl">clientes com prêmio garantido</span>
@@ -660,73 +607,8 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       </div>
     </section>
 
-    <section data-page="fech" id="fechamento" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Fechamento de ano</h2></div>
-      <div class="px-cards">
-        <button class="px-card px-in wide" type="button" data-go="q4" data-draw="c5_hl" data-source="plano">
-          <span class="h"><span class="n">01</span><span class="tag">EM DESTAQUE</span><span class="go">→</span></span>
-          <h3>Objetivo 4º tri</h3>
-          <span class="kv" data-draw="c5" data-source="q4" data-field="atingimento" data-row="0">—</span>
-          <span class="kl" data-draw="c5_r" data-source="q4" data-field="ritmo" data-row="0">—</span>
-          <span class="hl-extra">
-            <span class="hl-bar"><b data-draw="c5_bar" data-source="q4"></b><i data-draw="c5_esp" data-source="q4"></i></span>
-            <span class="hl-txt">Faltam <b data-draw="c5_falta" data-source="q4" data-field="falta" data-row="0">—</b> kg para o objetivo do trimestre</span>
-          </span>
-        </button>
-        <button class="px-card px-in" type="button" data-go="prime">
-          <span class="h"><span class="n">02</span><span class="go">→</span></span>
-          <h3>Prime</h3>
-          <span class="kv" data-draw="c2" data-source="rebate_resumo" data-field="atingimento" data-row="0">—</span>
-          <span class="kl">do objetivo de rebate</span>
-        </button>
-        <button class="px-card px-in" type="button" data-go="mes">
-          <span class="h"><span class="n">03</span><span class="go">→</span></span>
-          <h3>Mês atual</h3>
-          <span class="kv" data-draw="c1" data-source="mes_resumo" data-field="sem_compra_mes" data-row="0">—</span>
-          <span class="kl">sem compra no mês</span>
-        </button>
-        <button class="px-card px-in" type="button" data-go="prop">
-          <span class="h"><span class="n">04</span><span class="go">→</span></span>
-          <h3>Proposta para fechamento</h3>
-          <span class="kv" data-draw="c7">—</span>
-          <span class="kl">clientes abaixo do objetivo do 4º tri</span>
-        </button>
-      </div>
-    </section>
-
-    <section data-page="camp" id="campanhas" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Campanhas</h2></div>
-      <div class="px-cards">
-        <button class="px-card px-in cmp-card cp-card f-bb" type="button" data-go="pos" style="--c1:#3d86ea;--c2:#1846b8;--fx:#0f2a6b;--tg:#ffc000;--tt:#fff;--ts:0 2px 0 rgba(0,0,0,.3);--ac:#ffc000;--sb:#e6efff">
-          <div class="cmp-tx"><span class="h"><span class="n">01</span><span class="cmp-tag" style="color:#16181d">SELL OUT</span></span>
-            <h3>Bike · Balde</h3><span class="cmp-sub">Origens / FN</span></div>
-          <div class="cmp-ps"><img src="../assets/campanhas/camp_bike_px.webp" alt="Bicicleta Origens"><img src="../assets/campanhas/camp_baldes_px.webp" alt="Balde FN"></div>
-          <div class="cmp-fx"><span><b data-draw="c6">—</b> clientes com prêmio</span><b>out–dez →</b></div>
-        </button>
-        <div class="cmp-list" data-draw="cmp_list"></div>
-        <div class="px-card px-soon"><span class="h"><span class="n">+</span></span><h3>Novas campanhas</h3><span class="kl">em breve</span></div>
-      </div>
-    </section>
-
-    <section data-page="cmp" id="campanha" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="camp">← Campanhas</button><h2 data-draw="cmp_tit">Campanha</h2></div>
-      <div class="cmp-det" data-draw="cmp_det"></div>
-    </section>
-
-    <section data-page="perf" id="performance" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Performance</h2></div>
-      <div class="px-cards">
-        <button class="px-card px-in" type="button" data-go="ano">
-          <span class="h"><span class="n">01</span><span class="go">→</span></span>
-          <h3>Ano 2026</h3>
-          <span class="kv" data-draw="c3" data-source="familias_total" data-field="variacao" data-row="0">—</span>
-          <span class="kl">por mês, contra 2025</span>
-        </button>
-      </div>
-    </section>
-
     <section data-page="mes" id="mes-atual" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="fech">← Fechamento</button><h2>Mês atual</h2></div>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Mês atual</h2></div>
       <div class="px-minis">
         <div class="px-mini"><div class="l">Faturado no mês</div><div class="v"><span data-draw="m_fat" data-source="mes_resumo" data-field="faturado" data-row="0">—</span> kg</div></div>
         <div class="px-mini"><div class="l">Vendido no mês</div><div class="v gold"><span data-draw="m_vend" data-source="mes_resumo" data-field="vendido" data-row="0">—</span> kg</div></div>
@@ -753,7 +635,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     </section>
 
     <section data-page="prime" id="prime" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="fech">← Fechamento</button><h2>Prime · Rebate</h2></div>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Prime · Rebate</h2></div>
       <div class="px-panel">
         <div class="px-sel" role="group" aria-label="Escolher rede" data-draw="rede_sel" data-source="rebate_calc"></div>
         <div class="px-redes" data-draw="groups" data-source="rebate_calc"></div>
@@ -777,7 +659,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     </section>
 
     <section data-page="ano" id="ano-2026" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="perf">← Performance</button><h2>Ano 2026</h2></div>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Ano 2026</h2></div>
       <div class="px-minis px-minis3">
         <div class="px-mini"><div class="l">Vendido no ano</div><div class="v gold"><span data-draw="y_kg" data-source="familias_total" data-field="kg_2026" data-row="0">—</span> kg</div></div>
         <div class="px-mini"><div class="l">Média por mês</div><div class="v"><span data-draw="y_m26" data-source="familias_total" data-field="media_26" data-row="0">—</span> kg</div></div>
@@ -802,7 +684,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       </div>
     </section>
     <section data-page="q4" id="objetivo-4tri" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="fech">← Fechamento</button><h2>Objetivo 4º trimestre</h2></div>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Objetivo 4º trimestre</h2></div>
       <div class="px-rede-status" data-draw="q_ritmo" data-source="q4" data-field="ritmo" data-row="0">—</div>
       <div class="px-minis">
         <div class="px-mini"><div class="l">Objetivo do trimestre</div><div class="v"><span data-draw="q_obj" data-source="q4" data-field="objetivo" data-row="0">—</span> kg</div></div>
@@ -843,7 +725,7 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     </section>
 
     <section data-page="pos" id="positivacao" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="camp">← Campanhas</button><h2>Bicicleta · Baldes</h2></div>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Bicicleta · Baldes</h2></div>
       <div class="px-panel px-stack">
         <div class="px-cli" data-draw="cli_pos"></div>
         <div class="px-stack" data-draw="camp_body"></div>
@@ -861,8 +743,13 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       <div class="pil-itens" data-draw="pil_itens"></div>
     </section>
 
+    <section data-page="cmp" id="campanha" class="px-wrap" style="gap: inherit" hidden>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2 data-draw="cmp_tit">Campanha</h2></div>
+      <div class="cmp-det" data-draw="cmp_det"></div>
+    </section>
+
     <section data-page="prop" id="proposta" class="px-wrap" style="gap: inherit" hidden>
-      <div class="px-page-head"><button class="px-back" type="button" data-go="fech">← Fechamento</button><h2>Proposta para fechamento</h2></div>
+      <div class="px-page-head"><button class="px-back" type="button" data-go="home">← Início</button><h2>Proposta para fechamento</h2></div>
       <div class="px-panel px-stack">
         <div class="px-cli" data-draw="cli_prop"></div>
         <div class="px-stack" data-draw="prop_body"></div>
@@ -969,9 +856,9 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   });
   dash.calc('familias_total', {
     title: 'Ano 2026 x 2025', description: 'Vendido no ano = kg 2026; média 2026 = soma das médias mensais dos clientes (BI); média 2025 = soma das médias de 2025 inteiro (jan–dez ÷ 12).',
-    inputs: ['familias', 'clientes'],
-    fn: (familias, clientes) => { const k26 = familias.reduce((a, f) => a + f.kg_2026, 0);
-      const m26 = clientes.reduce((a, c) => a + Number(c.med_kg_26 || 0), 0), m25 = clientes.reduce((a, c) => a + Number(c.med_kg_25 || 0), 0);
+    inputs: ['familias', 'clientes', 'perf_total'],
+    fn: (familias, clientes, perf) => { const k26 = familias.reduce((a, f) => a + f.kg_2026, 0); const pt = perf && perf[0];
+      const m26 = pt ? pt.media_26 : clientes.reduce((a, c) => a + Number(c.med_kg_26 || 0), 0), m25 = pt ? pt.media_25 : clientes.reduce((a, c) => a + Number(c.med_kg_25 || 0), 0);
       return [{kg_2026: k26, media_25: m25, media_26: m26, variacao: m25 ? m26 / m25 - 1 : 0}]; }
   });
 
@@ -1378,40 +1265,6 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       if (!ok) r.onclick = () => { on ? d.sel.delete(it) : d.sel.add(it); pilRedraw(); };
       g.appendChild(r); });
     el.appendChild(g); });
-  dash.draw('c7', (el) => { const p = pxOne('proposta'); el.textContent = p ? String(Object.values(p).filter((r) => r.falta > 0).length) : '—'; });
-
-  // ===== Plano Performance: níveis + ranking =====
-  dash.draw('nivel', (el) => { const P = pxOne('plano'); if (!P) return; el.replaceChildren();
-    const v = (P.faturado || 0) + (P.carteira || 0), at = P.objetivo ? v / P.objetivo : 0, af = P.objetivo ? P.faturado / P.objetivo : 0;
-    const L = [{n: 'Início', ic: '🚶', kg: 0}, {n: 'Bronze', ic: '🥉', kg: P.minimo, s: 'mínimo'}, {n: 'Ouro', ic: '🥇', kg: P.objetivo, s: 'objetivo'}, {n: 'Diamante', ic: '💎', kg: P.acelerador, s: 'acelerador'}];
-    let cur = 0; L.forEach((l, i) => { if (v >= l.kg) cur = i; }); const nx = L[cur + 1];
-    const top = pxEl('div', 'nv-top'), a = pxEl('div'); a.append(pxEl('div', 'nv-k', 'Nível do mês · vendido'), pxEl('div', 'nv-t', nx ? 'Rumo ao ' : 'Nível '));
-    a.lastChild.appendChild(pxEl('span', 'nv-lv l' + (nx ? cur + 1 : cur), nx ? nx.n : L[cur].n + '!'));
-    const b = pxEl('div', 'nv-num'); b.append(pxEl('b', pxTone(at), pxPct(at)), pxEl('small', '', 'faturado ' + pxPct(af)));
-    top.append(a, b); el.appendChild(top);
-    const st = pxEl('div', 'nv-st'); L.forEach((l, i) => { const c = pxEl('div', 'nv-s l' + i + (i === cur ? ' cur' : '') + (i <= cur ? ' ok' : ''));
-      if (i === cur) c.appendChild(pxEl('span', 'nv-me', 'você · ' + pxKg(v)));
-      c.append(pxEl('span', 'ic', l.ic), pxEl('b', '', l.n), pxEl('small', '', i ? (l.kg / 1000).toLocaleString('pt-BR', {maximumFractionDigits: 1}) + ' mil' : ' '));
-      if (i) c.appendChild(pxEl('em', 'gp' + (v >= l.kg ? ' ok' : ''), v >= l.kg ? '✓ batido' : '−' + pxKg(l.kg - v)));
-      st.appendChild(c); });
-    el.appendChild(st);
-    const ft = pxEl('div', 'nv-ft');
-    if (nx) { const t = pxEl('div', 'nv-ftt'); t.append('Próximo: ', pxEl('b', '', nx.n), ' · faltam ', pxEl('b', '', pxKg(nx.kg - v) + ' kg'));
-      const pb = pxEl('div', 'nv-pb'), i = document.createElement('i'); i.style.width = Math.max(2, Math.min(100, (v - L[cur].kg) / (nx.kg - L[cur].kg) * 100)) + '%'; i.className = 'l' + (cur + 1); pb.appendChild(i); ft.append(t, pb); }
-    else ft.appendChild(pxEl('div', 'nv-ftt', '💎 Acelerador batido — tudo o que vier agora é extra!'));
-    el.appendChild(ft); });
-  dash.draw('rank', (el) => { const R = pxOne('ranking_rc'); if (!R || !R.pos) { el.hidden = true; return; } el.replaceChildren();
-    const p = pxEl('div', 'rk-p'); p.append(pxEl('b', '', R.pos + 'º'), pxEl('small', '', 'de ' + R.n + ' na Regional'));
-    const bars = pxEl('div', 'rk-b'), mx = Math.max(...R.lista, 0.01);
-    R.lista.forEach((x, i) => { const b = document.createElement('i'); b.style.height = Math.max(8, x / mx * 100) + '%'; if (i === R.pos - 1) b.className = 'me'; else if (i < 3) b.className = 'top'; bars.appendChild(b); });
-    const t = pxEl('div', 'rk-t');
-    if (R.pos > 1) { const g = R.lista[R.pos - 2] - R.meu; t.append('Passe o ' + (R.pos - 1) + 'º: faltam ', pxEl('b', '', pxKg(Math.ceil(g * R.objetivo)) + ' kg')); }
-    else t.append(pxEl('b', '', '🏆 Você lidera a Regional'));
-    el.append(p, bars, t); });
-  // a tela inicial ocupa toda a altura: os cards esticam até o fim
-  const pxFill = () => { const h = document.querySelector('.px-home'); if (!h || h.hidden) return; h.style.minHeight = Math.max(0, innerHeight - h.getBoundingClientRect().top - window.scrollY - 14) + 'px'; };
-  addEventListener('resize', pxFill); setTimeout(pxFill, 50); setTimeout(pxFill, 600);
-
   // ===== Campanhas com arte (uma por card) =====
   window.pxCmp = {id: null};
   const cmpAll = () => (dash.data('campanhas_extra').data || []);
@@ -1442,12 +1295,9 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       const a2 = pxEl('div'); a2.appendChild(pxEl('h4', '', 'Ganhe')); ln.ganhe.forEach((x) => a2.appendChild(pxEl('div', 'cmp-it g', x))); t.append(a1, a2); el.appendChild(t); });
     if (c.como_funciona) { const t = pxEl('div', 'cmp-bx'); t.append(pxEl('h4', '', 'Como funciona'), pxEl('p', '', c.como_funciona)); el.appendChild(t); } });
 
-  // cards de grupo da tela inicial
-  dash.draw('g1', (el) => { const r = pxOne('q4'); el.textContent = r ? pxPct(r.atingimento) : '—'; el.className = 'kv ' + (r ? pxTone(r.ritmo) : ''); });
-  dash.draw('g3', (el) => { const r = pxOne('familias_total'); el.textContent = r ? pxVar(r.variacao) : '—'; el.className = 'kv ' + (r ? (r.variacao >= 0 ? 'c-ok' : 'c-bad') : ''); });
-  dash.draw('g2', (el) => { const c6 = document.querySelector('[data-draw="c6"]'); el.textContent = c6 ? c6.textContent : '—'; });
+  dash.draw('c7', (el) => { const p = pxOne('proposta'); el.textContent = p ? String(Object.values(p).filter((r) => r.falta > 0).length) : '—'; });
 
-  const ids = {home: 'inicio', fech: 'fechamento', camp: 'campanhas', perf: 'performance', cmp: 'campanha', mes: 'mes-atual', prime: 'prime', ano: 'ano-2026', q4: 'objetivo-4tri', pos: 'positivacao', prop: 'proposta', pil: 'piloto'};
+  const ids = {home: 'inicio', cmp: 'campanha', mes: 'mes-atual', prime: 'prime', ano: 'ano-2026', q4: 'objetivo-4tri', pos: 'positivacao', prop: 'proposta', pil: 'piloto'};
   const show = (page) => {
     document.querySelectorAll('[data-page]').forEach((s) => { s.hidden = s.dataset.page !== page; });
     if (page === 'q4') { try { dash.draw('q4_meses'); } catch (e) {} }

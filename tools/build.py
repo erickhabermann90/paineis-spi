@@ -64,10 +64,15 @@ for nome in plano:
     alvo.append(cod)
 json.dump(rcs, open(os.path.join(T, 'rcs.json'), 'w'), ensure_ascii=False, indent=2)
 
-page = open(os.path.join(T, 'template.html')).read().replace('<meta name="dash-one-writer">\n', '')
-se = page.index('</style>') + len('</style>')
-styles, body = page[:se], page[se:]
-si = body.index('<script>'); markup, script = body[:si], body[si:]
+def split_tpl(nome_arq):
+    pg = open(os.path.join(T, nome_arq)).read().replace('<meta name="dash-one-writer">\n', '')
+    se_ = pg.index('</style>') + len('</style>'); bd = pg[se_:]; si_ = bd.index('<script>')
+    return pg[:se_], bd[:si_], bd[si_:]
+styles, markup, script = split_tpl('template.html')
+# link paralelo de teste do formato novo (tools/teste.json: {"cod": ..., "slug": ...}) — o link oficial do RC segue no padrão
+TJ = os.path.join(T, 'teste.json')
+TESTE = json.load(open(TJ)) if os.path.exists(TJ) else None
+TPL_TESTE = split_tpl('template_teste.html') if TESTE and os.path.exists(os.path.join(T, 'template_teste.html')) else None
 SHIM = open(os.path.join(T, 'shim.js')).read()
 HEAD = open(os.path.join(T, 'head.html')).read()
 
@@ -138,7 +143,7 @@ def campanha_cli(carteira):
 
 def itens_cli(cod):
     # itens por cliente da carteira ATUAL do RC (Histórico), não pelo RC da venda — clientes transferidos levam o histórico
-    carteira = {str(x[1]) for x in clients if x[0] == cod}
+    carteira = {str(x[1]) for x in clients_ativos if x[0] == cod}
     out = {}
     for r in itens_rows:
         if str(r[1]) in carteira:
@@ -154,6 +159,13 @@ if CAMPANHAS:
     os.makedirs(os.path.join(SITE, 'assets', 'campanhas'), exist_ok=True)
     for _f in os.listdir(os.path.join(T, 'campanhas', 'img')):
         shutil.copy2(os.path.join(T, 'campanhas', 'img', _f), os.path.join(SITE, 'assets', 'campanhas', _f))
+# clientes INATIVOS (filtro SITUAÇÃO CLIENTE do BI): saem de todas as listas do painel;
+# entram só nos números de Performance 2025 x 2026 do RC (perf_total e famílias)
+IJ = os.path.join(T, 'inativos.json')
+INATIVOS = set(json.load(open(IJ))['clientes']) if os.path.exists(IJ) else set()
+clients_all = clients
+clients_ativos = [x for x in clients if str(x[1]) not in INATIVOS]
+print('clientes inativos (BI):', len(INATIVOS), '| fora dos painéis:', len(clients) - len(clients_ativos))
 gest = []
 # ranking da Regional por % vendido (faturado + carteira) ÷ objetivo do Plano Performance — sem nomes
 _vend = {}
@@ -166,7 +178,7 @@ for cod in alvo:
     cl = [{'cod': x[1], 'razao_social': x[2], 'rede': x[3], # médias do próprio BI (MED KG 25/26, mesmo período) quando vierem no extrato
            # 2025 = média do ano inteiro (Histórico MÉD KG 25, jan–dez ÷ 12) quando vier no extrato (x[12])
            'med_kg_25': x[12] if len(x) > 12 else (x[10] if len(x) > 11 else round(x[4] / 12)), 'med_kg_26': x[11] if len(x) > 11 else round((x[5] - (x[6] if mes_painel == hoje.month else 0)) / meses_fechados),
-           'kg_mes': x[6], 'kg_carteira': x[7], 'dias_ult_compra': x[8], 'freq_media_dias': x[9]} for x in clients if x[0] == cod]
+           'kg_mes': x[6], 'kg_carteira': x[7], 'dias_ult_compra': x[8], 'freq_media_dias': x[9]} for x in clients_ativos if x[0] == cod]
     reb = []
     for r in out['reb']:
         if r[0].split(' - ')[0] != cod: continue
@@ -181,7 +193,7 @@ for cod in alvo:
            for x in out['fam'] if x[0] == cod and (x[2] or x[3])]
     m4 = metas4t.get(cod)
     kg_m = {k: q4hist.get(k, {}).get(cod, {}) for k in ('out', 'nov', 'dez')}
-    nomes_cli = {x[1]: x[2] for x in clients if x[0] == cod}
+    nomes_cli = {x[1]: x[2] for x in clients_ativos if x[0] == cod}
     meta4t = [{'objetivo': m4['objetivo'] if m4 else 0, 'meses_rest': meses_rest, 'fechados': sum(1 for k in ('out', 'nov', 'dez') if kg_m[k]),
                **{k: sum(kg_m[k].values()) for k in ('out', 'nov', 'dez')}}]
     # Objetivo 4º tri por cliente: objetivo do RC dividido só entre os clientes ativos (compra em 2026),
@@ -199,8 +211,9 @@ for cod in alvo:
                     'objetivo': p[1], 'acelerador': p[2], 'minimo': p[3], 'faturado': f[2], 'carteira': f[3], 'meses_fechados': meses_fechados}],
          'clientes': cl, 'rebate': reb, 'familias': fam, 'meta4t': meta4t, 'clientes4t': clientes4t,
          'itens': [itens_cli(cod)], 'ranking': ranking,
-         'campanha': [campanha_cli([str(x[1]) for x in clients if x[0] == cod])], 'campanha_regras': [CAMP_REGRAS],
-         'carteira_kg': [{str(x[1]): x[7] for x in clients if x[0] == cod}],
+         'campanha': [campanha_cli([str(x[1]) for x in clients_ativos if x[0] == cod])], 'campanha_regras': [CAMP_REGRAS],
+         'carteira_kg': [{str(x[1]): x[7] for x in clients_ativos if x[0] == cod}],
+         'perf_total': [{'media_25': sum((x[12] if len(x) > 12 else x[10]) for x in clients_all if x[0] == cod), 'media_26': sum(x[11] for x in clients_all if x[0] == cod), 'inativos': sum(1 for x in clients_all if x[0] == cod and str(x[1]) in INATIVOS)}],
          'ranking_rc': [{'lista': _lista, 'meu': _vend.get(cod, 0), 'pos': sorted(_vend, key=lambda c: -_vend[c]).index(cod) + 1 if cod in _vend else None, 'n': len(_lista), 'objetivo': p[1]}]}
     # campanhas com arte e packshots (tools/campanhas/campanhas.json; imagens copiadas para site/assets/campanhas/)
     d['campanhas_extra'] = CAMPANHAS
@@ -215,6 +228,12 @@ for cod in alvo:
     html = (HEAD % nome.title()) + styles + '\n</head><body>\n<div id="dash-root">' + markup + '</div>\n<script>window.__DATA = ' + json.dumps(d, ensure_ascii=False) + ';</script>\n' + SHIM + script + '\n<script>dash._runAll(); let __t, __w = innerWidth; addEventListener("resize", () => { if (innerWidth === __w) return; __w = innerWidth; clearTimeout(__t); __t = setTimeout(() => dash._runAll(), 200); });</script>\n</body></html>\n'
     os.makedirs(os.path.join(SITE, rcs[cod]['slug']), exist_ok=True)
     open(os.path.join(SITE, rcs[cod]['slug'], 'index.html'), 'w').write(html)
+    if TPL_TESTE and str(TESTE['cod']) == str(cod):
+        st_, mk_, sc_ = TPL_TESTE
+        ht = (HEAD % (nome.title() + ' · teste')) + st_ + '\n</head><body>\n<div id="dash-root">' + mk_ + '</div>\n<script>window.__DATA = ' + json.dumps(d, ensure_ascii=False) + ';</script>\n' + SHIM + sc_ + '\n<script>dash._runAll(); let __t, __w = innerWidth; addEventListener("resize", () => { if (innerWidth === __w) return; __w = innerWidth; clearTimeout(__t); __t = setTimeout(() => dash._runAll(), 200); });</script>\n</body></html>\n'
+        os.makedirs(os.path.join(SITE, TESTE['slug']), exist_ok=True)
+        open(os.path.join(SITE, TESTE['slug'], 'index.html'), 'w').write(ht)
+        print('teste (formato novo):', '/' + TESTE['slug'] + '/')
     q = meta4t[0]; rq = q['out'] + q['nov'] + q['dez']
     resumo.append((nome, f[2], p[1], f[2] / p[1], len(cl), sum(c['kg_mes'] for c in cl), q['objetivo'], rq))
     gest.append({'nome': nome.title(), 'slug': rcs[cod]['slug'], 'fat': f[2], 'carteira': f[3], 'obj': p[1], 'obj4t': q['objetivo'], 'real4t': rq})
