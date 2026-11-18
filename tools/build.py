@@ -110,6 +110,18 @@ CAMP_BASE = os.path.join(T, 'campanha_base.json')
 camp_base = json.load(open(CAMP_BASE)) if os.path.exists(CAMP_BASE) else None
 _camp_ext = os.path.join(ext, 'campanha.json')
 camp_dia = json.load(open(_camp_ext)) if os.path.exists(_camp_ext) else None
+# sem a etapa da bike no dia: reaproveita a última extração e atualiza o volume out–dez de cada cliente pelo histórico mensal (q4_mensal)
+CAMP_ULT = os.path.join(T, 'campanha_ult.json')
+if camp_dia:
+    json.dump(camp_dia, open(CAMP_ULT, 'w'), ensure_ascii=False, separators=(',', ':'))
+elif os.path.exists(CAMP_ULT):
+    camp_dia = json.load(open(CAMP_ULT)); camp_dia.pop('fo_mes_atual', None)
+    _vol = {}
+    for _m in ('out', 'nov', 'dez'):
+        for _rc, _cl in q4hist.get(_m, {}).items():
+            for _c, _kg in _cl.items(): _vol[str(_c)] = _vol.get(str(_c), 0) + _kg
+    camp_dia['q4'] = [[r[0], _vol.get(str(r[0]), r[1]), r[2], r[3]] for r in camp_dia['q4']]
+    print('campanha: etapa da bike pulada hoje — itens novos e baldes da última extração; volume out–dez atualizado')
 CAMP_FO = os.path.join(T, 'campanha_fo_mes.json')
 camp_fo = json.load(open(CAMP_FO)) if os.path.exists(CAMP_FO) else {}
 # extrato_dir/campanha.json pode trazer "fo_mes_atual": [[cli, kg FN + Origens no mês vigente]] → regrava o mês vigente
@@ -243,9 +255,26 @@ open(os.path.join(SITE, 'index.html'), 'w').write('<!doctype html><meta charset=
 GJ = os.path.join(T, 'gestor.json')
 if not os.path.exists(GJ): json.dump({'slug': 'gestor-' + secrets.token_hex(4)}, open(GJ, 'w'))
 gslug = json.load(open(GJ))['slug']
+# KPIs da Regional (página KPI do BI): extrato/kpi.json, senão o último salvo em tools/kpi_regional.json
+_kx = os.path.join(ext, 'kpi.json'); _kt = os.path.join(T, 'kpi_regional.json')
+if os.path.exists(_kx): import shutil as _sh; _sh.copy2(_kx, _kt)
+KPI = json.load(open(_kt)) if os.path.exists(_kt) else None
+# atualização diária dos KPIs: extrato/kpi_mes.json = {"mes": "11", "vals": {"vol": [obj, real], "rs": [...], "fn": [...], "orig": [...], "pet": [...]}, "rs_carteira": R$}
+# carteira em kg por linha sai da própria extração de famílias (colunas extras: família geral, peso não faturado)
+_km = os.path.join(ext, 'kpi_mes.json')
+if os.path.exists(_km):
+    km = json.load(open(_km)); KPI = KPI or {'meses': {}, 'carteira': {}}
+    KPI['meses'][km['mes']] = km['vals']
+    _cg = {}
+    for x in out['fam']:
+        if len(x) >= 7: _cg[x[5]] = _cg.get(x[5], 0) + x[6]
+    KPI['carteira'] = {'vol': sum(_cg.values()), 'fn': _cg.get('FÓRMULA NATURAL', 0), 'orig': _cg.get('ORIGENS', 0), 'pet': _cg.get('PET CARE', 0), 'rs': km.get('rs_carteira', 0)}
+    KPI['extraido_em'] = atualizado
+    json.dump(KPI, open(_kt, 'w'), ensure_ascii=False, indent=1)
+    print('KPIs da Regional atualizados:', km['mes'], '| carteira kg', KPI['carteira']['vol'])
 os.makedirs(os.path.join(SITE, gslug), exist_ok=True)
 open(os.path.join(SITE, gslug, 'index.html'), 'w').write(open(os.path.join(T, 'gestor.html')).read().replace('__DATA__', json.dumps(
-    {'mes': mes, 'data': atualizado[8:10] + '/' + atualizado[5:7], 'rcs': sorted(gest, key=lambda r: r['nome'])}, ensure_ascii=False)))
+    {'mes': mes, 'mes_num': atualizado[5:7], 'data': atualizado[8:10] + '/' + atualizado[5:7], 'rcs': sorted(gest, key=lambda r: r['nome']), 'kpi': KPI}, ensure_ascii=False)))
 print('gestor: /' + gslug + '/')
 open(os.path.join(SITE, 'robots.txt'), 'w').write('User-agent: *\nDisallow: /\n')
 open(os.path.join(SITE, '_headers'), 'w').write('/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: no-cache\n')

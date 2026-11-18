@@ -38,11 +38,34 @@
   .barra select { flex: 1; min-width: 0; font-size: 15px; font-weight: 700; color: #16181d; background: var(--gold); border: 0; border-radius: 10px; padding: 8px 10px; }
   .barra .tag { color: var(--gold); font-size: 10px; letter-spacing: .14em; font-weight: 700; }
   iframe { flex: 1; width: 100%; border: 0; background: var(--bg); }
+
+  /* ===== KPIs da Regional ===== */
+  .kpis { display: grid; gap: 8px; }
+  .kpis h2 { margin: 2px 0 0; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--mut); }
+  .kp { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: grid; gap: 6px; box-shadow: 0 6px 18px -12px rgba(30,30,40,.25); }
+  .kp.vol { background: linear-gradient(120deg, #fffaea 0%, #ffecb0 100%); border-color: #f0c94f; box-shadow: inset 4px 0 0 #ffc000; }
+  .kp-h { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .kp-h b { font-size: 15px; } .kp-h small { font-size: 11.5px; color: var(--mut); }
+  .kp-n { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .kp-n .v { font-size: 26px; font-weight: 800; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+  .kp-n .v small { font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--mut); text-transform: uppercase; margin-left: 4px; }
+  .kp-n .f { font-size: 13px; color: var(--mut); font-variant-numeric: tabular-nums; } .kp-n .f b { color: var(--fg); }
+  .kp-bar { position: relative; height: 10px; border-radius: 99px; background: #ece7da; overflow: hidden; }
+  .kp-bar i { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 99px; }
+  .kp-bar i.c { background: repeating-linear-gradient(135deg, rgba(255,192,0,.55) 0 5px, rgba(255,192,0,.25) 5px 10px); }
+  .kp-bar i.x { background: rgba(15,157,107,.18); }
+  .kp-bar em { position: absolute; top: -2px; bottom: -2px; width: 2px; background: #16181d; }
+  .kp-g { display: flex; justify-content: space-between; gap: 10px; font-size: 12.5px; flex-wrap: wrap; }
+  .kp-g b { font-variant-numeric: tabular-nums; }
+  .kp-s { font-size: 11.5px; color: #8a7a52; } .kp-s b { font-weight: 600; color: #6b5a2e; }
+  .kp-mini { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  @media (min-width: 700px) { .kp-mini { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .kp-mini .kp { padding: 10px 12px; gap: 5px; } .kp-mini .kp-n .v { font-size: 22px; } .kp-mini .kp-n { gap: 10px; } .kp-mini .kp-g { font-size: 11.5px; } .kp-mini .kp-h b { font-size: 13.5px; }
 </style>
 </head><body>
 <main class="lista" id="lista">
   <header class="top"><small>Regional SPI Campinas · gestor</small><h1>Painéis dos RCs</h1><p id="atual"></p></header>
-  <section class="tot" id="tot"></section>
+  <section class="kpis" id="kpis"></section>
   <section class="rcs" id="rcs"></section>
   <p class="nota">Toque num RC para abrir o painel dele exatamente como ele vê.</p>
 </main>
@@ -51,15 +74,44 @@
   <iframe id="frame" title="Painel do representante"></iframe>
 </section>
 <script>
-  const D = {"mes": "Novembro 2026", "data": "17/11", "rcs": [{"nome": "Eduardo Leandro Ferraz", "slug": "eduardo-d07b65", "fat": 12044, "carteira": 2573, "obj": 25000, "obj4t": 75000, "real4t": 38738}, {"nome": "Felippe Guitcis Laurino", "slug": "felippe-fa8f53", "fat": 48437, "carteira": 456, "obj": 74700, "obj4t": 242900, "real4t": 108653}, {"nome": "Gabriel Reginaldo Da Silva", "slug": "gabriel-45eb60", "fat": 27574, "carteira": 10366, "obj": 60400, "obj4t": 181200, "real4t": 96588}, {"nome": "Lucas Alexandre Fonseca", "slug": "lucas-343b76", "fat": 32819, "carteira": 9235, "obj": 51400, "obj4t": 187000, "real4t": 97033}, {"nome": "Marcos Fleitas Ximenes", "slug": "marcos-fd259f", "fat": 18607, "carteira": 15456, "obj": 66400, "obj4t": 212000, "real4t": 87557}, {"nome": "Maria Fernanda Catarin Correa", "slug": "maria-cc285d", "fat": 10943, "carteira": 8577, "obj": 44000, "obj4t": 132000, "real4t": 64836}, {"nome": "Mauricio Tamburo", "slug": "mauricio-5dabb9", "fat": 27859, "carteira": 10513, "obj": 63400, "obj4t": 201000, "real4t": 80004}, {"nome": "Thiago Junior Batista Dos Santos", "slug": "thiago-44f458", "fat": 25810, "carteira": 991, "obj": 59400, "obj4t": 182300, "real4t": 101527}, {"nome": "Wilian Leones", "slug": "wilian-f02b2c", "fat": 17491, "carteira": 19863, "obj": 46000, "obj4t": 192000, "real4t": 60465}, {"nome": "Yuri Della Libera Uzzun", "slug": "yuri-2173aa", "fat": 36841, "carteira": 3316, "obj": 60700, "obj4t": 182100, "real4t": 95683}]};
+  const D = {"mes": "Novembro 2026", "mes_num": "11", "data": "18/11", "rcs": [{"nome": "Eduardo Leandro Ferraz", "slug": "eduardo-d07b65", "fat": 13382, "carteira": 4522, "obj": 25000, "obj4t": 75000, "real4t": 40076}, {"nome": "Felippe Guitcis Laurino", "slug": "felippe-fa8f53", "fat": 48712, "carteira": 25591, "obj": 74700, "obj4t": 242900, "real4t": 108929}, {"nome": "Gabriel Reginaldo Da Silva", "slug": "gabriel-45eb60", "fat": 34320, "carteira": 6894, "obj": 60400, "obj4t": 181200, "real4t": 103335}, {"nome": "Lucas Alexandre Fonseca", "slug": "lucas-343b76", "fat": 32819, "carteira": 9235, "obj": 51400, "obj4t": 187000, "real4t": 97033}, {"nome": "Marcos Fleitas Ximenes", "slug": "marcos-fd259f", "fat": 24732, "carteira": 15564, "obj": 66400, "obj4t": 212000, "real4t": 93681}, {"nome": "Maria Fernanda Catarin Correa", "slug": "maria-cc285d", "fat": 10943, "carteira": 10872, "obj": 44000, "obj4t": 132000, "real4t": 64836}, {"nome": "Mauricio Tamburo", "slug": "mauricio-5dabb9", "fat": 29015, "carteira": 15193, "obj": 63400, "obj4t": 201000, "real4t": 81160}, {"nome": "Thiago Junior Batista Dos Santos", "slug": "thiago-44f458", "fat": 25810, "carteira": 991, "obj": 59400, "obj4t": 182300, "real4t": 101527}, {"nome": "Wilian Leones", "slug": "wilian-f02b2c", "fat": 28199, "carteira": 10251, "obj": 46000, "obj4t": 192000, "real4t": 71171}, {"nome": "Yuri Della Libera Uzzun", "slug": "yuri-2173aa", "fat": 36841, "carteira": 12236, "obj": 60700, "obj4t": 182100, "real4t": 95683}], "kpi": {"fonte": "Power BI · página KPI (plano e real por mês) + Curva ABC (PESO/R$ NÃO FATURADO por FAMÍLIA GERAL)", "extraido_em": "2026-11-18", "meses": {"10": {"vol": [650000, 750341], "rs": [5283749, 6141916], "fn": [143000, 162151], "orig": [137000, 191228], "pet": [15400, 16312]}, "11": {"vol": [670000, 363354], "rs": [5435622, 2966143], "fn": [143000, 78971], "orig": [137000, 67284], "pet": [15400, 10423]}, "12": {"vol": [715000, 0], "rs": [5789761, 0], "fn": [143000, 0], "orig": [137000, 0], "pet": [15400, 0]}}, "carteira": {"vol": 146718, "fn": 35611, "orig": 28122, "pet": 2340, "rs": 1194536}}};
   const kg = (v) => Math.round(v).toLocaleString('pt-BR');
   const pct = (v) => (v * 100).toLocaleString('pt-BR', {minimumFractionDigits: 1, maximumFractionDigits: 1}) + '%';
   const tom = (a) => a >= 1 ? 'c-ok' : a >= .8 ? 'c-warn' : 'c-bad';
   const cor = (a) => a >= 1 ? 'var(--ok)' : a >= .8 ? 'var(--warn)' : 'var(--bad)';
   const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
   document.getElementById('atual').textContent = D.mes + ' · dados de ' + D.data;
+
+  // ===== KPIs da Regional: vendido (faturado + carteira), gap para 100% e excedente do trimestre =====
+  (() => { const K = D.kpi, box = document.getElementById('kpis'); if (!K) { box.remove(); return; }
+    const mm = D.mes_num, nomesMes = {'10': 'outubro', '11': 'novembro', '12': 'dezembro'}, ordem = ['10', '11', '12'];
+    const rs = (v) => 'R$ ' + (v / 1e6).toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' mi';
+    const L = [['vol', 'Volume geral', 'kg'], ['fn', 'Fórmula Natural', 'kg'], ['orig', 'Origens', 'kg'], ['rs', 'Faturamento', 'R$'], ['pet', 'Pet Care', 'kg']];
+    box.appendChild(el('h2', '', 'KPIs da Regional · ' + (nomesMes[mm] || D.mes)));
+    const mini = el('div', 'kp-mini');
+    L.forEach(([k, nome, un]) => { const M = K.meses[mm]; if (!M || !M[k]) return; const [obj, fat] = M[k], cart = (K.carteira || {})[k] || 0, vend = fat + cart;
+      // excedente do trimestre: soma (real − objetivo) dos meses fechados anteriores (outubro em diante)
+      const i = ordem.indexOf(mm); let exc = 0; ordem.slice(0, Math.max(0, i)).forEach((m) => { const x = K.meses[m] && K.meses[m][k]; if (x) exc += x[1] - x[0]; });
+      const fmt = (v) => un === 'R$' ? rs(v) : kg(v) + ' kg';
+      const pV = vend / obj, pF = fat / obj, pX = (vend + Math.max(exc, 0)) / obj, gap = Math.max(obj - vend - exc, 0);
+      const c = el('div', 'kp' + (k === 'vol' ? ' vol' : '')), h = el('div', 'kp-h'); h.append(el('b', '', nome), el('small', '', 'objetivo ' + fmt(obj))); c.appendChild(h);
+      const n = el('div', 'kp-n'), v = el('span', 'v ' + tom(pV), pct(pV)); v.appendChild(el('small', '', 'vendido')); const f = el('span', 'f'); f.append('faturado ', el('b', '', pct(pF)));
+      n.append(v, f); c.appendChild(n);
+      const bar = el('div', 'kp-bar'), w = (x) => Math.min(100, Math.max(0, x * 100)) + '%';
+      if (exc > 0) { const x = el('i', 'x'); x.style.width = w(pX); bar.appendChild(x); }
+      const ic = el('i', 'c'); ic.style.width = w(pV); const iF = el('i'); iF.style.width = w(pF); iF.style.background = cor(pV); bar.append(ic, iF);
+      const mk = el('em'); mk.style.left = 'calc(' + w(1) + ' - 2px)'; bar.appendChild(mk); c.appendChild(bar);
+      const g = el('div', 'kp-g'); const g1 = el('span'); g1.append(gap > 0 ? 'Gap p/ 100%: ' : '✓ 100% coberto', gap > 0 ? el('b', 'c-bad', fmt(gap)) : '');
+      g.appendChild(g1);
+      // próximo mês do trimestre
+      const prox = ordem[i + 1]; if (prox && K.meses[prox] && K.meses[prox][k]) { const o2 = K.meses[prox][k][0], exc2 = exc + vend - obj, need = Math.max(o2 - exc2, 0);
+        const g2 = el('span', 'kp-s'); g2.append(nomesMes[prox] + ' precisará de ', el('b', '', fmt(need))); g.appendChild(g2); }
+      c.appendChild(g);
+      if (exc !== 0) { const s2 = el('div', 'kp-s'); s2.append(exc > 0 ? 'Com o excedente do trimestre (' + fmt(exc) + '): ' : 'Com o déficit do trimestre (' + fmt(-exc) + '): ', el('b', '', pct((vend + exc) / obj))); c.appendChild(s2); }
+      (k === 'vol' ? box : mini).appendChild(c); });
+    box.appendChild(mini); })();
   const T = D.rcs.reduce((a, r) => ({fat: a.fat + r.fat, obj: a.obj + r.obj, o4: a.o4 + r.obj4t, r4: a.r4 + r.real4t}), {fat: 0, obj: 0, o4: 0, r4: 0});
-  [['Faturado (kg)', kg(T.fat)], ['% objetivo mês', pct(T.fat / T.obj)], ['Objetivo 4º tri', pct(T.r4 / T.o4)]].forEach(([l, v]) => { const d = el('div'); d.append(el('span', '', l), el('b', '', v)); document.getElementById('tot').appendChild(d); });
+  [['Faturado (kg)', kg(T.fat)], ['% objetivo mês', pct(T.fat / T.obj)], ['Objetivo 4º tri', pct(T.r4 / T.o4)]].forEach(([l, v]) => { const d = el('div'); d.append(el('span', '', l), el('b', '', v));  });
   const rcs = document.getElementById('rcs'), sel = document.getElementById('sel');
   D.rcs.forEach((r) => {
     const a = r.fat / r.obj, a4 = r.obj4t ? r.real4t / r.obj4t : 0, b = el('button', 'rc'); b.type = 'button';

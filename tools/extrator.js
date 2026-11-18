@@ -70,3 +70,27 @@ window.__filtroLista=async(meses)=>{
 //  a) dims [CÓD CLIENTE], medidas [KG 26, KG FN 26, KG ORIGENS 26] → q4 = [[cli, kg26, fn, origens]] (ler colunas pelo nome)
 //  b) dims [CÓD CLIENTE, PRODUTO], medida [PESO] ordenado desc → __itensBg() → q4_itens = [[cli, produto, kg]]
 //  gravar extrato/campanha.json = {q4, q4_itens}. A base fixa (jan–set/2026 e itens jan/2025–set/2026) está em tools/campanha_base.json.
+// ===================== ROTINA ENXUTA (desde 17/11) =====================
+// Clientes: KG 25 e KG 26 saem do HISTÓRICO (MÉD KG 25 × 12 e MÉD KG 26 × nº do mês; erro ≤ 6 kg) — não precisa mais da extração de clientes na Curva ABC.
+// Famílias + carteira por linha numa única tabela: dims [CÓD RC - REPRESENTANTE, FAMÍLIA GERAL, FAMÍLIA SISTEMA],
+//   medidas [KG 26, KG 25, POSITIVACAO 26, PESO NÃO FATURADO, R$ NÃO FATURADO] → __famOut (lê colunas pelo nome).
+window.__famLe=()=>{const h=__rows(0)[0], ix=(n)=>h.indexOf(n); const rows=Object.entries(__fam).filter(([k])=>k!=='__tot').map(([,v])=>v);
+ window.__famOut=rows.map(r=>[r[ix('CÓD RC - REPRESENTANTE')].split(' - ')[0], r[ix('FAMÍLIA SISTEMA')], __num(r[ix('KG 26')]), __num(r[ix('KG 25')]), __num(r[ix('POSITIVACAO 26')]), r[ix('FAMÍLIA GERAL')], __num(r[ix('PESO NÃO FATURADO')])]);
+ const t=__fam.__tot||[]; window.__rsCart=__num(t[ix('R$ NÃO FATURADO')]);
+ return {n:__famOut.length, kg26:__famOut.reduce((a,x)=>a+x[2],0), cart:__famOut.reduce((a,x)=>a+x[6],0), rsCart:__rsCart, tot:t};};
+// KPI da Regional (página KPI): mês no segmentador 0, tabela no visual 1 (17 colunas, revela com .scrollRight).
+window.__kpi=async(mesNome)=>{await __mes(0,mesNome); const v=[...document.querySelectorAll('visual-container')][1]; const c={};
+ const grab=()=>v.querySelectorAll('[role="row"][aria-rowindex="2"] [aria-colindex]').forEach(e=>c[e.getAttribute('aria-colindex')]=e.innerText.replace(/\s+/g,' ').trim());
+ for(let k=0;k<12;k++){ v.querySelector('.scrollLeft')?.click(); await new Promise(r=>setTimeout(r,150)); } grab();
+ for(let k=0;k<12;k++){ v.querySelector('.scrollRight')?.click(); await new Promise(r=>setTimeout(r,400)); grab(); }
+ const n=(i)=>__num(c[i]); window.__kpiMes={vol:[n(3),n(4)], rs:[n(6),n(7)], fn:[n(9),n(10)], orig:[n(12),n(13)], pet:[n(15),n(16)]}; return {cols:Object.keys(c).length, kpi:__kpiMes};};
+// Exportação em partes: __exportar(mesNum, 'MM') e depois __parte(0), __parte(1)… (partes de até 180 mil caracteres, iguais entre si,
+// para cada retorno ir para um arquivo tool-results; o arquivo trunca acima de ~260 mil caracteres em base64).
+window.__exportar=(mesNum,mesStr,extra={})=>{const miss=[]; const clients=Object.entries(__all).filter(([k])=>k!=='__tot').map(([,r])=>{ const m25=__num(r[5]), m26=__num(r[6]), m=__num(r[7]); const k25=m25*12, k26=m26*mesNum;
+  return [r[1].split(' - ')[0], r[3], r[4], r[2], k25, k26, m, __num(r[8]), __num(r[9]), __num(r[10]), m25, Math.round((k26-m)/(mesNum-1)), m25];});
+ const flash=__flash.slice(1).filter(r=>r[0]!=='Total').map(r=>[r[0].replace(/^\*/,''),__num(r[1]),__num(r[2]),__num(r[6])]);
+ const plano=(window.__plano||[]).slice(1).filter(r=>r[0]==='Selecionar Linha').map(r=>[r[3],__num(r[4]),__num(r[5]),__num(r[6])]);
+ window.__EXP=JSON.stringify(Object.assign({mes_num:mesNum, miss, clients, out:{flash,plano,fam:__famOut,reb:__reb}, kpi_mes:{mes:mesStr, vals:__kpiMes, rs_carteira:__rsCart}}, extra));
+ return {len:__EXP.length, partes:__np()};};
+window.__np=()=>Math.max(1,Math.ceil(__EXP.length/180000));
+window.__parte=(i)=>{const n=__np(), sz=Math.ceil(__EXP.length/n); return btoa(unescape(encodeURIComponent(__EXP.slice(i*sz,(i+1)*sz))));};
