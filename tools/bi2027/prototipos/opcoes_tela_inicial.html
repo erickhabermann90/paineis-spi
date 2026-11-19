@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tela inicial · 5 modelos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f2ec;--card:#fff;--line:#e7e3d8;--fg:#16181d;--mut:#6c6f78;--gold:#ffc000;--gold2:#fff3c4;--ok:#0f9d6b;--warn:#d29a00;--bad:#d64545;--ink:#16181d}
+*{box-sizing:border-box}body{margin:0;background:#dcd8cd;color:var(--fg);font:14px/1.35 Inter,system-ui,sans-serif}
+.sel{position:sticky;top:0;z-index:9;background:#dcd8cd;display:flex;gap:6px;justify-content:center;padding:10px;flex-wrap:wrap}
+.sel button{border:0;background:#fff;border-radius:999px;padding:8px 14px;font:700 13px Inter;cursor:pointer}.sel button.on{background:var(--ink);color:var(--gold)}
+.phone{width:390px;max-width:100%;margin:0 auto 30px;background:var(--bg);border-radius:28px;padding:14px 14px 18px;min-height:844px;box-shadow:0 20px 50px -20px rgba(0,0,0,.35);position:relative;overflow:hidden}
+.m{display:none}.m.on{display:block}
+.top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:10px}.top b{font-size:17px;font-weight:800;letter-spacing:-.01em}.top small{color:var(--mut);font-size:11.5px}
+.lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:700}
+.ex{font-size:9px;font-weight:700;color:#a07a00;background:var(--gold2);border-radius:4px;padding:1px 4px;margin-left:4px;letter-spacing:0;text-transform:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.st{display:flex;height:10px;border-radius:99px;background:#ece8dd;overflow:hidden;position:relative}
+.st i{display:block;height:100%}.st .f{background:var(--c,#ffc000)}.st .c{background:repeating-linear-gradient(-45deg,rgba(255,255,255,.55) 0 4px,transparent 4px 8px),var(--c,#ffc000);opacity:.55}
+.gap{font-size:11px;font-weight:700;color:var(--bad)}.gap.ok{color:var(--ok)}
+.num{font-variant-numeric:tabular-nums}
+.vb{display:flex;flex-direction:column;align-items:center;gap:4px}
+.vt{position:relative;width:34px;border-radius:10px;background:#ece8dd;overflow:hidden;display:flex;flex-direction:column-reverse}
+.vt i{display:block;width:100%}.vt .f{background:var(--c,#ffc000)}.vt .c{background:repeating-linear-gradient(-45deg,rgba(255,255,255,.55) 0 4px,transparent 4px 8px),var(--c,#ffc000);opacity:.55}
+.vt .mk{position:absolute;left:-3px;right:-3px;height:2px;background:var(--ink)}
+.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.nav button{border:0;border-radius:14px;padding:11px 6px;font:700 13px Inter;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;background:#fff;border:1px solid var(--line);color:var(--fg)}
+.nav button span{font-size:18px}.nav button small{font-weight:500;color:var(--mut);font-size:10.5px}
+.leg{display:flex;gap:10px;font-size:10.5px;color:var(--mut);margin:6px 0 0}.leg i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:3px;vertical-align:-1px}
+</style></head><body>
+<div class="sel" id="sel"></div>
+<div class="phone" id="ph"></div>
+<script>
+const R={nome:'Gabriel',data:'19/11',dias:'7 dias úteis restantes'};
+// v = [objetivo, faturado, carteira]; ex=true → valores de exemplo (rateio da Regional) até termos o dado por RC
+const K=[
+ {k:'vol',n:'Volume geral',s:'Plano Performance',u:'kg',v:[60400,35655,19743],c:'#ffc000'},
+ {k:'rs',n:'Faturamento',s:'R$',u:'R$',v:[490000,289100,180600],c:'#16181d',ex:1},
+ {k:'fn',n:'Fórmula Natural',s:'kg',u:'kg',v:[12900,7540,2806],c:'#2f9e5b',ex:1},
+ {k:'or',n:'Origens',s:'kg',u:'kg',v:[12350,6420,4188],c:'#c2571a',ex:1},
+ {k:'pc',n:'Pet Care',s:'kg',u:'kg',v:[1390,966,366],c:'#2f6fd6',ex:1}];
+const POS={n:'Positivação',fat:29,cart:6,base:68,obj:48,u:'clientes',c:'#7c3aed'}; // obj = 70% da base (exemplo)
+const MIX={n:'Mix médio',v:24.8,obj:28,reg:18.5,u:'itens/cliente',c:'#e0457b'};
+const f=n=>Math.round(n).toLocaleString('pt-BR'), money=n=>n>=1e6?'R$ '+(n/1e6).toFixed(2).replace('.',',')+' mi':'R$ '+f(n/1000)+' mil';
+const val=(x,n)=>x.u==='R$'?money(n):f(n)+(x.u==='kg'?' kg':'');
+const pc=(a)=>Math.round(a*100)+'%';
+const tone=a=>a>=1?'var(--ok)':a>=.8?'var(--warn)':'var(--bad)';
+K.forEach(x=>{const[o,fa,ca]=x.v;x.vend=fa+ca;x.pv=x.vend/o;x.pf=fa/o;x.gap=Math.max(o-x.vend,0);});
+const posV=(POS.fat+POS.cart)/POS.obj, mixV=MIX.v/MIX.obj;
+const exT=x=>x.ex?'<span class="ex">exemplo</span>':'';
+const stack=(x,h=10)=>`<div class="st" style="--c:${x.c};height:${h}px"><i class="f" style="width:${Math.min(x.pf,1)*100}%"></i><i class="c" style="width:${Math.max(Math.min(x.pv,1)-x.pf,0)*100}%"></i></div>`;
+const gapT=(x)=>x.gap?`<span class="gap">gap ${val(x,x.gap)}</span>`:'<span class="gap ok">✓ coberto</span>';
+const vbar=(t,v1,v2,obj,max,c,h,top,bot)=>`<div class="vb"><b class="num" style="font-size:15px">${top}</b><div class="vt" style="height:${h}px;--c:${c}"><i class="f" style="height:${Math.min(v1/max,1)*100}%"></i>${v2?`<i class="c" style="height:${Math.min(v2/max,1)*100}%"></i>`:''}<div class="mk" style="bottom:${obj/max*100}%"></div></div><span style="font-size:11px;font-weight:700">${t}</span><small style="font-size:10px;color:var(--mut);text-align:center;line-height:1.15">${bot}</small></div>`;
+const posBar=(h=110)=>vbar('Positivação',POS.fat,POS.cart,POS.obj,POS.base,POS.c,h,`${POS.fat+POS.cart}<span style="font-size:10px;color:var(--mut)">/${POS.base}</span>`,`objetivo ${POS.obj}<br>faltam ${POS.obj-POS.fat-POS.cart}`);
+const mixBar=(h=110)=>vbar('Mix',MIX.v,0,MIX.obj,MIX.obj*1.25,MIX.c,h,String(MIX.v).replace('.',','),`objetivo ${MIX.obj}<br>Regional ${String(MIX.reg).replace('.',',')}`);
+const NAV=(st='')=>`<div class="nav" style="${st}"><button><span>📈</span>Performance<small>ano, famílias, 4º tri</small></button><button><span>🎯</span>Campanhas<small>6 ativas</small></button><button><span>🔎</span>Clientes<small>buscar e ficha</small></button></div>`;
+const TOP=`<div class="top"><div><div class="lbl">Painel do RC</div><b>${R.nome} · Novembro</b></div><small>atualizado ${R.data}<br>${R.dias}</small></div>`;
+
+const M=[
+['1 · Instrumentos',()=>{const v=K[0];return TOP+`
+<div class="card" style="background:var(--ink);color:#fff;border:0;padding:14px">
+ <div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="lbl" style="color:#b9bbc2">Volume geral · Plano Performance</div>
+ <div style="font-size:40px;font-weight:900;color:${v.pv>=1?'#3ddc97':'var(--gold)'};line-height:1.05" class="num">${pc(v.pv)}</div><div style="font-size:12px;color:#cfd0d5">vendido de ${val(v,v.v[0])}</div></div>
+ <div style="text-align:right;font-size:12px;color:#cfd0d5;line-height:1.6;white-space:nowrap"><div>faturado <b style="color:#fff" class="num">${val(v,v.v[1])}</b></div><div>carteira <b style="color:#fff" class="num">${val(v,v.v[2])}</b></div><div>gap <b style="color:#ff8a8a" class="num">${val(v,v.gap)}</b></div></div></div>
+ <div style="margin-top:10px">${stack(v,12).replace('background:#ece8dd','')}</div></div>
+<div style="display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:8px">
+ <div class="card" style="padding:8px 12px">${K.slice(1).map(x=>`<div style="padding:7px 0;border-top:1px solid var(--line)"><div style="display:flex;justify-content:space-between;font-size:12.5px"><b>${x.n}${exT(x)}</b><b class="num" style="color:${tone(x.pv)}">${pc(x.pv)}</b></div><div style="margin:4px 0 3px">${stack(x,8)}</div><div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--mut)"><span class="num">fat ${val(x,x.v[1])} · cart ${val(x,x.v[2])}</span>${gapT(x)}</div></div>`).join('').replace('border-top:1px solid var(--line)','')}</div>
+ <div class="card" style="display:flex;gap:10px;padding:10px 10px;align-items:flex-end">${posBar(190)}${mixBar(190)}</div></div>
+<div class="leg"><span><i style="background:#ffc000"></i>faturado</span><span><i style="background:repeating-linear-gradient(-45deg,#fff 0 3px,#ffd24d 3px 6px)"></i>carteira</span><span><i style="background:var(--ink);height:2px;vertical-align:3px"></i>objetivo</span></div>
+${NAV()}`}],
+
+['2 · Grade',()=>TOP+`
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+${K.map((x,i)=>`<div class="card" style="${i===0?'grid-column:1/-1;background:var(--gold2);border-color:#f1d58a':''}">
+ <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="lbl" style="letter-spacing:.06em">${x.n}${exT(x)}</span>${i===0?'<span class="lbl">Plano Performance</span>':''}</div>
+ <div style="display:flex;align-items:baseline;gap:8px;margin:2px 0 6px"><b class="num" style="font-size:${i?24:34}px;font-weight:900;color:${tone(x.pv)}">${pc(x.pv)}</b><small style="color:var(--mut);font-size:11px">vendido · fat ${pc(x.pf)}</small></div>
+ ${stack(x,i?8:12)}
+ <div style="display:grid;grid-template-columns:repeat(3,1fr);font-size:10.5px;color:var(--mut);margin-top:6px;gap:4px"><span>fat<br><b class="num" style="color:var(--fg)">${val(x,x.v[1])}</b></span><span>cart<br><b class="num" style="color:var(--fg)">${val(x,x.v[2])}</b></span><span>gap<br><b class="num" style="color:${x.gap?'var(--bad)':'var(--ok)'}">${x.gap?val(x,x.gap):'✓'}</b></span></div></div>`).join('')}
+<div class="card" style="display:flex;justify-content:space-around;align-items:flex-end;padding:8px">${posBar(92)}</div>
+<div class="card" style="display:flex;justify-content:space-around;align-items:flex-end;padding:8px">${mixBar(92)}</div>
+</div>${NAV()}`],
+
+['3 · Placar',()=>TOP+`
+<div class="card" style="padding:0;overflow:hidden">
+ <div style="display:grid;grid-template-columns:1.25fr .8fr .8fr .8fr .7fr;gap:4px;background:var(--ink);color:#b9bbc2;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:8px 10px"><span>KPI</span><span style="text-align:right">Fat.</span><span style="text-align:right">Cart.</span><span style="text-align:right">Gap</span><span style="text-align:right">%</span></div>
+ ${K.map((x,i)=>`<div style="padding:9px 10px;border-top:1px solid var(--line);${i===0?'background:var(--gold2)':''}"><div style="display:grid;grid-template-columns:1.25fr .8fr .8fr .8fr .7fr;gap:4px;align-items:baseline;font-size:12px"><b style="font-size:12.5px">${x.n}${exT(x)}</b><span class="num" style="text-align:right">${x.u==='R$'?money(x.v[1]).replace('R$ ',''):f(x.v[1])}</span><span class="num" style="text-align:right;color:var(--mut)">${x.u==='R$'?money(x.v[2]).replace('R$ ',''):f(x.v[2])}</span><span class="num" style="text-align:right;color:${x.gap?'var(--bad)':'var(--ok)'};font-weight:700">${x.gap?(x.u==='R$'?money(x.gap).replace('R$ ',''):f(x.gap)):'✓'}</span><b class="num" style="text-align:right;color:${tone(x.pv)};font-size:14px">${pc(x.pv)}</b></div><div style="margin-top:5px">${stack(x,6)}</div></div>`).join('')}
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+ <div class="card" style="display:flex;gap:12px;align-items:center">${posBar(120)}<div style="font-size:11.5px;color:var(--mut);line-height:1.5"><b style="color:var(--fg);font-size:12.5px">${POS.fat} faturados</b><br>${POS.cart} em carteira<br>${POS.base-POS.fat-POS.cart} sem pedido</div></div>
+ <div class="card" style="display:flex;gap:12px;align-items:center">${mixBar(120)}<div style="font-size:11.5px;color:var(--mut);line-height:1.5"><b style="color:var(--fg);font-size:12.5px">itens distintos</b><br>por cliente<br>positivado no mês</div></div>
+</div>${NAV()}`],
+
+['4 · Equalizador',()=>{const all=K.map(x=>({n:x.n.replace('Fórmula Natural','FN').replace('Volume geral','Volume').replace('Faturamento','R$'),f:x.pf,c:x.pv-x.pf,p:x.pv,col:x.c,ex:x.ex})).concat([{n:'Positiv.',f:POS.fat/POS.obj,c:POS.cart/POS.obj,p:posV,col:POS.c},{n:'Mix',f:mixV,c:0,p:mixV,col:MIX.c}]);
+ const H=230;return TOP+`
+<div class="card" style="padding:12px 10px 8px"><div style="display:flex;justify-content:space-between"><span class="lbl">Todos os KPIs · % do objetivo</span><span class="lbl" style="color:var(--fg)">linha = 100%</span></div>
+ <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;margin-top:10px;position:relative;height:${H+44}px">
+ <div style="position:absolute;left:0;right:0;bottom:${44+H/1.2}px;border-top:2px dashed var(--ink)"></div>
+ ${all.map(a=>`<div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><b class="num" style="font-size:12.5px;color:${tone(a.p)}">${pc(a.p)}</b><div class="vt" style="width:100%;max-width:38px;height:${Math.min(a.p,1.2)/1.2*H}px;--c:${a.col};border-radius:8px 8px 4px 4px;background:transparent"><i class="f" style="height:${a.f/a.p*100}%"></i><i class="c" style="height:${a.c/a.p*100}%"></i></div><span style="font-size:10.5px;font-weight:700;margin-top:4px;text-align:center;line-height:1.1;height:26px">${a.n}${a.ex?'*':''}</span></div>`).join('')}
+ </div></div>
+<div class="card" style="margin-top:8px;padding:6px 12px">${K.map(x=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid var(--line);font-size:12px"><span><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${x.c};margin-right:6px"></i><b>${x.n}</b></span><span class="num" style="color:var(--mut)">${val(x,x.v[1])} + ${val(x,x.v[2])}</span>${gapT(x)}</div>`).join('').replace('border-top:1px solid var(--line);','')}
+ <div style="display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid var(--line);font-size:12px"><b>Positivação · Mix</b><span class="num">${POS.fat+POS.cart}/${POS.base} clientes · ${String(MIX.v).replace('.',',')} itens</span></div></div>
+<div style="font-size:10px;color:var(--mut);margin-top:4px">* valores de exemplo até termos o dado por RC</div>
+${NAV()}`}],
+
+['5 · Foco + abas',()=>{const v=K[0];return TOP+`
+<div class="card" style="padding:12px">
+ <div style="display:flex;gap:14px;align-items:center">
+  <svg width="104" height="104" viewBox="0 0 104 104"><circle cx="52" cy="52" r="44" fill="none" stroke="#ece8dd" stroke-width="12"/><circle cx="52" cy="52" r="44" fill="none" stroke="#ffe08a" stroke-width="12" stroke-dasharray="${Math.min(v.pv,1)*276} 276" transform="rotate(-90 52 52)" stroke-linecap="round"/><circle cx="52" cy="52" r="44" fill="none" stroke="#ffc000" stroke-width="12" stroke-dasharray="${v.pf*276} 276" transform="rotate(-90 52 52)" stroke-linecap="round"/><text x="52" y="52" text-anchor="middle" font-size="22" font-weight="900" font-family="Inter">${pc(v.pv)}</text><text x="52" y="68" text-anchor="middle" font-size="10" fill="#6c6f78" font-family="Inter">vendido</text></svg>
+  <div style="flex:1"><div class="lbl">Volume geral · Plano Performance</div><div style="font-size:12px;line-height:1.7;margin-top:4px">
+   <div style="display:flex;justify-content:space-between"><span>Objetivo</span><b class="num">${val(v,v.v[0])}</b></div>
+   <div style="display:flex;justify-content:space-between"><span>Faturado</span><b class="num">${val(v,v.v[1])}</b></div>
+   <div style="display:flex;justify-content:space-between"><span>Carteira</span><b class="num">${val(v,v.v[2])}</b></div>
+   <div style="display:flex;justify-content:space-between;color:var(--bad)"><span>Gap</span><b class="num">${val(v,v.gap)}</b></div></div></div></div></div>
+<div style="display:flex;gap:8px;overflow-x:auto;margin:8px -14px 0;padding:0 14px 4px;scroll-snap-type:x mandatory">
+ ${K.slice(1).map(x=>`<div class="card" style="flex:0 0 46%;scroll-snap-align:start;padding:10px"><div class="lbl" style="letter-spacing:.05em">${x.n}${exT(x)}</div><b class="num" style="font-size:24px;font-weight:900;color:${tone(x.pv)}">${pc(x.pv)}</b>${stack(x,7)}<div style="font-size:10.5px;color:var(--mut);margin-top:5px;line-height:1.45">fat <b class="num" style="color:var(--fg)">${val(x,x.v[1])}</b><br>cart <b class="num" style="color:var(--fg)">${val(x,x.v[2])}</b><br>${gapT(x)}</div></div>`).join('')}
+</div>
+<div class="card" style="margin-top:8px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:end">
+ ${posBar(118)}<div style="align-self:center;font-size:11.5px;color:var(--mut);line-height:1.55"><b style="color:var(--fg)">Base de clientes</b><br>${POS.fat} faturados · ${POS.cart} em carteira<br>${POS.base-POS.fat-POS.cart} sem pedido<br><br><b style="color:var(--fg)">Mix</b><br>itens distintos por<br>cliente positivado</div>${mixBar(118)}</div>
+<div style="position:sticky;bottom:0">${NAV('background:var(--bg);padding-top:8px')}</div>`}]];
+
+const sel=document.getElementById('sel'),ph=document.getElementById('ph');
+M.forEach(([t,fn],i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>{sel.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');ph.innerHTML=fn();location.hash=i+1};sel.appendChild(b);});
+const i0=Math.max(0,(+location.hash.slice(1)||1)-1);sel.children[i0].click();
+</script></body></html>

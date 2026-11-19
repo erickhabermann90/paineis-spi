@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roteiro sugerido</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--bg:#f5f3ee;--fg:#16181d;--mut:#8a8c93}
+*{box-sizing:border-box}body{margin:0;background:#d9d5ca;font:14px/1.35 Inter,system-ui,sans-serif;color:var(--fg)}
+.rcsel{display:flex;gap:6px;justify-content:center;padding:12px}.rcsel button{border:0;border-radius:99px;padding:8px 14px;font:700 13px Inter;cursor:pointer;background:#fff}.rcsel button.on{background:#16181d;color:#ffc000}
+.phone{width:390px;max-width:100%;margin:0 auto 24px;background:var(--bg);border-radius:30px;box-shadow:0 24px 60px -24px rgba(0,0,0,.4);overflow:hidden;padding-bottom:14px}
+.num{font-variant-numeric:tabular-nums}
+.head{padding:16px 16px 0}.bk{display:flex;align-items:center;gap:10px;margin-bottom:10px}.bk span{width:34px;height:34px;border-radius:12px;background:#fff;display:grid;place-items:center;box-shadow:0 4px 10px -6px rgba(0,0,0,.3)}
+.bk h1{margin:0;font-size:20px;font-weight:800;letter-spacing:-.02em}.bk p{margin:0;font-size:11.5px;color:var(--mut)}
+.hero{background:#16181d;color:#fff;border-radius:22px;padding:13px 15px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-50px;top:-50px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(255,192,0,.25),transparent 70%)}
+.cap{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#9fa1a9}
+.hs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}.hs div{background:rgba(255,255,255,.07);border-radius:10px;padding:6px 8px;font-size:10px;color:#9fa1a9}.hs b{display:block;font-size:16px;color:#fff;font-weight:800}
+.hs .a b{color:#ffc000}
+.tabs{display:flex;gap:6px;padding:12px 16px 4px}.tabs button{all:unset;cursor:pointer;flex:1;text-align:center;padding:8px 0;border-radius:12px;background:#fff;font-size:12.5px;font-weight:800;box-shadow:0 4px 10px -8px rgba(0,0,0,.3)}.tabs button.on{background:#16181d;color:#ffc000}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:6px 16px 10px}
+.days button{all:unset;cursor:pointer;background:#fff;border-radius:14px;padding:7px 4px;text-align:center;box-shadow:0 4px 10px -8px rgba(0,0,0,.3)}
+.days button b{display:block;font-size:13px}.days button small{display:block;font-size:10px;color:var(--mut);font-weight:600}
+.days button.on{background:#ffc000}.days button.on small{color:#5a4500}
+.days button.peq{background:#efe7ff}.days button.peq.on{background:#7c3aed;color:#fff}.days button.peq.on small{color:#e6dcff}
+.card{margin:0 12px 10px;background:#fff;border-radius:18px;box-shadow:0 8px 20px -14px rgba(0,0,0,.35);overflow:hidden}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:11px 14px 8px}.dh b{font-size:14px}.dh small{display:block;font-size:11px;color:var(--mut);font-weight:600}
+.gm{all:unset;cursor:pointer;background:#16181d;color:#fff;border-radius:10px;padding:7px 10px;font-size:11.5px;font-weight:800;white-space:nowrap}
+#map{height:190px;background:#eee}
+.st{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 14px;border-top:1px solid #f0ede6}
+.n{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:900;color:#fff}
+.n.A{background:#16181d}.n.B{background:#e0a800}.n.C{background:#9aa0aa}
+.st .nm{font-size:12px;font-weight:700;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.st .sb{font-size:10.5px;color:var(--mut);margin-top:2px}
+.tg{display:inline-block;font-size:9.5px;font-weight:800;border-radius:6px;padding:1px 5px;margin-right:3px}
+.tA{background:#16181d;color:#ffc000}.tB{background:#fff1c2;color:#8a6a00}.tC{background:#eceae4;color:#555}
+.mb{background:#ffe1ea;color:#c2185b}
+.tm{text-align:right;font-size:12px;font-weight:800}.tm small{display:block;font-size:10px;color:var(--mut);font-weight:600}
+.tr{font-size:10.5px;color:#8a8c93;font-weight:700;padding:3px 14px 3px 46px;background:#faf9f6;border-top:1px solid #f0ede6}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;margin:12px 0 -14px;padding:9px 6px 16px;border-top:1px solid #ece9e1}.nav button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;font-weight:700;color:#3a3c44}.nav button span{width:38px;height:30px;border-radius:12px;display:grid;place-items:center;font-size:16px;background:#f3f1ea}.nav button.on span{background:#16181d}
+.leg{margin:0 16px;font-size:10.5px;color:var(--mut);line-height:1.5}
+.warn{color:#d64545;font-weight:700}
+</style></head><body>
+<div class="rcsel" id="rcsel"></div>
+<div class="phone">
+ <div class="head"><div class="bk"><span>←</span><div><h1>Roteiro sugerido</h1><p id="sub"></p></div></div><div class="hero" id="hero"></div></div>
+ <div class="tabs" id="tabs"></div>
+ <div class="days" id="days"></div>
+ <div class="card" id="day"></div>
+ <div class="leg" id="leg"></div>
+ <div class="nav"><button><span>🛒</span>Mês atual</button><button><span>📈</span>Performance</button><button><span>🎯</span>Campanhas</button><button class="on"><span>🗺️</span>Roteiro</button><button><span>🔎</span>Clientes</button></div>
+</div>
+<script>
+const R=/*DATA*/;
+let rc=Object.keys(R)[0], w=0, d=0, map, layer;
+const f=n=>Math.round(n).toLocaleString('pt-BR');
+const hm=m=>m>=60?Math.floor(m/60)+'h'+(m%60?String(m%60).padStart(2,'0'):''):m+' min';
+function draw(){const P=R[rc], S=P.resumo, wk=P.semanas[w];
+ document.getElementById('rcsel').innerHTML=Object.entries(R).map(([k,v])=>`<button class="${k===rc?'on':''}" onclick="rc='${k}';w=0;d=0;draw()">${v.nome}${v.resumo.sexta_peq?' · sexta pequenos':''}</button>`).join('');
+ document.getElementById('sub').textContent=`${P.nome} · ciclo de 4 semanas · ${S.clientes} clientes ativos`;
+ document.getElementById('hero').innerHTML=`<div class="cap">Ciclo de visitas · curva de volume × mix</div><div class="hs num"><div class="a">visitas<b>${S.visitas}</b></div><div>semanal<b>${S.A}</b></div><div>quinzenal<b>${S.B}</b></div><div>mensal<b>${S.C}</b></div></div>`;
+ document.getElementById('tabs').innerHTML=[0,1,2,3].map(i=>`<button class="${i===w?'on':''}" onclick="w=${i};draw()">Semana ${i+1}</button>`).join('');
+ document.getElementById('days').innerHTML=wk.map((x,i)=>`<button class="${i===d?'on':''} ${S.sexta_peq&&x.dia==='Sex'?'peq':''}" onclick="d=${i};draw()"><b>${x.dia}</b><small>${x.stops.length} visitas</small></button>`).join('');
+ const D=wk[d], q=D.stops.map(s=>encodeURIComponent(s.end.replace(/, BRASIL$/,''))), gm=q.length?`https://www.google.com/maps/dir/${q.slice(0,10).join('/')}`:'#';
+ document.getElementById('day').innerHTML=`<div class="dh"><div><b>${D.dia} · ${D.zona||'—'}</b><small>${D.stops.length} visitas · ~${hm(D.desl_min)} de deslocamento (~${D.km} km)</small></div><a class="gm" href="${gm}" target="_blank">Abrir no Maps</a></div><div id="map"></div>`+
+  D.stops.map((s,i)=>(i?`<div class="tr">🚗 ${hm(s.desl_min)}</div>`:'')+`<div class="st"><span class="n ${s.curva}">${i+1}</span><div><div class="nm">${s.nome}</div><div class="sb"><span class="tg t${s.ajust||s.curva}">${s.ajust||s.curva}</span>${s.ajust?'<span class="tg tB">'+({A:'semanal',B:'quinzenal',C:'mensal'})[s.curva]+'</span>':''}${s.mixn==='baixo'?'<span class="tg mb">foco mix</span>':''}${s.bairro} · ${s.cidade}${s.geo!=='rua'?' · <i>local aprox.</i>':''}</div></div><div class="tm"><small>${f(s.med)} kg/mês</small></div></div>`).join('');
+ document.getElementById('leg').innerHTML=`Rota sugerida para organizar a semana: cada cliente tem um dia fixo e a ordem segue o menor deslocamento (30 km/h + 10 min por parada). Frequência pela curva de volume (A semanal, B quinzenal, C mensal), com no máximo 8 visitas por dia. ${S.sexta_peq?'Sexta reservada aos clientes C (pedido de quinta → entrega na terça). ':''}Mix: terços do RC (baixo ≤ ${S.mix_cortes[0]} famílias). ${S.ajust?S.ajust+' cliente(s) com frequência reduzida para respeitar o máximo de 8 visitas por dia (etiqueta mostra a curva original e a nova frequência). ':''}${S.sem_geo?S.sem_geo+' cliente(s) sem endereço localizado.':''}`;
+ if(!window.L){ const el=document.getElementById('map'), pts=D.stops; if(pts.length){ const la=pts.map(p=>p.lat), lo=pts.map(p=>p.lon), W=360, H=190, pd=22;
+   const x0=Math.min(...lo), x1=Math.max(...lo), y0=Math.min(...la), y1=Math.max(...la), sx=(W-2*pd)/((x1-x0)||.01), sy=(H-2*pd)/((y1-y0)||.01), k=Math.min(sx,sy);
+   const X=v=>pd+(v-x0)*k+((W-2*pd)-(x1-x0)*k)/2, Y=v=>H-pd-(v-y0)*k-((H-2*pd)-(y1-y0)*k)/2;
+   el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" height="100%" style="background:linear-gradient(135deg,#eef3ea,#e6ecf2)"><polyline points="${pts.map(p=>X(p.lon)+','+Y(p.lat)).join(' ')}" fill="none" stroke="#16181d" stroke-width="2" stroke-dasharray="5 5" opacity=".55"/>${pts.map((p,i)=>`<g><circle cx="${X(p.lon)}" cy="${Y(p.lat)}" r="11" fill="${p.curva==='A'?'#16181d':p.curva==='B'?'#e0a800':'#9aa0aa'}"/><text x="${X(p.lon)}" y="${Y(p.lat)+4}" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="Inter">${i+1}</text></g>`).join('')}</svg>`; } }
+ if(window.L){ if(map) map.remove(); map=L.map('map',{zoomControl:false,attributionControl:false}); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(map);
+  const pts=D.stops.map(s=>[s.lat,s.lon]); if(pts.length){ L.polyline(pts,{color:'#16181d',weight:3,opacity:.6,dashArray:'6 6'}).addTo(map);
+   D.stops.forEach((s,i)=>L.marker([s.lat,s.lon],{icon:L.divIcon({className:'',html:`<span class="n ${s.curva}" style="box-shadow:0 2px 6px rgba(0,0,0,.4)">${i+1}</span>`,iconSize:[24,24],iconAnchor:[12,12]})}).addTo(map));
+   map.fitBounds(pts,{padding:[24,24]}); } }
+}
+draw();
+</script></body></html>
