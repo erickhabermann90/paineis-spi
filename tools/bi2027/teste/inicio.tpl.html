@@ -71,6 +71,37 @@
 @media (min-width:500px){.phone{margin:16px auto;border-radius:30px;box-shadow:0 24px 60px -24px rgba(0,0,0,.4);min-height:844px}}
 body{background:var(--bg)}@media (min-width:500px){body{background:#d9d5ca}}
 .nav{position:sticky;bottom:0}
+/* tela inicial sem rolagem: tudo cabe na altura do celular (≈ 600 px úteis) */
+.phone{height:100dvh;min-height:0;padding:12px 14px 0}
+@media (min-width:500px){.phone{height:844px;min-height:0}}
+.hd{margin-bottom:8px}.hd h1{font-size:19px}.hd p{font-size:11px}.av{width:34px;height:34px;font-size:14px}
+.hero{padding:12px 14px 11px;border-radius:20px}
+.big{margin:0 0 7px}.big b{font-size:36px}.big span{font-size:12px}
+.leg3{margin-top:6px;font-size:11px}
+.cps{margin-top:7px;gap:5px}.cps span{padding:4px 7px;font-size:10.5px}.cps b{font-size:12.5px}
+.rk{margin-top:8px;padding-top:7px;font-size:11px}.rk .pos{font-size:17px}.rk .bars{height:18px}
+.grid{gap:8px;margin-top:9px}
+.k{padding:9px 11px;border-radius:17px}.k .top{height:20px}.k .lg{height:19px}.k .ic{width:20px;height:20px;font-size:11px;border-radius:6px}.k .nm{font-size:11.5px}
+.k .v{font-size:25px;margin:5px 0 6px}.k .v small{font-size:10.5px;margin-left:5px}.k .gp{margin-top:5px;font-size:10.5px}
+.base{padding:9px 12px;border-radius:17px;gap:10px}.vt{height:50px;width:15px}.vb{gap:9px}.vb .t{font-size:10.5px}.vb .t b{font-size:20px}
+.foot{margin-top:6px;font-size:9px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nav{margin:auto -14px 0;padding:7px 10px 12px}.nav button{font-size:10px}.nav button span{width:36px;height:28px;font-size:15px}
+.phone{overflow-y:auto}
+/* telas baixas (navegador com barras): compacta mais */
+@media (max-height:690px){
+ .phone{padding-top:9px}.hd{margin-bottom:6px}.hd h1{font-size:17px}.av{width:30px;height:30px}
+ .hero{padding:10px 12px 9px}.big b{font-size:32px}.big{margin-bottom:5px}.cps{margin-top:5px}.rk{margin-top:6px;padding-top:5px}.rk .bars{height:14px}
+ .grid{gap:7px;margin-top:7px}.k{padding:8px 10px}.k .v{font-size:22px;margin:4px 0 5px}.k .gp{margin-top:4px}
+ .base{padding:7px 11px}.vt{height:40px}.vb .t b{font-size:18px}.foot{display:none}
+ .nav{padding:6px 10px 10px}.nav button span{height:26px}}
+/* celulares mais altos: aproveita a altura sem gerar rolagem */
+@media (min-height:760px){
+ .phone{padding-top:16px}.hd{margin-bottom:12px}.hd h1{font-size:21px}.hd p{font-size:12px}
+ .hero{padding:15px 16px 14px}.big b{font-size:44px}.big{margin-bottom:10px}.leg3{margin-top:8px;font-size:11.5px}
+ .cps{margin-top:10px}.cps span{padding:6px 8px}.cps b{font-size:14px}.rk{margin-top:11px;padding-top:10px}.rk .bars{height:24px}
+ .grid{gap:10px;margin-top:14px}.k{padding:12px 13px 11px}.k .top{height:24px}.k .lg{height:22px}.k .v{font-size:30px;margin:8px 0 9px}.k .gp{margin-top:7px}
+ .base{padding:12px 14px}.vt{height:64px;width:17px}.vb .t b{font-size:23px}.foot{margin-top:10px}
+ .nav{padding:9px 10px 16px}.nav button span{height:32px;width:38px;font-size:17px}}
 </style></head><body>
 <div class="phone" id="app"></div>
 <script>
