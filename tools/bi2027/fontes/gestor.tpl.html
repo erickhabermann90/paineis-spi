@@ -10,6 +10,9 @@
 .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .hd h1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.03em}.hd p{margin:1px 0 0;font-size:12px;color:var(--mut)}
 .av{width:40px;height:40px;border-radius:50%;background:#16181d;color:#ffc000;display:grid;place-items:center;font-weight:900;font-size:16px;flex:none}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:#ebe7dd;border-radius:14px;padding:3px;margin-bottom:10px}
+.tabs button{all:unset;cursor:pointer;text-align:center;font-size:12.5px;font-weight:800;padding:8px 0;border-radius:11px;color:#4a4c55}.tabs button.on{background:#16181d;color:#ffc000}
+.tabs button small{display:block;font-size:9.5px;font-weight:700;opacity:.65;margin-top:1px}
 /* volume geral */
 .hero{background:#16181d;color:#fff;border-radius:24px;padding:16px 16px 14px;position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(255,192,0,.28),transparent 70%);pointer-events:none}
@@ -72,6 +75,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
 </style></head><body>
 <div class="app" id="app">
  <div class="hd"><div><h1>Olá, Erick</h1><p id="sub"></p></div><div class="av">E</div></div>
+ <div class="tabs" id="tabs"></div>
  <div class="hero" id="hero" style="--c:#ffc000"></div>
  <div class="grid" id="grid"></div>
  <div class="foot" id="foot"></div>
@@ -89,22 +93,29 @@ const pc=a=>Math.round(a*100)+'%', f=n=>Math.round(n).toLocaleString('pt-BR');
 const tone=(a,dk)=>a>=1?(dk?'#5fe0a8':'#0b7a52'):a>=.8?(dk?'#ffd24d':'#b07d00'):(dk?'#ff9a9a':'#d64545');
 const nomes={'10':'outubro','11':'novembro','12':'dezembro'}, ordem=['10','11','12'], mm=D.mes_num;
 $('sub').textContent='Regional SPI · '+(nomes[mm]||D.mes)+' · dados de '+D.data;
-const K=D.kpi, M=K&&K.meses[mm]||{}, CT=K&&K.carteira||{};
-function kp(k){const x=M[k]; if(!x) return null; const [obj,fat]=x, cart=CT[k]||0, vend=fat+cart, i=ordem.indexOf(mm);
- let exc=0; ordem.slice(0,Math.max(0,i)).forEach(m=>{const y=K.meses[m]&&K.meses[m][k]; if(y) exc+=y[1]-y[0];});
- const prox=ordem[i+1], o2=prox&&K.meses[prox]&&K.meses[prox][k]?K.meses[prox][k][0]:null;
- return {obj,fat,cart,vend,pv:vend/obj,pf:fat/obj,gap:Math.max(obj-vend,0),exc,px:(vend+exc)/obj,prox,need:o2!=null?Math.max(o2-(exc+vend-obj),0):null};}
+const K=D.kpi, CT=K&&K.carteira||{};
+let sel=ordem.includes(mm)?mm:'tri';
+// m = '10' | '11' | '12' | 'tri'. Carteira só entra no mês vigente (e no trimestre).
+function kp(k,m){ if(!K) return null;
+ if(m==='tri'){ let obj=0,fat=0; ordem.forEach(x=>{const y=K.meses[x]&&K.meses[x][k]; if(y){obj+=y[0];fat+=y[1];}}); if(!obj) return null;
+  const cart=CT[k]||0, vend=fat+cart; return {obj,fat,cart,vend,pv:vend/obj,pf:fat/obj,gap:Math.max(obj-vend,0),exc:0,px:vend/obj,prox:null,need:null,tri:1}; }
+ const x=K.meses[m]&&K.meses[m][k]; if(!x) return null; const [obj,fat]=x, cart=m===mm?(CT[k]||0):0, vend=fat+cart, i=ordem.indexOf(m);
+ let exc=0; ordem.slice(0,Math.max(0,i)).forEach(q=>{const y=K.meses[q]&&K.meses[q][k]; if(y) exc+=y[1]+(q===mm?(CT[k]||0):0)-y[0];});
+ const prox=ordem[i+1], o2=prox&&K.meses[prox]&&K.meses[prox][k]?K.meses[prox][k][0]:null, futuro=+m>+mm;
+ return {obj,fat,cart,vend,pv:vend/obj,pf:fat/obj,gap:Math.max(obj-vend,0),exc,px:(vend+exc)/obj,prox:futuro?null:prox,need:!futuro&&o2!=null?Math.max(o2-(exc+vend-obj),0):null,fech:+m<+mm,futuro,need_ini:futuro?Math.max(obj-exc,0):null};}
 const W=v=>Math.min(v/1.1,1)*100+'%', TICKS=[.8,1,1.05];
 const ticks=()=>TICKS.map(t=>`<div class="cp" style="left:${t/1.1*100}%"></div>`).join('');
+function render(){
 /* volume geral */
-const v=kp('vol');
+const v=kp('vol',sel);
 if(v){ const nx=TICKS.find(t=>v.pv<t);
- $('hero').innerHTML=`<div class="cap">Volume geral · Plano Performance</div>
- <div class="big num"><b data-n="${Math.round(v.pv*100)}">0%</b><span>vendido de ${tn(v.obj)}</span></div>
+ $('hero').innerHTML=`<div class="cap">Volume geral · Plano Performance · ${sel==='tri'?'4º trimestre':nomes[sel]}${v.fech?' (fechado)':v.futuro?' (a vender)':''}</div>
+ <div class="big num"><b data-n="${Math.round(v.pv*100)}">0%</b><span>${v.fech||v.tri&&!v.cart?'realizado':'vendido'} de ${tn(v.obj)}</span></div>
  <div class="trk-w"><div class="trk"><i class="f" data-w="${W(v.pf)}"></i><i class="c" data-w="${(Math.min(v.pv,1.1)-Math.min(v.pf,1.1))/1.1*100}%"></i></div>${TICKS.map(t=>`<div class="cp ${v.pv>=t?'ok':''}" style="left:${t/1.1*100}%"></div>`).join('')}</div>
- <div class="leg3 num">faturado <b>${tn(v.fat)}</b> · carteira <b>${tn(v.cart)}</b></div>
+ <div class="leg3 num">${v.fech?`realizado <b>${tn(v.fat)}</b>`:`faturado <b>${tn(v.fat)}</b> · carteira <b>${tn(v.cart)}</b>`}</div>
  <div class="cps num">${[['🥉','80%',.8],['🥇','100%',1],['💎','105%',1.05]].map(([e,l,t])=>{const g=t*v.obj-v.vend;return `<span class="${g<=0?'ok':t===nx?'nx':''}">${e} ${l} <b>${g<=0?'✓ batido':'−'+tn(g)}</b></span>`}).join('')}</div>
- ${v.exc||v.need!=null?`<div class="exc num"><span>Com o excedente do tri (${v.exc>=0?'+':''}${tn(v.exc)}): <b class="${v.px>=1?'g':''}">${pc(v.px)}</b></span>${v.need!=null?`<span>${nomes[v.prox]} precisará de <b>${tn(v.need)}</b></span>`:''}</div>`:''}`; }
+ ${v.futuro?`<div class="exc num"><span>Objetivo do mês: <b>${tn(v.obj)}</b></span><span>com o resultado de out–nov, precisa de <b>${tn(v.need_ini)}</b></span></div>`:''}
+ ${!v.futuro&&(v.exc||v.need!=null)?`<div class="exc num">${v.exc?`<span>Com o excedente do tri (${v.exc>=0?'+':''}${tn(v.exc)}): <b class="${v.px>=1?'g':''}">${pc(v.px)}</b></span>`:'<span></span>'}${v.need!=null?`<span>${nomes[v.prox]} ${v.fech?"precisava":"precisará"} de <b>${tn(v.need)}</b></span>`:''}</div>`:''}`; }
 else $('hero').innerHTML='<div class="cap">Volume geral</div><p style="color:#c9cad0">KPIs da Regional indisponíveis nesta atualização.</p>';
 /* kpis */
 const T=[
@@ -112,18 +123,14 @@ const T=[
  ['fn',{bg:'linear-gradient(145deg,#f1f8ff,#d9ecff)',c:'#3b8fd9',sh:'59,143,217',top:`<img class="lg" src="${LOGO.fn}" alt="Fórmula Natural">`,fmt:tn,fx:n=>(n/1000).toLocaleString('pt-BR',{maximumFractionDigits:1})}],
  ['orig',{bg:'linear-gradient(145deg,#3a63b8,#24448f)',c:'#ffc94d',sh:'36,68,143',dk:1,top:`<img class="lg" src="${LOGO.or}" alt="Origens">`,fmt:tn,fx:n=>(n/1000).toLocaleString('pt-BR',{maximumFractionDigits:1})}],
  ['pet',{bg:'linear-gradient(145deg,#fff1f5,#fcd9e5)',c:'#e0457b',sh:'224,69,123',top:'<span class="ic" style="background:#e0457b">🐾</span><span class="nm">Pet Care</span>',fmt:tn,fx:n=>(n/1000).toLocaleString('pt-BR',{maximumFractionDigits:1})}]];
-let html=T.map(([k,o])=>{const x=kp(k); if(!x) return ''; const un=k==='rs'?' mi':' t';
+let html=T.map(([k,o])=>{const x=kp(k,sel); if(!x) return ''; const un=k==='rs'?' mi':' t';
  return `<div class="k${o.dk?' dk':''}" style="background:${o.bg};--c:${o.c};--sh:${o.sh}"><div class="top">${o.top}</div>
  <div class="v num" style="color:${tone(x.pv,o.dk)}"><b data-n="${Math.round(x.pv*100)}">0%</b><small>de ${o.fx(x.obj)}${un}</small></div>
  <div class="trk-w"><div class="trk"><i class="f" data-w="${W(x.pf)}"></i><i class="c" data-w="${(Math.min(x.pv,1.1)-Math.min(x.pf,1.1))/1.1*100}%"></i></div>${ticks()}</div>
  <div class="gp num"><span>${o.fx(x.fat)} + ${o.fx(x.cart)}${un}</span><b style="color:${x.gap?(o.dk?'#ff9a9a':'#d64545'):tone(1,o.dk)}">${x.gap?'−'+o.fx(x.gap)+un:'✓ coberto'}</b></div></div>`}).join('');
-const B=D.base;
-if(B){ const pos=B.fat+B.cart;
- html+=`<div class="base"><div class="vb" style="--c:#7c3aed"><div class="vt"><i class="f" data-h="${B.fat/B.n*100}%"></i><i class="c" data-h="${B.cart/B.n*100}%"></i></div><div class="t"><b class="num">${f(pos)}<span style="font-size:13px;color:var(--mut);font-weight:600">/${f(B.n)}</span></b>clientes positivados<br><em>${pc(pos/B.n)}</em> da base ativa</div></div>
- <div class="sep"></div>
- <div class="vb" style="--c:#e0457b"><div class="vt"><i class="f" data-h="${Math.min(B.mix/(B.mix_max||B.mix*1.3),1)*100}%"></i></div><div class="t"><b class="num">${String(B.mix).replace('.',',')}</b>itens por cliente<br><em>últimos 12 meses</em></div></div></div>`; }
 $('grid').innerHTML=html;
 $('foot').textContent='Barras: cheio = faturado · listrado = carteira · traços = 80%, 100% e 105% do objetivo';
+}
 /* representantes */
 const R=D.rcs.map(r=>Object.assign({},r,{pv:(r.fat+(r.carteira||0))/r.obj,p4:r.obj4t?r.real4t/r.obj4t:0})).sort((a,b)=>b.pv-a.pv);
 $('gosub').textContent=R.length+' RCs · '+R.filter(r=>r.pv>=1).length+' com o mês vendido';
@@ -135,7 +142,9 @@ $('lista').onclick=e=>{const b=e.target.closest('.rc'); if(b) location.hash=b.da
 const mostrar=()=>{const s=location.hash.slice(1), r=D.rcs.find(x=>x.slug===s); $('esp').classList.toggle('on',!!r); if(!r) return; $('sheet').classList.remove('on'); $('sel').value=s; const src='../'+s+'/'; if($('frame').getAttribute('src')!==src) $('frame').setAttribute('src',src);};
 $('sel').onchange=()=>location.hash=$('sel').value; $('voltar').onclick=()=>{location.hash='';};
 addEventListener('hashchange',mostrar); mostrar();
-/* animação */
-requestAnimationFrame(()=>setTimeout(()=>{document.querySelectorAll('[data-w]').forEach(e=>e.style.width=e.dataset.w);document.querySelectorAll('[data-h]').forEach(e=>e.style.height=e.dataset.h);
- document.querySelectorAll('[data-n]').forEach(e=>{const n=+e.dataset.n,t0=performance.now();const s=t=>{const k=Math.min((t-t0)/1000,1);e.textContent=Math.round(n*(1-Math.pow(1-k,3)))+'%';if(k<1)requestAnimationFrame(s)};requestAnimationFrame(s)});},120));
+function anima(){requestAnimationFrame(()=>setTimeout(()=>{document.querySelectorAll('[data-w]').forEach(e=>e.style.width=e.dataset.w);document.querySelectorAll('[data-h]').forEach(e=>e.style.height=e.dataset.h);
+ document.querySelectorAll('[data-n]').forEach(e=>{const n=+e.dataset.n,t0=performance.now();const s=t=>{const k=Math.min((t-t0)/1000,1);e.textContent=Math.round(n*(1-Math.pow(1-k,3)))+'%';if(k<1)requestAnimationFrame(s)};requestAnimationFrame(s)});},120));}
+function tabs(){ $('tabs').innerHTML=[...ordem,'tri'].map(m=>`<button class="${m===sel?'on':''}" data-m="${m}">${m==='tri'?'4º tri':nomes[m].slice(0,3).replace(/^./,c=>c.toUpperCase())}<small>${m==='tri'?'out–dez':m===mm?'atual':+m<+mm?'fechado':'próximo'}</small></button>`).join(''); }
+$('tabs').onclick=e=>{const b=e.target.closest('button'); if(!b) return; sel=b.dataset.m; tabs(); render(); anima();};
+tabs(); render(); anima();
 </script></body></html>
