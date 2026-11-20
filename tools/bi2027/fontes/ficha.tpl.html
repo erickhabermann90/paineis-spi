@@ -64,8 +64,8 @@ ${tot?`<div class="card prime"><div class="ch"><b>Objetivo Prime</b><small>rebat
  ${its.map(([p,v])=>`<div class="row num"><div><div class="p">${p}</div><div class="bar"><i style="width:${v/mx*100}%"></i></div></div><div class="v">${kg(v)}</div></div>`).join('')}
  ${D.itens.length>10?`<button class="more" onclick="showAll=!showAll;draw()">${showAll?'mostrar menos':'ver todos os '+D.itens.length+' produtos'}</button>`:''}</div>
 <div class="card"><div class="ch"><b>Positivação · 30 oportunidades</b><small>sem compra em 2026–2027</small></div>
- <div class="note" style="margin:-2px 0 6px">Itens mais comprados pelos seus clientes que este cliente ainda não leva.</div>
- ${D.posit.map(([p,n],i)=>`<div class="ps num"><span class="n">${i+1}</span><div class="p">${p}</div><div class="v">${n} de ${D.ncli}<br><small style="color:#8a8c93;font-weight:600">clientes</small></div></div>`).join('')}</div>
+ <div class="note" style="margin:-2px 0 6px">Itens mais comprados pelos clientes da Regional que este cliente ainda não leva.</div>
+ ${D.posit.map(([p,n],i)=>`<div class="ps num"><span class="n">${i+1}</span><div class="p">${p}</div><div class="v">${n}<br><small style="color:#8a8c93;font-weight:600">clientes da Regional</small></div></div>`).join('')}</div>
 <div class="note">Prévia com os dados disponíveis hoje: a média dos produtos usa os últimos 12 meses e a positivação considera "sem compra nos últimos 12 meses". Na versão final entram a extração dos últimos 6 meses fechados e o filtro 2026–2027.</div>`;}
 draw();
 </script></body></html>
