@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Performance</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ee;--fg:#16181d;--mut:#8a8c93;--ok:#0f9d6b;--bad:#d64545}
+*{box-sizing:border-box}body{margin:0;background:#d9d5ca;font:14px/1.35 Inter,system-ui,sans-serif;color:var(--fg)}
+.phone{width:390px;max-width:100%;height:844px;margin:16px auto;background:var(--bg);border-radius:30px;box-shadow:0 24px 60px -24px rgba(0,0,0,.4);display:flex;flex-direction:column;overflow:hidden}
+.num{font-variant-numeric:tabular-nums}
+.scroll{flex:1;overflow-y:auto;padding:16px 14px 16px}
+.bk{display:flex;align-items:center;gap:10px;margin-bottom:12px}.bk span{flex:none;width:34px;height:34px;border-radius:12px;background:#fff;display:grid;place-items:center;box-shadow:0 4px 10px -6px rgba(0,0,0,.3)}
+.bk h1{margin:0;font-size:20px;font-weight:800;letter-spacing:-.02em}.bk p{margin:0;font-size:11.5px;color:var(--mut)}
+.hero{background:#16181d;color:#fff;border-radius:22px;padding:14px 15px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-50px;top:-50px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(255,192,0,.25),transparent 70%)}
+.cap{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#9fa1a9}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px;position:relative;z-index:1}
+.vs>div{background:rgba(255,255,255,.07);border-radius:14px;padding:9px 10px}
+.vs .t{font-size:10.5px;color:#9fa1a9;font-weight:700}
+.vs .ab{display:flex;align-items:baseline;gap:6px;margin-top:3px}.vs .ab span{font-size:12px;color:#c9cad0}.vs .ab b{font-size:21px;font-weight:900;letter-spacing:-.02em}
+.dl{display:inline-block;font-size:11.5px;font-weight:800;border-radius:99px;padding:2px 8px;margin-top:5px}
+.up{background:rgba(61,220,151,.16);color:#3ddc97}.dn{background:rgba(255,120,120,.16);color:#ff8f8f}
+.upl{background:#e3f5ed;color:#0f9d6b}.dnl{background:#fde4e4;color:#d64545}
+.card{background:#fff;border-radius:20px;padding:12px 14px;margin-top:10px;box-shadow:0 10px 22px -16px rgba(0,0,0,.4)}
+.ch{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:8px}.ch b{font-size:14.5px;font-weight:800}.ch small{font-size:11px;color:var(--mut);text-align:right}
+.fr{display:grid;grid-template-columns:minmax(0,1fr) 92px 52px;gap:8px;align-items:center;padding:6px 0;border-top:1px solid #f0ede6;font-size:12px}
+.fr:first-of-type{border-top:0}.fr .n{font-weight:700;line-height:1.2}.fr .n small{display:block;font-weight:600;color:var(--mut);font-size:10.5px}
+.pb{display:flex;flex-direction:column;gap:2px}.pb i{display:block;height:5px;border-radius:99px}
+.fr .d{text-align:right;font-size:11.5px;font-weight:800;border-radius:99px;padding:2px 0}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:#f3f1ea;border-radius:12px;padding:3px;margin-bottom:6px}
+.seg button{all:unset;cursor:pointer;text-align:center;font-size:12px;font-weight:800;padding:7px 0;border-radius:9px;color:#4a4c55}.seg button.on{background:#16181d;color:#ffc000}
+.seg button small{font-weight:700;opacity:.7;margin-left:3px}
+.cr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #f0ede6;font-size:12px}
+.cr:first-of-type{border-top:0}.cr .n{font-weight:700;line-height:1.2}.cr .n small{display:block;font-weight:600;color:var(--mut);font-size:10.5px;margin-top:1px}
+.cr .v{text-align:right;font-weight:800;white-space:nowrap;color:var(--bad)}.cr .v small{display:block;font-weight:600;color:var(--mut);font-size:10px}
+.mx{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mx>div{border-radius:14px;padding:9px 10px}.mx .l{font-size:10.5px;font-weight:700;opacity:.75}.mx b{display:block;font-size:22px;font-weight:900;letter-spacing:-.02em;line-height:1.1}.mx small{font-size:10.5px;opacity:.75}
+.sub{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--mut);margin:12px 0 2px}
+.more{all:unset;cursor:pointer;display:block;text-align:center;font-size:12px;font-weight:800;padding:8px 0 2px}
+.note{font-size:10.5px;color:var(--mut);margin:10px 2px 0;line-height:1.45}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;padding:9px 6px 16px;border-top:1px solid #ece9e1}
+.nav button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;font-weight:700;color:#3a3c44}
+.nav button span{width:38px;height:30px;border-radius:12px;display:grid;place-items:center;font-size:16px;background:#f3f1ea}.nav button.on span{background:#16181d}
+</style></head><body>
+<div class="phone"><div class="scroll" id="app"></div>
+<div class="nav"><button><span>🛒</span>Mês atual</button><button class="on"><span>📈</span>Performance</button><button><span>🎯</span>Campanhas</button><button><span>🗺️</span>Roteiro</button><button><span>🔎</span>Clientes</button></div></div>
+<script>
+const D=/*DATA*/, A0='2025', A1='2026';
+const f=n=>Math.round(n).toLocaleString('pt-BR'), t=n=>(n/1000).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+' t';
+const kg=n=>Math.abs(n)>=1000?t(n):f(n)+' kg';
+const pct=(a,b)=>b?Math.round((a/b-1)*1000)/10:null;
+const chip=(p,dark)=>p==null?'':`<span class="dl ${p>=0?(dark?'up':'upl'):(dark?'dn':'dnl')}">${p>=0?'▲ +':'▼ '}${String(p).replace('.',',')}%</span>`;
+let seg=0, allA=false, allF=false;
+const C=D.cl, P=D.plano, T=D.tot;
+const qv=C.filter(c=>c.m25>0&&c.m26<c.m25*.9).sort((a,b)=>(b.m25-b.m26)-(a.m25-a.m26));
+const qm=C.filter(c=>c.ab>=3).sort((a,b)=>b.ab-a.ab);
+const qf=C.filter(c=>c.freq&&c.dias>1.5*c.freq).sort((a,b)=>(b.dias/b.freq)-(a.dias/a.freq));
+const sem90=C.filter(c=>c.dias>90).length, mixmed=C.filter(c=>c.mix).reduce((a,c,_,r)=>a+c.mix/r.length,0);
+function draw(){
+ const famMax=Math.max(...D.fam.map(x=>Math.max(x.kg_2025/12,x.kg_2026_fech/P.meses_fechados)));
+ const L=[[qv,c=>`${kg(c.m25)} → ${kg(c.m26)} /mês`,c=>`−${kg(c.m25-c.m26)}<small>${String(pct(c.m26,c.m25)).replace('.',',')}%</small>`],
+          [qm,c=>`deixou de comprar: ${c.abl.slice(0,2).join(', ')}${c.ab>2?'…':''}`,c=>`${c.ab} itens<small>sem compra há 12m</small>`],
+          [qf,c=>`compra a cada ${c.freq} dias · último há ${c.dias}`,c=>`+${c.dias-c.freq} dias<small>além do ritmo</small>`]][seg];
+ const rows=L[0].slice(0,allA?99:6);
+ document.getElementById('app').innerHTML=`
+<div class="bk"><span>←</span><div><h1>Performance</h1><p>Gabriel · ${A0} × ${A1} · dados de 19/11</p></div></div>
+<div class="hero"><div class="cap">Volume geral</div>
+ <div class="vs num">
+  <div><div class="t">Média × média</div><div class="ab"><span>${t(T.media_25)}</span><span>→</span><b>${t(T.media_26)}</b></div>${chip(pct(T.media_26,T.media_25),1)}</div>
+  <div><div class="t">Novembro × novembro</div><div class="ab"><span>— </span><span>→</span><b>${t(P.faturado+P.carteira)}</b></div><span class="dl" style="background:rgba(255,255,255,.1);color:#c9cad0">nov/${A0.slice(2)} a incluir</span></div>
+ </div>
+ <div style="font-size:11px;color:#9fa1a9;margin-top:9px;position:relative;z-index:1">Médias de ${A1} só com meses fechados · ${T.inativos} clientes inativos entram só aqui</div></div>
+<div class="card"><div class="ch"><b>Famílias</b><small>média mensal ${A0} × ${A1}</small></div>
+ ${D.fam.filter(x=>x.kg_2025+x.kg_2026_fech>0).slice(0,allF?99:8).map(x=>{const a=x.kg_2025/12,b=x.kg_2026_fech/P.meses_fechados,p=pct(b,a);return `<div class="fr num"><div class="n">${x.familia.replace(/^\d+ - /,'')}<small>${kg(a)} → ${kg(b)} · ${x.positivacao_2026} clientes</small></div>
+ <div class="pb"><i style="width:${a/famMax*100}%;background:#d9d5ca"></i><i style="width:${b/famMax*100}%;background:${p>=0?'#0f9d6b':'#d64545'}"></i></div>
+ <div class="d" style="color:${p>=0?'#0f9d6b':'#d64545'}">${p==null?'novo':(p>=0?'+':'')+String(p).replace('.',',')+'%'}</div></div>`}).join('')}
+ <button class="more" onclick="allF=!allF;draw()">${allF?'mostrar menos':'ver todas as '+D.fam.filter(x=>x.kg_2025+x.kg_2026_fech>0).length+' famílias'}</button></div>
+<div class="card"><div class="ch"><b>Clientes em queda</b><small>atenção da semana</small></div>
+ <div class="seg">${['Volume','Mix','Frequência'].map((s,i)=>`<button class="${i===seg?'on':''}" onclick="seg=${i};allA=false;draw()">${s}<small>${[qv,qm,qf][i].length}</small></button>`).join('')}</div>
+ ${rows.map(c=>`<div class="cr num"><div class="n">${c.nome}<small>${L[1](c)}</small></div><div class="v">${L[2](c)}</div></div>`).join('')||'<div class="note">Nenhum cliente nesta situação.</div>'}
+ ${L[0].length>6?`<button class="more" onclick="allA=!allA;draw()">${allA?'mostrar menos':'ver todos os '+L[0].length}</button>`:''}</div>
+<div class="card"><div class="ch"><b>Mix</b><small>itens por cliente · últimos 12 meses</small></div>
+ <div class="mx num"><div style="background:#ffe1ea;color:#7a1f42"><span class="l">Mix médio</span><b>${String(Math.round(mixmed*10)/10).replace('.',',')}</b><small>Regional ${String(D.mix_reg).replace('.',',')}</small></div>
+ <div style="background:#16181d;color:#fff"><span class="l">Itens abandonados</span><b style="color:#ff8f8f">${f(C.reduce((a,c)=>a+c.ab,0))}</b><small>em ${C.filter(c=>c.ab).length} clientes</small></div></div>
+ <div class="sub">Mais abandonados na sua carteira</div>
+ ${D.ab_top.slice(0,6).map(([p,n])=>`<div class="cr num"><div class="n" style="font-weight:600">${p}</div><div class="v">${n}<small>clientes pararam</small></div></div>`).join('')}
+ <div class="sub">Clientes abandonados</div>
+ <div class="cr num"><div class="n">Sem compra há mais de 90 dias<small>ainda ativos no BI · voltar a visitar</small></div><div class="v">${sem90}</div></div>
+ <div class="cr num"><div class="n">Inativos no BI<small>situação do cliente = inativo</small></div><div class="v">${T.inativos}</div></div></div>
+<div class="note">Prévia com ${A0} × ${A1}; em 2027 a tela compara ${+A0+1} × ${+A1+1}. Item abandonado = comprado em 2025 e sem compra nos últimos 12 meses (inclui itens que saíram de linha). Novembro de ${A0} entra com uma extração mensal extra.</div>`;}
+draw();
+</script></body></html>
