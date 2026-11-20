@@ -1,0 +1,140 @@
+diff --git a/tools/build.py b/tools/build.py
+index 2726606..14af3b7 100644
+--- a/tools/build.py
++++ b/tools/build.py
+@@ -73,6 +73,28 @@ styles, markup, script = split_tpl('template.html')
+ TJ = os.path.join(T, 'teste.json')
+ TESTE = json.load(open(TJ)) if os.path.exists(TJ) else None
+ TPL_TESTE = split_tpl('template_teste.html') if TESTE and os.path.exists(os.path.join(T, 'template_teste.html')) else None
++# Base de clientes do link de teste: positivação e mix do mês (itens distintos por cliente positivado).
++# ext/mix_mes.json = {"mes": "MM", "atual": [[cli, produto, kg]], "ant_mes": "MM", "ant": [[cli, produto, kg]]}; guardado em tools/mix_mes.json
++MIXF = os.path.join(T, 'mix_mes.json')
++if os.path.exists(os.path.join(ext, 'mix_mes.json')):
++    _mx = json.load(open(os.path.join(ext, 'mix_mes.json')))
++    def _cnt(rows):
++        o = {}
++        for c, _p, k in rows:
++            if k > 0: o[str(c)] = o.get(str(c), 0) + 1
++        return o
++    json.dump({'mes': _mx['mes'], 'ant_mes': _mx.get('ant_mes'), 'atual': _cnt(_mx['atual']), 'ant': _cnt(_mx.get('ant', [])), 'data': atualizado}, open(MIXF, 'w'), ensure_ascii=False, separators=(',', ':'))
++MIX = json.load(open(MIXF)) if os.path.exists(MIXF) else None
++def base_cli(cod, ativos_all):
++    cl = [x for x in ativos_all if x[0] == cod]; ids = [str(x[1]) for x in cl]
++    avg = lambda d, ks: round(sum(d[k] for k in ks if k in d) / max(sum(1 for k in ks if k in d), 1), 1)
++    allids = [str(x[1]) for x in ativos_all]
++    b = {'n': len(cl), 'fat': sum(1 for x in cl if x[6] > 0), 'cart': sum(1 for x in cl if x[6] <= 0 and x[7] > 0),
++         'pos_reg': round(sum(1 for x in ativos_all if x[6] > 0) / max(len(ativos_all), 1), 3)}
++    if MIX and MIX.get('mes') == atualizado[5:7]:
++        b.update({'mix': avg(MIX['atual'], ids), 'mix_reg': avg(MIX['atual'], allids), 'mix_ant': avg(MIX['ant'], ids) if MIX['ant'] else None,
++                  'pos_ant': sum(1 for k in ids if k in MIX['ant']) if MIX['ant'] else None, 'mix_data': MIX['data']})
++    return b
+ SHIM = open(os.path.join(T, 'shim.js')).read()
+ HEAD = open(os.path.join(T, 'head.html')).read()
+ 
+@@ -242,6 +264,7 @@ for cod in alvo:
+     open(os.path.join(SITE, rcs[cod]['slug'], 'index.html'), 'w').write(html)
+     if TPL_TESTE and str(TESTE['cod']) == str(cod):
+         st_, mk_, sc_ = TPL_TESTE
++        d = dict(d, base=[base_cli(cod, clients_ativos)])
+         ht = (HEAD % (nome.title() + ' · teste')) + st_ + '\n</head><body>\n<div id="dash-root">' + mk_ + '</div>\n<script>window.__DATA = ' + json.dumps(d, ensure_ascii=False) + ';</script>\n' + SHIM + sc_ + '\n<script>dash._runAll(); let __t, __w = innerWidth; addEventListener("resize", () => { if (innerWidth === __w) return; __w = innerWidth; clearTimeout(__t); __t = setTimeout(() => dash._runAll(), 200); });</script>\n</body></html>\n'
+         os.makedirs(os.path.join(SITE, TESTE['slug']), exist_ok=True)
+         open(os.path.join(SITE, TESTE['slug'], 'index.html'), 'w').write(ht)
+diff --git a/tools/template_teste.html b/tools/template_teste.html
+index 7b29fec..6aa9d32 100644
+--- a/tools/template_teste.html
++++ b/tools/template_teste.html
+@@ -702,6 +702,52 @@ tr[data-key] { cursor: pointer; }
+ .nv { gap: 8px !important; padding-top: 12px !important; padding-bottom: 10px !important; }
+ .px-home { gap: 8px !important; }
+ @media (max-height: 690px) and (max-width: 600px) { .nv-st { height: 72px !important; } .hs-in { min-height: 40px; } }
++
++/* ===== base de clientes: positivação (barra carregando) + mix médio; tela inicial mais compacta ===== */
++.bs { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 10px 14px; display: grid; gap: 7px; }
++.bs-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
++.bs-k { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--mut); font-weight: 700; }
++.bs-v { font-size: 13px; color: var(--mut); } .bs-v b { font-size: 20px; color: var(--fg); font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; } .bs-v .pc { font-size: 14px; font-weight: 800; margin-left: 4px; color: #b07d00; }
++.bs-bar { position: relative; height: 16px; margin-top: 12px; border-radius: 99px; background: #ece8dd; overflow: visible; display: flex; }
++.bs-bar > i { display: block; height: 100%; }
++.bs-bar > i.f { background: linear-gradient(90deg, #ffc000, #ffd24d); border-radius: 99px 0 0 99px; }
++.bs-bar > i.c { background: repeating-linear-gradient(-45deg, #ffe7a0 0 7px, #ffd24d 7px 14px); background-size: 20px 20px; animation: bsload 1s linear infinite; }
++.bs-bar > i:last-of-type { border-radius: 0 99px 99px 0; }
++.bs-bar > i.f:last-of-type { border-radius: 99px; }
++@keyframes bsload { to { background-position: 20px 0; } }
++.bs-mk { position: absolute; top: -4px; bottom: -4px; width: 2px; background: #16181d; border-radius: 2px; }
++.bs-mk span { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 9.5px; font-weight: 800; white-space: nowrap; color: #16181d; }
++.bs-lg { display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: 11.5px; color: var(--mut); } .bs-lg b { color: var(--fg); }
++.bs-lg i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
++.bs-mx { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 4px 12px; border-top: 1px solid var(--line); padding-top: 7px; }
++.bs-mx .big { font-size: 26px; font-weight: 800; letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; } .bs-mx .big small { font-size: 11.5px; font-weight: 600; color: var(--mut); letter-spacing: 0; margin-left: 4px; }
++.bs-cmp { display: flex; flex-wrap: wrap; gap: 5px; justify-content: flex-end; }
++.bs-cmp span { font-size: 11.5px; background: var(--bg); border-radius: 99px; padding: 3px 9px; white-space: nowrap; } .bs-cmp b { font-variant-numeric: tabular-nums; }
++.bs-cmp .up { color: #0f9d6b; } .bs-cmp .dn { color: #d64545; }
++.bs-pend { font-size: 11.5px; color: var(--mut); grid-column: 1 / -1; }
++/* menos espaço livre: cards de grupo em blocos compactos, lado a lado */
++.px-home { gap: 8px !important; }
++.px-home > .px-grp { flex: none !important; display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px !important; }
++.px-home > .px-grp > .px-card { flex: none !important; min-height: 0 !important; }
++.px-grp > .px-card:not(.px-pil-card) { grid-template-columns: 1fr auto !important; grid-template-areas: "n go" "t t" "v v" "l l" !important; padding: 9px 11px !important; row-gap: 1px !important; }
++.px-grp > .px-card:not(.px-pil-card) h3 { font-size: 13.5px !important; white-space: normal !important; line-height: 1.15; }
++.px-grp > .px-card:not(.px-pil-card) .kv { text-align: left !important; font-size: clamp(19px, 5.4vw, 26px) !important; }
++.px-grp > .px-card:not(.px-pil-card) .kl { font-size: 10.5px !important; }
++.px-grp > .px-card .g-ps, .px-grp > .px-card .g-new { display: none !important; }
++.px-grp > .px-pil-card { grid-column: 1 / -1; }
++.px-grp > .px-card.g-camp:not(.px-pil-card) { grid-template-columns: 1fr auto !important; grid-template-areas: "n go" "t t" "v v" "l l" !important; }
++.px-grp > .g-camp .kv { display: block !important; }
++.bs-h { align-items: center; } .bs-v { text-align: right; white-space: nowrap; }
++.nv { padding: 10px 12px 9px !important; border-radius: 18px !important; }
++.nv-st { height: clamp(84px, 11dvh, 120px) !important; margin-top: 20px !important; margin-bottom: 4px; }
++.rkb { padding: 7px 12px !important; }
++@media (min-width: 901px) {
++  .px-home { display: grid !important; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start; align-content: start; }
++  .px-home > .nv { grid-row: 2 !important; grid-column: 1; } .px-home > .bs { grid-row: 2; grid-column: 2; align-self: stretch; align-content: space-evenly; }
++  .px-home > .rkb { grid-row: 3; grid-column: 1 / -1; } .px-home > .px-grp { grid-row: 4; }
++  .px-home > .hs, .px-home > .px-grp { grid-column: 1 / -1; }
++  .nv-st { max-width: none !important; }
++}
+ </style>
+ 
+ <div class="px">
+@@ -715,6 +761,7 @@ tr[data-key] { cursor: pointer; }
+       <div class="hs px-in"><input type="search" class="hs-in" placeholder="🔎  Buscar cliente da carteira…" aria-label="Buscar cliente" data-hs><div class="hs-list" data-hs-list hidden></div></div>
+       <div class="nv px-in" data-draw="nivel"></div>
+       <div class="rkb px-in" data-draw="rank"></div>
++      <div class="bs px-in" data-draw="base"></div>
+       <div class="px-hero px-in" hidden>
+         <div class="px-hero-top">
+           <div class="px-ring" data-draw="ring" data-source="performance"></div>
+@@ -1521,6 +1568,24 @@ tr[data-key] { cursor: pointer; }
+       const pb = pxEl('div', 'nv-pb'), i = document.createElement('i'); i.style.width = Math.max(2, Math.min(100, (v - L[cur].kg) / (nx.kg - L[cur].kg) * 100)) + '%'; i.className = 'l' + (cur + 1); pb.appendChild(i); ft.append(t, pb); }
+     else ft.appendChild(pxEl('div', 'nv-ftt', '💎 Acelerador batido — tudo o que vier agora é extra!'));
+     el.appendChild(ft); });
++  dash.draw('base', (el) => { const B = pxOne('base'); if (!B || !B.n) { el.hidden = true; return; } el.replaceChildren();
++    const P = pxOne('plano'), mes = P ? P.mes.split(' ')[0].toLowerCase() : 'mês', pos = B.fat + B.cart, pc = pos / B.n;
++    const h = pxEl('div', 'bs-h'); h.append(pxEl('span', 'bs-k', 'Positivação'));
++    const v = pxEl('span', 'bs-v'); v.append(pxEl('b', '', String(pos)), ' de ' + B.n, pxEl('span', 'pc', pxPct(pc))); h.appendChild(v);
++    const bar = pxEl('div', 'bs-bar'), w = (n) => (n / B.n * 100) + '%';
++    const f = document.createElement('i'); f.className = 'f'; f.style.width = w(B.fat); const c = document.createElement('i'); c.className = 'c'; c.style.width = w(B.cart); bar.append(f, c);
++    const mk = (x, t) => { const m = pxEl('div', 'bs-mk'); m.style.left = 'calc(' + Math.min(x, 1) * 100 + '% - 1px)'; m.appendChild(pxEl('span', '', t)); bar.appendChild(m); };
++    if (B.pos_ant != null) mk(B.pos_ant / B.n, 'mês ant. ' + B.pos_ant); else if (B.pos_reg) mk(B.pos_reg, 'Regional ' + Math.round(B.pos_reg * 100) + '%');
++    const lg = pxEl('div', 'bs-lg'), it = (cor, n, t) => { const s = pxEl('span'); const q = document.createElement('i'); q.style.background = cor; s.append(q, pxEl('b', '', String(n)), ' ' + t); return s; };
++    lg.append(it('#ffc000', B.fat, 'faturados'), it('repeating-linear-gradient(-45deg,#ffe7a0 0 3px,#ffd24d 3px 6px)', B.cart, 'em carteira'), it('#ece8dd', B.n - pos, 'sem pedido'));
++    el.append(h, bar, lg);
++    const mx = pxEl('div', 'bs-mx');
++    if (B.mix != null) { const big = pxEl('div', 'big', String(B.mix).replace('.', ',')); big.appendChild(pxEl('small', '', 'itens por cliente')); const l = pxEl('div'); l.append(pxEl('div', 'bs-k', 'Mix médio'), big);
++      const cmp = pxEl('div', 'bs-cmp'), ch = (t, val) => { if (val == null) return; const d = B.mix - val, s = pxEl('span'); s.append(t + ' ', pxEl('b', '', String(val).replace('.', ',')), ' ', pxEl('b', d >= 0 ? 'up' : 'dn', d >= 0 ? '▲' : '▼')); cmp.appendChild(s); };
++      ch('mês ant.', B.mix_ant); ch('Regional', B.mix_reg); mx.append(l, cmp);
++      if (B.mix_data && B.mix_data !== P.atualizado_em) mx.appendChild(pxEl('div', 'bs-pend', 'mix atualizado em ' + B.mix_data.split('-').reverse().slice(0, 2).join('/')));
++    } else { mx.append(pxEl('div', 'bs-k', 'Mix médio'), pxEl('div', 'bs-pend', 'em breve')); }
++    el.appendChild(mx); });
+   dash.draw('rank', (el) => { const R = pxOne('ranking_rc'); if (!R || !R.pos) { el.hidden = true; return; } el.replaceChildren();
+     const p = pxEl('div', 'rk-p'); p.append(pxEl('b', '', R.pos + 'º'), pxEl('small', '', 'de ' + R.n + ' na Regional'));
+     const bars = pxEl('div', 'rk-b'), mx = Math.max(...R.lista, 0.01);
+@@ -1633,7 +1698,7 @@ tr[data-key] { cursor: pointer; }
+   dash.draw('g3', (el) => { const r = pxOne('familias_total'); el.textContent = r ? pxVar(r.variacao) : '—'; el.className = 'kv ' + (r ? (r.variacao >= 0 ? 'c-ok' : 'c-bad') : ''); });
+   const g2Ativas = () => { const P = pxOne('plano'); return (dash.data('campanhas_extra').data || []).filter((c) => { const d = c.data_final.split('/'); return !P || (d[2] + '-' + d[1] + '-' + d[0]) >= P.atualizado_em; }); };
+   dash.draw('g2', (el) => { el.textContent = String(g2Ativas().length + 1); });
+-  dash.draw('g2l', (el) => { const c6 = document.querySelector('[data-draw="c6"]'); el.textContent = (g2Ativas().length + 1) + ' campanhas ativas'; });
++  dash.draw('g2l', (el) => { const c6 = document.querySelector('[data-draw="c6"]'); el.textContent = 'campanhas ativas'; });
+   dash.draw('g2ps', (el) => { el.replaceChildren(); [].concat(g2Ativas().map((c) => c.packshots[Math.floor(c.packshots.length / 2)])).slice(0, 4).forEach((f, i) => { const im = document.createElement('img'); im.src = '../assets/campanhas/' + f; im.alt = ''; im.style.zIndex = 10 - i; el.appendChild(im); }); });
+ 
+   const ids = {home: 'inicio', ficha: 'cliente', fech: 'fechamento', camp: 'campanhas', perf: 'performance', cmp: 'campanha', mes: 'mes-atual', prime: 'prime', ano: 'ano-2026', q4: 'objetivo-4tri', pos: 'positivacao', prop: 'proposta', pil: 'piloto'};

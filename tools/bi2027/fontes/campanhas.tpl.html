@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campanhas</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ee;--fg:#16181d;--mut:#8a8c93}
+*{box-sizing:border-box}body{margin:0;background:#d9d5ca;font:14px/1.35 Inter,system-ui,sans-serif;color:var(--fg)}
+.phone{width:390px;max-width:100%;height:844px;margin:16px auto;background:var(--bg);border-radius:30px;box-shadow:0 24px 60px -24px rgba(0,0,0,.4);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.num{font-variant-numeric:tabular-nums}
+.scroll{flex:1;overflow-y:auto;padding:16px 14px 14px}
+.bk{display:flex;align-items:center;gap:10px;margin-bottom:12px}.bk span{width:34px;height:34px;border-radius:12px;background:#fff;display:grid;place-items:center;box-shadow:0 4px 10px -6px rgba(0,0,0,.3)}
+.bk h1{margin:0;font-size:20px;font-weight:800;letter-spacing:-.02em}.bk p{margin:0;font-size:11.5px;color:var(--mut)}
+/* ação bike · balde */
+.bb{background:#16181d;color:#fff;border-radius:22px;padding:14px 15px 13px;position:relative;overflow:hidden;cursor:pointer}
+.bb:after{content:"";position:absolute;right:-60px;top:-60px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(255,192,0,.28),transparent 70%)}
+.bb .cap{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#9fa1a9}
+.bb h2{margin:2px 0 10px;font-size:18px;font-weight:800;letter-spacing:-.02em}
+.bb .px{position:absolute;right:14px;top:14px;display:flex;gap:6px;z-index:1}.bb .px img{height:48px;width:48px;object-fit:contain;background:#fff;border-radius:16px;padding:4px;box-shadow:0 8px 16px -8px rgba(0,0,0,.6)}
+.bbg{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative;z-index:1}
+.bbg div{background:rgba(255,255,255,.08);border-radius:14px;padding:9px 10px}
+.bbg b{display:block;font-size:24px;font-weight:900;color:#ffc000;letter-spacing:-.02em;line-height:1.05}.bbg small{font-size:11px;color:#c9cad0;line-height:1.3;display:block}
+.qs{margin-top:9px;font-size:11.5px;color:#c9cad0;position:relative;z-index:1}.qs b{color:#fff}
+/* grade */
+.lbl{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:800;margin:16px 2px 8px;display:flex;justify-content:space-between}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.c{border-radius:20px;padding:11px 11px 10px;position:relative;overflow:hidden;cursor:pointer;min-height:176px;display:flex;flex-direction:column;box-shadow:0 12px 24px -14px rgba(var(--sh),.65)}
+.c .ps{height:78px;display:flex;justify-content:center;align-items:flex-end;margin:2px 0 6px}
+.c .ps img{height:100%;max-width:46%;object-fit:contain;margin:0 -8px;filter:drop-shadow(0 6px 8px rgba(0,0,0,.25))}
+.c .ps img:nth-child(2){height:88%}.c .ps img:nth-child(3){height:80%}
+.c h3{margin:0;font-size:13.5px;font-weight:800;letter-spacing:-.01em;line-height:1.15}
+.c .ds{font-size:11px;font-weight:700;margin-top:3px;line-height:1.25;opacity:.9}
+.c .ft{margin-top:auto;padding-top:7px;display:flex;justify-content:space-between;align-items:center}
+.dl{font-size:10.5px;font-weight:800;border-radius:99px;padding:3px 8px}
+.urg{animation:pz 1.2s ease-in-out infinite alternate}@keyframes pz{to{transform:scale(1.06)}}
+.nw{font-size:9px;font-weight:900;letter-spacing:.06em;border-radius:6px;padding:2px 5px}
+/* folha de detalhes */
+.sheet{position:absolute;inset:0;background:rgba(10,10,12,.5);display:none;z-index:20}
+.sheet.on{display:block}
+.sh{position:absolute;left:0;right:0;bottom:0;max-height:92%;overflow:auto;background:var(--bg);border-radius:24px 24px 0 0;padding:14px 14px 22px}
+.sh .x{position:sticky;top:0;float:right;width:34px;height:34px;border-radius:50%;border:0;background:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 10px -6px rgba(0,0,0,.3)}
+.sh h2{margin:2px 0 2px;font-size:19px;font-weight:800;letter-spacing:-.02em}.sh .sub{font-size:12px;color:var(--mut)}
+.art{width:100%;border-radius:14px;margin:12px 0 8px;display:block;box-shadow:0 10px 20px -14px rgba(0,0,0,.5)}
+.box{background:#fff;border-radius:16px;padding:11px 13px;margin-top:8px}
+.box .k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--mut);margin-bottom:5px}
+.it{font-size:12px;padding:4px 0;border-top:1px solid #f0ede6}.it:first-of-type{border-top:0}
+.gn{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 0}
+.cf{font-size:12.5px;line-height:1.45}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;padding:9px 6px 16px;border-top:1px solid #ece9e1}
+.nav button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;font-weight:700;color:#3a3c44}
+.nav button span{width:38px;height:30px;border-radius:12px;display:grid;place-items:center;font-size:16px;background:#f3f1ea}.nav button.on span{background:#16181d}
+</style></head><body>
+<div class="phone">
+ <div class="scroll">
+  <div class="bk"><span>←</span><div><h1>Campanhas</h1><p id="sub"></p></div></div>
+  <div class="bb" id="bb"></div>
+  <div class="lbl"><span>Campanhas do mês</span><span id="cnt"></span></div>
+  <div class="grid" id="grid"></div>
+ </div>
+ <div class="nav"><button><span>🛒</span>Mês atual</button><button><span>📈</span>Performance</button><button class="on"><span>🎯</span>Campanhas</button><button><span>🗺️</span>Roteiro</button><button><span>🔎</span>Clientes</button></div>
+ <div class="sheet" id="sheet"><div class="sh" id="sh"></div></div>
+</div>
+<script>
+const C=/*CAMP*/, IMG=/*IMG*/, BB=/*BB*/, HOJE=new Date('/*HOJE*/T12:00:00');
+const f=n=>Math.round(n).toLocaleString('pt-BR');
+const dt=s=>{const[d,m,a]=s.split('/');return new Date(+a,m-1,+d,23,59)};
+const dias=s=>Math.max(0,Math.ceil((dt(s)-HOJE)/864e5));
+const hex=h=>{h=h.replace('#','');return [0,2,4].map(i=>parseInt(h.substr(i,2),16)).join(',')};
+const lum=h=>{const[r,g,b]=hex(h).split(',').map(Number);return (r*299+g*587+b*114)/1000};
+const ativas=C.filter(c=>dt(c.data_final)>=HOJE).sort((a,b)=>dt(a.data_final)-dt(b.data_final));
+document.getElementById('sub').textContent=`${ativas.length+1} ativas · Gabriel · dados de /*DATA_TXT*/`;
+document.getElementById('cnt').textContent=`${ativas.length} campanhas`;
+/* Bike · Balde */
+const R=BB.R, L=BB.cl;
+const bike=L.filter(c=>c.obj&&c.real>=c.obj&&c.novos>=R.itens_novos), balde=L.filter(c=>c.ob&&c.bm>=c.ob);
+const quase=L.filter(c=>c.ob&&c.bm<c.ob&&c.bm>=c.ob*.6).sort((a,b)=>b.bm/b.ob-a.bm/a.ob);
+const bkp=L.filter(c=>c.obj).map(c=>Object.assign({},c,{p:Math.min(c.real/c.obj,1)*.6+Math.min(c.novos/R.itens_novos,1)*.4})).sort((a,b)=>b.p-a.p);
+document.getElementById('bb').innerHTML=`<div class="px"><img src="${IMG['camp_bike_px.webp']}" alt=""><img src="${IMG['camp_baldes_px.webp']}" alt=""></div>
+ <div class="cap">Ação de fim de ano</div><h2>Bike · Balde</h2>
+ <div class="bbg num"><div><b>${balde.length}</b><small>clientes com o balde<br>garantido em novembro</small></div><div><b>${bike.length}</b><small>bicicletas garantidas<br>no 4º trimestre</small></div></div>
+ <div class="qs">🔥 Quase lá: ${quase.slice(0,2).map(c=>`<b>${c.nome.split(' ').slice(0,3).join(' ')}</b> faltam ${f(c.ob-c.bm)} kg`).join(' · ')||'—'}</div>`;
+/* cartões */
+document.getElementById('grid').innerHTML=ativas.map((c,i)=>{const k=c.cores, dk=lum(k.ate)<140&&lum(k.de)<140, fg=dk?'#fff':'#16181d', d=dias(c.data_final);
+ const tag=d<=3?`<span class="dl urg" style="background:#e5484d;color:#fff">${d?'faltam '+d+' dias':'último dia'}</span>`:`<span class="dl" style="background:${dk?'rgba(255,255,255,.18)':'rgba(0,0,0,.08)'};color:${fg}">até ${c.data_final.slice(0,5)}</span>`;
+ return `<div class="c" style="background:linear-gradient(160deg,${k.de},${k.ate});color:${fg};--sh:${hex(k.ate)}" onclick="abre(${C.indexOf(c)})">
+ <div class="ps">${c.packshots.slice(0,3).map(p=>`<img src="${IMG[p]}" alt="">`).join('')}</div>
+ <h3>${c.titulo}</h3><div class="ds">${c.destaque}</div>
+ <div class="ft">${tag}<span class="nw" style="background:${k.faixa};color:#fff">VER</span></div></div>`}).join('');
+function abre(i){const c=C[i], artes=[].concat(c.arte||[]), d=dias(c.data_final);
+ document.getElementById('sh').innerHTML=`<button class="x" onclick="document.getElementById('sheet').classList.remove('on')">×</button>
+ <div class="sub">até ${c.data_final} · ${d} dias</div><h2>${c.titulo}</h2><div class="sub">${c.subtitulo}</div>
+ ${artes.map(a=>`<img class="art" src="${IMG[a]}" alt="Arte ${c.titulo}">`).join('')}
+ ${c.linhas.map(l=>`<div class="box"><div class="k">Compre</div>${l.compre.map(x=>`<div class="it">${x}</div>`).join('')}<div class="k" style="margin-top:8px">Ganhe</div>${l.ganhe.map(x=>`<div class="gn">🎁 ${x}</div>`).join('')}</div>`).join('')}
+ <div class="box"><div class="k">Como funciona</div><div class="cf">${c.como_funciona}</div></div>
+ ${c.publico?`<div class="box"><div class="k">Público · abrangência</div><div class="cf">${c.publico}${c.abrangencia?' · '+c.abrangencia:''}</div></div>`:''}`;
+ document.getElementById('sheet').classList.add('on'); document.getElementById('sh').scrollTop=0;}
+document.getElementById('sheet').onclick=e=>{if(e.target.id==='sheet')e.currentTarget.classList.remove('on')};
+</script></body></html>

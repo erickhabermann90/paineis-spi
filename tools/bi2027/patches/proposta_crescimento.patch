@@ -1,0 +1,49 @@
+diff --git a/tools/template.html b/tools/template.html
+index 934ef62..757582b 100644
+--- a/tools/template.html
++++ b/tools/template.html
+@@ -1201,14 +1201,17 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+       return [out]; }
+   });
+   dash.calc('proposta', {
+-    title: 'Proposta para fechamento', description: 'Falta = objetivo do 4º tri do cliente − faturado no tri − carteira; dividido entre os itens que o cliente compra na proporção do kg de cada item nos últimos 12 meses.',
++    title: 'Proposta para fechamento', description: 'Falta = objetivo do 4º tri do cliente − faturado no tri − carteira; dividido entre os itens que o cliente compra na proporção do kg de cada item nos últimos 12 meses. Com o objetivo atingido: pedido de crescimento = média mensal do item (kg 12 meses ÷ 12) + 10%.',
+     inputs: ['clientes4t', 'clientes', 'itens'],
+     fn: (clientes4t, clientes, itens) => { const cart = new Map(clientes.map((c) => [String(c.cod), Number(c.kg_carteira || 0)])), it = itens[0] || {}, out = {};
+       clientes4t.forEach((c) => { const cod = String(c.cod), carteira = cart.get(cod) || 0, comprado = c.realizado + carteira, falta = Math.max(Math.round(c.meta - comprado), 0);
+         const lst = it[cod] || [], tot = lst.reduce((a, x) => a + x[1], 0);
+         let sug = tot && falta ? lst.map(([item, kg]) => ({item, kg: Math.round(falta * kg / tot)})).filter((x) => x.kg > 0) : [];
+         const dif = falta - sug.reduce((a, x) => a + x.kg, 0); if (sug.length && dif) sug[0].kg += dif;
+-        out[cod] = {meta: c.meta, faturado: c.realizado, carteira, falta, itens: sug}; });
++        const media = Object.fromEntries(lst.map(([item, kg]) => [item, Math.round(kg / 12)]));
++        sug.forEach((x) => { x.media = media[x.item] || 0; });
++        const cresc = lst.map(([item, kg]) => ({item, kg: Math.round(kg / 12 * 1.1), media: media[item]})).filter((x) => x.kg > 0);
++        out[cod] = {meta: c.meta, faturado: c.realizado, carteira, falta, itens: sug, cresc}; });
+       return [out]; }
+   });
+   const cliSel = (name, page, body) => dash.draw(name, (el) => {
+@@ -1246,14 +1249,19 @@ html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+   dash.draw('prop_body', (el) => {
+     el.replaceChildren(); if (!pxCli.cod) return; const p = pxOne('proposta'); const r = p && p[pxCli.cod];
+     if (!r) { el.appendChild(pxEl('div', 'px-msg', 'Cliente sem objetivo no 4º trimestre (sem compra em 2026).')); return; }
+-    if (r.falta <= 0) { el.appendChild(pxEl('div', 'px-msg ok', '✓ Objetivo do trimestre atingido')); return; }
++    const media = (x, k) => { k.textContent = pxKg(x.kg) + ' kg'; if (x.media) k.appendChild(pxEl('small', '', 'média ' + pxKg(x.media) + '/mês')); };
++    const lista = (titulo, aside, rows) => { const b = pxEl('div', 'px-blk'); b.appendChild(blkHead(titulo, aside)); b.appendChild(itList(rows, media));
++      const tot = pxEl('div', 'px-it-tot'); tot.append(pxEl('span', '', 'Total'), pxEl('b', '', pxKg(rows.reduce((a, x) => a + x.kg, 0)) + ' kg')); b.appendChild(tot); return b; };
++    if (r.falta <= 0) {
++      el.appendChild(pxEl('div', 'px-msg ok', '✓ Objetivo do trimestre atingido'));
++      el.appendChild(pxEl('div', 'px-prop-sub', 'Objetivo ' + pxKg(r.meta) + ' kg · faturado ' + pxKg(r.faturado) + ' kg · carteira ' + pxKg(r.carteira) + ' kg'));
++      if (!r.cresc.length) { el.appendChild(pxEl('div', 'px-msg', 'Cliente sem itens comprados nos últimos 12 meses.')); return; }
++      el.appendChild(lista('Pedido de crescimento', 'média mensal + 10%', r.cresc)); return;
++    }
+     const top = pxEl('div', 'px-prop-top'); top.append(pxEl('div', 'l', 'Falta para o objetivo do trimestre'), pxEl('div', 'v', pxKg(r.falta) + ' kg')); el.appendChild(top);
+     el.appendChild(pxEl('div', 'px-prop-sub', 'Objetivo ' + pxKg(r.meta) + ' kg · faturado ' + pxKg(r.faturado) + ' kg · carteira ' + pxKg(r.carteira) + ' kg'));
+     if (!r.itens.length) { el.appendChild(pxEl('div', 'px-msg', 'Cliente sem itens comprados nos últimos 12 meses.')); return; }
+-    const b = pxEl('div', 'px-blk'); b.appendChild(blkHead('Proposta sugerida', 'kg por item'));
+-    b.appendChild(itList(r.itens, (x, k) => { k.textContent = pxKg(x.kg) + ' kg'; }));
+-    const tot = pxEl('div', 'px-it-tot'); tot.append(pxEl('span', '', 'Total'), pxEl('b', '', pxKg(r.itens.reduce((a, x) => a + x.kg, 0)) + ' kg')); b.appendChild(tot);
+-    el.appendChild(b);
++    el.appendChild(lista('Proposta para o objetivo', 'kg por item', r.itens));
+   });
+   const campCor = (p) => p >= 1 ? 'var(--ok)' : p >= 0.8 ? '#e0a800' : 'var(--bad)';
+   const campStatus = (c, R) => { const vol = c.real_vol >= c.obj_vol && c.obj_vol > 0, nov = c.novos.length >= R.itens_novos;
