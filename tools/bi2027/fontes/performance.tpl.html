@@ -86,6 +86,6 @@ function draw(){
  <div class="sub">Clientes abandonados</div>
  <div class="cr num"><div class="n">Sem compra há mais de 90 dias<small>ainda ativos no BI · voltar a visitar</small></div><div class="v">${sem90}</div></div>
  <div class="cr num"><div class="n">Inativos no BI<small>situação do cliente = inativo</small></div><div class="v">${T.inativos}</div></div></div>
-<div class="note">Prévia com ${A0} × ${A1}; em 2027 a tela compara ${+A0+1} × ${+A1+1}. Item abandonado = comprado em 2025 e sem compra nos últimos 12 meses (inclui itens que saíram de linha). Novembro de ${A0} entra com uma extração mensal extra.</div>`;}
+<div class="note">Prévia com ${A0} × ${A1}; em 2027 a tela compara ${+A0+1} × ${+A1+1}. Item abandonado = comprado em 2025 e sem compra nos últimos 12 meses, sem contar itens fora de linha (lista informada + itens sem venda na Regional em 12 meses) e trocas de embalagem do mesmo produto (ex.: Origens 11,1 kg promocional → 10,1 kg). Novembro de ${A0} entra com uma extração mensal extra.</div>`;}
 draw();
 </script></body></html>
