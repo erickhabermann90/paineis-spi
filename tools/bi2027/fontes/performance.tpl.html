@@ -40,8 +40,19 @@
 .nav{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;padding:9px 6px 16px;border-top:1px solid #ece9e1}
 .nav button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;font-weight:700;color:#3a3c44}
 .nav button span{width:38px;height:30px;border-radius:12px;display:grid;place-items:center;font-size:16px;background:#f3f1ea}.nav button.on span{background:#16181d}
+.phone{position:relative}
+.cr.tap{cursor:pointer}.cr.tap:active{background:#faf8f3}
+.sheet{position:absolute;inset:0;background:rgba(10,10,12,.5);display:none;z-index:20}.sheet.on{display:block}
+.sh{position:absolute;left:0;right:0;bottom:0;max-height:90%;overflow:auto;background:var(--bg);border-radius:24px 24px 0 0;padding:14px 14px 22px}
+.sh .x{position:sticky;top:0;float:right;width:34px;height:34px;border-radius:50%;border:0;background:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 10px -6px rgba(0,0,0,.3)}
+.sh h2{margin:0;font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.2;padding-right:40px}.shs{font-size:11.5px;color:var(--mut);margin:3px 0 10px}
+.sh .box{background:#fff;border-radius:16px;padding:4px 12px}
+.ai{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:9px;align-items:center;padding:7px 0;border-top:1px solid #f0ede6;font-size:12px}.ai:first-child{border-top:0}
+.ai .i{width:22px;height:22px;border-radius:7px;background:#ffe1ea;color:#b4235a;display:grid;place-items:center;font-size:10.5px;font-weight:900}
+.ai .p{font-weight:600;line-height:1.25}.ai .r{text-align:right;font-weight:800;font-size:12px}.ai .r small{display:block;font-weight:600;color:var(--mut);font-size:9.5px;line-height:1.2}
 </style></head><body>
 <div class="phone"><div class="scroll" id="app"></div>
+<div class="sheet" id="sheet"><div class="sh" id="sh"></div></div>
 <div class="nav"><button><span>🛒</span>Mês atual</button><button class="on"><span>📈</span>Performance</button><button><span>🎯</span>Campanhas</button><button><span>🗺️</span>Roteiro</button><button><span>🔎</span>Clientes</button></div></div>
 <script>
 const D=/*DATA*/, A0='2025', A1='2026';
@@ -58,7 +69,7 @@ const sem90=C.filter(c=>c.dias>90).length, mixmed=C.filter(c=>c.mix).reduce((a,c
 function draw(){
  const famMax=Math.max(...D.fam.map(x=>Math.max(x.kg_2025/12,x.kg_2026_fech/P.meses_fechados)));
  const L=[[qv,c=>`${kg(c.m25)} → ${kg(c.m26)} /mês`,c=>`−${kg(c.m25-c.m26)}<small>${String(pct(c.m26,c.m25)).replace('.',',')}%</small>`],
-          [qm,c=>`deixou de comprar: ${c.abl.slice(0,2).join(', ')}${c.ab>2?'…':''}`,c=>`${c.ab} itens<small>sem compra há 12m</small>`],
+          [qm,c=>`deixou de comprar: ${c.abl.slice(0,2).map(x=>x[0]).join(', ')}${c.ab>2?'…':''}`,c=>`${c.ab} itens ›<small>toque para ver</small>`],
           [qf,c=>`compra a cada ${c.freq} dias · último há ${c.dias}`,c=>`+${c.dias-c.freq} dias<small>além do ritmo</small>`]][seg];
  const rows=L[0].slice(0,allA?99:6);
  document.getElementById('app').innerHTML=`
@@ -76,7 +87,7 @@ function draw(){
  <button class="more" onclick="allF=!allF;draw()">${allF?'mostrar menos':'ver todas as '+D.fam.filter(x=>x.kg_2025+x.kg_2026_fech>0).length+' famílias'}</button></div>
 <div class="card"><div class="ch"><b>Clientes em queda</b><small>atenção da semana</small></div>
  <div class="seg">${['Volume','Mix','Frequência'].map((s,i)=>`<button class="${i===seg?'on':''}" onclick="seg=${i};allA=false;draw()">${s}<small>${[qv,qm,qf][i].length}</small></button>`).join('')}</div>
- ${rows.map(c=>`<div class="cr num"><div class="n">${c.nome}<small>${L[1](c)}</small></div><div class="v">${L[2](c)}</div></div>`).join('')||'<div class="note">Nenhum cliente nesta situação.</div>'}
+ ${rows.map(c=>`<div class="cr num${seg===1?' tap':''}"${seg===1?` onclick="abItens('${c.cod}')"`:''}><div class="n">${c.nome}<small>${L[1](c)}</small></div><div class="v">${L[2](c)}</div></div>`).join('')||'<div class="note">Nenhum cliente nesta situação.</div>'}
  ${L[0].length>6?`<button class="more" onclick="allA=!allA;draw()">${allA?'mostrar menos':'ver todos os '+L[0].length}</button>`:''}</div>
 <div class="card"><div class="ch"><b>Mix</b><small>itens por cliente · últimos 12 meses</small></div>
  <div class="mx num"><div style="background:#ffe1ea;color:#7a1f42"><span class="l">Mix médio</span><b>${String(Math.round(mixmed*10)/10).replace('.',',')}</b><small>Regional ${String(D.mix_reg).replace('.',',')}</small></div>
@@ -87,5 +98,14 @@ function draw(){
  <div class="cr num"><div class="n">Sem compra há mais de 90 dias<small>ainda ativos no BI · voltar a visitar</small></div><div class="v">${sem90}</div></div>
  <div class="cr num"><div class="n">Inativos no BI<small>situação do cliente = inativo</small></div><div class="v">${T.inativos}</div></div></div>
 <div class="note">Prévia com ${A0} × ${A1}; em 2027 a tela compara ${+A0+1} × ${+A1+1}. Item abandonado = comprado em 2025 e sem compra nos últimos 12 meses, sem contar itens fora de linha (lista informada + itens sem venda na Regional em 12 meses) e trocas de embalagem do mesmo produto (ex.: Origens 11,1 kg promocional → 10,1 kg). Novembro de ${A0} entra com uma extração mensal extra.</div>`;}
+function abItens(cod){const c=C.find(x=>x.cod===cod);
+ document.getElementById('sh').innerHTML=`<button class="x" onclick="fecha()">×</button>
+ <div class="sub" style="margin:2px 0 2px">Itens deixados de comprar</div><h2>${c.nome}</h2>
+ <div class="shs">${c.ab} itens comprados em ${A0} e sem compra nos últimos 12 meses · mix atual ${c.mix} itens</div>
+ <div class="box">${c.abl.map(([p,n],i)=>`<div class="ai num"><span class="i">${i+1}</span><div class="p">${p}</div><div class="r">${n}<small>clientes da<br>Regional</small></div></div>`).join('')}</div>
+ <div class="note">Ordem: itens que mais clientes da Regional compram hoje. Fora da lista: itens fora de linha e trocas de embalagem do mesmo produto.</div>`;
+ document.getElementById('sheet').classList.add('on'); document.getElementById('sh').scrollTop=0;}
+function fecha(){document.getElementById('sheet').classList.remove('on')}
+document.getElementById('sheet').onclick=e=>{if(e.target.id==='sheet')fecha()};
 draw();
 </script></body></html>

@@ -97,12 +97,13 @@ def base_nome(p):
     p = re.sub(r'\b\d+X\s*\(?\d+X\d+G\)?|\b\d+X\(\d+X\d+G\)|\b\d+X\d+G\b|\b\d+(,\d+)?\s*KG\b|\b2X\b', '', p)
     return re.sub(r'\s+', ' ', p).strip()
 pc, abr = [], collections.Counter()
+nreg = collections.Counter(p for c in m12 for p in m12[c])  # clientes da Regional que compram o item (12 meses)
 for c in CL:
     cod = str(c['cod']); hist = {HP[i] for i in H['cli'].get(cod, [])}; atuais = set(m12.get(cod, {}))
     atb = {base_nome(p) for p in atuais}
     ab = sorted(p for p in hist - atuais if p not in fora and base_nome(p) not in atb)
     abr.update(ab)
-    pc.append({'cod': cod, 'nome': c['razao_social'], 'm25': c['med_kg_25'], 'm26': c['med_kg_26'], 'mes': c['kg_mes'], 'cart': c['kg_carteira'], 'dias': c['dias_ult_compra'], 'freq': c['freq_media_dias'], 'mix': len(atuais), 'ab': len(ab), 'abl': ab[:6]})
+    pc.append({'cod': cod, 'nome': c['razao_social'], 'm25': c['med_kg_25'], 'm26': c['med_kg_26'], 'mes': c['kg_mes'], 'cart': c['kg_carteira'], 'dias': c['dias_ult_compra'], 'freq': c['freq_media_dias'], 'mix': len(atuais), 'ab': len(ab), 'abl': [[p, nreg[p]] for p in sorted(ab, key=lambda p: (-nreg[p], p))]})
 perf = {'fam': d['familias'], 'tot': one('perf_total'), 'plano': P, 'cl': pc, 'ab_top': abr.most_common(8), 'mix_reg': mix_reg, 'n': len(CL)}
 page('performance.tpl.html', perf, 'performance.html',
      {'Gabriel · ${A0} × ${A1} · dados de 19/11': nome + ' · ${A0} × ${A1} · dados de ' + data_txt, "A0='2025', A1='2026'": f"A0='{ano0}', A1='{ano1}'",
