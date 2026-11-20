@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha do cliente</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ee;--fg:#16181d;--mut:#8a8c93;--ok:#0f9d6b;--bad:#d64545}
+*{box-sizing:border-box}body{margin:0;background:#d9d5ca;font:14px/1.35 Inter,system-ui,sans-serif;color:var(--fg)}
+.phone{width:390px;max-width:100%;height:844px;margin:16px auto;background:var(--bg);border-radius:30px;box-shadow:0 24px 60px -24px rgba(0,0,0,.4);display:flex;flex-direction:column;overflow:hidden}
+.num{font-variant-numeric:tabular-nums}
+.scroll{flex:1;overflow-y:auto;padding:16px 14px 16px}
+.bk{display:flex;align-items:center;gap:10px;margin-bottom:10px}.bk span{flex:none;width:34px;height:34px;border-radius:12px;background:#fff;display:grid;place-items:center;box-shadow:0 4px 10px -6px rgba(0,0,0,.3)}
+.bk h1{margin:0;font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.15}.bk p{margin:1px 0 0;font-size:11.5px;color:var(--mut)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px 44px}.chip{font-size:10.5px;font-weight:800;border-radius:99px;padding:3px 9px}
+.hero{background:#16181d;color:#fff;border-radius:22px;padding:14px 15px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-50px;top:-50px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(255,192,0,.25),transparent 70%)}
+.cap{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#9fa1a9}
+.mm{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:10px;margin-top:6px;position:relative;z-index:1}
+.mm div b{display:block;font-size:30px;font-weight:900;letter-spacing:-.03em;line-height:1}.mm div small{font-size:11px;color:#c9cad0}
+.mm .ar{font-size:13px;font-weight:800;padding-bottom:6px;text-align:center}
+.hs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:11px;position:relative;z-index:1}
+.hs div{background:rgba(255,255,255,.07);border-radius:10px;padding:6px 8px;font-size:10px;color:#9fa1a9}.hs b{display:block;font-size:14px;color:#fff;font-weight:800}
+.card{background:#fff;border-radius:20px;padding:12px 14px;margin-top:10px;box-shadow:0 10px 22px -16px rgba(0,0,0,.4)}
+.ch{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}.ch b{font-size:14px;font-weight:800}.ch small{font-size:11px;color:var(--mut)}
+.prime{background:linear-gradient(150deg,#fff8e1,#ffe7a6);box-shadow:0 12px 24px -14px rgba(201,138,0,.6)}
+.pv{display:flex;align-items:baseline;gap:8px}.pv b{font-size:30px;font-weight:900;letter-spacing:-.03em}.pv span{font-size:12px;color:#6b5a2a}
+.trk{height:8px;border-radius:99px;background:rgba(0,0,0,.08);overflow:hidden;margin:7px 0 4px}.trk i{display:block;height:100%;border-radius:99px}
+.gr{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}.gr div{background:rgba(255,255,255,.65);border-radius:10px;padding:6px 8px;font-size:10.5px;color:#6b5a2a}.gr b{display:block;font-size:13px;color:#16181d}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 0;border-top:1px solid #f0ede6;font-size:12px}
+.row:first-of-type{border-top:0}.row .p{font-weight:600;line-height:1.25}.row .v{font-weight:800;text-align:right;white-space:nowrap}.row .v small{display:block;font-weight:600;color:var(--mut);font-size:10px}
+.bar{height:4px;border-radius:99px;background:#f1eee6;margin-top:4px;overflow:hidden}.bar i{display:block;height:100%;background:#16181d;border-radius:99px}
+.more{all:unset;cursor:pointer;display:block;text-align:center;font-size:12px;font-weight:800;padding:8px 0 2px;color:#16181d}
+.ps{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:9px;align-items:center;padding:7px 0;border-top:1px solid #f0ede6;font-size:12px}
+.ps:first-of-type{border-top:0}.ps .n{width:22px;height:22px;border-radius:7px;background:#efe7ff;color:#7c3aed;display:grid;place-items:center;font-size:10.5px;font-weight:900}
+.ps .p{font-weight:600;line-height:1.25}.ps .v{font-size:11px;font-weight:800;color:#7c3aed;text-align:right;white-space:nowrap}
+.note{font-size:10.5px;color:var(--mut);margin:8px 2px 0;line-height:1.45}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;padding:9px 6px 16px;border-top:1px solid #ece9e1}
+.nav button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;font-weight:700;color:#3a3c44}
+.nav button span{width:38px;height:30px;border-radius:12px;display:grid;place-items:center;font-size:16px;background:#f3f1ea}.nav button.on span{background:#16181d}
+.srch{width:100%;border:0;border-radius:14px;padding:12px 14px;font:600 15px Inter;background:#fff;box-shadow:0 6px 14px -10px rgba(0,0,0,.35);margin-bottom:10px}
+.lr{all:unset;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;width:100%;box-sizing:border-box;background:#fff;border-radius:14px;padding:10px 12px;margin-bottom:6px;box-shadow:0 6px 14px -12px rgba(0,0,0,.35)}
+.lr b{font-size:12.5px;line-height:1.2;display:block}.lr small{font-size:11px;color:var(--mut)}.lr .k2{text-align:right;font-weight:800;font-size:12.5px;white-space:nowrap}
+.phone{height:100dvh;margin:0 auto;border-radius:0;box-shadow:none}
+@media (min-width:500px){.phone{height:844px;margin:16px auto;border-radius:30px;box-shadow:0 24px 60px -24px rgba(0,0,0,.4)}}
+body{background:var(--bg)}@media (min-width:500px){body{background:#d9d5ca}}
+</style></head><body>
+<div class="phone"><div class="scroll" id="app"></div>
+<div class="nav"><button><span>🛒</span>Mês atual</button><button><span>📈</span>Performance</button><button><span>🎯</span>Campanhas</button><button><span>🗺️</span>Roteiro</button><button class="on"><span>🔎</span>Clientes</button></div></div>
+<script>
+const DD=/*DATA*/, PR=DD.produtos;
+const f=n=>Math.round(n).toLocaleString('pt-BR'), t=n=>(n/1000).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+' t';
+const kg=n=>n>=1000?t(n):f(n)+' kg';
+const tone=p=>p>=1?'#0f9d6b':p>=.8?'#c98a00':'#d64545';
+let showAll=false, q='';
+function lista(){ const qq=q.normalize('NFD').replace(/[̀-ͯ]/g,'').toUpperCase();
+ const L=DD.clientes.filter(c=>!qq||c.nome.includes(qq)||c.cod.includes(qq)).sort((a,b)=>b.med26-a.med26);
+ document.getElementById('app').innerHTML=`<div class="bk"><span onclick="location.href='index.html'" style="cursor:pointer">←</span><div><h1>Clientes</h1><p>${DD.clientes.length} clientes ativos · dados de ${DD.data}</p></div></div>
+ <input class="srch" id="q" placeholder="Buscar por nome ou código…" value="${q.replace(/"/g,'')}" type="search">
+ ${L.map(c=>`<button class="lr" data-c="${c.cod}"><span><b>${c.nome}</b><small>Cód. ${c.cod}${c.reb.length?' · Prime':''}</small></span><span class="k2 num">${kg(c.med26)}<br><small>média/mês</small></span></button>`).join('')}`;
+ const i=document.getElementById('q'); i.oninput=e=>{q=e.target.value; lista(); const j=document.getElementById('q'); j.focus(); j.setSelectionRange(j.value.length,j.value.length);};
+ document.querySelectorAll('.lr').forEach(b=>b.onclick=()=>{location.hash=b.dataset.c;});
+ document.querySelector('.scroll').scrollTop=0; }
+function ficha(c){
+ const tot=c.reb.find(r=>r.grupo==='Total'), gs=c.reb.filter(r=>r.grupo!=='Total');
+ const ritmo=c.freq?(c.dias<=c.freq?['no ritmo','#e3f5ed','#0f9d6b']:c.dias<=2*c.freq?['atrasado','#fff4d6','#b07d00']:['em risco','#fde4e4','#d64545']):['sem ritmo','#eceae4','#555'];
+ const its=showAll?c.itens:c.itens.slice(0,10), mx=c.itens[0]?c.itens[0][1]:1;
+ document.getElementById('app').innerHTML=`
+<div class="bk"><span onclick="location.hash=''" style="cursor:pointer">←</span><div><h1>${c.nome}</h1><p>Cód. ${c.cod}${c.rede&&c.rede!=='SEM REDE'?' · '+c.rede:''}</p></div></div>
+<div class="chips"><span class="chip" style="background:${ritmo[1]};color:${ritmo[2]}">${ritmo[0]} · última compra há ${c.dias} ${c.dias===1?'dia':'dias'}</span>${tot?'<span class="chip" style="background:#ffc000;color:#16181d">Prime</span>':''}</div>
+<div class="hero"><div class="cap">Média mensal</div>
+ <div class="mm num"><div><small>${DD.ano0}</small><b>${kg(c.med26)}</b></div><div class="ar" style="color:#9fa1a9">→</div><div><small>${DD.ano1}</small><b style="color:#ffc000">${c.med27==null?'—':kg(c.med27)}</b>${c.med27==null?'<small>começa em jan</small>':''}</div></div>
+ <div class="hs num"><div>faturado mês<b>${kg(c.mes)}</b></div><div>carteira<b>${kg(c.cart)}</b></div><div>compra a cada<b>${c.freq?c.freq+' dias':'—'}</b></div></div></div>
+${tot?`<div class="card prime"><div class="ch"><b>Objetivo Prime</b><small>rebate · objetivo do BI + 5%</small></div>
+ <div class="pv num"><b style="color:${tone(tot.realizado/tot.objetivo)}">${Math.round(tot.realizado/tot.objetivo*100)}%</b><span>${kg(tot.realizado)} de ${kg(tot.objetivo)} · faltam <b style="font-size:13px;color:#d64545">${kg(Math.max(tot.objetivo-tot.realizado,0))}</b></span></div>
+ <div class="trk"><i style="width:${Math.min(tot.realizado/tot.objetivo,1)*100}%;background:${tone(tot.realizado/tot.objetivo)}"></i></div>
+ <div class="gr num">${gs.map(g=>`<div>${g.grupo}<b style="color:${tone(g.realizado/g.objetivo)}">${Math.round(g.realizado/g.objetivo*100)}%</b>${kg(g.realizado)} / ${kg(g.objetivo)}</div>`).join('')}</div></div>`:''}
+<div class="card"><div class="ch"><b>Produtos que compra</b><small>${DD.itens_txt}</small></div>
+ ${its.map(([p,v])=>`<div class="row num"><div><div class="p">${PR[p]}</div><div class="bar"><i style="width:${v/mx*100}%"></i></div></div><div class="v">${kg(v)}</div></div>`).join('')||'<div class="note">Sem compras no período.</div>'}
+ ${c.itens.length>10?`<button class="more" id="more">${showAll?'mostrar menos':'ver todos os '+c.itens.length+' produtos'}</button>`:''}</div>
+<div class="card"><div class="ch"><b>Positivação · 30 oportunidades</b><small>${DD.posit_txt}</small></div>
+ <div class="note" style="margin:-2px 0 6px">Itens mais comprados pelos clientes da Regional que este cliente ainda não leva.</div>
+ ${c.posit.map((p,i)=>`<div class="ps num"><span class="n">${i+1}</span><div class="p">${PR[p]}</div><div class="v">${DD.rank[p]}<br><small style="color:#8a8c93;font-weight:600">clientes da Regional</small></div></div>`).join('')}</div>`;
+ const m=document.getElementById('more'); if(m) m.onclick=()=>{showAll=!showAll; ficha(c);};
+ document.querySelector('.scroll').scrollTop=0; }
+function rota(){ const c=DD.clientes.find(x=>x.cod===location.hash.slice(1)); showAll=false; c?ficha(c):lista(); }
+addEventListener('hashchange',rota); rota();
+</script>
+/*NAV*/
+</body></html>
