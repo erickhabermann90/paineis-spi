@@ -94,3 +94,11 @@ window.__exportar=(mesNum,mesStr,extra={})=>{const miss=[]; const clients=Object
  return {len:__EXP.length, partes:__np()};};
 window.__np=()=>Math.max(1,Math.ceil(__EXP.length/180000));
 window.__parte=(i)=>{const n=__np(), sz=Math.ceil(__EXP.length/n); return btoa(unescape(encodeURIComponent(__EXP.slice(i*sz,(i+1)*sz))));};
+
+// ===== KPIs do mês por RC (link de teste BI 2027) =====
+// Curva ABC: __filtroLista(['MM/AAAA']) só do mês; dims [CÓD RC - REPRESENTANTE, FAMÍLIA GERAL]; medidas [KG 26, R$ FAT 26];
+// __krc={}; __scrapeF(0,[1,2],__krc) até done; __kpiRCLe() → window.__kpiRC = {rc: {fat: {família geral: kg}, rs: R$}}; exportar com {kpi_rc: __kpiRC}
+window.__kpiRCLe=()=>{const h=__rows(0)[0], ix=(n)=>h.indexOf(n), o={};
+ Object.entries(__krc).filter(([k])=>k!=='__tot').forEach(([,r])=>{const rc=r[ix('CÓD RC - REPRESENTANTE')].split(' - ')[0].replace(/^\*/,''), fam=r[ix('FAMÍLIA GERAL')];
+  const x=o[rc]=o[rc]||{fat:{},rs:0}; x.fat[fam]=(x.fat[fam]||0)+__num(r[ix('KG 26')]); x.rs+=__num(r[ix('R$ FAT 26')]);});
+ window.__kpiRC=o; const t=__krc.__tot||[]; return {rcs:Object.keys(o).length, kg:Object.values(o).reduce((a,x)=>a+Object.values(x.fat).reduce((b,v)=>b+v,0),0), rs:Object.values(o).reduce((a,x)=>a+x.rs,0), tot_kg:t[ix('KG 26')], tot_rs:t[ix('R$ FAT 26')]};};

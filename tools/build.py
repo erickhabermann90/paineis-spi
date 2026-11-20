@@ -279,3 +279,8 @@ print('gestor: /' + gslug + '/')
 open(os.path.join(SITE, 'robots.txt'), 'w').write('User-agent: *\nDisallow: /\n')
 open(os.path.join(SITE, '_headers'), 'w').write('/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: no-cache\n')
 for r in resumo: print('%-34s fat %7d obj %7d %6.1f%% | 4T meta %7d real %7d %5.1f%%' % (r[0], r[1], r[2], r[3] * 100, r[6], r[7], (r[7] / r[6] * 100) if r[6] else 0))
+
+# link de teste no modelo BI 2027 (várias páginas), gerado a partir do painel oficial do RC já pronto
+if TESTE and TESTE.get('modelo') == 'bi2027' and os.path.exists(os.path.join(T, 'bi2027', 'gerar_teste.py')):
+    import subprocess as _sp
+    _sp.run([sys.executable, os.path.join(T, 'bi2027', 'gerar_teste.py'), ext], check=True)

@@ -54,6 +54,8 @@ if 'q4' in d:
     json.dump(camp, open(os.path.join(D, 'campanha.json'), 'w'), ensure_ascii=False)
 if d.get('I12'):
     json.dump(dec(d['I12']), open(os.path.join(D, 'itens.json'), 'w'), ensure_ascii=False)
+if d.get('kpi_rc'):  # KPIs do mês por RC e família geral (link de teste BI 2027)
+    json.dump(d['kpi_rc'], open(os.path.join(D, 'kpi_rc.json'), 'w'), ensure_ascii=False)
 if d.get('INAT'):
     json.dump({'extraido_em': 'semanal', 'fonte': 'Power BI · SITUAÇÃO CLIENTE = INATIVO', 'clientes': sorted(set(map(str, d['INAT'])), key=int)}, open(os.path.join(T, 'inativos.json'), 'w'), ensure_ascii=False)
 k = d['kpi_mes']['vals']

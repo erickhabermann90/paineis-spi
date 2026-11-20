@@ -1,6 +1,6 @@
 const { chromium } = require('playwright');
 (async () => { const b = await chromium.launch(); const out = {};
-  const rcs = require('fs').readdirSync(require('path').resolve(__dirname, '..', 'site')).filter(d => /-/.test(d));
+  const rcs = require('fs').readdirSync(require('path').resolve(__dirname, '..', 'site')).filter(d => /-/.test(d) && !d.startsWith('gestor') && !require('fs').existsSync(require('path').resolve(__dirname, '..', 'site', d, 'mes.html')));  // gestor e link teste BI 2027 têm layout próprio
   // node tools/auditoria.js --rapido → só 390px (dia a dia); sem argumento → todas as larguras (quando o layout mudar)
   const LARG = process.argv.includes('--rapido') ? [390] : [360, 390, 430, 768, 1280];
   for (const W of LARG) for (const rc of rcs) {
