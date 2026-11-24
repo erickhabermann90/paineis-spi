@@ -25,3 +25,12 @@ Protótipos com dados reais do Gabriel (e do Lucas no roteiro), dados de 19/11/2
 ## Fontes
 - `fontes/*.tpl.html` + `dados/*.json` geram os protótipos (`/*DATA*/` e `@@FN@@`/`@@OR@@` substituídos pelos dados e logos).
 - `fontes/roteiro.py <pasta com rot_cli.json e geo.json>` gera `roteiro.json`.
+
+## Regras definidas pelo Erick (24/11/2026) — base: tools/juridico/contrato_rc_resumo.md
+- Nunca mencionar no BI a faixa abaixo de 80% do acelerador (redução de comissão). Simulação de comissão mostra só regular (80–100,99%) e as faixas de acelerador (≥ 101%).
+- Roteiro e frequência são sempre "sugestão"; nada de controle de jornada, horário ou registro obrigatório de visitas (autonomia do RC PJ).
+- Planejamento mensal = relatório de andamento dos negócios (cl. 1ª §3 / 12ª §3). Comunicar como diretriz com 30 dias de antecedência (cl. 2ª §4) antes de valer.
+- Incentivo do planejamento: acesso à verba de negociação (para clientes, com autorização escrita caso a caso) e selo/ranking. Sem bônus em dinheiro ao RC por enquanto.
+- Plano x realizado serve para acelerador e gestão; não usar a tela como instrumento de cobrança/notificação.
+- Fotos dos RCs (tools/bi2027/fotos) só entram no BI com concordância de cada um (LGPD).
+- Quando o planejamento gravar propostas/comissões: proteger os links com login (Cloudflare Access) antes de publicar.
