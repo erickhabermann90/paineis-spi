@@ -63,5 +63,6 @@
     "obs": "Nunca mostrar no BI a faixa abaixo de 80% (decisão do Erick, 24/11/2026)."
   },
   "pendente": [],
-  "obs_familias": "Todos os RCs da Regional estão na Faixa 1. 10 - PREMIUM ESPECIAL = Magnus Supreme (descontinuada), 5%. Origens Class 15/20 kg está em 08 - ORIGENS ESPECIAL (5%) e Magnus T D Ad Carne 15/20 kg + Chips em 12 - PREMIUM 1 (3%): mesmo % da família, sem tratamento à parte. (Erick, 24/11/2026)"
+  "obs_familias": "Todos os RCs da Regional estão na Faixa 1. 10 - PREMIUM ESPECIAL = Magnus Supreme (descontinuada), 5%. Origens Class 15/20 kg está em 08 - ORIGENS ESPECIAL (5%) e Magnus T D Ad Carne 15/20 kg + Chips em 12 - PREMIUM 1 (3%): mesmo % da família, sem tratamento à parte. (Erick, 24/11/2026)",
+  "validacao_out_2026": "R$ FAT 26 por RC e família (Curva ABC, 10/2026) × tabela = comissão do Relatório Sintético de out/2026 com diferença ≤ 0,1% para Yuri, Thiago, Eduardo, Gabriel, Felippe, Lucas, Maria e Marcos; Mauricio +0,9% (faturamento no BI R$ 5,2 mil maior que no relatório); Wilian não compara direto porque no BI os clientes do Marcelo estão com ele (no relatório o Marcelo aparece à parte, R$ 136,2 mil). Pet Care = 6% em todas as famílias da família geral PET CARE."
 }
