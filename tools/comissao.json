@@ -1,27 +1,67 @@
 {
   "fonte": "Tabela de comissão por família enviada pelo Erick em 24/11/2026 (Faixa 1). Percentual sobre o valor da venda (R$).",
   "faixa_1": {
-    "FN FRESH": 6, "FN VET CARE": 6, "FN LIFE": 6, "FN PRO": 5, "ORIGENS": 5,
-    "MAGNUS SUPER PREMIUM": 5, "MAGNUS SUPREME": 5, "MAGNUS PREMIUM 2": 5,
-    "MAGNUS PREMIUM 1": 3, "STANDARD": 2, "ECONOMICO": 2, "PET CARE": 6,
-    "ORIGENS CLASS 15KG E 20KG": 5, "MAGNUS T D AD CARNE (15KG E 20KG) E CHIPS": 3
+    "FN FRESH": 6,
+    "FN VET CARE": 6,
+    "FN LIFE": 6,
+    "FN PRO": 5,
+    "ORIGENS": 5,
+    "MAGNUS SUPER PREMIUM": 5,
+    "MAGNUS SUPREME": 5,
+    "MAGNUS PREMIUM 2": 5,
+    "MAGNUS PREMIUM 1": 3,
+    "STANDARD": 2,
+    "ECONOMICO": 2,
+    "PET CARE": 6,
+    "ORIGENS CLASS 15KG E 20KG": 5,
+    "MAGNUS T D AD CARNE (15KG E 20KG) E CHIPS": 3
   },
   "familia_sistema": {
-    "04 - FN FRESH": 6, "07 - FN VET CARE": 6, "02 - FN LIFE": 6, "01 - FN PRO (NOVA)": 5,
-    "08 - ORIGENS ESPECIAL": 5, "09 - SUPER PREMIUM": 5, "11 - PREMIUM 2": 5, "10 - PREMIUM ESPECIAL": null,
-    "12 - PREMIUM 1": 3, "14 - STANDARD": 2, "15 - ECONOMICO": 2, "PET CARE (família geral)": 6
+    "04 - FN FRESH": 6,
+    "07 - FN VET CARE": 6,
+    "02 - FN LIFE": 6,
+    "01 - FN PRO (NOVA)": 5,
+    "08 - ORIGENS ESPECIAL": 5,
+    "09 - SUPER PREMIUM": 5,
+    "11 - PREMIUM 2": 5,
+    "10 - PREMIUM ESPECIAL": 5,
+    "12 - PREMIUM 1": 3,
+    "14 - STANDARD": 2,
+    "15 - ECONOMICO": 2,
+    "PET CARE (família geral)": 6
   },
   "acelerador": {
     "base": "% do plano performance do mês; pontos percentuais somados à comissão sobre R$ faturado",
     "faixas": [
-      {"de": 101, "fn_pro": 0.2, "demais": 0.1},
-      {"de": 102, "fn_pro": 0.4, "demais": 0.2},
-      {"de": 103, "fn_pro": 0.6, "demais": 0.3},
-      {"de": 104, "fn_pro": 0.8, "demais": 0.4},
-      {"de": 105, "fn_pro": 1.0, "demais": 0.5}
+      {
+        "de": 101,
+        "fn_pro": 0.2,
+        "demais": 0.1
+      },
+      {
+        "de": 102,
+        "fn_pro": 0.4,
+        "demais": 0.2
+      },
+      {
+        "de": 103,
+        "fn_pro": 0.6,
+        "demais": 0.3
+      },
+      {
+        "de": 104,
+        "fn_pro": 0.8,
+        "demais": 0.4
+      },
+      {
+        "de": 105,
+        "fn_pro": 1.0,
+        "demais": 0.5
+      }
     ],
     "regular": "80% a 100,99%: comissão da tabela",
     "obs": "Nunca mostrar no BI a faixa abaixo de 80% (decisão do Erick, 24/11/2026)."
   },
-  "pendente": ["outras faixas além da Faixa 1?", "10 - PREMIUM ESPECIAL = Magnus Supreme?", "em que família do sistema estão Origens Class 15/20 kg e Magnus T D Ad Carne 15/20 kg + Chips"]
+  "pendente": [],
+  "obs_familias": "Todos os RCs da Regional estão na Faixa 1. 10 - PREMIUM ESPECIAL = Magnus Supreme (descontinuada), 5%. Origens Class 15/20 kg está em 08 - ORIGENS ESPECIAL (5%) e Magnus T D Ad Carne 15/20 kg + Chips em 12 - PREMIUM 1 (3%): mesmo % da família, sem tratamento à parte. (Erick, 24/11/2026)"
 }
