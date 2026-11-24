@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planejamento</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ee;--fg:#16181d;--mut:#8a8c93;--ok:#0f9d6b;--warn:#c98a00;--bad:#d64545;--gold:#ffc000}
+*{box-sizing:border-box}body{margin:0;background:#d9d5ca;font:14px/1.35 Inter,system-ui,sans-serif;color:var(--fg)}
+.phone{width:390px;max-width:100%;height:844px;margin:16px auto;background:var(--bg);border-radius:30px;box-shadow:0 24px 60px -24px rgba(0,0,0,.4);display:flex;flex-direction:column;overflow:hidden;position:relative}
+@media (max-width:500px){.phone{margin:0;border-radius:0;height:100dvh}}
+.num{font-variant-numeric:tabular-nums}
+.scroll{flex:1;overflow-y:auto;padding:14px 14px 90px}
+.bk{display:flex;align-items:center;gap:10px;margin-bottom:10px}.bk span{width:34px;height:34px;border-radius:12px;background:#fff;display:grid;place-items:center;box-shadow:0 4px 10px -6px rgba(0,0,0,.3)}
+.bk h1{margin:0;font-size:20px;font-weight:800;letter-spacing:-.02em}.bk p{margin:0;font-size:11.5px;color:var(--mut)}
+.st{margin-left:auto;font-size:10px;font-weight:800;border-radius:99px;padding:4px 9px;background:#fff4d6;color:#8a6200}
+.hero{position:relative;background:#16181d;color:#fff;border-radius:22px;padding:13px 15px 12px;overflow:hidden;box-shadow:0 14px 28px -18px rgba(0,0,0,.7)}
+.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(255,192,0,.25),transparent 70%);pointer-events:none}
+.cap{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#9fa1a9}
+.big{display:flex;align-items:baseline;gap:8px;margin:2px 0 6px}.big b{font-size:38px;font-weight:900;letter-spacing:-.03em;line-height:1}.big span{font-size:12px;color:#c9cad0}
+.trk{position:relative;height:10px;border-radius:99px;background:rgba(255,255,255,.12);margin:16px 0 16px}
+.trk i{position:absolute;left:0;top:0;bottom:0;border-radius:99px;transition:width .25s}
+.trk .cp{position:absolute;top:-15px;white-space:nowrap;font-size:9.5px;font-weight:800;color:#9fa1a9;transform:translateX(-50%)}
+.trk .cp:after{content:"";position:absolute;left:50%;top:13px;width:2px;height:12px;background:rgba(255,255,255,.55)}
+.hs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px;position:relative;z-index:1}
+.hs div{background:rgba(255,255,255,.07);border-radius:12px;padding:7px 9px;font-size:10.5px;color:#9fa1a9}.hs b{display:block;font-size:16px;color:#fff;font-weight:800;margin-top:1px}
+.tip{margin-top:9px;font-size:11.5px;color:#e8e9ec;position:relative;z-index:1}.tip b{color:var(--gold)}
+.card{background:#fff;border-radius:20px;padding:12px 14px;margin-top:10px;box-shadow:0 10px 22px -16px rgba(0,0,0,.4)}
+.ch{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}.ch b{font-size:14px;font-weight:800}.ch small{font-size:11px;color:var(--mut)}
+.days{display:flex;gap:6px}.days button{all:unset;cursor:pointer;flex:1;text-align:center;padding:7px 0;border-radius:11px;font-size:12px;font-weight:800;background:#f1eee6;color:#8a8c93}.days button.on{background:#16181d;color:#fff}
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:9px}.cg div{background:#f7f5ef;border-radius:11px;padding:6px 8px;font-size:10px;color:var(--mut)}.cg b{display:block;font-size:15px;color:var(--fg);font-weight:800}
+.bar2{height:7px;border-radius:99px;background:#f1eee6;overflow:hidden;margin-top:9px}.bar2 i{display:block;height:100%;border-radius:99px}
+.al{font-size:11.5px;margin-top:7px;line-height:1.4}
+.tools{display:flex;gap:6px;margin:14px 0 6px;align-items:center}
+.tools input{flex:1;min-width:0;border:0;background:#fff;border-radius:12px;padding:9px 11px;font:inherit;font-size:13px;box-shadow:0 4px 10px -8px rgba(0,0,0,.3)}
+.tools button{all:unset;cursor:pointer;font-size:11px;font-weight:800;background:#fff;border-radius:12px;padding:9px 10px;box-shadow:0 4px 10px -8px rgba(0,0,0,.3);white-space:nowrap}
+.lh{display:grid;grid-template-columns:minmax(0,1fr) 82px 92px;gap:8px;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:800;padding:4px 4px}
+.cl{display:grid;grid-template-columns:minmax(0,1fr) 82px 92px;gap:8px;align-items:center;background:#fff;border-radius:15px;padding:9px 10px;margin-top:6px}
+.cl .n{font-size:12px;font-weight:700;line-height:1.2;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.cl .s{font-size:10.5px;color:var(--mut);margin-top:2px}.cl .s b{color:var(--fg)}
+.cl input{width:100%;border:1.5px solid #e6e2d8;border-radius:10px;padding:7px 6px;font:inherit;font-size:13px;font-weight:800;text-align:right;background:#fbfaf7}
+.cl input:focus{outline:0;border-color:#16181d;background:#fff}
+.cl .d{font-size:9.5px;font-weight:800;text-align:right;margin-top:2px}
+.fq{display:flex;border-radius:10px;background:#f1eee6;padding:2px}.fq button{all:unset;cursor:pointer;flex:1;text-align:center;font-size:11px;font-weight:800;padding:6px 0;border-radius:8px;color:#8a8c93}.fq button.on{background:#16181d;color:#fff}
+.foot{position:absolute;left:0;right:0;bottom:66px;padding:10px 14px;background:linear-gradient(transparent,var(--bg) 30%)}
+.send{all:unset;cursor:pointer;display:block;text-align:center;background:var(--gold);color:#16181d;font-weight:900;font-size:14px;border-radius:16px;padding:13px;box-shadow:0 10px 20px -10px rgba(201,138,0,.8)}
+.send small{display:block;font-size:10.5px;font-weight:700;opacity:.75}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;padding:8px 6px 12px;border-top:1px solid #ece9e1;position:relative;z-index:6}
+.nav button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:700;color:#3a3c44}
+.nav button span{width:36px;height:28px;border-radius:12px;display:grid;place-items:center;font-size:15px;background:#f3f1ea}.nav button.on span{background:#16181d}
+.toast{position:absolute;left:14px;right:14px;bottom:150px;background:#16181d;color:#fff;border-radius:14px;padding:11px 13px;font-size:12px;display:none;z-index:9}
+.trk .cp.lo{top:14px}.trk .cp.lo:after{top:-12px}
+.mini{position:sticky;top:-14px;z-index:5;margin:0 -14px;padding:8px 14px;background:rgba(22,24,29,.96);color:#fff;display:none;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;backdrop-filter:blur(6px)}
+.mini b{font-size:15px;font-weight:900}.mini.on{display:flex}
+.send{width:100%;box-sizing:border-box}
+</style></head><body>
+<div class="phone">
+ <div class="scroll" id="sc">
+  <div class="bk"><span>←</span><div><h1>Planejamento</h1><p id="sub"></p></div><div class="st" id="st">rascunho</div></div>
+  <div class="mini num" id="mini"></div>
+  <div class="hero" id="hero"></div>
+  <div class="card" id="cap"></div>
+  <div class="tools"><input id="q" placeholder="Buscar cliente ou cidade"><button id="obj">Usar objetivo</button><button id="med">Usar média</button></div>
+  <div class="lh"><span>Cliente</span><span style="text-align:right">Proposta kg</span><span style="text-align:center">Visita</span></div>
+  <div id="list"></div>
+  <div style="font-size:10.5px;color:#8a8c93;margin:12px 4px 0;line-height:1.45">Comissão estimada pela tabela de comissão por família e pelo mix do último mês fechado. O valor final é apurado pela Adimax no fechamento do mês. A frequência de visita é uma sugestão para montar o seu roteiro.</div>
+ </div>
+ <div class="foot"><button class="send" id="send">Enviar plano ao gestor<small id="prazo"></small></button></div>
+ <div class="toast" id="toast"></div>
+ <div class="nav"><button><span>🛒</span>Mês atual</button><button><span>📈</span>Performance</button><button><span>🎯</span>Campanhas</button><button class="on"><span>🗓️</span>Planejar</button><button><span>🔎</span>Clientes</button></div>
+</div>
+<script>
+const D={"mes": "Dezembro", "nome": "Gabriel", "prazo": "03/12", "plano": 60400, "rskg": 7.399909671027711, "eff": 4.51, "fnpro": 0.03826821416969375, "maxh": 6, "cl": [{"c": "120282", "n": "IURI FERNANDO MENDES DIAS", "cid": "Paulinia", "o": 6387, "m": 6220, "f": 7, "t": 180, "r": 70}, {"c": "133752", "n": "V DE ARAUJO SILVA AGROPECUARIA", "cid": "Paulinia", "o": 6270, "m": 6100, "f": 7, "t": 180, "r": 70}, {"c": "9116", "n": "AGROCENTER PLANALTO COM DE RACOES LT ME", "cid": "Paulinia", "o": 3218, "m": 3013, "f": 7, "t": 120, "r": 50}, {"c": "9118", "n": "CENTRAL PARK RACOES LTDA ME", "cid": "Paulinia", "o": 3073, "m": 2870, "f": 7, "t": 125, "r": 50}, {"c": "9168", "n": "AGRO GATTE R E PROD VETERIN EIRELI ME", "cid": "Paulinia", "o": 2769, "m": 2571, "f": 14, "t": 110, "r": 45}, {"c": "46497", "n": "CN AGROPECUARIA LTDA", "cid": "Paulinia", "o": 1994, "m": 1818, "f": 28, "t": 95, "r": 40}, {"c": "126584", "n": "AGRO CARDOSO 5 LTDA", "cid": "Paulinia", "o": 2125, "m": 1944, "f": 14, "t": 95, "r": 40}, {"c": "9238", "n": "AGROPECUARIA CARDOSO LTDA", "cid": "Paulinia", "o": 1894, "m": 1722, "f": 14, "t": 90, "r": 35}, {"c": "9124", "n": "CAMPDOG COM DE RACOES E ACESSORIOS LTDA", "cid": "Campinas", "o": 1802, "m": 1634, "f": 7, "t": 85, "r": 35}, {"c": "9912", "n": "ABOLIKAO COM DE PROD PARA ANIMAIS LTDA", "cid": "Campinas", "o": 1955, "m": 1781, "f": 14, "t": 90, "r": 35}, {"c": "16582", "n": "YAMANE COMERCIO DE RACOES LTDA ME", "cid": "Campinas", "o": 1783, "m": 1616, "f": 14, "t": 80, "r": 30}, {"c": "9117", "n": "PAULO HENRIQUE DOS SANTOS RACOES", "cid": "Paulinia", "o": 1748, "m": 1583, "f": 14, "t": 85, "r": 35}, {"c": "182716", "n": "PAULIPET COMERCIO LTDA", "cid": "Paulinia", "o": 1394, "m": 1247, "f": 28, "t": 70, "r": 30}, {"c": "134290", "n": "PRAPET E AMIGOS LTDA", "cid": "Paulinia", "o": 1246, "m": 1108, "f": 14, "t": 65, "r": 25}, {"c": "134788", "n": "JOAO SILVA DE FIGUEIREDO 05091190341", "cid": "Paulinia", "o": 1338, "m": 1194, "f": 28, "t": 65, "r": 25}, {"c": "74892", "n": "ELIZABETE PIOVANI 06842913802", "cid": "Campinas", "o": 1034, "m": 910, "f": 28, "t": 55, "r": 20}, {"c": "9156", "n": "PERCHES COMERCIO DE RACOES LTDA", "cid": "Campinas", "o": 1196, "m": 1061, "f": 7, "t": 70, "r": 30}, {"c": "184829", "n": "AGROPET BOM RETIRO LTDA", "cid": "Paulinia", "o": 1108, "m": 979, "f": 28, "t": 65, "r": 25}, {"c": "108705", "n": "IANGRID INGRID ARCHANJO 43878147805", "cid": "Campinas", "o": 861, "m": 751, "f": 28, "t": 50, "r": 20}, {"c": "118519", "n": "OSVALDO FIGUEIREDO DA SILVA 05770369639", "cid": "Campinas", "o": 706, "m": 609, "f": 28, "t": 40, "r": 15}, {"c": "99830", "n": "JOSE CARLOS DE FREITAS 20510306349", "cid": "Campinas", "o": 818, "m": 711, "f": 28, "t": 50, "r": 20}, {"c": "9187", "n": "DF VIANA ME", "cid": "Campinas", "o": 539, "m": 459, "f": 28, "t": 35, "r": 15}, {"c": "138561", "n": "ANDRE LUIS DIAS 29101804847", "cid": "Campinas", "o": 622, "m": 533, "f": 28, "t": 40, "r": 15}, {"c": "14049", "n": "DJR AGROPECUARIA LTDA", "cid": "Paulinia", "o": 720, "m": 622, "f": 28, "t": 45, "r": 20}, {"c": "9170", "n": "AGROPECUARIA BRASIL RURAL LTDA", "cid": "Paulinia", "o": 714, "m": 617, "f": 28, "t": 45, "r": 20}, {"c": "117258", "n": "AQUI O BICHO PEGA COM DE P B E IND LTDA", "cid": "Campinas", "o": 650, "m": 559, "f": 14, "t": 45, "r": 20}, {"c": "135143", "n": "AGRO PESCA PARANA LTDA", "cid": "Paulinia", "o": 709, "m": 612, "f": 28, "t": 45, "r": 20}, {"c": "9173", "n": "COMERCIAL OLIVIDAL DE R E PET SHOP LTDA", "cid": "Paulinia", "o": 678, "m": 584, "f": 28, "t": 45, "r": 20}, {"c": "88345", "n": "ROSIMEIRE SILVA DA ROCHA 39970064827", "cid": "Campinas", "o": 692, "m": 597, "f": 28, "t": 45, "r": 20}, {"c": "187567", "n": "65347872 GENIVAL VICENTE ALBERTO", "cid": "Paulinia", "o": 585, "m": 500, "f": 28, "t": 40, "r": 15}, {"c": "175413", "n": "CASA D MATERIAIS PARA CONSTRUCAO LTDA", "cid": "Paulinia", "o": 583, "m": 498, "f": 28, "t": 40, "r": 15}, {"c": "9574", "n": "CILEIDE JERONIMO DOS SANTOS", "cid": "Campinas", "o": 478, "m": 404, "f": 14, "t": 35, "r": 15}, {"c": "163554", "n": "49448448 JEFFERSON DOS SANTOS RUIZ", "cid": "Campinas", "o": 462, "m": 390, "f": 28, "t": 30, "r": 15}, {"c": "9234", "n": "EMPORIO RURAL LTDA ME", "cid": "Paulinia", "o": 527, "m": 448, "f": 28, "t": 35, "r": 15}, {"c": "22020", "n": "AGRO MM AGROPECUARIA LTDA", "cid": "Paulinia", "o": 487, "m": 412, "f": 28, "t": 35, "r": 15}, {"c": "29099", "n": "AGROCESAR COM DE PROD AGROP LTDA", "cid": "Campinas", "o": 421, "m": 354, "f": 14, "t": 30, "r": 15}, {"c": "177320", "n": "60457420 MARINA OLBI", "cid": "Paulinia", "o": 423, "m": 356, "f": 28, "t": 30, "r": 15}, {"c": "189428", "n": "AGROSHOW GRANDES E PEQUENOS LTDA", "cid": "Paulinia", "o": 356, "m": 297, "f": 28, "t": 30, "r": 15}, {"c": "9498", "n": "HORTAS E QUINTAIS COM DE I E A LTDA", "cid": "Campinas", "o": 392, "m": 328, "f": 28, "t": 30, "r": 15}, {"c": "9151", "n": "MARCOS CAMILO PETEAN", "cid": "Campinas", "o": 341, "m": 284, "f": 14, "t": 25, "r": 15}, {"c": "9247", "n": "ANA PAULA GONCALVES PERES E CIA LTDA", "cid": "Campinas", "o": 335, "m": 278, "f": 28, "t": 30, "r": 15}, {"c": "16975", "n": "HENRIQUE NOGUEIRA DUARTE", "cid": "Campinas", "o": 310, "m": 257, "f": 28, "t": 25, "r": 15}, {"c": "169172", "n": "JOSE BENEDITO GALVAO E CIA LTDA", "cid": "Campinas", "o": 312, "m": 258, "f": 14, "t": 25, "r": 15}, {"c": "176678", "n": "50525750 RITA DE CASSIA SCARASSATTI", "cid": "Campinas", "o": 332, "m": 276, "f": 28, "t": 25, "r": 15}, {"c": "155898", "n": "33997856 ALINE GRAZIELE ALVES BORGES", "cid": "Paulinia", "o": 288, "m": 238, "f": 14, "t": 25, "r": 15}, {"c": "157313", "n": "52991865 PEDRO GABRIEL DE MORAES", "cid": "Campinas", "o": 321, "m": 266, "f": 28, "t": 25, "r": 15}, {"c": "138782", "n": "HOSPITAL V NOVA C S UNIPESSOAL LTDA", "cid": "Campinas", "o": 291, "m": 240, "f": 28, "t": 25, "r": 15}, {"c": "9125", "n": "AL CARVALHO COM DE PROD AGRO LTDA", "cid": "Campinas", "o": 269, "m": 221, "f": 28, "t": 25, "r": 15}, {"c": "111914", "n": "ISABEL APARECIDA PIRES", "cid": "Campinas", "o": 249, "m": 204, "f": 14, "t": 25, "r": 15}, {"c": "9228", "n": "GUAXININ PRODUTOS AGROPECUARIOS LTDA", "cid": "Campinas", "o": 205, "m": 166, "f": 28, "t": 20, "r": 15}, {"c": "174949", "n": "36957155 FLAVIO VENANCIO DE ALMEIDA FARO", "cid": "Paulinia", "o": 199, "m": 161, "f": 28, "t": 20, "r": 15}, {"c": "76181", "n": "TZV COMERCIO DE A E A PARA A LTDA ME", "cid": "Campinas", "o": 193, "m": 156, "f": 14, "t": 20, "r": 15}, {"c": "188529", "n": "ARCA PETS CENTER LTDA", "cid": "Campinas", "o": 189, "m": 153, "f": 28, "t": 20, "r": 15}, {"c": "113167", "n": "THIAGO DIAS PETEAN", "cid": "Campinas", "o": 189, "m": 153, "f": 28, "t": 15, "r": 15}, {"c": "176340", "n": "50296084 TIZUKO ASANO YAMADA", "cid": "Paulinia", "o": 188, "m": 152, "f": 28, "t": 20, "r": 15}, {"c": "190107", "n": "66580547 RODRIGO GANDOLFO MIGUEL", "cid": "Campinas", "o": 181, "m": 146, "f": 14, "t": 20, "r": 15}, {"c": "9150", "n": "MARIA LIZATE DE C PETEAN NUNES SANTOS ME", "cid": "Campinas", "o": 174, "m": 140, "f": 28, "t": 15, "r": 15}, {"c": "191651", "n": "LCALADO MELLO LEITE", "cid": "Paulinia", "o": 163, "m": 131, "f": 28, "t": 15, "r": 15}, {"c": "76509", "n": "AGROPECUARIA VILA NOVA LTDA", "cid": "Campinas", "o": 141, "m": 112, "f": 28, "t": 15, "r": 15}, {"c": "183772", "n": "L H DE OLIVEIRA COMERCIO DE PRODUTOS PARA ANIMAIS LTDA", "cid": "Campinas", "o": 137, "m": 109, "f": 28, "t": 15, "r": 15}, {"c": "110699", "n": "EMPORIUM DOS CAES C DE ANIMAIS LTDA", "cid": "Campinas", "o": 97, "m": 76, "f": 28, "t": 15, "r": 15}, {"c": "191974", "n": "BR UTILITIES LTDA", "cid": "Campinas", "o": 76, "m": 59, "f": 28, "t": 15, "r": 15}, {"c": "158311", "n": "53483656 CAIQUE GALASTRI DE MACEDO", "cid": "Campinas", "o": 58, "m": 44, "f": 28, "t": 15, "r": 15}, {"c": "110598", "n": "HAPPY FAMILY PET SHOP LTDA", "cid": "Campinas", "o": 55, "m": 42, "f": 28, "t": 15, "r": 15}, {"c": "122293", "n": "RICARDO ANDREAZZI", "cid": "Campinas", "o": 31, "m": 23, "f": 28, "t": 15, "r": 15}, {"c": "190955", "n": "C3 DOG PET CENTER LTDA", "cid": "Campinas", "o": 21, "m": 15, "f": 28, "t": 15, "r": 15}, {"c": "134718", "n": "GABRIEL REGINALDO DA SILVA REPRESENT", "cid": "Campinas", "o": 150, "m": 0, "f": 28, "t": 15, "r": 15}, {"c": "193736", "n": "GOGA PET HOUSE LTDA", "cid": "Campinas", "o": 150, "m": 0, "f": 28, "t": 15, "r": 15}]};
+const f=n=>Math.round(n).toLocaleString('pt-BR'), t1=n=>(n/1000).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+' t';
+const R$=n=>'R$ '+Math.round(n).toLocaleString('pt-BR');
+const VIS={7:4,14:2,28:1};
+const st=D.cl.map(c=>({...c,p:c.m||c.o}));
+let dias=[1,1,1,1,1], q='';
+document.getElementById('sub').textContent=`${D.mes} · ${D.nome} · ${st.length} clientes`;
+document.getElementById('prazo').textContent=`até ${D.prazo} · libera a verba de negociação do mês`;
+const AC=[[105,1,.5],[104,.8,.4],[103,.6,.3],[102,.4,.2],[101,.2,.1]];
+function com(kg){const pct=kg/D.plano*100, rs=kg*D.rskg, base=rs*D.eff/100; const a=AC.find(x=>pct>=x[0]); const ex=a?rs*(D.fnpro*a[1]+(1-D.fnpro)*a[2])/100:0; return {pct,base,ex,tot:base+ex,faixa:a?a[0]:null};}
+function hero(){const tot=st.reduce((s,c)=>s+(+c.p||0),0), C=com(tot), p=C.pct, col=p>=100?'#0f9d6b':p>=80?'#e0a800':'#d64545';
+ const prox=[80,100,101,102,103,104,105].find(x=>x>p+1e-9); let tip='';
+ if(prox){const kg=prox/100*D.plano-tot, C2=com(prox/100*D.plano); tip=prox<=100?`Faltam <b>${t1(kg)}</b> para ${prox}% do plano.`:`Com mais <b>${t1(kg)}</b> você chega a ${prox}% e a comissão estimada sobe <b>${R$(C2.tot-C.tot)}</b>.`}
+ else tip='Plano no topo do acelerador (105%). 🔥';
+ document.getElementById('hero').innerHTML=`<div class="cap">Seu plano para ${D.mes.toLowerCase()}</div>
+ <div class="big num"><b style="color:${col}">${p.toLocaleString('pt-BR',{maximumFractionDigits:1})}%</b><span>${t1(tot)} de ${t1(D.plano)} do plano performance</span></div>
+ <div class="trk">${[80,100,105].map(x=>`<span class="cp${x===105?' lo':''}" style="left:${x/110*100}%">${x}%</span>`).join('')}<i style="width:${Math.min(p,110)/110*100}%;background:${col}"></i></div>
+ <div class="hs num">${p>=80?`<div>comissão estimada<b>${R$(C.tot)}</b></div><div>${C.faixa?'acelerador '+C.faixa+'%':'faixa regular'}<b style="color:${C.ex?'#ffc000':'#fff'}">${C.ex?'+ '+R$(C.ex):'—'}</b></div>`:`<div>proposta total<b>${t1(tot)}</b></div><div>para o 1º marco<b>${t1(.8*D.plano-tot)}</b></div>`}</div>
+ <div class="tip">${tip}</div>`;
+ document.getElementById('mini').innerHTML=`<span><b style="color:${col}">${p.toLocaleString('pt-BR',{maximumFractionDigits:1})}%</b> · ${t1(tot)}</span><span>${p>=80?'comissão '+R$(C.tot)+(C.ex?' <b style="color:#ffc000;font-size:12px">+'+R$(C.ex)+'</b>':''):'faltam '+t1(.8*D.plano-tot)+' p/ 80%'}</span>`;}
+function cap(){const nd=dias.reduce((a,b)=>a+b,0)*4, v=st.reduce((s,c)=>s+VIS[c.f],0), mins=st.reduce((s,c)=>s+c.t+c.r*(VIS[c.f]-1)+20*VIS[c.f],0), h=mins/60, H=nd*D.maxh, vd=nd?v/nd:0, u=H?h/H:9;
+ const col=u>1||vd>8?'#d64545':u>.9?'#c98a00':'#0f9d6b';
+ const al=!nd?'Selecione os dias de visita.':u>1?`Passa de ${D.maxh} h por dia: reduza a frequência dos clientes menores (28 dias) ou inclua mais dias.`:vd>8?'Mais de 8 visitas por dia em média: reduza a frequência dos menores.':`Cabe na sua semana. O roteiro sugerido é montado com essas frequências, uma cidade por dia.`;
+ document.getElementById('cap').innerHTML=`<div class="ch"><b>Visitas do mês</b><small>sugestão · máx. 8 visitas e ${D.maxh} h por dia</small></div>
+ <div class="days">${['Seg','Ter','Qua','Qui','Sex'].map((d,i)=>`<button class="${dias[i]?'on':''}" onclick="dias[${i}]^=1;cap()">${d}</button>`).join('')}</div>
+ <div class="cg num"><div>visitas<b>${v}</b></div><div>por dia<b>${vd.toLocaleString('pt-BR',{maximumFractionDigits:1})}</b></div><div>horas<b>${Math.round(h)} de ${H}</b></div></div>
+ <div class="bar2"><i style="width:${Math.min(u,1)*100}%;background:${col}"></i></div><div class="al" style="color:${col==='#0f9d6b'?'#3a3c44':col}">${al}</div>`;}
+function list(){const ql=q.toLowerCase(); document.getElementById('list').innerHTML=st.map((c,i)=>[c,i]).filter(([c])=>!ql||c.n.toLowerCase().includes(ql)||c.cid.toLowerCase().includes(ql)).sort((a,b)=>b[0].o-a[0].o).map(([c,i])=>{const d=(+c.p||0)-c.o, col=d>=0?'#0f9d6b':'#d64545';
+ return `<div class="cl num"><div><div class="n">${c.n}</div><div class="s">${c.cid} · média <b>${f(c.m)}</b> · obj. <b>${f(c.o)}</b></div></div>
+ <div><input inputmode="numeric" value="${c.p}" onfocus="this.select()" oninput="st[${i}].p=this.value.replace(/\\D/g,'');hero();this.nextElementSibling.textContent=dl(${i});this.nextElementSibling.style.color=(+st[${i}].p||0)>=st[${i}].o?'#0f9d6b':'#d64545'"><div class="d" style="color:${col}">${dl(i)}</div></div>
+ <div class="fq">${[7,14,28].map(x=>`<button class="${c.f===x?'on':''}" onclick="st[${i}].f=${x};list();cap()">${x}</button>`).join('')}</div></div>`}).join('');}
+function dl(i){const d=(+st[i].p||0)-st[i].o; return (d>=0?'+':'−')+f(Math.abs(d))+' vs obj.'}
+document.getElementById('q').oninput=e=>{q=e.target.value;list()};
+document.getElementById('obj').onclick=()=>{st.forEach(c=>c.p=c.o);hero();list()};
+document.getElementById('med').onclick=()=>{st.forEach(c=>c.p=c.m||c.o);hero();list()};
+document.getElementById('send').onclick=()=>{const T=document.getElementById('toast');T.textContent='Prévia: no modelo final o plano é gravado e aparece no painel do gestor.';T.style.display='block';setTimeout(()=>T.style.display='none',2600)};
+hero();cap();list();
+const sc=document.getElementById('sc'), hr=document.getElementById('hero'); sc.addEventListener('scroll',()=>document.getElementById('mini').classList.toggle('on',sc.scrollTop>hr.offsetTop+hr.offsetHeight-20));
+</script></body></html>
