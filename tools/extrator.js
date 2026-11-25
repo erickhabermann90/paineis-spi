@@ -88,7 +88,8 @@ window.__kpi=async(mesNome)=>{await __mes(0,mesNome); const v=[...document.query
 // para cada retorno ir para um arquivo tool-results; o arquivo trunca acima de ~260 mil caracteres em base64).
 window.__exportar=(mesNum,mesStr,extra={})=>{const miss=[]; const clients=Object.entries(__all).filter(([k])=>k!=='__tot').map(([,r])=>{ const m25=__num(r[5]), m26=__num(r[6]), m=__num(r[7]); const k25=m25*12, k26=m26*mesNum;
   return [r[1].split(' - ')[0], r[3], r[4], r[2], k25, k26, m, __num(r[8]), __num(r[9]), __num(r[10]), m25, Math.round((k26-m)/(mesNum-1)), m25];});
- const flash=__flash.slice(1).filter(r=>r[0]!=='Total').map(r=>[r[0].replace(/^\*/,''),__num(r[1]),__num(r[2]),__num(r[6])]);
+ const H=__flash[0], fx=n=>H.indexOf(n);  // relatório novo (24/11): sem a coluna ENTRADA → ler pelo cabeçalho
+ const flash=__flash.slice(1).filter(r=>r[0]!=='Total').map(r=>[r[0].replace(/^\*/,''),__num(r[fx('OBJETIVO')]),__num(r[fx('FATURADO')]),__num(r[fx('CARTEIRA')])]);
  const plano=(window.__plano||[]).slice(1).filter(r=>r[0]==='Selecionar Linha').map(r=>[r[3],__num(r[4]),__num(r[5]),__num(r[6])]);
  window.__EXP=JSON.stringify(Object.assign({mes_num:mesNum, miss, clients, out:{flash,plano,fam:__famOut,reb:__reb}, kpi_mes:{mes:mesStr, vals:__kpiMes, rs_carteira:__rsCart}}, extra));
  return {len:__EXP.length, partes:__np()};};
@@ -102,3 +103,13 @@ window.__kpiRCLe=()=>{const h=__rows(0)[0], ix=(n)=>h.indexOf(n), o={};
  Object.entries(__krc).filter(([k])=>k!=='__tot').forEach(([,r])=>{const rc=r[ix('CÓD RC - REPRESENTANTE')].split(' - ')[0].replace(/^\*/,''), fam=r[ix('FAMÍLIA GERAL')];
   const x=o[rc]=o[rc]||{fat:{},rs:0}; x.fat[fam]=(x.fat[fam]||0)+__num(r[ix('KG 26')]); x.rs+=__num(r[ix('R$ FAT 26')]);});
  window.__kpiRC=o; const t=__krc.__tot||[]; return {rcs:Object.keys(o).length, kg:Object.values(o).reduce((a,x)=>a+Object.values(x.fat).reduce((b,v)=>b+v,0),0), rs:Object.values(o).reduce((a,x)=>a+x.rs,0), tot_kg:t[ix('KG 26')], tot_rs:t[ix('R$ FAT 26')]};};
+
+// 25/11/2026: no relatório novo, MÉD KG ANO ATUAL/ANTERIOR do Histórico não fecham com o total do ano.
+// KG 25 e KG 26 por cliente vêm da Curva ABC: sem filtro de mês, dims [CÓD CLIENTE], medidas [KG 26, KG 25];
+// __cy={}; __scrape(0,[1],__cy) até done; depois de __exportar(...), rodar __anualCurva(<nº do mês>) e só então __parte(i).
+window.__anualCurva=(mesNum)=>{const h=__rows(0)[0], ix=n=>h.indexOf(n);
+ const CY=Object.fromEntries(Object.entries(__cy).filter(([k])=>k!=='__tot').map(([k,v])=>[v[ix('CÓD CLIENTE')],[__num(v[ix('KG 25')]),__num(v[ix('KG 26')])]]));
+ const E=JSON.parse(__EXP); let hit=0;
+ E.clients=E.clients.map(c=>{const y=CY[c[1]]||[0,0]; if(CY[c[1]]) hit++; c[4]=y[0]; c[5]=y[1]; c[10]=Math.round(y[0]/12); c[11]=Math.round((y[1]-c[6])/(mesNum-1)); c[12]=c[10]; return c;});
+ E.fonte_anual='curva_abc'; window.__EXP=JSON.stringify(E);
+ return {hit, k26:E.clients.reduce((a,c)=>a+c[5],0), k25:E.clients.reduce((a,c)=>a+c[4],0), partes:__np()};};
