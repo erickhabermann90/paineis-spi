@@ -52,8 +52,7 @@
 <div class="phone">
  <div class="scroll">
   <div class="bk"><span>←</span><div><h1>Campanhas</h1><p id="sub"></p></div></div>
-  <div class="bb" id="bb"></div>
-  <div class="lbl"><span>Campanhas do mês</span><span id="cnt"></span></div>
+  <div class="lbl" style="margin-top:4px"><span>Campanhas do mês</span><span id="cnt"></span></div>
   <div class="grid" id="grid"></div>
  </div>
  <div class="nav"><button><span>🛒</span>Mês atual</button><button><span>📈</span>Performance</button><button class="on"><span>🎯</span>Campanhas</button><button><span>🗺️</span>Roteiro</button><button><span>🔎</span>Clientes</button></div>
@@ -67,17 +66,8 @@ const dias=s=>Math.max(0,Math.ceil((dt(s)-HOJE)/864e5));
 const hex=h=>{h=h.replace('#','');return [0,2,4].map(i=>parseInt(h.substr(i,2),16)).join(',')};
 const lum=h=>{const[r,g,b]=hex(h).split(',').map(Number);return (r*299+g*587+b*114)/1000};
 const ativas=C.filter(c=>dt(c.data_final)>=HOJE).sort((a,b)=>dt(a.data_final)-dt(b.data_final));
-document.getElementById('sub').textContent=`${ativas.length+1} ativas · Gabriel · dados de /*DATA_TXT*/`;
+document.getElementById('sub').textContent=`${ativas.length} ativas · Gabriel · dados de /*DATA_TXT*/`;
 document.getElementById('cnt').textContent=`${ativas.length} campanhas`;
-/* Bike · Balde */
-const R=BB.R, L=BB.cl;
-const bike=L.filter(c=>c.obj&&c.real>=c.obj&&c.novos>=R.itens_novos), balde=L.filter(c=>c.ob&&c.bm>=c.ob);
-const quase=L.filter(c=>c.ob&&c.bm<c.ob&&c.bm>=c.ob*.6).sort((a,b)=>b.bm/b.ob-a.bm/a.ob);
-const bkp=L.filter(c=>c.obj).map(c=>Object.assign({},c,{p:Math.min(c.real/c.obj,1)*.6+Math.min(c.novos/R.itens_novos,1)*.4})).sort((a,b)=>b.p-a.p);
-document.getElementById('bb').innerHTML=`<div class="px"><img src="${IMG['camp_bike_px.webp']}" alt=""><img src="${IMG['camp_baldes_px.webp']}" alt=""></div>
- <div class="cap">Ação de fim de ano</div><h2>Bike · Balde</h2>
- <div class="bbg num"><div><b>${balde.length}</b><small>clientes com o balde<br>garantido em novembro</small></div><div><b>${bike.length}</b><small>bicicletas garantidas<br>no 4º trimestre</small></div></div>
- <div class="qs">🔥 Quase lá: ${quase.slice(0,2).map(c=>`<b>${c.nome.split(' ').slice(0,3).join(' ')}</b> faltam ${f(c.ob-c.bm)} kg`).join(' · ')||'—'}</div>`;
 /* cartões */
 document.getElementById('grid').innerHTML=ativas.map((c,i)=>{const k=c.cores, dk=lum(k.ate)<140&&lum(k.de)<140, fg=dk?'#fff':'#16181d', d=dias(c.data_final);
  const tag=d<=3?`<span class="dl urg" style="background:#e5484d;color:#fff">${d?'faltam '+d+' dias':'último dia'}</span>`:`<span class="dl" style="background:${dk?'rgba(255,255,255,.18)':'rgba(0,0,0,.08)'};color:${fg}">até ${c.data_final.slice(0,5)}</span>`;

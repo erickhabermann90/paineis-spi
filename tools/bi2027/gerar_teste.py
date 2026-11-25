@@ -1,7 +1,7 @@
 """Gera o link de teste no modelo BI 2027 (várias páginas) para o RC de tools/teste.json.
 Uso: python3 tools/bi2027/gerar_teste.py <pasta_extrato>   (chamado pelo build.py quando teste.json tem "modelo": "bi2027")
 Lê o painel oficial já gerado (site/<slug oficial>/index.html), o extrato do dia e os arquivos de tools/.
-Páginas: index (início), mes, performance, campanhas, roteiro, clientes (busca + ficha).
+Páginas: index (início), mes, performance, campanhas, prime, clientes (busca + ficha). Roteiro fora do menu (25/11).
 """
 import json, os, re, sys, math, datetime, collections
 
@@ -28,7 +28,8 @@ def page(tpl, data, nome_arq, extra=None):
     s = open(os.path.join(B, 'teste', tpl) if os.path.exists(os.path.join(B, 'teste', tpl)) else os.path.join(B, 'fontes', tpl)).read()
     s = s.replace('/*DATA*/', json.dumps(data, ensure_ascii=False, separators=(',', ':')))
     for a, b in (extra or {}).items(): s = s.replace(a, b)
-    nav = '''<script>(()=>{const M={'Mês atual':'mes.html','Performance':'performance.html','Campanhas':'campanhas.html','Roteiro':'roteiro.html','Clientes':'clientes.html'};
+    nav = '''<script>(()=>{const M={'Mês atual':'mes.html','Performance':'performance.html','Campanhas':'campanhas.html','Prime':'prime.html','Clientes':'clientes.html'};
+const st=document.createElement('style');st.textContent='.nav button.mid span{width:48px;height:40px;font-size:21px;background:#ffc000!important;box-shadow:0 6px 14px -6px rgba(201,138,0,.8);margin-top:-12px}.nav button.mid{color:#16181d;font-weight:800}.nav button.mid.on span{background:#16181d!important}';document.head.appendChild(st);
 document.querySelectorAll('.nav button').forEach(b=>{const k=[...b.childNodes].pop().textContent.trim(); if(M[k]){b.onclick=()=>location.href=M[k]; if(location.pathname.endsWith('/'+M[k])) b.classList.add('on');}});
 document.querySelectorAll('.bk > span:first-child, .bk > button:first-child').forEach(e=>{if(!e.onclick){e.style.cursor='pointer'; e.onclick=()=>location.href='index.html';}});})();</script>'''
     s = s.replace('/*NAV*/', nav) if '/*NAV*/' in s else s.replace('</body>', nav + '\n</body>')
@@ -36,7 +37,7 @@ document.querySelectorAll('.bk > span:first-child, .bk > button:first-child').fo
     s = s.replace('<head>', '<head><meta name="robots" content="noindex, nofollow">', 1)
     open(os.path.join(OUTD, nome_arq), 'w').write(s)
 
-NAVB = ''.join(f'<button><span>{i}</span>{t}</button>' for i, t in (('🛒', 'Mês atual'), ('📈', 'Performance'), ('🎯', 'Campanhas'), ('🗺️', 'Roteiro'), ('🔎', 'Clientes')))
+NAVB = ''.join(f'<button{" class=\"mid\"" if t == "Clientes" else ""}><span>{i}</span>{t}</button>' for i, t in (('🛒', 'Mês atual'), ('📈', 'Performance'), ('🔎', 'Clientes'), ('🎯', 'Campanhas'), ('⭐', 'Prime')))
 OUTD = os.path.join(SITE, TE['slug']); os.makedirs(OUTD, exist_ok=True)
 
 # ---------- dias úteis restantes ----------
@@ -54,12 +55,12 @@ mix_reg = round(sum(len(m12[c]) for c in ativos_reg if c in m12) / max(sum(1 for
 ids = [str(c['cod']) for c in CL]
 mix_rc = round(sum(len(m12[c]) for c in ids if c in m12) / max(sum(1 for c in ids if c in m12), 1), 1)
 
-# ---------- KPIs do RC: realizado por família no mês (extrato kpi_rc.json) + objetivo estimado por rateio do plano ----------
-kpis, est = {}, False
+# ---------- Linhas do RC: objetivo = rateio do KPI da Regional pelo plano do RC × 1,05; realizado do mês (kpi_rc.json) + carteira ----------
+kpis = {}
 krc = os.path.join(ext, 'kpi_rc.json')
 if KPI and mm in KPI['meses'] and os.path.exists(krc):
-    K = json.load(open(krc)).get(COD, {})          # {"fat": {"FÓRMULA NATURAL": kg, ...}, "rs": R$}
-    M = KPI['meses'][mm]; share = P['objetivo'] / M['vol'][0]
+    K = json.load(open(krc)).get(COD, {})
+    M = KPI['meses'][mm]; share = P['objetivo'] / M['vol'][0] * 1.05
     cart = collections.Counter()
     for x in OUT['fam']:
         if str(x[0]) == COD and len(x) >= 7: cart[x[5]] += x[6]
@@ -67,14 +68,18 @@ if KPI and mm in KPI['meses'] and os.path.exists(krc):
     for k, fam in (('fn', 'FÓRMULA NATURAL'), ('orig', 'ORIGENS'), ('pet', 'PET CARE')):
         kpis[k] = [round(M[k][0] * share), round(K.get('fat', {}).get(fam, 0)), round(cart.get(fam, 0))]
     kpis['rs'] = [round(M['rs'][0] * share), round(K.get('rs', 0)), round(KPI['carteira'].get('rs', 0) * (P['carteira'] / tot_cart))]
-    est = True
+M4 = one('meta4t'); FAMS = d.get('familias') or []
+pouso = None
+if M4:
+    real4 = M4['out'] + M4['nov'] + M4['dez']; k26t = sum(f['kg_2026'] for f in FAMS); k25t = sum(f['kg_2025'] for f in FAMS)
+    pouso = {'obj': M4['objetivo'], 'real': real4, 'proj': (k26t - real4 + max(M4['objetivo'], real4)) / k25t - 1 if k25t else 0}
 pos_fat = sum(1 for c in CL if c['kg_mes'] > 0); pos_cart = sum(1 for c in CL if c['kg_mes'] <= 0 and c['kg_carteira'] > 0)
-rk = one('ranking_rc')
-nota = ('Faturamento, FN, Origens e Pet Care: objetivo estimado pelo rateio do plano da Regional. ' if est else 'KPIs por linha entram com a extração por RC. ') + 'Positivação: referência de 70% da base. Mix: itens distintos por cliente em 12 meses.'
-page('inicio.tpl.html', {'nome': nome, 'mes': mes_nome, 'data': data_txt, 'dias_uteis': du_txt, 'plano': P, 'ranking': rk, 'kpis': kpis, 'kpis_est': est,
+nota = 'Painel de acompanhamento. A apuração oficial segue o regulamento do Plano Performance.'
+page('inicio.tpl.html', {'nome': nome, 'mes': mes_nome, 'data': data_txt, 'dias_uteis': du_txt, 'plano': P, 'kpis': kpis, 'kpis_est': False, 'pouso': pouso,
      'base': {'n': len(CL), 'fat': pos_fat, 'cart': pos_cart, 'obj': .7, 'mix': mix_rc, 'mix_reg': mix_reg, 'mix_txt': '12 meses'}, 'nota': nota},
      'index.html', {'@@FN@@': LOGO['fn'], '@@OR@@': LOGO['or']})
 
+PRIME = {str(r['cod']): {'obj': round(r['objetivo'] * 1.05), 'real': round(r['realizado'])} for r in (d.get('rebate') or []) if r['grupo'] == 'Total'}
 # ---------- Mês atual: objetivo por cliente = plano + 10%, curva 5% (maior) a 40% (menor), novo = 150 kg ----------
 alvo = P['objetivo'] * 1.10; base = [c for c in CL if c['med_kg_26'] > 0]; novos = [c for c in CL if c['med_kg_26'] <= 0]
 rows = []
@@ -84,7 +89,8 @@ if base:
     k = (alvo - 150 * len(novos)) / sum(raw.values())
 for c in CL:
     o = round(raw[c['cod']] * k) if c['cod'] in (raw if base else {}) else 150
-    rows.append({'cod': c['cod'], 'nome': c['razao_social'], 'obj': o, 'fat': round(c['kg_mes']), 'cart': round(c['kg_carteira']), 'dias': c['dias_ult_compra'], 'freq': c['freq_media_dias'], 'base': c['med_kg_26']})
+    pr = PRIME.get(str(c['cod']))
+    rows.append({'cod': c['cod'], 'nome': c['razao_social'], 'fat': round(c['kg_mes']), 'cart': round(c['kg_carteira']), 'dias': c['dias_ult_compra'], 'freq': c['freq_media_dias'], 'base': round(c['med_kg_26']), 'prime': pr})
 page('mes_atual.tpl.html', {'plano': P['objetivo'], 'alvo': round(alvo), 'rows': rows}, 'mes.html',
      {'Novembro · clientes ativos · dados de 19/11': f'{mes_nome} · clientes ativos · dados de {data_txt}'})
 
@@ -120,10 +126,15 @@ bb = {'R': one('campanha_regras') or {}, 'cl': [{'cod': k, 'nome': nm.get(k, k),
 page('campanhas.tpl.html', {}, 'campanhas.html', {'/*CAMP*/': json.dumps(C, ensure_ascii=False), '/*IMG*/': json.dumps(img), '/*BB*/': json.dumps(bb, ensure_ascii=False),
      '/*HOJE*/': data, '/*DATA_TXT*/': data_txt, '· Gabriel ·': '· ' + nome + ' ·', 'garantido em novembro': 'garantido em ' + mes_nome.lower()})
 
-# ---------- Roteiro (sugestão de 4 semanas, gerado à parte por fontes/roteiro.py) ----------
-ROT = json.load(open(os.path.join(B, 'dados', 'roteiro.json')))
-if COD in ROT:
-    page('roteiro.tpl.html', {COD: ROT[COD]}, 'roteiro.html')
+# ---------- Prime (rebate negociado com o cliente; objetivo do BI + 5%) — substitui o Roteiro no menu ----------
+_reb = collections.OrderedDict()
+for r in (d.get('rebate') or []):
+    x = _reb.setdefault(str(r['cod']), {'cod': str(r['cod']), 'rede': r['rede'], 'obj': 0, 'real': 0, 'g': []})
+    if r['grupo'] == 'Total': x['obj'] = round(r['objetivo'] * 1.05); x['real'] = round(r['realizado'])
+    else: x['g'].append({'k': r['grupo'], 'obj': round(r['objetivo'] * 1.05), 'real': round(r['realizado'])})
+page('prime.tpl.html', {'data': data_txt, 'redes': [x for x in _reb.values() if x['obj']]}, 'prime.html')
+_rot = os.path.join(OUTD, 'roteiro.html')
+if os.path.exists(_rot): os.remove(_rot)
 
 # ---------- Clientes (busca + ficha) ----------
 reb = collections.defaultdict(list)
@@ -139,4 +150,4 @@ for c in CL:
                'posit': [pix[p] for p in topreg if p not in mine][:30]})
 page('clientes.tpl.html', {'produtos': prods, 'rank': [rank.get(p, 0) for p in prods], 'clientes': fc, 'data': data_txt, 'ano0': ano1, 'ano1': ano1 + 1,
      'itens_txt': 'média/mês · últimos 12 meses', 'posit_txt': 'sem compra em 12 meses'}, 'clientes.html')
-print('teste BI 2027:', '/' + TE['slug'] + '/', '| páginas:', sorted(os.listdir(OUTD)), '| KPIs por linha:', 'sim' if est else 'aguardando kpi_rc.json')
+print('teste BI 2027:', '/' + TE['slug'] + '/', '| páginas:', sorted(os.listdir(OUTD)), '| KPIs por linha:', 'sim' if kpis else 'aguardando kpi_rc.json')

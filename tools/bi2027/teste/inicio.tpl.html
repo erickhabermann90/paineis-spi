@@ -30,7 +30,7 @@
 .cp.nx span{filter:none;animation:pul 1.2s ease-in-out infinite alternate}@keyframes pul{to{transform:translate(-50%,-3px)}}
 .k .trk-w{padding-top:0}.k .cp{top:-3px;bottom:-3px;border-left:1.5px solid rgba(0,0,0,.25)}.k.dk .cp{border-color:rgba(255,255,255,.35)}
 .nxt{display:inline-flex;align-items:center;gap:5px;background:rgba(255,192,0,.14);color:#ffd24d;border-radius:99px;padding:3px 9px;font-size:11.5px;font-weight:700;margin-left:auto}
-.cps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:9px}
+.cps{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:9px}
 .cps span{background:rgba(255,255,255,.07);border-radius:10px;padding:5px 7px;font-size:11px;color:#9fa1a9;display:flex;flex-direction:column;line-height:1.25}
 .cps b{font-size:14px;color:#fff;font-weight:800}.cps .ok b{color:#5fe0a8}.cps .nx{background:rgba(255,192,0,.16);color:#ffd24d}.cps .nx b{color:#ffd24d}
 .phone>*{flex-shrink:0}
@@ -102,6 +102,15 @@ body{background:var(--bg)}@media (min-width:500px){body{background:#d9d5ca}}
  .grid{gap:10px;margin-top:14px}.k{padding:12px 13px 11px}.k .top{height:24px}.k .lg{height:22px}.k .v{font-size:30px;margin:8px 0 9px}.k .gp{margin-top:7px}
  .base{padding:12px 14px}.vt{height:64px;width:17px}.vb .t b{font-size:23px}.foot{margin-top:10px}
  .nav{padding:9px 10px 16px}.nav button span{height:32px;width:38px;font-size:17px}}
+.pouso{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;background:linear-gradient(145deg,#fff4cc,#ffe08a);border-radius:18px;padding:9px 13px;box-shadow:0 10px 20px -14px rgba(201,138,0,.7)}
+.pouso b{font-size:22px;font-weight:900;letter-spacing:-.02em}.pouso span{font-size:11px;color:#6b5a2a}.pouso .pj{text-align:right;font-size:10.5px;color:#6b5a2a;line-height:1.3}.pouso .pj b{font-size:13px;color:#16181d}
+@media (min-height:760px){.pouso{padding:12px 14px;margin-top:12px}.pouso b{font-size:26px}}
+.pouso{padding:7px 12px !important}.pouso .pc{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:#7a5b00;white-space:nowrap}.pouso b{font-size:20px !important}.pouso .pj b{font-size:12.5px !important}
+.k .gp{white-space:nowrap;overflow:hidden}
+@media (min-height:760px){.pouso b{font-size:24px !important}}
+.grid{flex:1 1 auto;grid-template-rows:1fr 1fr auto;align-content:stretch;margin-bottom:12px}
+.k{display:flex;flex-direction:column;justify-content:space-between}
+@media (min-height:760px){.k .v b{font-size:34px}.k .v small{font-size:11px}.k .trk-w{margin:6px 0}.base{padding:16px 16px}.vt{height:84px !important;width:20px !important}.vb .t b{font-size:30px !important}.vb .t{font-size:12px !important}.grid{gap:12px}}
 </style></head><body>
 <div class="phone" id="app"></div>
 <script>
@@ -110,11 +119,10 @@ const LOGO={fn:'@@FN@@',or:'@@OR@@'};
 const tn=n=>(n/1000).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+' t';
 const mil=n=>Math.round(n/1000).toLocaleString('pt-BR')+' mil', f=n=>Math.round(n).toLocaleString('pt-BR');
 const tone=(a,dk)=>a>=1?(dk?'#5fe0a8':'#0b7a52'):a>=.8?(dk?'#ffd24d':'#b07d00'):(dk?'#ff9a9a':'#d64545');
-const W=v=>Math.min(v/1.1,1)*100, TK=[.8,1,1.05], ticks=TK.map(t=>`<div class="cp" style="left:${t/1.1*100}%"></div>`).join('');
+const W=v=>Math.min(v/1.1,1)*100, TK=[1,1.05], ticks=TK.map(t=>`<div class="cp" style="left:${t/1.1*100}%"></div>`).join('');
 const P=D.plano, vend=P.faturado+P.carteira, pv=vend/P.objetivo, pf=P.faturado/P.objetivo, nx=TK.find(t=>pv<t);
-const R=D.ranking, mx=Math.max(...R.lista), mn=Math.min(...R.lista), gap4=R.pos>1?Math.ceil((R.lista[R.pos-2]-R.meu)*R.objetivo):0;
 function tile(k,o){const x=D.kpis[k]; if(!x) return ''; const [obj,fat,cart]=x, p=(fat+cart)/obj, g=Math.max(obj-fat-cart,0), un=o.un;
- return `<div class="k${o.dk?' dk':''}" style="background:${o.bg};--c:${o.c};--sh:${o.sh}">${D.kpis_est?'<span class="tag">obj. estimado</span>':''}<div class="top">${o.top}</div>
+ return `<div class="k${o.dk?' dk':''}" style="background:${o.bg};--c:${o.c};--sh:${o.sh}"><div class="top">${o.top}</div>
  <div class="v num" style="color:${tone(p,o.dk)}"><b data-n="${Math.round(p*100)}">0%</b><small>de ${o.fx(obj)}</small></div>
  <div class="trk-w"><div class="trk"><i class="f" data-w="${W(fat/obj)}"></i><i class="c" data-w="${W(p)-W(fat/obj)}"></i></div>${ticks}</div>
  <div class="gp num"><span>${o.fs(fat)} + ${o.fs(cart)}${un}</span><b style="color:${g?(o.dk?'#ff9a9a':'#d64545'):tone(1,o.dk)}">${g?'−'+o.fs(g)+un:'✓ coberto'}</b></div></div>`;}
@@ -123,12 +131,11 @@ const B=D.base, pos=B.fat+B.cart;
 document.getElementById('app').innerHTML=`
  <div class="hd"><div><h1>Olá, ${D.nome}</h1><p>${D.mes} · ${D.dias_uteis} · dados de ${D.data}</p></div><div class="av">${D.nome[0]}</div></div>
  <div class="hero" style="--c:#ffc000">
-  <div class="cap">Volume geral · Plano Performance</div>
+  <div class="cap">Volume geral</div>
   <div class="big"><b class="num" data-n="${Math.round(pv*100)}">0%</b><span>vendido de ${tn(P.objetivo)}</span></div>
   <div class="trk-w"><div class="trk"><i class="f" data-w="${W(pf)}"></i><i class="c" data-w="${W(pv)-W(pf)}"></i></div>${TK.map(t=>`<div class="cp ${pv>=t?'ok':''}" style="left:${t/1.1*100}%"></div>`).join('')}</div>
   <div class="leg3 num"><span>faturado <b>${tn(P.faturado)}</b> · carteira <b>${tn(P.carteira)}</b></span></div>
-  <div class="cps num">${[['🥉','80%',.8],['🥇','100%',1],['💎','105%',1.05]].map(([e,l,t])=>{const g=t*P.objetivo-vend;return `<span class="${g<=0?'ok':t===nx?'nx':''}">${e} ${l} <b>${g<=0?'✓ batido':'−'+tn(g)}</b></span>`}).join('')}</div>
-  <div class="rk"><span class="pos">${R.pos}º</span><div class="bars">${R.lista.map((x,i)=>`<i class="${i===R.pos-1?'me':i<3?'t':''}" style="height:${25+75*(x-mn)/((mx-mn)||1)}%"></i>`).join('')}</div><span>${R.pos>1?`passe o ${R.pos-1}º com<br><b>${tn(gap4)}</b>`:'<b>líder da Regional</b>'}</span></div>
+  <div class="cps num">${[['🥇','Objetivo',1],['💎','Objetivo Superação',1.05]].map(([e,l,t])=>{const g=t*P.objetivo-vend;return `<span class="${g<=0?'ok':t===nx?'nx':''}">${e} ${l} <b>${g<=0?'✓ batido':'−'+tn(g)}</b></span>`}).join('')}</div>
  </div>
  <div class="grid">
   ${tile('rs',{bg:'linear-gradient(145deg,#e9faf0,#cdf0dc)',c:'#0f9d6b',sh:'15,157,107',top:'<span class="ic" style="background:#0f9d6b">$</span><span class="nm">Faturamento</span>',fx:n=>'R$ '+mil(n),fs:n=>Math.round(n/1000).toLocaleString('pt-BR'),un:' mil'})}
@@ -136,12 +143,11 @@ document.getElementById('app').innerHTML=`
   ${tile('orig',{bg:'linear-gradient(145deg,#3a63b8,#24448f)',c:'#ffc94d',sh:'36,68,143',dk:1,top:`<img class="lg" src="${LOGO.or}" alt="Origens">`,fx:tn,fs:ts,un:' t'})}
   ${tile('pet',{bg:'linear-gradient(145deg,#fff1f5,#fcd9e5)',c:'#e0457b',sh:'224,69,123',top:'<span class="ic" style="background:#e0457b">🐾</span><span class="nm">Pet Care</span>',fx:tn,fs:ts,un:' t'})}
   <div class="base">
-   <div class="vb" style="--c:#7c3aed"><div class="vt"><i class="f" data-h="${B.fat/B.n*100}"></i><i class="c" data-h="${B.cart/B.n*100}"></i><div class="mk" style="bottom:${B.obj*100}%"></div></div><div class="t"><b class="num">${pos}<span style="font-size:13px;color:var(--mut);font-weight:600">/${B.n}</span></b>clientes positivados<br>${pos>=Math.ceil(B.obj*B.n)?'<em>✓ referência batida</em>':`<em>faltam ${Math.ceil(B.obj*B.n)-pos}</em> p/ ${Math.round(B.obj*100)}%`}</div></div>
+   <div class="vb" style="--c:#7c3aed"><div class="vt"><i class="f" data-h="${B.fat/B.n*100}"></i><i class="c" data-h="${B.cart/B.n*100}"></i></div><div class="t"><b class="num">${Math.round(pos/B.n*100)}%</b>positivação no mês<br><em>${pos} de ${B.n}</em> · ${B.n-pos} sem compra</div></div>
    <div class="sep"></div>
    <div class="vb" style="--c:#e0457b"><div class="vt"><i class="f" data-h="${Math.min(B.mix/(Math.max(B.mix,B.mix_reg)*1.25),1)*100}"></i><div class="mk" style="bottom:${B.mix_reg/(Math.max(B.mix,B.mix_reg)*1.25)*100}%"></div></div><div class="t"><b class="num">${String(B.mix).replace('.',',')}</b>itens por cliente<br><em>Regional ${String(B.mix_reg).replace('.',',')}</em> · ${B.mix_txt}</div></div>
   </div>
  </div>
- <div class="foot">${D.nota}</div>
  <div class="nav"><button><span>🛒</span>Mês atual</button><button><span>📈</span>Performance</button><button><span>🎯</span>Campanhas</button><button><span>🗺️</span>Roteiro</button><button><span>🔎</span>Clientes</button></div>`;
 requestAnimationFrame(()=>setTimeout(()=>{document.querySelectorAll('[data-w]').forEach(e=>e.style.width=e.dataset.w+'%');document.querySelectorAll('[data-h]').forEach(e=>e.style.height=e.dataset.h+'%');
  document.querySelectorAll('[data-n]').forEach(e=>{const n=+e.dataset.n,t0=performance.now();const s=t=>{const k=Math.min((t-t0)/1000,1),v=Math.round(n*(1-Math.pow(1-k,3)));e.textContent=v+'%';if(k<1)requestAnimationFrame(s)};requestAnimationFrame(s)});},150));

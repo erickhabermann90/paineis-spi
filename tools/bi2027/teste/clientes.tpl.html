@@ -42,6 +42,7 @@
 .phone{height:100dvh;margin:0 auto;border-radius:0;box-shadow:none}
 @media (min-width:500px){.phone{height:844px;margin:16px auto;border-radius:30px;box-shadow:0 24px 60px -24px rgba(0,0,0,.4)}}
 body{background:var(--bg)}@media (min-width:500px){body{background:#d9d5ca}}
+.gr .gl{display:flex;align-items:flex-end;min-height:2.5em}
 </style></head><body>
 <div class="phone"><div class="scroll" id="app"></div>
 <div class="nav"><button><span>🛒</span>Mês atual</button><button><span>📈</span>Performance</button><button><span>🎯</span>Campanhas</button><button><span>🗺️</span>Roteiro</button><button class="on"><span>🔎</span>Clientes</button></div></div>
@@ -60,7 +61,7 @@ function lista(){ const qq=q.normalize('NFD').replace(/[̀-ͯ]/g,'').toUpperCase
  document.querySelectorAll('.lr').forEach(b=>b.onclick=()=>{location.hash=b.dataset.c;});
  document.querySelector('.scroll').scrollTop=0; }
 function ficha(c){
- const tot=c.reb.find(r=>r.grupo==='Total'), gs=c.reb.filter(r=>r.grupo!=='Total');
+ const R5=r=>Object.assign({},r,{objetivo:r.objetivo*1.05}), tot=(x=>x&&R5(x))(c.reb.find(r=>r.grupo==='Total')), gs=c.reb.filter(r=>r.grupo!=='Total').map(R5);
  const ritmo=c.freq?(c.dias<=c.freq?['no ritmo','#e3f5ed','#0f9d6b']:c.dias<=2*c.freq?['atrasado','#fff4d6','#b07d00']:['em risco','#fde4e4','#d64545']):['sem ritmo','#eceae4','#555'];
  const its=showAll?c.itens:c.itens.slice(0,10), mx=c.itens[0]?c.itens[0][1]:1;
  document.getElementById('app').innerHTML=`
@@ -69,10 +70,10 @@ function ficha(c){
 <div class="hero"><div class="cap">Média mensal</div>
  <div class="mm num"><div><small>${DD.ano0}</small><b>${kg(c.med26)}</b></div><div class="ar" style="color:#9fa1a9">→</div><div><small>${DD.ano1}</small><b style="color:#ffc000">${c.med27==null?'—':kg(c.med27)}</b>${c.med27==null?'<small>começa em jan</small>':''}</div></div>
  <div class="hs num"><div>faturado mês<b>${kg(c.mes)}</b></div><div>carteira<b>${kg(c.cart)}</b></div><div>compra a cada<b>${c.freq?c.freq+' dias':'—'}</b></div></div></div>
-${tot?`<div class="card prime"><div class="ch"><b>Objetivo Prime</b><small>rebate · objetivo do BI + 5%</small></div>
+${tot?`<div class="card prime"><div class="ch"><b>Objetivo Prime</b><small>rebate · objetivo negociado</small></div>
  <div class="pv num"><b style="color:${tone(tot.realizado/tot.objetivo)}">${Math.round(tot.realizado/tot.objetivo*100)}%</b><span>${kg(tot.realizado)} de ${kg(tot.objetivo)} · faltam <b style="font-size:13px;color:#d64545">${kg(Math.max(tot.objetivo-tot.realizado,0))}</b></span></div>
  <div class="trk"><i style="width:${Math.min(tot.realizado/tot.objetivo,1)*100}%;background:${tone(tot.realizado/tot.objetivo)}"></i></div>
- <div class="gr num">${gs.map(g=>`<div>${({G1:'FN Fresh, FN Vet e Pet Care',G2:'FN Life e FN Pro',G3:'Origens'})[g.grupo]||g.grupo}<b style="color:${tone(g.realizado/g.objetivo)}">${Math.round(g.realizado/g.objetivo*100)}%</b>${kg(g.realizado)} / ${kg(g.objetivo)}</div>`).join('')}</div></div>`:''}
+ <div class="gr num">${gs.map(g=>`<div><span class="gl">${({G1:'FN Fresh, FN Vet e Pet Care · 3%',G2:'FN Life e FN Pro · 2%',G3:'Origens · 1%'})[g.grupo]||g.grupo}</span><b style="color:${tone(g.realizado/g.objetivo)}">${Math.round(g.realizado/g.objetivo*100)}%</b>${kg(g.realizado)} / ${kg(g.objetivo)}</div>`).join('')}</div></div>`:''}
 <div class="card"><div class="ch"><b>Produtos que compra</b><small>${DD.itens_txt}</small></div>
  ${its.map(([p,v])=>`<div class="row num"><div><div class="p">${PR[p]}</div><div class="bar"><i style="width:${v/mx*100}%"></i></div></div><div class="v">${kg(v)}</div></div>`).join('')||'<div class="note">Sem compras no período.</div>'}
  ${c.itens.length>10?`<button class="more" id="more">${showAll?'mostrar menos':'ver todos os '+c.itens.length+' produtos'}</button>`:''}</div>

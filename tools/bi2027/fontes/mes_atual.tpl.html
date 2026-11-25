@@ -46,25 +46,24 @@
   <div class="hero" id="hero"></div>
  </div>
  <div class="chips" id="chips"></div>
- <div class="th"><span style="text-align:left">Cliente</span><span>Objetivo</span><span>Fat.</span><span>Cart.</span><span>Gap</span><span>Dias</span></div>
+ <div class="th"><span style="text-align:left">Cliente</span><span>Média</span><span>Fat.</span><span>Cart.</span><span>Freq.</span><span>Dias</span></div>
  <div class="list" id="list"></div>
  <div class="nav"><button class="on"><span>🛒</span>Mês atual</button><button><span>📈</span>Performance</button><button><span>🎯</span>Campanhas</button><button><span>🔎</span>Clientes</button></div>
 </div>
 <script>
 const D=/*DATA*/;
 const f=n=>Math.round(n).toLocaleString('pt-BR'), t=n=>(n/1000).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+' t';
-const R=D.rows.map(r=>Object.assign(r,{vend:r.fat+r.cart,gap:Math.max(r.obj-r.fat-r.cart,0),p:(r.fat+r.cart)/r.obj}));
-const tot=R.reduce((a,r)=>[a[0]+r.obj,a[1]+r.fat,a[2]+r.cart,a[3]+r.gap],[0,0,0,0]);
-const bat=R.filter(r=>r.p>=1).length, sem=R.filter(r=>!r.vend).length;
-document.getElementById('hero').innerHTML=`<div class="cap">Objetivo dos clientes · plano + 10%</div>
- <div class="hrow"><b class="num">${Math.round((tot[1]+tot[2])/tot[0]*100)}%</b><span>vendido de <b style="font-size:13px;color:#fff">${t(tot[0])}</b><br>plano ${t(D.plano)} + folga 10%</span></div>
- <div class="trk"><i class="f" style="width:${tot[1]/tot[0]*100}%"></i><i class="c" style="width:${tot[2]/tot[0]*100}%"></i></div>
- <div class="stats num"><div>faturado<b>${t(tot[1])}</b></div><div>carteira<b>${t(tot[2])}</b></div><div>faltam<b style="color:#ff8f8f">${t(Math.max(tot[0]-tot[1]-tot[2],0))}</b></div></div>`;
+const R=D.rows.map(r=>Object.assign(r,{vend:r.fat+r.cart}));
+const tot=R.reduce((a,r)=>[a[0]+r.fat,a[1]+r.cart],[0,0]), com=R.filter(r=>r.fat>0).length, ped=R.filter(r=>!r.fat&&r.cart>0).length, sem=R.filter(r=>!r.vend).length, np=R.filter(r=>r.prime).length;
+document.getElementById('hero').innerHTML=`<div class="cap">Clientes no mês</div>
+ <div class="hrow"><b class="num">${com}</b><span>clientes com compra faturada<br>${ped} com pedido em carteira · ${sem} sem pedido</span></div>
+ <div class="stats num"><div>faturado<b>${t(tot[0])}</b></div><div>carteira<b>${t(tot[1])}</b></div><div>sem pedido<b>${sem}</b></div></div>`;
 const tone=p=>p>=1?'#0f9d6b':p>=.8?'#e0a800':'#e05252';
 const dclass=r=>!r.freq?'d-b':r.dias<=r.freq?'d-ok':r.dias<=2*r.freq?'d-w':'d-b';
-const F=[['Todos',()=>true],['Faltam',r=>r.p<1&&r.vend>0],['Sem pedido',r=>!r.vend],['Batidos',r=>r.p>=1]];
+const F=[['Todos',()=>true],['Sem pedido',r=>!r.vend],['Abaixo da média',r=>r.base>0&&r.vend>0&&r.vend<r.base]];
 let cur=0;
 function draw(){document.getElementById('chips').innerHTML=F.map((x,i)=>`<button class="${i===cur?'on':''}" onclick="cur=${i};draw()">${x[0]}<small>${R.filter(x[1]).length}</small></button>`).join('');
- document.getElementById('list').innerHTML=R.filter(F[cur][1]).sort((a,b)=>b.gap-a.gap).map(r=>`<div class="r"><div class="g num"><div class="nm">${r.nome}</div><span class="o">${f(r.obj)}</span><span>${f(r.fat)}</span><span class="cart">${r.cart?f(r.cart):'—'}</span><span style="font-weight:800;color:${r.gap?'#d64545':'#0f9d6b'}">${r.gap?f(r.gap):'✓'}</span><span class="dd ${dclass(r)}">${r.dias}</span></div></div>`).join('');}
+ document.getElementById('list').innerHTML=R.filter(F[cur][1]).sort((a,b)=>b.base-a.base).map(r=>{
+  return `<div class="r"><div class="g num"><div class="nm">${r.nome}</div><span>${f(r.base)}</span><span class="o">${r.fat?f(r.fat):'—'}</span><span class="cart">${r.cart?f(r.cart):'—'}</span><span>${r.freq?r.freq+'d':'—'}</span><span class="dd ${dclass(r)}">${r.dias}</span></div></div>`}).join('');}
 draw();
 </script></body></html>
