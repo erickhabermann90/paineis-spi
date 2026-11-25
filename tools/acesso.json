@@ -1,6 +1,6 @@
 {
   "_obs": "Login dos painéis (Cloudflare Access, código por e-mail). Cada RC vê só o próprio link; o gestor vê tudo. Não publicar (fora de site/).",
-  "gestor": "",
+  "gestor": "erick.habermann@adimax.com.br",
   "rcs": {
     "eduardo-d07b65": "eduardoleandroferraz@hotmail.com",
     "felippe-fa8f53": "felippe.laurino@gmail.com",
