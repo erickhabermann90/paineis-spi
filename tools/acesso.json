@@ -1,0 +1,19 @@
+{
+  "_obs": "Login dos painéis (Cloudflare Access, código por e-mail). Cada RC vê só o próprio link; o gestor vê tudo. Não publicar (fora de site/).",
+  "gestor": "",
+  "rcs": {
+    "eduardo-d07b65": "eduardoleandroferraz@hotmail.com",
+    "felippe-fa8f53": "felippe.laurino@gmail.com",
+    "gabriel-45eb60": "gabrieldeitape@gmail.com",
+    "gabriel-teste-23342c": "gabrieldeitape@gmail.com",
+    "lucas-343b76": "lucas_fonseca98@outlook.com",
+    "maria-cc285d": "mfcomercialltda@outlook.com",
+    "marcos-fd259f": "marcosfleitasximenes@gmail.com",
+    "mauricio-5dabb9": "tamburomauricio@gmail.com",
+    "thiago-44f458": "jr_thigo@hotmail.com",
+    "wilian-f02b2c": "wilianleones@yahoo.com.br",
+    "yuri-2173aa": "yuriuzzun@hotmail.com"
+  },
+  "so_gestor": ["gestor-c7a3abfd", "marcelo-f95fa4", "(raiz e demais caminhos)"],
+  "todos": ["assets"]
+}
