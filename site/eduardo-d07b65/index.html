@@ -911,10 +911,10 @@ window.dash = (() => {
     }
   });
   dash.calc('mes_resumo', {
-    title: 'Resumo da carteira no mês', description: 'Kg faturados e vendidos (faturado + carteira) no mês e clientes ativos sem compra no mês.',
+    title: 'Resumo da carteira no mês', description: 'Kg faturados e vendidos (faturado + carteira) no mês e clientes ativos sem compra no mês (sem faturamento e sem peso em carteira).',
     inputs: ['mes_atual'],
     fn: (mes_atual) => [{clientes_ativos: mes_atual.length, faturado: mes_atual.reduce((a, c) => a + c.faturado, 0), vendido: mes_atual.reduce((a, c) => a + c.vendido, 0),
-      sem_compra_mes: mes_atual.filter((c) => c.faturado === 0).length}]
+      sem_compra_mes: mes_atual.filter((c) => c.faturado === 0 && c.carteira === 0).length}]
   });
   dash.calc('rebate_calc', {
     title: 'Rebate por grupo', description: 'Objetivo = objetivo do BI + 5%; atingimento = realizado ÷ objetivo, por grupo de produto da rede.',
@@ -1058,7 +1058,7 @@ window.dash = (() => {
     tb.replaceChildren(); const d = dash.data('mes_atual'); if (d.status !== 'ok') return;
     const q = pxUi.busca.trim().toUpperCase();
     d.data.filter((r) => (!q || r.razao_social.toUpperCase().includes(q))
-      && (pxUi.chip === 'todos' || (pxUi.chip === 'sem' && r.faturado === 0)))
+      && (pxUi.chip === 'todos' || (pxUi.chip === 'sem' && r.faturado === 0 && r.carteira === 0)))
       .forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = r.cod;
         td(tr, r.razao_social); td(tr, pxKg(r.faturado)); td(tr, pxKg(r.vendido), r.vendido > 0 ? 'c-ok' : 'c-mut'); diasTd(tr, r.dias_ult_compra); tb.appendChild(tr); });
   });
@@ -1085,7 +1085,7 @@ window.dash = (() => {
     const grid = document.createElement('div'); grid.className = 'px-groups';
     rows.forEach((r) => {
       const box = document.createElement('div'); box.className = 'px-g';
-      const t = document.createElement('div'); t.className = 't'; const a = document.createElement('span'); a.textContent = r.grupo === 'Total' ? 'Objetivo total' : 'Grupo ' + r.grupo.slice(1);
+      const t = document.createElement('div'); t.className = 't'; const a = document.createElement('span'); a.textContent = r.grupo === 'Total' ? 'Objetivo total' : ({G1: 'FN Fresh, FN Vet e Pet Care', G2: 'FN Life e FN Pro', G3: 'Origens'}[r.grupo] || r.grupo);
       const s2 = document.createElement('span'); s2.className = r.atingimento >= 1 ? 'c-ok' : 'c-mut'; s2.style.fontSize = '12px'; s2.textContent = r.atingimento >= 1 ? '✓ batido' : 'faltam ' + pxKg(r.falta) + ' kg'; t.append(a, s2);
       const p = document.createElement('div'); p.className = 'p ' + pxTone(r.atingimento); p.textContent = pxPct(r.atingimento);
       const bar = document.createElement('div'); bar.className = 'bar'; const b = document.createElement('b'); b.style.width = Math.min(r.atingimento, 1) * 100 + '%'; b.style.background = pxHex(r.atingimento); bar.appendChild(b);

@@ -72,7 +72,7 @@ function ficha(c){
 ${tot?`<div class="card prime"><div class="ch"><b>Objetivo Prime</b><small>rebate · objetivo do BI + 5%</small></div>
  <div class="pv num"><b style="color:${tone(tot.realizado/tot.objetivo)}">${Math.round(tot.realizado/tot.objetivo*100)}%</b><span>${kg(tot.realizado)} de ${kg(tot.objetivo)} · faltam <b style="font-size:13px;color:#d64545">${kg(Math.max(tot.objetivo-tot.realizado,0))}</b></span></div>
  <div class="trk"><i style="width:${Math.min(tot.realizado/tot.objetivo,1)*100}%;background:${tone(tot.realizado/tot.objetivo)}"></i></div>
- <div class="gr num">${gs.map(g=>`<div>${g.grupo}<b style="color:${tone(g.realizado/g.objetivo)}">${Math.round(g.realizado/g.objetivo*100)}%</b>${kg(g.realizado)} / ${kg(g.objetivo)}</div>`).join('')}</div></div>`:''}
+ <div class="gr num">${gs.map(g=>`<div>${({G1:'FN Fresh, FN Vet e Pet Care',G2:'FN Life e FN Pro',G3:'Origens'})[g.grupo]||g.grupo}<b style="color:${tone(g.realizado/g.objetivo)}">${Math.round(g.realizado/g.objetivo*100)}%</b>${kg(g.realizado)} / ${kg(g.objetivo)}</div>`).join('')}</div></div>`:''}
 <div class="card"><div class="ch"><b>Produtos que compra</b><small>${DD.itens_txt}</small></div>
  ${its.map(([p,v])=>`<div class="row num"><div><div class="p">${PR[p]}</div><div class="bar"><i style="width:${v/mx*100}%"></i></div></div><div class="v">${kg(v)}</div></div>`).join('')||'<div class="note">Sem compras no período.</div>'}
  ${c.itens.length>10?`<button class="more" id="more">${showAll?'mostrar menos':'ver todos os '+c.itens.length+' produtos'}</button>`:''}</div>
