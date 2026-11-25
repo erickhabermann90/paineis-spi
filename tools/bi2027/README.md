@@ -34,3 +34,9 @@ Protótipos com dados reais do Gabriel (e do Lucas no roteiro), dados de 19/11/2
 - Plano x realizado serve para acelerador e gestão; não usar a tela como instrumento de cobrança/notificação.
 - Fotos dos RCs (tools/bi2027/fotos) só entram no BI com concordância de cada um (LGPD).
 - Quando o planejamento gravar propostas/comissões: proteger os links com login (Cloudflare Access) antes de publicar.
+
+## Itens por cliente (6 meses) — 1x por mês
+- No 1º dia útil do mês: Curva ABC, `__filtroLista` com os 6 meses mais recentes (inclui o mês vigente), dims [CÓD CLIENTE, PRODUTO], medida PESO decrescente, `__itensBg()`; gravar `tools/itens6.json` = {extraido_em, meses, produtos, linhas:[[cli, idx, kg]]} e conferir a soma com o Total.
+- Usado no Início (itens por cliente) e na Performance (mix médio e itens abandonados). Nos outros dias o arquivo é reaproveitado.
+- Performance · Clientes em queda (Volume): "recuperar" = (média 2025 × 12 − realizado 2026 até hoje, com carteira) ÷ meses restantes do ano (inclui o vigente).
+- Clientes sem compra: só "Sem compra há mais de 70 dias" e "Inativos no BI", cada um abre a lista com 1 toque.

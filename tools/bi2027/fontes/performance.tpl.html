@@ -65,10 +65,10 @@ const C=D.cl, P=D.plano, T=D.tot;
 const qv=C.filter(c=>c.m25>0&&c.m26<c.m25*.9).sort((a,b)=>(b.m25-b.m26)-(a.m25-a.m26));
 const qm=C.filter(c=>c.ab>=3).sort((a,b)=>b.ab-a.ab);
 const qf=C.filter(c=>c.freq&&c.dias>1.5*c.freq).sort((a,b)=>(b.dias/b.freq)-(a.dias/a.freq));
-const sem90=C.filter(c=>c.dias>90).length, mixmed=C.filter(c=>c.mix).reduce((a,c,_,r)=>a+c.mix/r.length,0);
+const S70=C.filter(c=>c.dias>70).sort((a,b)=>b.m26-a.m26), RM=Math.max(12-P.meses_fechados,1), need=c=>Math.max((c.m25*12-(c.m26*P.meses_fechados+c.mes+c.cart))/RM,0), mixmed=C.filter(c=>c.mix).reduce((a,c,_,r)=>a+c.mix/r.length,0);
 function draw(){
  const famMax=Math.max(...D.fam.map(x=>Math.max(x.kg_2025/12,x.kg_2026_fech/P.meses_fechados)));
- const L=[[qv,c=>`${kg(c.m25)} → ${kg(c.m26)} /mês`,c=>`−${kg(c.m25-c.m26)}<small>${String(pct(c.m26,c.m25)).replace('.',',')}%</small>`],
+ const L=[[qv,c=>`${kg(c.m25)} → ${kg(c.m26)} /mês · <b style="color:#16181d">${need(c)?'recuperar: '+kg(need(c))+'/mês até dez':'2025 já recuperado no ano'}</b>`,c=>`−${kg(c.m25-c.m26)}<small>${String(pct(c.m26,c.m25)).replace('.',',')}%</small>`],
           [qm,c=>`deixou de comprar: ${c.abl.slice(0,2).map(x=>x[0]).join(', ')}${c.ab>2?'…':''}`,c=>`${c.ab} itens ›<small>toque para ver</small>`],
           [qf,c=>`compra a cada ${c.freq} dias · último há ${c.dias}`,c=>`+${c.dias-c.freq} dias<small>além do ritmo</small>`]][seg];
  const rows=L[0].slice(0,allA?99:6);
@@ -89,21 +89,25 @@ function draw(){
  <div class="seg">${['Volume','Mix','Frequência'].map((s,i)=>`<button class="${i===seg?'on':''}" onclick="seg=${i};allA=false;draw()">${s}<small>${[qv,qm,qf][i].length}</small></button>`).join('')}</div>
  ${rows.map(c=>`<div class="cr num${seg===1?' tap':''}"${seg===1?` onclick="abItens('${c.cod}')"`:''}><div class="n">${c.nome}<small>${L[1](c)}</small></div><div class="v">${L[2](c)}</div></div>`).join('')||'<div class="note">Nenhum cliente nesta situação.</div>'}
  ${L[0].length>6?`<button class="more" onclick="allA=!allA;draw()">${allA?'mostrar menos':'ver todos os '+L[0].length}</button>`:''}</div>
-<div class="card"><div class="ch"><b>Mix</b><small>itens por cliente · últimos 12 meses</small></div>
+<div class="card"><div class="ch"><b>Mix</b><small>itens por cliente · últimos ${D.mix_txt||'12 meses'}</small></div>
  <div class="mx num"><div style="background:#ffe1ea;color:#7a1f42"><span class="l">Mix médio</span><b>${String(Math.round(mixmed*10)/10).replace('.',',')}</b><small>Regional ${String(D.mix_reg).replace('.',',')}</small></div>
  <div style="background:#16181d;color:#fff"><span class="l">Itens abandonados</span><b style="color:#ff8f8f">${f(C.reduce((a,c)=>a+c.ab,0))}</b><small>em ${C.filter(c=>c.ab).length} clientes</small></div></div>
- <div class="sub">Mais abandonados na sua carteira</div>
- ${D.ab_top.slice(0,6).map(([p,n])=>`<div class="cr num"><div class="n" style="font-weight:600">${p}</div><div class="v">${n}<small>clientes pararam</small></div></div>`).join('')}
- <div class="sub">Clientes abandonados</div>
- <div class="cr num"><div class="n">Sem compra há mais de 90 dias<small>ainda ativos no BI · voltar a visitar</small></div><div class="v">${sem90}</div></div>
- <div class="cr num"><div class="n">Inativos no BI<small>situação do cliente = inativo</small></div><div class="v">${T.inativos}</div></div></div>
-<div class="note">Prévia com ${A0} × ${A1}; em 2027 a tela compara ${+A0+1} × ${+A1+1}. Item abandonado = comprado em 2025 e sem compra nos últimos 12 meses, sem contar itens fora de linha (lista informada + itens sem venda na Regional em 12 meses) e trocas de embalagem do mesmo produto (ex.: Origens 11,1 kg promocional → 10,1 kg). Novembro de ${A0} entra com uma extração mensal extra.</div>`;}
+ <div class="sub">Clientes sem compra</div>
+ <div class="cr num tap" onclick="lista(70)"><div class="n">Sem compra há mais de 70 dias<small>ainda ativos no BI · toque para ver quem são</small></div><div class="v">${S70.length} ›</div></div>
+ <div class="cr num tap" onclick="lista(0)"><div class="n">Inativos no BI<small>situação do cliente = inativo · toque para ver quem são</small></div><div class="v">${D.inat.length} ›</div></div></div>
+<div class="note">Prévia com ${A0} × ${A1}; em 2027 a tela compara ${+A0+1} × ${+A1+1}. Item abandonado = comprado em 2025 e sem compra nos últimos ${D.mix_txt||'12 meses'}, sem contar itens fora de linha (lista informada + itens sem venda na Regional em 12 meses) e trocas de embalagem do mesmo produto (ex.: Origens 11,1 kg promocional → 10,1 kg). Novembro de ${A0} entra com uma extração mensal extra.</div>`;}
 function abItens(cod){const c=C.find(x=>x.cod===cod);
  document.getElementById('sh').innerHTML=`<button class="x" onclick="fecha()">×</button>
  <div class="sub" style="margin:2px 0 2px">Itens deixados de comprar</div><h2>${c.nome}</h2>
- <div class="shs">${c.ab} itens comprados em ${A0} e sem compra nos últimos 12 meses · mix atual ${c.mix} itens</div>
+ <div class="shs">${c.ab} itens comprados em ${A0} e sem compra nos últimos ${D.mix_txt||'12 meses'} · mix atual ${c.mix} itens</div>
  <div class="box">${c.abl.map(([p,n],i)=>`<div class="ai num"><span class="i">${i+1}</span><div class="p">${p}</div><div class="r">${n}<small>clientes da<br>Regional</small></div></div>`).join('')}</div>
  <div class="note">Ordem: itens que mais clientes da Regional compram hoje. Fora da lista: itens fora de linha e trocas de embalagem do mesmo produto.</div>`;
+ document.getElementById('sheet').classList.add('on'); document.getElementById('sh').scrollTop=0;}
+function lista(k){const L=k?S70.map(c=>[c.nome,'última compra há '+c.dias+' dias',kg(c.m26)+'/mês em '+A1]):D.inat.map(c=>[c.nome,c.dias?'última compra há '+c.dias+' dias':'sem compra recente',kg(c.m25)+'/mês em '+A0]);
+ document.getElementById('sh').innerHTML=`<button class="x" onclick="fecha()">×</button>
+ <div class="sub" style="margin:2px 0 2px">${k?'Sem compra há mais de 70 dias':'Inativos no BI'}</div><h2>${L.length} clientes</h2>
+ <div class="shs">${k?'Clientes ativos que não compram há mais de 70 dias':'Clientes com situação inativo no BI'} · ordem: maior volume</div>
+ <div class="box">${L.map(([n,s,v],i)=>`<div class="ai num"><span class="i">${i+1}</span><div class="p">${n}<small style="display:block;color:#8a8c93;font-weight:600;font-size:10.5px">${s}</small></div><div class="r">${v}</div></div>`).join('')||'<div class="ai">Nenhum cliente.</div>'}</div>`;
  document.getElementById('sheet').classList.add('on'); document.getElementById('sh').scrollTop=0;}
 function fecha(){document.getElementById('sheet').classList.remove('on')}
 document.getElementById('sheet').onclick=e=>{if(e.target.id==='sheet')fecha()};

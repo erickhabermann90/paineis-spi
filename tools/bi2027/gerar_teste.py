@@ -35,6 +35,8 @@ document.querySelectorAll('.bk > span:first-child, .bk > button:first-child').fo
     s = s.replace('/*NAV*/', nav) if '/*NAV*/' in s else s.replace('</body>', nav + '\n</body>')
     s = re.sub(r'<div class="nav"([^>]*)>(?:<button[^>]*>.*?</button>)+</div>', lambda m: '<div class="nav"' + m.group(1) + '>' + NAVB + '</div>', s, flags=re.S)
     s = s.replace('<head>', '<head><meta name="robots" content="noindex, nofollow">', 1)
+    # menu sempre visível no rodapé: no celular a moldura ocupa exatamente a tela (o conteúdo rola dentro)
+    s = s.replace('</style>', '@media (max-width:500px){.phone{margin:0 !important;border-radius:0 !important;height:100dvh !important;min-height:0 !important;box-shadow:none !important}}\n.nav{flex:none}\n</style>', 1)
     open(os.path.join(OUTD, nome_arq), 'w').write(s)
 
 NAVB = ''.join(f'<button{" class=\"mid\"" if t == "Clientes" else ""}><span>{i}</span>{t}</button>' for i, t in (('🛒', 'Mês atual'), ('📈', 'Performance'), ('🔎', 'Clientes'), ('🎯', 'Campanhas'), ('⭐', 'Prime')))
@@ -54,6 +56,15 @@ rank = collections.Counter(p for c in ativos_reg for p in m12.get(c, {}))
 mix_reg = round(sum(len(m12[c]) for c in ativos_reg if c in m12) / max(sum(1 for c in ativos_reg if c in m12), 1), 1)
 ids = [str(c['cod']) for c in CL]
 mix_rc = round(sum(len(m12[c]) for c in ids if c in m12) / max(sum(1 for c in ids if c in m12), 1), 1)
+# Início: itens por cliente dos últimos 6 meses (tools/itens6.json, atualizado 1x por mês)
+m6 = {}; mix_txt = '12 meses'; mix6_rc, mix6_reg = mix_rc, mix_reg
+if os.path.exists(os.path.join(T, 'itens6.json')):
+    I6 = json.load(open(os.path.join(T, 'itens6.json'))); m6 = collections.defaultdict(set)
+    for c, pi, kg in I6['linhas']:
+        if kg > 0: m6[str(c)].add(I6['produtos'][pi])
+    mix6_reg = round(sum(len(m6[c]) for c in ativos_reg if c in m6) / max(sum(1 for c in ativos_reg if c in m6), 1), 1)
+    mix6_rc = round(sum(len(m6[c]) for c in ids if c in m6) / max(sum(1 for c in ids if c in m6), 1), 1)
+    mix_txt = '6 meses'
 
 # ---------- Linhas do RC: objetivo = rateio do KPI da Regional pelo plano do RC × 1,05; realizado do mês (kpi_rc.json) + carteira ----------
 kpis = {}
@@ -76,7 +87,7 @@ if M4:
 pos_fat = sum(1 for c in CL if c['kg_mes'] > 0); pos_cart = sum(1 for c in CL if c['kg_mes'] <= 0 and c['kg_carteira'] > 0)
 nota = 'Painel de acompanhamento. A apuração oficial segue o regulamento do Plano Performance.'
 page('inicio.tpl.html', {'nome': nome, 'mes': mes_nome, 'data': data_txt, 'dias_uteis': du_txt, 'plano': P, 'kpis': kpis, 'kpis_est': False, 'pouso': pouso,
-     'base': {'n': len(CL), 'fat': pos_fat, 'cart': pos_cart, 'obj': .7, 'mix': mix_rc, 'mix_reg': mix_reg, 'mix_txt': '12 meses'}, 'nota': nota},
+     'base': {'n': len(CL), 'fat': pos_fat, 'cart': pos_cart, 'obj': .7, 'mix': mix6_rc, 'mix_reg': mix6_reg, 'mix_txt': mix_txt}, 'nota': nota},
      'index.html', {'@@FN@@': LOGO['fn'], '@@OR@@': LOGO['or']})
 
 PRIME = {str(r['cod']): {'obj': round(r['objetivo'] * 1.05), 'real': round(r['realizado'])} for r in (d.get('rebate') or []) if r['grupo'] == 'Total'}
@@ -105,12 +116,13 @@ def base_nome(p):
 pc, abr = [], collections.Counter()
 nreg = collections.Counter(p for c in m12 for p in m12[c])  # clientes da Regional que compram o item (12 meses)
 for c in CL:
-    cod = str(c['cod']); hist = {HP[i] for i in H['cli'].get(cod, [])}; atuais = set(m12.get(cod, {}))
+    cod = str(c['cod']); hist = {HP[i] for i in H['cli'].get(cod, [])}; atuais = set(m6.get(cod, ())) if mix_txt == '6 meses' else set(m12.get(cod, {}))
     atb = {base_nome(p) for p in atuais}
     ab = sorted(p for p in hist - atuais if p not in fora and base_nome(p) not in atb)
     abr.update(ab)
     pc.append({'cod': cod, 'nome': c['razao_social'], 'm25': c['med_kg_25'], 'm26': c['med_kg_26'], 'mes': c['kg_mes'], 'cart': c['kg_carteira'], 'dias': c['dias_ult_compra'], 'freq': c['freq_media_dias'], 'mix': len(atuais), 'ab': len(ab), 'abl': [[p, nreg[p]] for p in sorted(ab, key=lambda p: (-nreg[p], p))]})
-perf = {'fam': d['familias'], 'tot': one('perf_total'), 'plano': P, 'cl': pc, 'ab_top': abr.most_common(8), 'mix_reg': mix_reg, 'n': len(CL)}
+inat_rc = sorted([{'nome': x[2], 'dias': x[8], 'm25': x[10]} for x in CLIENTS if str(x[0]) == COD and str(x[1]) in INAT], key=lambda x: -x['m25'])
+perf = {'fam': d['familias'], 'tot': one('perf_total'), 'plano': P, 'cl': pc, 'mix_reg': mix6_reg, 'mix_txt': mix_txt, 'n': len(CL), 'inat': inat_rc}
 page('performance.tpl.html', perf, 'performance.html',
      {'Gabriel · ${A0} × ${A1} · dados de 19/11': nome + ' · ${A0} × ${A1} · dados de ' + data_txt, "A0='2025', A1='2026'": f"A0='{ano0}', A1='{ano1}'",
       'Novembro × novembro': mes_nome + ' × ' + mes_nome.lower(), 'nov/${A0.slice(2)} a incluir': mes_nome[:3].lower() + '/${A0.slice(2)} a incluir'})
