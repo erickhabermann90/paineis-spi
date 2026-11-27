@@ -139,7 +139,7 @@ R.slice().sort((a,b)=>a.nome.localeCompare(b.nome)).forEach(r=>{const o=document
 $('go').onclick=()=>$('sheet').classList.add('on'); $('fecha').onclick=()=>$('sheet').classList.remove('on');
 $('sheet').onclick=e=>{if(e.target.id==='sheet')$('sheet').classList.remove('on')};
 $('lista').onclick=e=>{const b=e.target.closest('.rc'); if(b) location.hash=b.dataset.s;};
-const mostrar=()=>{const s=location.hash.slice(1), r=D.rcs.find(x=>x.slug===s); $('esp').classList.toggle('on',!!r); if(!r) return; $('sheet').classList.remove('on'); $('sel').value=s; const src='../'+s+'/'; if($('frame').getAttribute('src')!==src) $('frame').setAttribute('src',src);};
+const mostrar=()=>{const s=location.hash.slice(1), r=D.rcs.find(x=>x.slug===s); $('esp').classList.toggle('on',!!r); if(!r) return; $('sheet').classList.remove('on'); $('sel').value=s; const src='rc/'+s+'/'; if($('frame').getAttribute('src')!==src) $('frame').setAttribute('src',src);};
 $('sel').onchange=()=>location.hash=$('sel').value; $('voltar').onclick=()=>{location.hash='';};
 addEventListener('hashchange',mostrar); mostrar();
 function anima(){requestAnimationFrame(()=>setTimeout(()=>{document.querySelectorAll('[data-w]').forEach(e=>e.style.width=e.dataset.w);document.querySelectorAll('[data-h]').forEach(e=>e.style.height=e.dataset.h);

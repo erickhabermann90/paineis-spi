@@ -284,3 +284,19 @@ for r in resumo: print('%-34s fat %7d obj %7d %6.1f%% | 4T meta %7d real %7d %5.
 if TESTE and TESTE.get('modelo') == 'bi2027' and os.path.exists(os.path.join(T, 'bi2027', 'gerar_teste.py')):
     import subprocess as _sp
     _sp.run([sys.executable, os.path.join(T, 'bi2027', 'gerar_teste.py'), ext], check=True)
+
+# Desde 27/11 os links têm login (Cloudflare Access, um aplicativo por RC). O espelho do gestor não consegue abrir
+# ../<slug>/ dentro do iframe (outro aplicativo = outro login). Solução: cópia de cada painel dentro da pasta do gestor
+# (/<gestor>/rc/<slug>/), protegida pelo login do gestor. Imagens apontam para /assets/ (liberado para a equipe).
+import shutil as _sh2
+_dst = os.path.join(SITE, gslug, 'rc')
+if os.path.exists(_dst): _sh2.rmtree(_dst)
+_slugs = [r['slug'] for r in gest] + ([TESTE['slug']] if TESTE and TESTE.get('slug') else [])
+for _s in _slugs:
+    _src = os.path.join(SITE, _s)
+    if not os.path.isdir(_src): continue
+    for _f in os.listdir(_src):
+        if not _f.endswith('.html'): continue
+        os.makedirs(os.path.join(_dst, _s), exist_ok=True)
+        open(os.path.join(_dst, _s, _f), 'w').write(open(os.path.join(_src, _f)).read().replace('../assets/', '/assets/'))
+print('gestor: cópias dos painéis em /' + gslug + '/rc/ (' + str(len(_slugs)) + ')')
